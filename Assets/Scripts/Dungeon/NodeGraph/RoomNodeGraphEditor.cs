@@ -11,7 +11,7 @@ public class RoomNodeGraphEditor : EditorWindow //편집기
     private RoomNodeSO currentRoomNode = null;
     private RoomNodeTypeListSO roomNodeTypeList;
 
-    //Node layout Values
+    //노드의 크기 값
     private const float nodeWidth = 160f;
     private const float nodeHeight = 75f;
     private const int nodePadding = 25;
@@ -62,7 +62,7 @@ public class RoomNodeGraphEditor : EditorWindow //편집기
         if (currentRoomNodeGraph != null)
         {
             // Process Events
-            ProcessEvent(Event.current);
+            ProcessEvents(Event.current);
 
             // Draw Room Nodes
             DrawRoomNodes();
@@ -70,11 +70,6 @@ public class RoomNodeGraphEditor : EditorWindow //편집기
 
         if (GUI.changed)
             Repaint();
-    }
-
-    private void ProcessEvent(Event currentEvent)
-    {
-        ProcessRoomNodeGraphEvents(currentEvent);
     }
 
     /// <summary>
