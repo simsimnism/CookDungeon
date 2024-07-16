@@ -161,6 +161,7 @@ public class RoomNodeSO : ScriptableObject
         roomNodeGraph.SetNodeToDrawConnectionLineFrom(this, currentEvent.mousePosition);
     }
 
+
     /// <summary>
     /// Process left click down event 
     /// </summary>
@@ -237,6 +238,21 @@ public class RoomNodeSO : ScriptableObject
     }
 
     /// <summary>
+    /// Add childID to the node (returns true if the node has been added, false otehrwise)
+    /// </summary>
+    public bool AddChildRoomNodeIDToRoomNode(string childID)
+    {
+        // Check child node can be added validly to parent
+        if (IsChildRoomValid(childID))
+        {
+            childRoomNodeIDList.Add(childID);
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
     /// Check the child node can be validy added to the parent node - return true if it can otherwise return false
     /// </summary>
     public bool IsChildRoomValid(string childID)
@@ -297,22 +313,6 @@ public class RoomNodeSO : ScriptableObject
     }
 
     /// <summary>
-    /// Add childID to the node (returns true if the node has been added, false otehrwise)
-    /// </summary>
-    public bool AddChildRoomNodeIDToRoomNode(string childID)
-    {
-        // Check child node can be added validly to parent
-        if (IsChildRoomValid(childID))
-        {
-            childRoomNodeIDList.Add(childID);
-            return true;
-        }
-
-        return false;
-    }
-
-
-    /// <summary>
     /// Add parentID to the node (returns true if the node has been added, false otehrwise)
     /// </summary>
     public bool AddParentRoomNodeIDToRoomNode(string parentID)
@@ -348,6 +348,8 @@ public class RoomNodeSO : ScriptableObject
         }
         return false;
     }
+
 #endif
     #endregion Editor COde
 }
+
