@@ -10,8 +10,8 @@ TagManager:
   - groundTileMap
   - decorationTileMap1
   - decorationTileMap2
-  - frontTileMap
-  - roomTileMap
+  - frontTileMap1
+  - frontTileMap2
   - miniMapPlayer
   - playerWeapon
   layers:
@@ -63,8 +63,11 @@ TagManager:
   - name: Instances
     uniqueID: 723745149
     locked: 0
-  - name: Front
+  - name: Front1
     uniqueID: 1743577853
+    locked: 0
+  - name: Front2
+    uniqueID: 1624925755
     locked: 0
   - name: Collision
     uniqueID: 4242768953

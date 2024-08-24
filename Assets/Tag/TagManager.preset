@@ -42,11 +42,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[6]
-    value: frontTileMap
+    value: frontTileMap1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[7]
-    value: roomTileMap
+    value: frontTileMap2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[8]
@@ -190,7 +190,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.size
-    value: 8
+    value: 9
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[0].name
@@ -254,7 +254,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].name
-    value: Front
+    value: Front1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].uniqueID
@@ -266,11 +266,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].name
-    value: Collision
+    value: Front2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].uniqueID
-    value: 4242768953
+    value: 1624925755
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].locked
@@ -278,14 +278,26 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].name
-    value: MiniMap
+    value: Collision
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].uniqueID
-    value: 2924803747
+    value: 4242768953
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[8].name
+    value: MiniMap
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[8].uniqueID
+    value: 2924803747
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[8].locked
     value: 0
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
