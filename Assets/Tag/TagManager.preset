@@ -14,7 +14,7 @@ Preset:
   m_Properties:
   - target: {fileID: 0}
     propertyPath: tags.Array.size
-    value: 10
+    value: 15
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[0]
@@ -42,19 +42,39 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[6]
-    value: frontTileMap1
+    value: decorationTileMap3
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[7]
-    value: frontTileMap2
+    value: decorationTileMap4
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[8]
-    value: miniMapPlayer
+    value: frontTileMap1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: tags.Array.data[9]
-    value: playerWeapon
+    value: frontTileMap2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[10]
+    value: frontTileMap3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[11]
+    value: frontTileMap4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[12]
+    value: frontTileMap5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[13]
+    value: miniMapPlayer
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tags.Array.data[14]
+    value: playerMapPlayer
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: layers.Array.size
@@ -190,7 +210,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.size
-    value: 9
+    value: 14
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[0].name
@@ -242,11 +262,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].name
-    value: Instances
+    value: Ground Decoration 3
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].uniqueID
-    value: 723745149
+    value: 3985995103
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[4].locked
@@ -254,11 +274,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].name
-    value: Front1
+    value: Ground Decoration 4
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].uniqueID
-    value: 1743577853
+    value: 529941251
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[5].locked
@@ -266,11 +286,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].name
-    value: Front2
+    value: Instances
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].uniqueID
-    value: 1624925755
+    value: 723745149
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[6].locked
@@ -278,11 +298,11 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].name
-    value: Collision
+    value: Front1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].uniqueID
-    value: 4242768953
+    value: 1743577853
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[7].locked
@@ -290,14 +310,74 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[8].name
-    value: MiniMap
+    value: Front2
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[8].uniqueID
-    value: 2924803747
+    value: 1624925755
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_SortingLayers.Array.data[8].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[9].name
+    value: Front3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[9].uniqueID
+    value: 606810687
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[9].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[10].name
+    value: Front4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[10].uniqueID
+    value: 1675544811
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[10].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[11].name
+    value: Front5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[11].uniqueID
+    value: 1374678189
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[11].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[12].name
+    value: Collision
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[12].uniqueID
+    value: 4242768953
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[12].locked
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[13].name
+    value: MiniMap
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[13].uniqueID
+    value: 2924803747
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_SortingLayers.Array.data[13].locked
     value: 0
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
