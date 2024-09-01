@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
      사용하고 싶으면 스크립트에 GameManager GM = GameManager.Instance; 을 참조
      */
 
+    public PoolManager Pool;
+    public PlayerController Player;
+
     private static PlayerManager s_PlayerManager = new PlayerManager();
 
     //매니저 인스턴스
@@ -17,8 +20,9 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { Init(); return s_Instance; } }
 
-    public static PlayerManager Player { get { Init(); return s_PlayerManager; } }
+    public static PlayerManager PlayerController { get { Init(); return s_PlayerManager; } }
 
+    
     void Start()
     {
         Init();
