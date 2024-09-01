@@ -1,6 +1,6 @@
 {
   "monster": {
-    "normalMonsters": [
+    "NormalMonsters": [
       {
         "name": "",
         "id": 1,
@@ -82,7 +82,7 @@
         "speed": 10
       }
     ],
-    "specialMonsters": [
+    "SpecialMonsters": [
       {
         "name": "",
         "id": 11,

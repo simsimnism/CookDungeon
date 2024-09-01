@@ -1,96 +1,199 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Player;
 using UnityEngine;
 
+// 플레이어의 이동과 애니매이션 적용
+// 플레이어의 데미지 처리 적용
+// 플레이어의 대쉬 적용
 
-//무적상태 지속시간 줄인것 이 시간 늘릴려면 이야기 해줘
-// 이 스크립트 적용할려면 Player에 Rigidbody2D 컴포넌트 추가해야 함
 public class PlayerController : MonoBehaviour
 {
-    public Vector2 inputVec;  // 플레이어 입력 벡터
-    private Rigidbody2D rigid;  // 플레이어의 Rigidbody2D 컴포넌트
-    public float speed = 3f;  // 일반 이동 속도
-    public float dashSpeed = 8f;  // 대쉬 시 이동 속도
-    public float dashDuration = 0.2f;  // 대쉬 지속 시간
-    public float invincibilityDuration = 0.5f;  // 무적 상태 지속 시간
-    public Color invincibleColor = new Color(1f, 1f, 1f, 0.5f);  // 무적 상태 동안 플레이어의 색상
-    private Color originalColor;  // 플레이어의 원래 색상
-    private SpriteRenderer spriteRenderer;  // 플레이어의 SpriteRenderer 컴포넌트
-    private bool isDashing = false;  // 대쉬 중인지 여부
-    private bool isInvincible = false;  // 무적 상태인지 여부
+    //이동속도
+    public float speed = 3.0f;
+    //애니매이션 이름
+    public string upAinme = "PlyerUp";
+    public string downAinme = "PlyerDown";
+    public string rightAinme = "PlyerRight";
+    public string LeftAinme = "PlyerLeft";
+    public string deadAinme = "PlayerDead";
+    string nowAnimation = "";
+    string oldAnimation = "";
 
-    void Awake()
+    float axisH;
+    float axisV;
+    public float angleZ = -90.0f;
+
+    Rigidbody2D rbody;
+    bool isMoving = false;
+
+    //대미지 처리
+    public static int hp = 3;
+    public static string gameState;
+    bool inDamage = false;
+    private string deadAnime;
+
+    void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();  // Rigidbody2D 컴포넌트 가져오기
-        spriteRenderer = GetComponent<SpriteRenderer>();  // SpriteRenderer 컴포넌트 가져오기
-        originalColor = spriteRenderer.color;  // 원래 색상 저장
+        rbody = GetComponent<Rigidbody2D>();
+        oldAnimation = downAinme;
+        gameState = "playing";
+        
     }
 
     void Update()
     {
-        HandleInput();  // 플레이어 입력 처리
-
-        // 왼쪽 Shift 키를 눌렀을 때 대쉬 시작
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
+        //게임 중이 아니거나 대미지를 받는 중에는 아무것도 하지 않음
+        if(gameState != "playing" || inDamage)
         {
-            StartCoroutine(Dash());  // 대쉬 코루틴 시작
+            return;
         }
-    }
 
+        if (!isMoving == false) 
+        {
+            axisH = Input.GetAxisRaw("Horizontal");
+            axisV = Input.GetAxisRaw("Vertical");
+        }
+        //키 입력으로 이동각도 구하기
+        Vector2 fromPt = transform.position;
+        Vector2 toPt = new Vector2(fromPt.x + axisH,fromPt.y + axisV);
+        angleZ = GetAngle(fromPt, toPt);
+        if (angleZ >= -45 && angleZ < 45) 
+        {
+            //오른쪽
+            nowAnimation = rightAinme;
+
+        }
+        else if(angleZ >= 45 && angleZ <= 135) 
+        {
+            //위쪽
+            nowAnimation = upAinme;
+
+        }
+        else if (angleZ >=-135 && angleZ <=-45 )
+        {
+            //아래쪽
+            nowAnimation = downAinme;
+        }
+        else 
+        {
+            //왼쪽
+            nowAnimation = LeftAinme;
+        }
+
+        //애니매이션 변경하기
+        if (nowAnimation != oldAnimation)
+        {
+            oldAnimation = nowAnimation;
+            GetComponent<Animator>().Play(nowAnimation);
+        }
+        
+    }
     void FixedUpdate()
     {
-        // 대쉬 중이 아닐 때만 이동
-        if (!isDashing)
+        if (gameState != "playing")
         {
-            Move();
+            return ;
+        }
+        if (inDamage) 
+        {
+            float val = Mathf.Sin(Time.time*50);
+            Debug.Log(val);
+            if (val > 0) 
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else 
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
+            return ;
+
+        }
+        
+        //이동속도 변경하기
+        rbody.velocity = new Vector2(axisH, axisV) * speed;
+
+
+        
+    }
+    public void SetAxis(float h , float v)
+    {
+        axisH = h;
+        axisV = v; 
+        if (axisH == 0 && axisV == 0)
+        {
+            isMoving = false;
+
+        }
+        else 
+        {
+            isMoving = true;
+        }
+    }
+    // p1에서 p2까지의 각도를 계산
+    float GetAngle(Vector2 p1, Vector2 p2)
+    {
+        float angle;
+        if (axisH != 0 || axisV !=0)
+        {
+            // 이동중이면 각도를 변경
+            // p1과 p2의 차이 구하기
+            float dx = p2.x - p1.x;
+            float dy = p2.y - p1.y;
+            // 아크 탄젠트 함수로 각도 구하기
+            float rad = Mathf.Atan2(dx, dy);
+            angle = rad * Mathf.Rad2Deg;
+        }
+        else 
+        {
+            //정지중이면 이전 각도 유지
+            angle = angleZ;
+        }
+        return angle;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            GetDamage(collision.gameObject);
         }
     }
 
-    void HandleInput()
+    void GetDamage(GameObject enemy)
     {
-        // 플레이어의 입력을 받아 inputVec에 저장
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
-    }
-
-    void Move()
-    {
-        // 입력에 따라 플레이어 이동
-        Vector2 nextVec = inputVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position + nextVec);
-    }
-
-    IEnumerator Dash()
-    {
-        isDashing = true;  // 대쉬 상태로 설정
-        StartCoroutine(SetInvincibility(true));  // 대쉬 시작 시 무적 상태 시작
-
-        Vector2 dashVec = inputVec.normalized * dashSpeed;  // 대쉬 속도 설정
-        float dashTime = 0f;
-
-        // 대쉬 지속 시간 동안 이동
-        while (dashTime < dashDuration)
+        if (gameState == "playing")
         {
-            rigid.MovePosition(rigid.position + dashVec * Time.fixedDeltaTime);  // 대쉬 이동
-            dashTime += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();  // FixedUpdate 후에 실행
+            hp--;
+            if(hp > 0)
+            {
+                rbody.velocity = new Vector2(0, 0);
+                Vector3 toPos = (transform.position - enemy.transform.position).normalized;
+                rbody.AddForce(new Vector2(toPos.x*4,toPos.y*4), ForceMode2D.Impulse);
+                inDamage = true;
+                Invoke("DamageEnd", 0.25f);
+            }
+            else 
+            {
+                GameOver();
+            }
         }
-
-        isDashing = false;  // 대쉬 상태 해제
-        StartCoroutine(SetInvincibility(false));  // 대쉬 종료 시 무적 상태 해제
     }
 
-    IEnumerator SetInvincibility(bool state)
+    void DamageEnd()
     {
-        isInvincible = state;  // 무적 상태 설정
-        spriteRenderer.color = state ? invincibleColor : originalColor;  // 색상 변경
-
-        yield return new WaitForSeconds(invincibilityDuration);  // 무적 상태 지속 시간 대기
-
-        if (!state)
-        {
-            isInvincible = false;  // 무적 상태 해제
-            spriteRenderer.color = originalColor;  // 원래 색상으로 복원
-        }
+        inDamage = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+    }
+    void GameOver() 
+    {
+        Debug.Log("");
+        gameState = "gameover";
+        GetComponent<CircleCollider2D>().enabled = false;
+        rbody.velocity = new Vector2(0, 0);
+        rbody.gravityScale = 1;
+        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+        GetComponent<Animator>().Play(deadAnime);
+        Destroy(gameObject, 1.0f);
     }
 }
