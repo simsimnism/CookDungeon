@@ -37,7 +37,7 @@ public class HelperUtilities
 
         if (enumerableObjectToCheck == null)
         {
-            Debug.Log(fieldName + " is null in object " + thisObject.name.ToString());
+            Debug.Log(fieldName + " 은 " + thisObject.name.ToString() + " 객체에서 null 입니다. ");
             return true;
         }
 
@@ -45,7 +45,7 @@ public class HelperUtilities
         {
             if (item == null)
             {
-                Debug.Log(fieldName + " has null values in object " + thisObject.name.ToString());
+                Debug.Log(fieldName + " 에 " + thisObject.name.ToString() + " 객체 안에 null 값이 있습니다. ");
                 error = true;
             }
             else
@@ -56,7 +56,7 @@ public class HelperUtilities
 
         if (count == 0)
         {
-            Debug.Log(fieldName + " has no values in object " + thisObject.name.ToString());
+            Debug.Log(fieldName + " 에는 " + thisObject.name.ToString() + " 객체에 값이 없습니다. ");
             error = true;
         }
 

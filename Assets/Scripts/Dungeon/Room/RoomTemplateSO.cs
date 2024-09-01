@@ -17,7 +17,7 @@ public class RoomTemplateSO : ScriptableObject
 
     #region Tooltip
 
-    [Tooltip("The gameobejct prefab for the room (this will contain all the tilemaps for the room and environment game objects")]
+    [Tooltip("방의 게임 객체 프리팹(여기에는 방과 환경 게임 객체에 대한 모든 타일맵이 포함됩니다)")]
 
     #endregion Tooltip
 
@@ -30,7 +30,7 @@ public class RoomTemplateSO : ScriptableObject
     #region Header ROOM CONFIGURATION
 
     [Space(10)]
-    [Header("ROOM CONFIGURATION")]
+    [Header("ROOM 구성")]
 
     #endregion Header Room CONFIGURATION
 

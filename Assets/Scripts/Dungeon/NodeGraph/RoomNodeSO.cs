@@ -14,9 +14,9 @@ public class RoomNodeSO : ScriptableObject
     public RoomNodeTypeSO roomNodeType;
     [HideInInspector] public RoomNodeTypeListSO roomNodeTypeList;
 
-    #region Editor Code
+    #region 에디터 전용
 
-    // the following code should only be run in the Unity Editor
+    // 이 코드는 유니티 에디터 안에서만 실행해야 함.
 #if UNITY_EDITOR
 
     [HideInInspector] public Rect rect;

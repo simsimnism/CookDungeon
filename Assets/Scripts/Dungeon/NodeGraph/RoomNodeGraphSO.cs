@@ -16,7 +16,7 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
-    /// Load the room node dictionary from the room node list
+    /// 룸 노드 목록에서 룸 노드 딕셔너리 로드
     /// </summary>
     private void LoadRoomNodeDictionary()
     {
@@ -30,7 +30,7 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
-    /// Get room node by roomNodeType
+    /// roomNodeType에서 룸 노드 가져오기
     /// </summary>
     public RoomNodeSO GetRoomNode(RoomNodeTypeSO roomNodeType)
     {
@@ -45,7 +45,7 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
-    /// Get room node by room nodeID
+    /// room nodeID에서 룸 노드 가져오기
     /// </summary>
     public RoomNodeSO GetRoomNode(string roomNodeID)
     {
@@ -57,7 +57,7 @@ public class RoomNodeGraphSO : ScriptableObject
     }
 
     /// <summary>
-    /// Get child room nodes for supplied parent room node
+    /// 부모 룸 노드에 대한 자식 룸 노드 가져오기
     /// </summary>
     public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode)
     {
@@ -67,15 +67,15 @@ public class RoomNodeGraphSO : ScriptableObject
         }
     }
 
-    #region Editor Code
+    #region 에디터전용
 
-    //The following code should only run in the Unity Editor
+    //이 코드는 유니티 에디터 안에서만 실행해야 함.
 #if UNITY_EDITOR
 
     [HideInInspector] public RoomNodeSO roomNodeToDrawLineFrom = null;
     [HideInInspector] public Vector2 linePosition;
 
-    // Repopulate node dictionary every time a change is made in the editor
+    // 편집기에서 변경 사항이 있을 때마다 노드 딕셔너리를 다시 채웁니다.
     public void OnValidate()
     {
         LoadRoomNodeDictionary();

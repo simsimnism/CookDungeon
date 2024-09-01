@@ -64,10 +64,10 @@ public class RoomNodeGraphEditor : UnityEditor.EditorWindow //편집기
     }
 
     /// <summary>
-    /// Open the room node graph editor window if a room node graph scriptable object asset is double clicked in the inspector
+    /// 인스펙터에서 room node graph scriptable object asset을 두 번 클릭하면 룸 노드 그래프 편집기 창이 열림.
     /// </summary>
 
-    [OnOpenAsset(0)] // Need the namespace UnityEditor.Callbacks
+    [OnOpenAsset(0)] // UnityEditor.Callbacks 필요
     public static bool OnDoubleClickAsset(int instanceID, int line)
     {
         RoomNodeGraphSO roomNodeGraph = EditorUtility.InstanceIDToObject(instanceID) as RoomNodeGraphSO;
@@ -110,7 +110,7 @@ public class RoomNodeGraphEditor : UnityEditor.EditorWindow //편집기
     }
 
     /// <summary>
-    /// Draw a background grid for the room node graph editor
+    /// 룸 노드 그래프 편집기에 대한 백그라운드 그리드를 그림.
     /// </summary>
     private void DrawBackgroundGrid(float gridSize, float gridOpacity, Color gridColor)
     {
@@ -172,7 +172,7 @@ public class RoomNodeGraphEditor : UnityEditor.EditorWindow //편집기
     }
 
     /// <summary>
-    /// Check to see to mouse is over a room node - if so then return the room node else return null
+    /// 마우스가 방 노드 위에 있는지 확인합니다. 마우스가 위에 있으면 방 노드를 반환하고, 그렇지 않으면 null을 반환합니다.
     /// </summary>
     private RoomNodeSO IsMouseOverRoomNode(Event currentEvent)
     {
