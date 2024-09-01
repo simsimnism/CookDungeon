@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     //이동속도
     public float speed = 3.0f;
+    public Vector2 inputVec;
     //애니매이션 이름
     public string upAinme = "PlyerUp";
     public string downAinme = "PlyerDown";
