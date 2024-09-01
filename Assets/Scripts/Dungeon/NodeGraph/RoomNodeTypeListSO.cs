@@ -7,10 +7,10 @@ public class RoomNodeTypeListSO : ScriptableObject
 {
     #region Header ROOM NODE TYPE LIST
     [Space(10)]
-    [Header("ROOM NODE TYPE LIST")]
+    [Header("룸 노드 타입 리스트")]
     #endregion
     #region Tooltip
-    [Tooltip("This list should be populated with all the RoomNodeTypeSO for the game - it is used instead of an enum")]
+    [Tooltip("이 목록은 게임의 모든 RoomNodeTypeSO로 채워져야 합니다. 이는 열거형 대신 사용됩니다.")]
     #endregion
     public List<RoomNodeTypeSO> list;
 

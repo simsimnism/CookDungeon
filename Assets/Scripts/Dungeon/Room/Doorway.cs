@@ -7,17 +7,17 @@ public class Doorway
     public GameObject doorPrefab;
 
     #region Header
-    [Header("The Upper Left Position To Start Copying From")]
+    [Header("복사할 상단 왼쪽 위치 좌표")]
     #endregion
     public Vector2Int doorwayStartCopyPosition;
 
     #region Header
-    [Header("The width of tiles in the doorway to copy over")]
+    [Header("복사할 출입구 타일의 너비")]
     #endregion
     public int doorwayCopyTileWidth;
 
     #region Header
-    [Header("The heigt of tiles in the doorway to copy over")]
+    [Header("복사할 출입구 타일의 높이")]
     #endregion
     public int doorwayCopyTileHeight;
 

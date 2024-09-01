@@ -8,31 +8,31 @@ public class RoomNodeTypeSO : ScriptableObject
     public string roomNodeTypeName;
 
     #region Header
-    [Header("Only flag the RoomNodeTypes that should be visible in the editor")]
+    [Header("에디터에서 보여져야하는 룸 노드 타입만 체크")]
     #endregion Header
     public bool displayInNodeGraphEditor = true;
     #region Header
-    [Header("One Type Should Be A Corridor")]
+    [Header("복도")]
     #endregion Header
     public bool isCorridor;
     #region Header
-    [Header("One Type Should Be A CorridorNS")]
+    [Header("복도 NS 남/북")]
     #endregion Header
     public bool isCorridorNS;
     #region Header
-    [Header("One Type Should Be A CorridorEW")]
+    [Header("복도 EW 동/서")]
     #endregion Header
     public bool isCorridorEW;
     #region Header
-    [Header("One Type Should Be A Entrance")]
+    [Header("입구 방")]
     #endregion Header
     public bool isEntrance;
     #region Header
-    [Header("One Type Should Be A Boss Room")]
+    [Header("보스 방")]
     #endregion Header
     public bool isBossRoom;
     #region Header
-    [Header("One Type Should Be None (Unassigned)")]
+    [Header("None (할당되지 않음)")]
     #endregion Header
     public bool isNone;
 
