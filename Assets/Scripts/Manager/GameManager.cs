@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
      사용하고 싶으면 스크립트에 GameManager GM = GameManager.Instance; 을 참조
      */
 
-    public PoolManager Pool;
+    public ObjectPoolManager Pool;
     public PlayerController Player;
 
     private static PlayerManager s_PlayerManager = new PlayerManager();
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     public static PlayerManager PlayerController { get { Init(); return s_PlayerManager; } }
 
-    
+
     void Start()
     {
         Init();
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     #region 초기화
@@ -52,3 +52,4 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 }
+

@@ -5,34 +5,34 @@ using UnityEngine.Tilemaps;
 
 public class Spawner : MonoBehaviour
 {
-    public Tilemap tilemap;  // 타일맵을 참조
+    public Tilemap tilemap;  // 타일맵 참조
     public List<Vector3> spawnPositions;  // 스폰 포인트 리스트
-    public EnemyDataLoader enemyDataLoader; // 적 데이터 로더
-    public GameObject[] enemyPrefabs; // 프리팹 배열
+    public MonsterDataLoader monsterDataLoader; // 몬스터 데이터 로더
+    public ObjectPoolManager objectPoolManager; // 풀링 매니저 참조
 
-    List<EnemyData> enemyDataList;
-    List<EnemyData> filteredEnemyDataList; // 필터링된 적 데이터 리스트
+    List<MonsterData> monsterDataList;  // 전체 몬스터 데이터 리스트
+    List<MonsterData> filteredMonsterDataList; // 필터링된 몬스터 데이터 리스트
 
     void Start()
     {
-        // 적 데이터를 로드
-        enemyDataList = enemyDataLoader.LoadEnemyData();
+        // 몬스터 데이터를 로드
+        monsterDataList = monsterDataLoader.LoadMonsterData();
 
-        // 특정 ID의 몬스터만 필터링 (예: 1번과 3번)
-        filteredEnemyDataList = enemyDataList.FindAll(data => data.id == 1 || data.id == 3);
+        // 특정 ID의 몬스터만 필터링 (예: ID가 1번 또는 3번인 몬스터)
+        filteredMonsterDataList = monsterDataList.FindAll(data => data.id == 1 || data.id == 3);
 
         // 타일맵에서 특정 타일의 위치를 스폰 포인트로 추가
         spawnPositions = new List<Vector3>
         {
             tilemap.CellToWorld(new Vector3Int(2, 3, 0)),  // 예시: (2, 3) 타일 위치
             tilemap.CellToWorld(new Vector3Int(5, 1, 0)),  // 예시: (5, 1) 타일 위치
-            // 추가 스폰 포인트...
+            // 필요에 따라 추가적인 스폰 포인트...
         };
     }
 
     void Update()
     {
-        // 스페이스바 입력 체크
+        // 스페이스바 입력을 감지하여 몬스터 소환
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Spawn();  // 몬스터 소환
@@ -42,19 +42,22 @@ public class Spawner : MonoBehaviour
     void Spawn()
     {
         // 랜덤하게 필터링된 몬스터 데이터를 선택
-        EnemyData enemyData = filteredEnemyDataList[Random.Range(0, filteredEnemyDataList.Count)];
+        MonsterData monsterData = filteredMonsterDataList[Random.Range(0, filteredMonsterDataList.Count)];
 
-        // 몬스터의 id에 해당하는 프리팹을 가져옴
-        GameObject enemyPrefab = enemyPrefabs[enemyData.id - 1];
+        // 랜덤하게 스폰 포인트를 선택하여 위치 설정
+        Vector3 spawnPosition = spawnPositions[Random.Range(0, spawnPositions.Count)];
 
-        // 프리팹 인스턴스화
-        GameObject enemy = Instantiate(enemyPrefab);
+        // 풀에서 몬스터를 스폰 (몬스터의 ID를 태그로 사용하여 가져옴)
+        GameObject monster = objectPoolManager.SpawnFromPool(monsterData.id.ToString(), spawnPosition, Quaternion.identity);
 
-        // 랜덤하게 스폰 포인트를 선택하여 몬스터 위치 설정
-        enemy.transform.position = spawnPositions[Random.Range(0, spawnPositions.Count)];
-
-        // 적 초기화
-        Enemy enemyComponent = enemy.GetComponent<Enemy>();
-        enemyComponent.Init(enemyData);
+        // 몬스터 초기화: MonsterMovement 클래스를 통해 초기화
+        if (monster != null)
+        {
+            MonsterMovement monsterComponent = monster.GetComponent<MonsterMovement>();
+            if (monsterComponent != null)
+            {
+                monsterComponent.Init(monsterData); // 몬스터 데이터로 초기화
+            }
+        }
     }
 }
