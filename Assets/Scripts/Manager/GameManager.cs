@@ -6,54 +6,36 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /*
-     사용하고 싶으면 스크립트에 GameManager GM = GameManager.Instance; 을 참조
-     */
+    // 던전 레벨 리스트
+    [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
 
-    private static PlayerManager s_PlayerManager = new PlayerManager();
-    private static DungeonBuilder s_DungeonBuilder = new DungeonBuilder();
-
-    //매니저 인스턴스
-    static GameManager s_Instance;
-
-    public static GameManager Instance { get { Init(); return s_Instance; } }
-    public static PlayerManager Player { get { Init(); return s_PlayerManager; } }
-    public static DungeonBuilder Dungeon { get { Init(); return s_DungeonBuilder; } }
+    // 현재 던전 레벨 리스트
+    [SerializeField] private int currentDungeonLevelListIndex = 0;
 
     void Start()
     {
-        Init();
 
     }
 
     void Update()
     {
-        
+        PlayDungeonLevel(currentDungeonLevelListIndex);
     }
 
-    #region 초기화
-    static void Init()
+    public void Init()
     {
-        if (s_Instance == null)
+
+    }
+
+    void PlayDungeonLevel(int dungeonLevelListIndex)
+    {
+        bool dungeonBuiltSucessfully = Managers.Dungeon.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
+
+        if (!dungeonBuiltSucessfully)
         {
-            GameObject go = GameObject.Find("GameManager");
-            if (go == null)
-            {
-                go = new GameObject { name = "GameManager" };
-                go.AddComponent<GameManager>();
-            }
-
-            DontDestroyOnLoad(go);
-            s_Instance = go.GetComponent<GameManager>();
-            s_PlayerManager.Init();
-            s_DungeonBuilder.Init();
+            Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
         }
-    }
-    #endregion
 
-    void test()
-    {
         //int dungeonLevel = 1;
-        //GameManager.s_DungeonBuilder.GenerateDungeon(dungeonLevel);
     }
 }

@@ -289,6 +289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac967e12828ae3428295cba468438a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dungeonLevelList:
+  - {fileID: 11400000, guid: e117f85d425b05d459a4cfdccb0f4277, type: 2}
+  currentDungeonLevelListIndex: 0
 --- !u!4 &613042035
 Transform:
   m_ObjectHideFlags: 0

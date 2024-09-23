@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class hp : MonoBehaviour
 {
-    GameManager GM = GameManager.Instance;
 
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -20,6 +18,6 @@ public class hp : MonoBehaviour
 
     void test()
     {
-        
+
     }
 }
