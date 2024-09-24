@@ -1,0 +1,31 @@
+{
+  "weapons": [
+    {
+      "name": "Dagger",
+      "type": "Dagger",
+      "attackDamage": 15,
+      "attackRange": 1.0,
+      "combo1Trigger": "DaggerCombo1",
+      "combo2Trigger": "DaggerCombo2",
+      "combo3Trigger": "DaggerCombo3"
+    },
+    {
+      "name": "ShortSword",
+      "type": "Sword",
+      "attackDamage": 20,
+      "attackRange": 1.5,
+      "combo1Trigger": "SwordCombo1",
+      "combo2Trigger": "SwordCombo2",
+      "combo3Trigger": "SwordCombo3"
+    },
+    {
+      "name": "LongSword",
+      "type": "LongSword",
+      "attackDamage": 25,
+      "attackRange": 2.0,
+      "combo1Trigger": "LongSwordCombo1",
+      "combo2Trigger": "LongSwordCombo2",
+      "combo3Trigger": "LongSwordCombo3"
+    }
+  ]
+}
