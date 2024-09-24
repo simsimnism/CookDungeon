@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager
 {
-    // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º
+
+    // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
     public static PlayerManager Instance { get; private set; }
 
-    // ÇÃ·¹ÀÌ¾î ÀÌµ¿ ¹× ¾Ö´Ï¸ÞÀÌ¼Ç º¯¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     public float speed = 3.0f;
     public Vector2 inputVec;
     public string upAinme = "PlyerUp";
@@ -20,18 +21,19 @@ public class PlayerManager : MonoBehaviour
     public string gameState = "playing";
     public bool inDamage = false;
 
-    // ´ë½¬ °ü·Ã º¯¼ö
-    public float dashSpeedMultiplier = 2.0f; // ´ë½¬ ½Ã ¼Óµµ ¹è¼ö
-    public float dashDuration = 0.2f; // ´ë½¬ Áö¼Ó ½Ã°£
-    public float dashCooldown = 1.0f; // ´ë½¬ ÄðÅ¸ÀÓ
+    // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float dashSpeedMultiplier = 2.0f; // ï¿½ë½¬ ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½
+    public float dashDuration = 0.2f; // ï¿½ë½¬ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+    public float dashCooldown = 1.0f; // ï¿½ë½¬ ï¿½ï¿½Å¸ï¿½ï¿½
 
     void Awake()
+
     {
-        // ½Ì±ÛÅæ ÀÎ½ºÅÏ½º ¼³Á¤
+        // ï¿½Ì±ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // ¾ÀÀÌ ¹Ù²î¾îµµ ÆÄ±«µÇÁö ¾ÊÀ½
+            DontDestroyOnLoad(gameObject); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½îµµ ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
@@ -41,7 +43,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Init()
     {
-        // ÃÊ±âÈ­ ÀÛ¾÷
+        // ï¿½Ê±ï¿½È­ ï¿½Û¾ï¿½
         hp = 3;
         gameState = "playing";
         inDamage = false;

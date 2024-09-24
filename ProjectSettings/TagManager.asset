@@ -3,7 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - grid
+  - collisionTileMap
+  - minemapTileMap
+  - groundTileMap
+  - decorationTileMap1
+  - decorationTileMap2
+  - decorationTileMap3
+  - decorationTileMap4
+  - frontTileMap1
+  - frontTileMap2
+  - frontTileMap3
+  - frontTileMap4
+  - frontTileMap5
+  - miniMapPlayer
+  - playerMapPlayer
   layers:
   - Default
   - TransparentFX
@@ -12,18 +27,18 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - IgnoreAmmo
+  - Camere1
+  - Camere2
+  - Player
+  - MiniMap
+  - Room
+  - Wall
+  - PlayerSkill
+  - Enemy
+  - EnemySkill
+  - Environment
+  - PlayerWeapon
   - 
   - 
   - 
@@ -40,4 +55,43 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 3454798171
+    locked: 0
+  - name: Ground Decoration 1
+    uniqueID: 2491432687
+    locked: 0
+  - name: Ground Decoration 2
+    uniqueID: 3035923883
+    locked: 0
+  - name: Ground Decoration 3
+    uniqueID: 3985995103
+    locked: 0
+  - name: Ground Decoration 4
+    uniqueID: 529941251
+    locked: 0
+  - name: Instances
+    uniqueID: 723745149
+    locked: 0
+  - name: Front1
+    uniqueID: 1743577853
+    locked: 0
+  - name: Front2
+    uniqueID: 1624925755
+    locked: 0
+  - name: Front3
+    uniqueID: 606810687
+    locked: 0
+  - name: Front4
+    uniqueID: 1675544811
+    locked: 0
+  - name: Front5
+    uniqueID: 1374678189
+    locked: 0
+  - name: Collision
+    uniqueID: 4242768953
+    locked: 0
+  - name: MiniMap
+    uniqueID: 2924803747
     locked: 0
