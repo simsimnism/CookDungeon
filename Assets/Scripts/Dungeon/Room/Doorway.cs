@@ -4,6 +4,7 @@ using UnityEngine;
 public class Doorway
 {
     public Vector2Int position;
+    public Orientation orientation;
     public GameObject doorPrefab;
 
     #region Header

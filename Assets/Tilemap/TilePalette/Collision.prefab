@@ -41,7 +41,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209332027622602}
   m_Enabled: 1
-  m_CellSize: {x: 0.16, y: 0.16, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -122,7 +122,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 162e3564dd5de9b418cc667fcf0b9ad7, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: d2603afb2b9fab548bceb29712e9a7b9, type: 2}
+    m_Data: {fileID: 11400000, guid: 537d1b7784b56a246a02a5c5845914ac, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: b56140ad4dd9f04488ec78eb86354f31, type: 2}
   m_TileSpriteArray:
@@ -154,6 +154,8 @@ Tilemap:
   m_TileColorArray:
   - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -227,7 +229,7 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &3076900593569533208
+--- !u!114 &8415854433069003773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -6,49 +6,38 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    /*
-     ªÁøÎ«œ∞Ì ΩÕ¿∏∏È Ω∫≈©∏≥∆Æø° GameManager GM = GameManager.Instance; ¿ª ¬¸¡∂
-     */
+    // ÎçòÏ†Ñ Î†àÎ≤® Î¶¨Ïä§Ìä∏
+    [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
 
-    public PoolManager Pool;
-    public PlayerController Player;
 
-    private static PlayerManager s_PlayerManager = new PlayerManager();
-
-    //∏≈¥œ¿˙ ¿ŒΩ∫≈œΩ∫
-    static GameManager s_Instance;
-
-    public static GameManager Instance { get { Init(); return s_Instance; } }
-
-    public static PlayerManager PlayerController { get { Init(); return s_PlayerManager; } }
+    // ÌòÑÏû¨ ÎçòÏ†Ñ Î†àÎ≤® Î¶¨Ïä§Ìä∏
+    [SerializeField] private int currentDungeonLevelListIndex = 0;
 
     
     void Start()
     {
-        Init();
+
     }
 
     void Update()
     {
-        
+        PlayDungeonLevel(currentDungeonLevelListIndex);
     }
 
-    #region √ ±‚»≠
-    static void Init()
+    public void Init()
     {
-        if (s_Instance == null)
-        {
-            GameObject go = GameObject.Find("GameManager");
-            if (go == null)
-            {
-                go = new GameObject { name = "GameManager" };
-                go.AddComponent<GameManager>();
-            }
 
-            DontDestroyOnLoad(go);
-            s_Instance = go.GetComponent<GameManager>();
-            s_PlayerManager.Init();
-        }
     }
-    #endregion
+
+    void PlayDungeonLevel(int dungeonLevelListIndex)
+    {
+        bool dungeonBuiltSucessfully = Managers.Dungeon.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
+
+        if (!dungeonBuiltSucessfully)
+        {
+            Debug.LogError("Couldn't build dungeon from specified rooms and node graphs");
+        }
+
+        //int dungeonLevel = 1;
+    }
 }
