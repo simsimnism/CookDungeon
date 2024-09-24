@@ -41,8 +41,5 @@ public class Managers : MonoBehaviour
     }
     #endregion
 
-    void test()
-    {
 
-    }
 }
