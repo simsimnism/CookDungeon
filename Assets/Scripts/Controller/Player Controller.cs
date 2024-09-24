@@ -32,23 +32,32 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false; // 현재 대쉬 중인지 여부
     private bool dashCooldownActive = false; // 대쉬 쿨타임이 활성화되어 있는지 여부
 
-    // 초기화
-    void Start()
+    void Awake()
     {
         rbody = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 컴포넌트 가져오기
         playerManager = PlayerManager.Instance; // PlayerManager 싱글톤 인스턴스 가져오기
-
+    }
+    // 초기화
+    void Start()
+    {
         // PlayerManager에서 필요한 변수를 가져옴
-        speed = playerManager.speed;
-        upAinme = playerManager.upAinme;
-        downAinme = playerManager.downAinme;
-        rightAinme = playerManager.rightAinme;
-        LeftAinme = playerManager.LeftAinme;
-        deadAinme = playerManager.deadAinme;
-        oldAnimation = downAinme; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
+        if (playerManager != null)
+        {
+
+            // PlayerManager에서 필요한 변수를 가져옴
+            speed = playerManager.speed;
+            upAinme = playerManager.upAinme;
+            downAinme = playerManager.downAinme;
+            rightAinme = playerManager.rightAinme;
+            LeftAinme = playerManager.LeftAinme;
+            deadAinme = playerManager.deadAinme;
+            oldAnimation = downAinme; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
+        }
+
     }
 
+    // 매 프레임마다 호출되는 업데이트 함수
     // 매 프레임마다 호출되는 업데이트 함수
     void Update()
     {
@@ -59,11 +68,11 @@ public class PlayerController : MonoBehaviour
         }
 
         // 플레이어의 이동 입력을 받음
-        if (!isMoving == false)
-        {
-            axisH = Input.GetAxisRaw("Horizontal"); // 좌우 입력 값 (-1, 0, 1)
-            axisV = Input.GetAxisRaw("Vertical"); // 상하 입력 값 (-1, 0, 1)
-        }
+        axisH = Input.GetAxisRaw("Horizontal"); // 좌우 입력 값 (-1, 0, 1)
+        axisV = Input.GetAxisRaw("Vertical");   // 상하 입력 값 (-1, 0, 1)
+
+        // isMoving 상태 업데이트
+        isMoving = axisH != 0 || axisV != 0;
 
         // Shift 키를 누르면 대쉬를 시작
         if (Input.GetKeyDown(KeyCode.LeftShift) && !dashCooldownActive)
@@ -103,6 +112,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // 물리적인 동작을 처리하는 FixedUpdate 함수
+    // 물리적인 동작을 처리하는 FixedUpdate 함수
     void FixedUpdate()
     {
         // 게임 상태가 진행 중이 아니거나 대쉬 중이면 실행하지 않음
@@ -124,6 +134,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // 대쉬 코루틴
+    // 대쉬 코루틴
     private IEnumerator Dash()
     {
         isDashing = true; // 대쉬 시작
@@ -136,12 +147,17 @@ public class PlayerController : MonoBehaviour
 
         SetTransparency(0.5f); // 캐릭터를 반투명하게 설정
 
+        // 대쉬 중의 이동 속도를 직접 적용
+        rbody.velocity = new Vector2(axisH, axisV).normalized * speed;
+
         yield return new WaitForSeconds(playerManager.dashDuration); // 대쉬 지속 시간만큼 기다림
 
         speed = originalSpeed; // 속도를 원래대로 복원
 
-        playerManager.inDamage = false; // 무적 상태 해제
+        // 대쉬가 끝나면 다시 일반 속도로 이동하도록 설정
+        rbody.velocity = new Vector2(axisH, axisV).normalized * speed;
 
+        playerManager.inDamage = false; // 무적 상태 해제
         SetTransparency(1.0f); // 투명도 원상복귀
 
         isDashing = false; // 대쉬 종료

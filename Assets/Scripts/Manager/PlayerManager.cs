@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager
+public class PlayerManager:MonoBehaviour
 {
 
     // �̱��� �ν��Ͻ�
@@ -24,7 +24,7 @@ public class PlayerManager
     // �뽬 ���� ����
     public float dashSpeedMultiplier = 2.0f; // �뽬 �� �ӵ� ���
     public float dashDuration = 0.2f; // �뽬 ���� �ð�
-    public float dashCooldown = 1.0f; // �뽬 ��Ÿ��
+    public float dashCooldown = 0.5f; // �뽬 ��Ÿ��
 
     void Awake()
 
