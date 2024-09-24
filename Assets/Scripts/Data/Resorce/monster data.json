@@ -1,0 +1,112 @@
+{
+  "monster": {
+    "NormalMonsters": [
+      {
+        "name": "",
+        "id": 1,
+        "health": 100,
+        "attack": 20,
+        "range": 5,
+        "speed": 10
+      },
+      {
+        "name": "",
+        "id": 2,
+        "health": 120,
+        "attack": 25,
+        "range": 6,
+        "speed": 12
+      },
+      {
+        "name": "",
+        "id": 3,
+        "health": 90,
+        "attack": 18,
+        "range": 4,
+        "speed": 9
+      },
+      {
+        "name": "",
+        "id": 4,
+        "health": 100,
+        "attack": 20,
+        "range": 5,
+        "speed": 10
+      },
+      {
+        "name": "",
+        "id": 5,
+        "health": 120,
+        "attack": 25,
+        "range": 6,
+        "speed": 12
+      },
+      {
+        "name": "",
+        "id": 6,
+        "health": 90,
+        "attack": 18,
+        "range": 4,
+        "speed": 9
+      },
+      {
+        "name": "",
+        "id": 7,
+        "health": 100,
+        "attack": 20,
+        "range": 5,
+        "speed": 10
+      },
+      {
+        "name": "",
+        "id": 8,
+        "health": 120,
+        "attack": 25,
+        "range": 6,
+        "speed": 12
+      },
+      {
+        "name": "",
+        "id": 9,
+        "health": 90,
+        "attack": 18,
+        "range": 4,
+        "speed": 9
+      },
+      {
+        "name": "",
+        "id": 10,
+        "health": 100,
+        "attack": 20,
+        "range": 5,
+        "speed": 10
+      }
+    ],
+    "SpecialMonsters": [
+      {
+        "name": "",
+        "id": 11,
+        "health": 120,
+        "attack": 25,
+        "range": 6,
+        "speed": 12
+      },
+      {
+        "name": "",
+        "id": 12,
+        "health": 90,
+        "attack": 18,
+        "range": 4,
+        "speed": 9
+      },
+      {
+        "name": "",
+        "id": 13,
+        "health": 100,
+        "attack": 20,
+        "range": 5,
+        "speed": 10
+      }
+    ]
+  }
+}

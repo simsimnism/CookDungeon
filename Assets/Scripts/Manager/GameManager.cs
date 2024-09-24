@@ -6,12 +6,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // ´øÀü ·¹º§ ¸®½ºÆ®
+    // ë˜ì „ ë ˆë²¨ ë¦¬ìŠ¤íŠ¸
     [SerializeField] private List<DungeonLevelSO> dungeonLevelList;
 
-    // ÇöÀç ´øÀü ·¹º§ ¸®½ºÆ®
+
+    // í˜„ì¬ ë˜ì „ ë ˆë²¨ ë¦¬ìŠ¤íŠ¸
     [SerializeField] private int currentDungeonLevelListIndex = 0;
 
+    
     void Start()
     {
 
