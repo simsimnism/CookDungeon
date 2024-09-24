@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager
+public class PlayerManager : MonoBehaviour
 {
 
     // �̱��� �ν��Ͻ�
