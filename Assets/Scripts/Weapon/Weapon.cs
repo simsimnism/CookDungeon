@@ -1,18 +1,30 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
-// 무기 기능을 담당하는 클래스
-public class Weapon : MonoBehaviour
+// 무기 기능을 담당하는 클래스 - Item을 상속
+public class Weapon : Item
 {
-    public Animator animator; // 무기 애니메이터를 제어하기 위한 Animator 컴포넌트
     private WeaponData currentWeaponData; // 현재 장착된 무기의 데이터를 저장하는 변수
 
     public float attackDamage; // 무기의 공격력
     public float attackRange; // 무기의 공격 범위
+    private SpriteRenderer spriteRenderer; // 무기의 시각적 표현을 담당하는 SpriteRenderer
+    private Transform transform;
+    void Awake()
+    {
+        // SpriteRenderer 컴포넌트 가져오기
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        transform = GetComponent<Transform>();
+    }
 
-    // 무기 데이터를 로드하는 함수 (public으로 설정)
+    private T GetComponent<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    // 무기 데이터를 로드하는 함수
     public void LoadWeaponData(string weaponName)
     {
         // "Resources/weapons" 경로에 있는 JSON 파일을 로드
@@ -41,7 +53,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    // 현재 무기 데이터에 따라 무기의 속성 및 애니메이션 설정
+    // 현재 무기 데이터에 따라 무기의 속성 설정
     private void ApplyWeaponData()
     {
         if (currentWeaponData != null) // 무기 데이터가 존재하는지 확인
@@ -49,35 +61,15 @@ public class Weapon : MonoBehaviour
             // 무기의 공격력 및 공격 범위를 설정
             this.attackDamage = currentWeaponData.attackDamage;
             this.attackRange = currentWeaponData.attackRange;
-        }
-    }
 
-    // 콤보 공격을 위한 애니메이션 트리거를 설정하는 함수
-    public void SetComboAttack(int comboStep)
-    {
-        // 애니메이터와 무기 데이터가 존재하는지 확인
-        if (animator != null && currentWeaponData != null)
-        {
-            string trigger = ""; // 애니메이션 트리거를 저장할 변수
+            // 상속받은 itemName과 icon 설정
+            this.itemName = currentWeaponData.name;
+            this.icon = currentWeaponData.weaponSprite;
 
-            // 콤보 스텝에 따라 애니메이션 트리거를 설정
-            switch (comboStep)
+            // SpriteRenderer가 있으면 아이콘(스프라이트) 적용
+            if (spriteRenderer != null && this.icon != null)
             {
-                case 1:
-                    trigger = currentWeaponData.combo1Trigger; // 1타 콤보
-                    break;
-                case 2:
-                    trigger = currentWeaponData.combo2Trigger; // 2타 콤보
-                    break;
-                case 3:
-                    trigger = currentWeaponData.combo3Trigger; // 3타 콤보
-                    break;
-            }
-
-            // 설정된 트리거가 있을 경우 애니메이션 트리거 실행
-            if (!string.IsNullOrEmpty(trigger))
-            {
-                animator.SetTrigger(trigger); // 애니메이션 트리거 설정
+                spriteRenderer.sprite = this.icon;
             }
         }
     }
@@ -96,6 +88,23 @@ public class Weapon : MonoBehaviour
                 enemy.GetComponent<Monsters>().TakeDamage(attackDamage); // 적에게 데미지를 줌
             }
         }
+    }
+
+    // 무기 가시화 여부 설정
+    public void SetVisible(bool isVisible)
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = isVisible; // SpriteRenderer 활성/비활성화
+        }
+    }
+
+    // 아이템을 사용할 때 무기의 공격력을 발휘하는 Use 메서드 재정의
+    public override void Use()
+    {
+        base.Use(); // 상위 클래스의 Use 메서드 호출 (디버그 메시지 출력)
+        Debug.Log(itemName + " is being used to attack!"); // 무기 특화된 동작 추가
+        DealDamage(); // 무기 공격 실행
     }
 
     // 공격 범위를 디버그하기 위한 시각화

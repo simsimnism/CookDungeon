@@ -12,10 +12,11 @@ public class WeaponData
     public string combo1Trigger; // 1타 콤보 애니메이션 트리거
     public string combo2Trigger; // 2타 콤보 애니메이션 트리거
     public string combo3Trigger; // 3타 콤보 애니메이션 트리거
+    internal Sprite weaponSprite;
 }
 
 [System.Serializable]
 public class WeaponDataList
 {
-    public WeaponData[] weapons;
+    public List<WeaponData> weapons;
 }
