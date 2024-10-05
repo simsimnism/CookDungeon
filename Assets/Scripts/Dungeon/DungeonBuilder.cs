@@ -14,8 +14,6 @@ public class DungeonBuilder : MonoBehaviour
     private RoomNodeTypeListSO roomNodeTypeList;
     private bool dungeonBuildSuccessful;
 
-    // 재우 도움핑 MonoBehaviour가 필요한데 지울려면 어떻게 해야하는가?
-
     private void Awake()
     {
         Instance = this;
@@ -166,7 +164,7 @@ public class DungeonBuilder : MonoBehaviour
                 Room room = keyvaluepair.Value;
                 if (room.instantiatedRoom != null)
                 {
-                    Managers.Resource.Destroy(room.instantiatedRoom.gameObject);
+                    Destroy(room.instantiatedRoom.gameObject);
                 }
             }
 
@@ -283,12 +281,15 @@ public class DungeonBuilder : MonoBehaviour
 
                 // 딕셔너리에 방 추가
                 dungeonBuilderRoomDictionary.Add(room.id, room);
+                Debug.Log("roomOverlaps = false;");
             }
             else
             {
+                Debug.Log("roomOverlaps = true;");
                 roomOverlaps = true;
             }
         }
+        Debug.Log("true값 반환 ２");
         return true; // 겹치는 방이 없음
     }
 
@@ -336,25 +337,25 @@ public class DungeonBuilder : MonoBehaviour
     /// </summary>
     private bool PlaceTheRoom(Room parentRoom, Doorway doorwayParent, Room room)
     {
-        // Get current room doorway position
+
+        // 현재 방 문 위치 가져오기
         Doorway doorway = GetOppositeDoorway(doorwayParent, room.doorWayList);
 
-        // Returns if no doorway in room opposite to parent doorway
+        // 부모 방 반대에 문이 없다면 리턴
         if (doorway == null)
         {
-            // Just mark the parnet doorway as unavailable so we don't try and connect it again
+            // Just mark the parent doorway as unavailable so we don't try and connect it again
             doorwayParent.isUnavailable = true;
 
             return false;
         }
 
-        // Calculate 'world' grid parent doorway position
+        // 그리드에서 부모의 문 위치 계산 Calculate 'world' grid parent doorway position
         Vector2Int parentDoorwayPosition = parentRoom.lowerBounds + doorwayParent.position - parentRoom.templateLowerBounds;
 
         Vector2Int adjustment = Vector2Int.zero;
 
-        // Calculate adjustment position offset based on room doorway position that we are trying to connect
-        // (e.g. if this doorway is west then we need to add (1,0) to the east parent doorway)
+        // 연결하려는 방 문 위치를 기준으로 조정 위치 오프셋을 계산합니다(예: 이 문이 서쪽에 있는 경우 동쪽 부모 문에 (1,0)을 추가해야 함)
 
         switch (doorway.orientation)
         {
@@ -362,11 +363,9 @@ public class DungeonBuilder : MonoBehaviour
                 adjustment = new Vector2Int(0, -1);
                 break;
 
-
             case Orientation.east:
                 adjustment = new Vector2Int(-1, 0);
                 break;
-
 
             case Orientation.south:
                 adjustment = new Vector2Int(0, 1);
@@ -383,7 +382,7 @@ public class DungeonBuilder : MonoBehaviour
                 break;
         }
 
-        // Calculate room lower bounds and upper bounds based on positioning to aligh with parent doorway
+        // 부모 출입구에 맞춰 위치를 조정하여 방의 하한 및 상한을 계산합니다.
         room.lowerBounds = parentDoorwayPosition + adjustment + room.templateLowerBounds - doorway.position;
         room.upperBounds = room.lowerBounds + room.templateUpperBounds - room.templateLowerBounds;
 
@@ -391,23 +390,24 @@ public class DungeonBuilder : MonoBehaviour
 
         if (overlappingRoom == null)
         {
-            // mark doorway as connected & unavailable
+            // 문을 연결됨 및 사용 불가로 표시
             doorwayParent.isConnected = true;
             doorwayParent.isUnavailable = true;
 
             doorway.isConnected = true;
             doorway.isUnavailable = true;
 
-            // return true to show rooms have been connected with no overlap
+            // 중복 없이 연결된 방을 표시하려면 true를 반환합니다.
             return true;
         }
         else
         {
-            // Just mark the parent doorway as unavailable so we don't try and connect it again
+            // 부모 출입구를 사용할 수 없음으로 표시하면 다시 연결을 시도하지 않아도 됩니다.
             doorwayParent.isUnavailable = true;
 
             return false;
         }
+
     }
 
     /// <summary>
