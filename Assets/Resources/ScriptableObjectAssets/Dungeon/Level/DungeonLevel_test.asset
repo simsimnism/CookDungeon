@@ -15,9 +15,10 @@ MonoBehaviour:
   levelName: test
   roomTemplateList:
   - {fileID: 11400000, guid: c016b5da63be3384baab0b3f692cc57b, type: 2}
-  - {fileID: 11400000, guid: 24201ba7c50951a47bd756bc36c9f3cc, type: 2}
   - {fileID: 11400000, guid: 9deb3560a123ff94ea3c519d7ba75a59, type: 2}
   - {fileID: 11400000, guid: 9851cee9cf81e2b4d99f232c557cfbb2, type: 2}
+  - {fileID: 11400000, guid: 7e606e3dec4a6414db3022d0c6e48172, type: 2}
   - {fileID: 11400000, guid: a1eb748b2adf8b54580400cf3c0336d4, type: 2}
+  - {fileID: 11400000, guid: 2f69e03451962c5408eba43940b30df7, type: 2}
   roomNodeGraphList:
   - {fileID: 11400000, guid: 1a4a469068c0b1b4e8db366563a7b543, type: 2}
