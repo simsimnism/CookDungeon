@@ -5,21 +5,23 @@ using UnityEngine;
 
 public class DungeonBuilder : MonoBehaviour
 {
+    public static DungeonBuilder Instance; // 임시 인스턴스
+
     public Dictionary<string, Room> dungeonBuilderRoomDictionary = new Dictionary<string, Room>();
     private Dictionary<string, RoomTemplateSO> roomTemplateDictionary = new Dictionary<string, RoomTemplateSO>();
     private List<RoomTemplateSO> roomTemplateList = null;
     private RoomNodeTypeListSO roomNodeTypeList;
     private bool dungeonBuildSuccessful;
 
-    void Awake()
+    private void Awake()
     {
-        //실행되면 룸 노드 타입 리스트를 불러옴.
+        Instance = this;
         LoadRoomNodeTypeList();
     }
 
     public void Init()
     {
-
+        LoadRoomNodeTypeList();
     }
 
     private void LoadRoomNodeTypeList()
