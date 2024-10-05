@@ -69,55 +69,58 @@ public class InstantiatedRoom : MonoBehaviour
 
         foreach (Tilemap tilemap in tilemaps)
         {
-            if (tilemap.gameObject.tag == "groundTilemap")
+            if (tilemap.gameObject.tag == "groundTileMap")
             {
                 groundTilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "decoration1Tilemap")
+            else if (tilemap.gameObject.tag == "decorationTileMap1")
             {
                 decoration1Tilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "decoration2Tilemap")
+            else if (tilemap.gameObject.tag == "decorationTileMap2")
             {
                 decoration2Tilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "decoration3Tilemap")
+            else if (tilemap.gameObject.tag == "decorationTileMap3")
             {
                 decoration3Tilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "decoration4Tilemap")
+            else if (tilemap.gameObject.tag == "decorationTileMap4")
             {
                 decoration4Tilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "frontTilemap1")
+            else if (tilemap.gameObject.tag == "frontTileMap1")
             {
                 frontTilemap1 = tilemap;
             }
-            else if (tilemap.gameObject.tag == "frontTilemap2")
+            else if (tilemap.gameObject.tag == "frontTileMap2")
             {
                 frontTilemap2 = tilemap;
             }
-            else if (tilemap.gameObject.tag == "frontTilemap3")
+            else if (tilemap.gameObject.tag == "frontTileMap3")
             {
                 frontTilemap3 = tilemap;
             }
-            else if (tilemap.gameObject.tag == "frontTilemap4")
+            else if (tilemap.gameObject.tag == "frontTileMap4")
             {
                 frontTilemap4 = tilemap;
             }
-            else if (tilemap.gameObject.tag == "frontTilemap5")
+            else if (tilemap.gameObject.tag == "frontTileMap5")
             {
                 frontTilemap5 = tilemap;
             }
-            else if (tilemap.gameObject.tag == "collisionTilemap")
+            else if (tilemap.gameObject.tag == "collisionTileMap")
             {
                 collisionTilemap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "minimapTilemap")
+            else if (tilemap.gameObject.tag == "minimapTileMap")
             {
                 minimapTilemap = tilemap;
             }
-
+            else
+            {
+                groundTilemap = tilemap;
+            }
         }
     }
 
@@ -275,7 +278,10 @@ public class InstantiatedRoom : MonoBehaviour
     private void DisableCollisionTilemapRenderer()
     {
         // Disable collision tilemap renderer
-        collisionTilemap.gameObject.GetComponent<TilemapRenderer>().enabled = false;
+        Debug.Log(collisionTilemap == null);
+        TilemapRenderer tmp = collisionTilemap.gameObject.GetComponent<TilemapRenderer>();
+        Debug.Log(tmp == null);
+        tmp.enabled = false;
 
     }
 
