@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
     private void OnEnable()
     {
         // 적이 활성화될 때 초기화
-        target = GameManager.Instance.Player.GetComponent<Rigidbody2D>();
+        target = PlayerManager.Instance.GetComponent<Rigidbody2D>(); // 온몸 비틀기
         isLive = true;
         health = maxHealth;
     }
@@ -168,7 +168,7 @@ public class Enemy : MonoBehaviour
             return;
 
         // 무기의 데미지를 받아 체력을 감소시킴
-        health -= collision.GetComponent<Weapon>().damage;
+        health -= collision.GetComponent<Weapon>().attackDamage; // 원본 <Weapon>().damage;
 
         // 체력이 남아 있는 경우
         if (health > 0)
