@@ -17,7 +17,7 @@ public class MonsterMovement : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        monsterManager = FindObjectOfType<MonsterManager>();
+        monsterManager = Managers.Monster;
 
         // 몬스터 데이터를 로드 (ID에 따른 몬스터 로드)
         monsterData = monsterManager.GetMonsterDataByID(monsterID);

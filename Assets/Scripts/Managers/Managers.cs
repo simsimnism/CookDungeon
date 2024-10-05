@@ -10,22 +10,26 @@ public class Managers : MonoBehaviour
     DataManager _data = new DataManager();
     InputManager _input = new InputManager();
     PoolManager _pool = new PoolManager();
+    ObjectPoolManager _objectPool = new ObjectPoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
     SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
+    MonsterManager _monster = new MonsterManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
     public static PoolManager Pool { get { return Instance._pool; } }
+    public static ObjectPoolManager Objectpool {  get { return Instance._objectPool; } }    
     public static ResourceManager Resource { get { return Instance._resource; } }
     public static SceneManagerEx Scene { get { return Instance._scene; } }
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static GameManager GM { get { Init(); return Instance._game; } }
-    // public static PlayerManager Player { get { Init(); return Instance._player; } }
+    public static PlayerManager Player { get { Init(); return Instance._player; } }
+    public static MonsterManager Monster { get {  Init(); return Instance._monster; } }
 
     void Start()
     {

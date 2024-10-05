@@ -7,14 +7,13 @@ public class PlayerController : MonoBehaviour
 {
     // 이동 및 애니메이션 관련 변수들
     private float speed; // 현재 플레이어의 이동 속도
-    private string upAinme; // 위쪽 이동 애니메이션 이름
-    private string downAinme; // 아래쪽 이동 애니메이션 이름
-    private string rightAinme; // 오른쪽 이동 애니메이션 이름
-    private string LeftAinme; // 왼쪽 이동 애니메이션 이름
-    private string deadAinme; // 플레이어가 죽을 때 실행될 애니메이션 이름
 
-    private string nowAnimation = ""; // 현재 실행 중인 애니메이션
-    private string oldAnimation = ""; // 이전에 실행된 애니메이션
+    // 애니메이션 종류를 enum으로 정의
+    private enum AnimationType { Up, Down, Right, Left, Dead }
+
+    // 현재 실행 중인 애니메이션
+    private AnimationType nowAnimation = AnimationType.Down;
+    private AnimationType oldAnimation = AnimationType.Down;
 
     // 이동 입력값
     float axisH; // 수평 입력 값 (왼쪽/오른쪽)
@@ -38,26 +37,18 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 컴포넌트 가져오기
         playerManager = PlayerManager.Instance; // PlayerManager 싱글톤 인스턴스 가져오기
     }
+
     // 초기화
     void Start()
     {
         // PlayerManager에서 필요한 변수를 가져옴
         if (playerManager != null)
         {
-
-            // PlayerManager에서 필요한 변수를 가져옴
             speed = playerManager.speed;
-            upAinme = playerManager.upAinme;
-            downAinme = playerManager.downAinme;
-            rightAinme = playerManager.rightAinme;
-            LeftAinme = playerManager.LeftAinme;
-            deadAinme = playerManager.deadAinme;
-            oldAnimation = downAinme; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
+            oldAnimation = AnimationType.Down; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
         }
-
     }
 
-    // 매 프레임마다 호출되는 업데이트 함수
     // 매 프레임마다 호출되는 업데이트 함수
     void Update()
     {
@@ -85,37 +76,35 @@ public class PlayerController : MonoBehaviour
         Vector2 toPt = new Vector2(fromPt.x + axisH, fromPt.y + axisV);
         angleZ = GetAngle(fromPt, toPt); // 두 점 사이의 각도를 계산
 
-        // 각도에 따라 애니메이션을 변경
+        // 각도에 따라 애니메이션을 변경 (enum 사용)
         if (angleZ >= -45 && angleZ < 45)
         {
-            nowAnimation = rightAinme; // 오른쪽으로 이동
+            nowAnimation = AnimationType.Right; // 오른쪽으로 이동
         }
         else if (angleZ >= 45 && angleZ <= 135)
         {
-            nowAnimation = upAinme; // 위쪽으로 이동
+            nowAnimation = AnimationType.Up; // 위쪽으로 이동
         }
         else if (angleZ >= -135 && angleZ <= -45)
         {
-            nowAnimation = downAinme; // 아래쪽으로 이동
+            nowAnimation = AnimationType.Down; // 아래쪽으로 이동
         }
         else
         {
-            nowAnimation = LeftAinme; // 왼쪽으로 이동
+            nowAnimation = AnimationType.Left; // 왼쪽으로 이동
         }
 
         // 현재 애니메이션이 이전 애니메이션과 다를 경우 변경
         if (nowAnimation != oldAnimation)
         {
             oldAnimation = nowAnimation;
-            GetComponent<Animator>().Play(nowAnimation); // 애니메이션 재생
+            GetComponent<Animator>().Play(nowAnimation.ToString()); // enum 값을 문자열로 변환하여 애니메이션 재생
         }
     }
 
     // 물리적인 동작을 처리하는 FixedUpdate 함수
-    // 물리적인 동작을 처리하는 FixedUpdate 함수
     void FixedUpdate()
     {
-        // 게임 상태가 진행 중이 아니거나 대쉬 중이면 실행하지 않음
         if (playerManager.gameState != "playing" || isDashing)
         {
             return;
@@ -133,7 +122,6 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = new Vector2(axisH, axisV) * speed;
     }
 
-    // 대쉬 코루틴
     // 대쉬 코루틴
     private IEnumerator Dash()
     {
@@ -154,7 +142,6 @@ public class PlayerController : MonoBehaviour
 
         speed = originalSpeed; // 속도를 원래대로 복원
 
-        // 대쉬가 끝나면 다시 일반 속도로 이동하도록 설정
         rbody.velocity = new Vector2(axisH, axisV).normalized * speed;
 
         playerManager.inDamage = false; // 무적 상태 해제
@@ -220,7 +207,7 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = Vector2.zero;
         rbody.gravityScale = 1; // 중력 적용
         rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse); // 위로 튕겨나가는 효과
-        GetComponent<Animator>().Play(deadAinme); // 죽는 애니메이션 재생
+        GetComponent<Animator>().Play(AnimationType.Dead.ToString()); // 죽는 애니메이션 재생
         Destroy(gameObject, 1.0f); // 1초 후 오브젝트 제거
     }
 

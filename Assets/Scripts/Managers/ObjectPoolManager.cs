@@ -1,20 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPoolManager : MonoBehaviour
+public class ObjectPoolManager
 {
-    // 풀에 저장할 각 몬스터 타입의 프리팹과 풀 사이즈
     [System.Serializable]
     public class Pool
     {
-        public string tag;       // 풀의 태그 (예: 몬스터 ID 또는 이름)
-        public GameObject prefab;  // 풀에서 관리할 프리팹
-        public int size;         // 풀에서 미리 생성할 객체의 수
+        public string tag;        // 풀의 태그
+        public GameObject prefab; // 풀에서 관리할 프리팹
+        public int size;          // 미리 생성할 객체의 수
     }
 
     public List<Pool> pools;  // 여러 풀을 관리하기 위한 리스트
-    public Dictionary<string, Queue<GameObject>> poolDictionary;  // 풀의 태그로 접근 가능한 딕셔너리
+    public Dictionary<string, Queue<GameObject>> poolDictionary;  // 태그로 접근하는 풀 딕셔너리
 
     void Start()
     {
@@ -28,12 +28,17 @@ public class ObjectPoolManager : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false); // 비활성화하여 대기 상태로 둔다.
-                objectPool.Enqueue(obj); // 큐에 추가
+                obj.SetActive(false); // 비활성화 상태로
+                objectPool.Enqueue(obj);
             }
 
             poolDictionary.Add(pool.tag, objectPool); // 딕셔너리에 추가
         }
+    }
+
+    private GameObject Instantiate(GameObject prefab)
+    {
+        throw new NotImplementedException();
     }
 
     // 객체를 풀에서 가져오는 함수
@@ -45,16 +50,37 @@ public class ObjectPoolManager : MonoBehaviour
             return null;
         }
 
+        // 풀에 남아있는 객체가 있는지 확인
+        if (poolDictionary[tag].Count == 0)
+        {
+            Debug.LogWarning("풀에 남아 있는 객체가 없습니다: " + tag);
+            return null;
+        }
+
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
 
-        // 풀에서 가져온 객체를 활성화하고 위치와 회전을 설정
+        // 풀에서 가져온 객체를 활성화하고 위치와 회전 설정
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        // 다시 풀에 반환하기 위해 큐에 객체를 재추가
-        poolDictionary[tag].Enqueue(objectToSpawn);
+        // 객체가 풀로 돌아가기 전, 필요한 초기화 작업 수행
+        // (예: 체력 초기화, 위치 재설정 등 필요한 초기화)
 
         return objectToSpawn;
+    }
+
+    // 객체를 다시 풀로 반환하는 함수
+    public void ReturnToPool(string tag, GameObject objectToReturn)
+    {
+        if (!poolDictionary.ContainsKey(tag))
+        {
+            Debug.LogWarning("풀에 없는 태그: " + tag);
+            return;
+        }
+
+        // 객체를 비활성화하고 다시 큐에 추가
+        objectToReturn.SetActive(false);
+        poolDictionary[tag].Enqueue(objectToReturn);
     }
 }
