@@ -9,3 +9,9 @@ public class ConsumableData
     public string type;
     public int healAmount; // È¸º¹·®
 }
+
+[System.Serializable]
+public class ConsumableDataList
+{
+    public ConsumableData[] consumables;
+}
