@@ -45,6 +45,8 @@ public class Enemy : MonoBehaviour
     // 마지막 공격 시간
     private float lastAttackTime = 0f;
 
+    private GameObject bulletPrefab;
+
     void Awake()
     {
         // 컴포넌트를 가져오기
@@ -131,7 +133,31 @@ public class Enemy : MonoBehaviour
             // 공격 후 몬스터를 사라지게 함
             Dead();
         }
+        else if (enemyId == 3)
+        {
+            anim.SetTrigger("atk");
+            Debug.Log("공격!");
+        }
+        else if (enemyId == 4)
+        {
+            anim.SetTrigger("atk");
+            Debug.Log("총 발사!");
+
+            // 총알을 플레이어 방향으로 발사
+            ShootBullet();
+        }
         // 추가적는 여기에
+    }
+    private void ShootBullet()
+    {
+        // 총알을 적의 위치에서 생성
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        // 플레이어를 향한 방향 계산
+        Vector2 direction = target.position - rigid.position;
+
+        // 총알에 방향 설정
+        bullet.GetComponent<Bullet>().SetDirection(direction);
     }
 
     // 무기와 충돌했을 때 호출되는 메서드
