@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     /*
         [상속 구조]
@@ -15,7 +15,6 @@ namespace Rito.InventorySystem
                 - PortionItemData
             - EquipmentItemData(abstract)
                 - WeaponItemData
-                - ArmorItemData
 
     */
 

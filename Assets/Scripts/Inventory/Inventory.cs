@@ -50,7 +50,7 @@ using UnityEngine;
 */
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     public class Inventory : MonoBehaviour
     {

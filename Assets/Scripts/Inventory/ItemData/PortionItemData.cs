@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     /// <summary> 소비 아이템 정보 </summary>
     [CreateAssetMenu(fileName = "Item_Portion_", menuName = "Inventory System/Item Data/Portion", order = 3)]

@@ -1,4 +1,4 @@
-using Rito.InventorySystem;
+using Cook.InventorySystem;
 using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour

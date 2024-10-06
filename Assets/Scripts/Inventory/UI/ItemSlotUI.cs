@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     public class ItemSlotUI : MonoBehaviour
     {

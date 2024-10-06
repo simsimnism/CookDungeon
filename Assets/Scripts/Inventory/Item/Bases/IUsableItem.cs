@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     /// <summary> 사용 가능한 아이템(착용/소모) </summary>
     public interface IUsableItem

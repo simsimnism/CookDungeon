@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     public class Weapon : MonoBehaviour
     {

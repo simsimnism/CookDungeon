@@ -40,7 +40,7 @@ using UnityEngine.EventSystems;
 
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     public class InventoryUI : MonoBehaviour
     {
@@ -50,13 +50,13 @@ namespace Rito.InventorySystem
         #region .
         [Header("Options")]
         [Range(0, 10)]
-        [SerializeField] private int _horizontalSlotCount = 8;  // 슬롯 가로 개수
+        [SerializeField] private int _horizontalSlotCount = 4;  // 슬롯 가로 개수
         [Range(0, 10)]
-        [SerializeField] private int _verticalSlotCount = 8;      // 슬롯 세로 개수
-        [SerializeField] private float _slotMargin = 8f;          // 한 슬롯의 상하좌우 여백
+        [SerializeField] private int _verticalSlotCount = 5;      // 슬롯 세로 개수
+        [SerializeField] private float _slotMargin = 1f;          // 한 슬롯의 상하좌우 여백
         [SerializeField] private float _contentAreaPadding = 20f; // 인벤토리 영역의 내부 여백
         [Range(32, 64)]
-        [SerializeField] private float _slotSize = 64f;      // 각 슬롯의 크기
+        [SerializeField] private float _slotSize = 10f;      // 각 슬롯의 크기
 
         [Space]
         [SerializeField] private bool _showTooltip = true;
@@ -122,9 +122,8 @@ namespace Rito.InventorySystem
         {
             Init();
             InitSlots();
-            InitButtonEvents();
-            InitToggleEvents();
         }
+
 
         private void Update()
         {
@@ -217,29 +216,6 @@ namespace Rito.InventorySystem
                 rt.SetParent(_contentAreaRT);
 
                 return rt;
-            }
-        }
-
-        private void InitButtonEvents()
-        {
-            _trimButton.onClick.AddListener(() => _inventory.TrimAll());
-            _sortButton.onClick.AddListener(() => _inventory.SortAll());
-        }
-
-        private void InitToggleEvents()
-        {
-            _toggleFilterAll.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.All));
-            _toggleFilterEquipments.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Equipment));
-            _toggleFilterPortions.onValueChanged.AddListener(flag => UpdateFilter(flag, FilterOption.Portion));
-
-            // Local Method
-            void UpdateFilter(bool flag, FilterOption option)
-            {
-                if (flag)
-                {
-                    _currentFilterOption = option;
-                    UpdateAllSlotFilters();
-                }
             }
         }
 

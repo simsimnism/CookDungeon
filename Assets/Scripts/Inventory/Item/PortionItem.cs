@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     /// <summary> 수량 아이템 - 포션 아이템 </summary>
     public class PortionItem : CountableItem, IUsableItem

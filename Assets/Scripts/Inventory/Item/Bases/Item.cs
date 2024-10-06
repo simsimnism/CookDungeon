@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 
-namespace Rito.InventorySystem
+namespace Cook.InventorySystem
 {
     /*
         [상속 구조]

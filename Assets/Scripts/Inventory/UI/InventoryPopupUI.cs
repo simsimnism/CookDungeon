@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 
 
-namespace Rito
+namespace Cook
 {
     /// <summary> 인벤토리 UI 위에 띄울 작은 팝업들 관리 </summary>
     public class InventoryPopupUI : MonoBehaviour
