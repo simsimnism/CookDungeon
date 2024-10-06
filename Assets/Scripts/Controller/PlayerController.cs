@@ -37,14 +37,9 @@ public class PlayerController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 컴포넌트 가져오기
-        playerManager = PlayerManager.Instance; // PlayerManager 싱글톤 인스턴스 가져오기
 
         // PlayerManager에서 필요한 변수를 가져옴
         speed = playerManager.speed;
-        upAinme = playerManager.upAinme;
-        downAinme = playerManager.downAinme;
-        rightAinme = playerManager.rightAinme;
-        LeftAinme = playerManager.LeftAinme;
         deadAinme = playerManager.deadAinme;
         oldAnimation = downAinme; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
     }
