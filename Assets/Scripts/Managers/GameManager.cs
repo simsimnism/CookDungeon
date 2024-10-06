@@ -11,6 +11,7 @@ public class GameManager
     // 초기 던전 레벨 값 (스테이지 번호)
     private int currentDungeonLevelListIndex = 0;
 
+
     public void Init()
     {
         dungeonLevelList = new List<DungeonLevelSO>();

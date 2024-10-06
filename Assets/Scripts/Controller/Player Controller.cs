@@ -41,12 +41,7 @@ public class PlayerController : MonoBehaviour
     // 초기화
     void Start()
     {
-        // PlayerManager에서 필요한 변수를 가져옴
-        if (playerManager != null)
-        {
-            speed = playerManager.speed;
-            oldAnimation = AnimationType.Down; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
-        }
+        StarterImage();
     }
 
     // 매 프레임마다 호출되는 업데이트 함수
@@ -122,6 +117,16 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = new Vector2(axisH, axisV) * speed;
     }
 
+    //초기 이미지
+    void StarterImage()
+    {
+        // PlayerManager에서 필요한 변수를 가져옴
+        if (playerManager != null)
+        {
+            speed = playerManager.speed;
+            oldAnimation = AnimationType.Down; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
+        }
+    }
     // 대쉬 코루틴
     private IEnumerator Dash()
     {
