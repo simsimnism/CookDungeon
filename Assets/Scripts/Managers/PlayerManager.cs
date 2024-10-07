@@ -6,6 +6,9 @@ public class PlayerManager
 {
 
     // 플레이어의 상태 관련 변수
+
+    public float decelerationFactor;
+    public float Max_speed;
     public float speed = 3.0f;
     public Vector2 inputVec;
     public string upAinme = "PlyerUp";

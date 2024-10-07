@@ -8,9 +8,6 @@ using static DG.Tweening.DOTweenAnimation;
 public class Player : MonoBehaviour
 {
 
-    //싱글톤 인스턴스
-    public Player Instance {  get; private set; }
-
     //다른 컴포넌트 참조
     public PlayerController pc;
     public PlayerAttack pa;
@@ -43,13 +40,6 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject );
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad( gameObject );
         pm = Managers.Player;
         speed = Managers.Player.speed;
         
@@ -64,14 +54,14 @@ public class Player : MonoBehaviour
     }
 
         // 게임오버 시의 함수
-        void GameOver()
+    void GameOver()
     {
-        pm.gameState = "gameover"; // 게임 상태를 'gameover'로 설정
-        GetComponent<CircleCollider2D>().enabled = false; // 충돌 비활성화
-        rbody.velocity = Vector2.zero;
-        rbody.gravityScale = 1; // 중력 적용
-        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse); // 위로 튕겨나가는 효과
-        Destroy(gameObject, 1.0f); // 1초 후 오브젝트 제거
+    pm.gameState = "gameover"; // 게임 상태를 'gameover'로 설정
+    GetComponent<CircleCollider2D>().enabled = false; // 충돌 비활성화
+    rbody.velocity = Vector2.zero;
+    rbody.gravityScale = 1; // 중력 적용
+    rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse); // 위로 튕겨나가는 효과
+    Destroy(gameObject, 1.0f); // 1초 후 오브젝트 제거
     }
 
 }
