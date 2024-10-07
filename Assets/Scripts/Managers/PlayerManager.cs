@@ -5,10 +5,7 @@ using UnityEngine;
 public class PlayerManager 
 {
 
-    // �̱��� �ν��Ͻ�
-    public static PlayerManager Instance { get; private set; }
-
-    // �÷��̾� �̵� �� �ִϸ��̼� ����
+    // 플레이어의 상태 관련 변수
     public float speed = 3.0f;
     public Vector2 inputVec;
     public string upAinme = "PlyerUp";
@@ -21,14 +18,14 @@ public class PlayerManager
     public string gameState = "playing";
     public bool inDamage = false;
 
-    // �뽬 ���� ����
+    
     public float dashSpeedMultiplier = 2.0f; // �뽬 �� �ӵ� ���
     public float dashDuration = 0.2f; // �뽬 ���� �ð�
     public float dashCooldown = 1.0f; // �뽬 ��Ÿ��
 
     public void Init()
     {
-        // �ʱ�ȭ �۾�
+        //플레이어의 초기상태
         hp = 3;
         gameState = "playing";
         inDamage = false;

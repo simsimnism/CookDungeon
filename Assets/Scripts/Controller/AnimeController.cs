@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-// 플레이어의 이동, 애니메이션, 대미지 처리, 대쉬를 담당하는 스크립트
-public class PlayerController : MonoBehaviour
+public class AnimeController : MonoBehaviour
 {
-    // 이동 및 애니메이션 관련 변수들
-    private float speed; // 현재 플레이어의 이동 속도
+
+    private float speed;
+    private PlayerManager pm;
+    private SpriteRenderer sr;
+    Rigidbody2D rbody;
 
     // 애니메이션 종류를 enum으로 정의
     private enum AnimationType { Up, Down, Right, Left, Dead }
@@ -15,37 +19,47 @@ public class PlayerController : MonoBehaviour
     private AnimationType nowAnimation = AnimationType.Down;
     private AnimationType oldAnimation = AnimationType.Down;
 
-    // 이동 입력값
-    float axisH; // 수평 입력 값 (왼쪽/오른쪽)
-    float axisV; // 수직 입력 값 (위/아래)
-    public float angleZ = -90.0f; // 플레이어의 이동 방향을 결정할 각도
+    //이동 입력값
+    float axisH;
+    float axisV;
+    public float angleZ =  - 90.0f;
 
-    Rigidbody2D rbody; // 2D 물리 엔진 처리를 위한 Rigidbody2D 컴포넌트
-    bool isMoving = false; // 플레이어가 현재 이동 중인지 여부
+    //
+    bool isMoving = false;
 
-    // PlayerManager 싱글톤 참조
-    private PlayerManager pm;
-    private SpriteRenderer sr; // 플레이어의 SpriteRenderer 컴포넌트 참조 (투명도 조절 용도)
+    private bool isDashing = false;
+    private bool dashCooldownActive = false;
 
-    // 대쉬 관련 상태 변수
-    private bool isDashing = false; // 현재 대쉬 중인지 여부
-    private bool dashCooldownActive = false; // 대쉬 쿨타임이 활성화되어 있는지 여부
 
     void Awake()
     {
-        rbody = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
-        sr = GetComponent<SpriteRenderer>(); // SpriteRmienderer 컴포넌트 가져오기
-        pm = Managers.Player; // PlayerManager 싱글톤 인스턴스 가져오기
-    }
+        rbody = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        speed = Managers.Player.speed;
 
-    // 초기화
+
+    }
     void Start()
     {
         StarterImage();
     }
 
-    // 매 프레임마다 호출되는 업데이트 함수
     void Update()
+    {
+        PlayAnime();
+    }
+
+    void StarterImage()
+    {
+        // PlayerManager에서 필요한 변수를 가져옴
+        if (pm != null)
+        {
+            speed = pm.speed;
+            oldAnimation = AnimationType.Down; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
+        }
+    }
+
+    void PlayAnime()
     {
         // 게임이 진행 중이 아니거나 대미지 처리 중이거나 대쉬 중이면 아무것도 하지 않음
         if (pm.gameState != "playing" || pm.inDamage || isDashing)
@@ -97,37 +111,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // 물리적인 동작을 처리하는 FixedUpdate 함수
-    void FixedUpdate()
-    {
-        if (pm.gameState != "playing" || isDashing)
-        {
-            return;
-        }
-
-        // 대미지 처리 중일 때 깜빡이는 효과
-        if (pm.inDamage)
-        {
-            float val = Mathf.Sin(Time.time * 50);
-            gameObject.GetComponent<SpriteRenderer>().enabled = val > 0;
-            return;
-        }
-
-        // Rigidbody2D를 이용해 플레이어를 이동시킴
-        rbody.velocity = new Vector2(axisH, axisV) * speed;
-    }
-
-    //초기 이미지
-    void StarterImage()
-    {
-        // PlayerManager에서 필요한 변수를 가져옴
-        if (pm != null)
-        {
-            speed = pm.speed;
-            oldAnimation = AnimationType.Down; // 초기 애니메이션은 아래쪽을 바라보는 것으로 설정
-        }
-    }
-    // 대쉬 코루틴
     private IEnumerator Dash()
     {
         isDashing = true; // 대쉬 시작
@@ -158,62 +141,11 @@ public class PlayerController : MonoBehaviour
         dashCooldownActive = false; // 대쉬 쿨타임 종료
     }
 
-    // 캐릭터의 투명도를 설정하는 메서드
     private void SetTransparency(float alpha)
     {
         Color color = sr.color;
         color.a = alpha; // 알파 값을 변경하여 투명도 설정
         sr.color = color;
-    }
-
-    // 적과의 충돌을 처리하는 함수
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy" && !isDashing) // 적과 충돌하고 대쉬 중이 아니면
-        {
-            GetDamage(collision.gameObject); // 대미지 처리
-        }
-    }
-
-    // 플레이어가 대미지를 받을 때 처리
-    void GetDamage(GameObject enemy)
-    {
-        if (pm.gameState == "playing")
-        {
-            pm.hp--; // 플레이어 HP 감소
-            if (pm.hp > 0)
-            {
-                rbody.velocity = Vector2.zero; // 이동 속도 초기화
-                Vector3 toPos = (transform.position - enemy.transform.position).normalized;
-                rbody.AddForce(new Vector2(toPos.x * 4, toPos.y * 4), ForceMode2D.Impulse); // 적 방향 반대로 밀어냄
-
-                pm.inDamage = true; // 대미지 상태로 전환
-                Invoke("DamageEnd", 0.25f); // 일정 시간 후에 대미지 상태 종료
-            }
-            else
-            {
-                GameOver(); // HP가 0이면 게임 오버 처리
-            }
-        }
-    }
-
-    // 대미지 상태 종료 처리
-    void DamageEnd()
-    {
-        pm.inDamage = false; // 대미지 상태 해제
-        gameObject.GetComponent<SpriteRenderer>().enabled = true; // 플레이어를 보이게 함
-    }
-
-    // 게임 오버 처리
-    void GameOver()
-    {
-        pm.gameState = "gameover"; // 게임 상태를 'gameover'로 설정
-        GetComponent<CircleCollider2D>().enabled = false; // 충돌 비활성화
-        rbody.velocity = Vector2.zero;
-        rbody.gravityScale = 1; // 중력 적용
-        rbody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse); // 위로 튕겨나가는 효과
-        GetComponent<Animator>().Play(AnimationType.Dead.ToString()); // 죽는 애니메이션 재생
-        Destroy(gameObject, 1.0f); // 1초 후 오브젝트 제거
     }
 
     // p1에서 p2까지의 각도를 계산하여 반환
@@ -235,4 +167,6 @@ public class PlayerController : MonoBehaviour
         }
         return angle;
     }
+
+
 }
