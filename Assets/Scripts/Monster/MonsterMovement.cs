@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,4 +99,5 @@ public class MonsterMovement : MonoBehaviour
         // 몬스터 제거 로직 (예: 파괴 또는 비활성화)
         Destroy(gameObject); // 몬스터 오브젝트 삭제
     }
+
 }

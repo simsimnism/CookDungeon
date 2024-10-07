@@ -5,6 +5,8 @@ using UnityEngine;
 using Cook.InventorySystem;
 using static DG.Tweening.DOTweenAnimation;
 
+
+//플레이어의 상태를 나타내는 코드(수정해야 함)
 public class Player : MonoBehaviour
 {
 
@@ -12,7 +14,7 @@ public class Player : MonoBehaviour
     public PlayerController pc;
     public PlayerAttack pa;
 
-    // 플레이어 이동 관련 변수
+    // 플레이어 이동 관련 변수(수정해야 함)
     private float speed; //
     private bool dashCooldownAction = false;
     private bool isPaused = false;
@@ -24,12 +26,9 @@ public class Player : MonoBehaviour
     GameObject player;
     Rigidbody2D rbody;
 
-    float axisH; // 수평 입력 값 (왼쪽/오른쪽)
-    float axisV; // 수직 입력 값 (위/아래)
-
     bool isMoving = false;
 
-    //플레이어 공격 관련 변수
+    //플레이어 공격 관련 변수(수정해야 함)
     public Weapon weapon; //플레이어가 사용할 무기
     public Transform attackPoint;//공격이 발생할 위치
     public float comboResetTime = 1.0f;//콤보가 초기화되는 시간

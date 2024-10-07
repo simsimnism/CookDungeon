@@ -3,121 +3,108 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Weapon weapon; // 플레이어가 사용할 무기
-    public Transform attackPoint; // 공격이 발생할 위치
-    public float comboResetTime = 1.0f; // 콤보가 초기화되는 시간
-    private int comboStep = 0; // 현재 콤보 단계
-    private float lastClickTime = 0; // 마지막 공격 시간
+    [SerializeField] private float meleeAttackDamage = 10f; // 기본 근접 공격 데미지
+    [SerializeField] private float comboResetTime = 1f; // 콤보를 초기화하는 시간
+    private int comboStep = 0;
+    private bool isAttacking = false;
+    private float lastAttackTime;
+    private bool canChainCombo = false; // 다음 콤보로 연결 가능한지 확인
 
-    public Animator animator; // 애니메이터를 제어하기 위한 Animator 컴포넌트
-    public float weaponHideTime = 5.0f; // 무기가 비가시화 되는 시간
-    private bool weaponVisible = true; // 무기 가시 상태
+    void Start()
+    {
+
+    }
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButtonDown(0))
         {
-            HandleComboAttack();
-        }
-
-        if (Time.time - lastClickTime > comboResetTime)
-        {
-            ResetCombo();
-        }
-
-        if (Time.time - lastClickTime > weaponHideTime && weaponVisible)
-        {
-            HideWeapon();
+            StartAttack();
         }
     }
 
-    // 콤보 공격 처리
-    void HandleComboAttack()
+    void StartAttack()
     {
-        lastClickTime = Time.time;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0; // 2D이므로 z 좌표는 0으로 설정
 
-        if (!weaponVisible)
-        {
-            ShowWeapon();
-        }
+        // 플레이어 위치
+        Vector3 playerPos = transform.position;
 
+        // 마우스 방향으로 공격 벡터 계산
+        Vector3 attackDirection = (mousePos - playerPos).normalized;
+
+        // 실제 공격 함수 실행 (방향을 전달)
+        PerformAttack(attackDirection);
+    }
+
+    void PerformAttack(Vector3 attackDirection)
+    {
+        if (isAttacking && !canChainCombo)
+            return; // 공격 중이고 다음 콤보로 연결되지 않으면 아무것도 하지 않음
+
+        // 첫 번째 공격 시작 시
         if (comboStep == 0)
         {
-            comboStep = 1;
-            PerformAttack(1);
+            isAttacking = true;
+            Debug.Log("첫 번째 공격!");
+
+            // 첫 번째 공격 실행 로직
+            ExecuteAttack(attackDirection);
+
+            comboStep++;
+            lastAttackTime = Time.time;
+            canChainCombo = true; // 콤보 연결 가능 상태로 설정
         }
-        else if (comboStep == 1)
+        // 두 번째 공격으로 연결
+        else if (comboStep == 1 && Time.time - lastAttackTime <= comboResetTime)
         {
-            comboStep = 2;
-            PerformAttack(2);
-        }
-        else if (comboStep == 2)
-        {
-            comboStep = 3;
-            PerformAttack(3);
+            Debug.Log("두 번째 공격!");
+
+            // 두 번째 공격 실행 로직
+            ExecuteAttack(attackDirection);
+
+            comboStep = 0; // 콤보 초기화
+            isAttacking = false;
+            canChainCombo = false; // 콤보 끝, 연결 불가능 상태로 변경
         }
     }
 
-    // 공격 처리
-    void PerformAttack(int comboStep)
+    void ExecuteAttack(Vector3 attackDirection)
     {
-        if (weapon != null)
+        // 실제 공격 효과 (애니메이션, 데미지 처리 등) 적용
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(2f, 1f), 0f);
+        foreach (Collider2D collider in colliders)
         {
-            weapon.PerformComboAttack(comboStep);
+            /*
+            if (collider.CompareTag("enemy"))
+            {
 
-            Vector2 direction = GetMouseDirection();
-            RotatePlayerTowards(direction);
 
-            weapon.DealDamage();
+                // 적에게 데미지 적용
+                MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
+                if (enemy != null)
+                {
+                    /*int totalDamage = meleeAttackDamage * (comboStep + 1); 
+                    /*MonsterMovement.TakeDamage(totalDamage); 
+                    
+                }
+            }
+            */
         }
+
+        // 콤보가 종료되면 다시 초기화 시간까지 대기
+        Invoke("ResetCombo", comboResetTime);
     }
 
-    // 콤보 초기화
     void ResetCombo()
     {
-        comboStep = 0;
-    }
-
-    // 무기를 가시화
-    void ShowWeapon()
-    {
-        if (weapon != null)
+        if (Time.time - lastAttackTime > comboResetTime)
         {
-            weapon.SetVisible(true);
-            weaponVisible = true;
-        }
-    }
-
-    // 무기를 비가시화
-    void HideWeapon()
-    {
-        if (weapon != null)
-        {
-            weapon.SetVisible(false);
-            weaponVisible = false;
-        }
-    }
-
-    // 마우스 방향을 구하고 플레이어 회전
-    void RotatePlayerTowards(Vector2 direction)
-    {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-    }
-
-    Vector2 GetMouseDirection()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - transform.position;
-        return direction.normalized;
-    }
-
-    // 무기를 변경하는 함수
-    public void ChangeWeapon(string newWeaponName)
-    {
-        if (weapon != null)
-        {
-            weapon.LoadWeaponData(newWeaponName); // 새로운 무기 로드
+            comboStep = 0; // 시간이 지나면 콤보 초기화
+            isAttacking = false;
+            canChainCombo = false; // 더 이상 콤보 연결 불가능
         }
     }
 }
+

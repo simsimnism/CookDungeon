@@ -9,14 +9,8 @@ public class PlayerManager
 
     // 플레이어의 상태 관련 변수
     public bool isMove;
-    public float Max_speed;
     public float speed = 3.0f;
     public Vector2 inputVec;
-    public string upAinme = "PlyerUp";
-    public string downAinme = "PlyerDown";
-    public string rightAinme = "PlyerRight";
-    public string LeftAinme = "PlyerLeft";
-    public string deadAinme = "PlayerDead";
 
     //플레이어의 상태
     public string nowState;
