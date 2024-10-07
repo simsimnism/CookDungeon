@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9150921fd29e6343add536a9ce6693e
+guid: 9382cc6150eaadc4c8b351a30dbca059
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -111,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f397359fba5262944bced744926a1e96
-      internalID: 756612917
+      spriteID: 4a1496a08469fd2488ba987e36b38bda
+      internalID: -794664969
       vertices: []
       indices: 
       edges: []
@@ -121,7 +121,7 @@ TextureImporter:
       name: Egg Attack-2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 68
+        x: 66
         y: 16
         width: 58
         height: 44
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd0c6161ecdc9fb43a083541c1203457
-      internalID: 1407072654
+      spriteID: 2da1e3239dbc71c409ccd581372f9bdc
+      internalID: -489919256
       vertices: []
       indices: 
       edges: []
@@ -153,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91c69374f6a35f243925666d558ece21
-      internalID: -166314840
+      spriteID: da6f8729d225e224199af6363db31602
+      internalID: -1998324846
       vertices: []
       indices: 
       edges: []
@@ -163,7 +163,7 @@ TextureImporter:
       name: Egg Attack-2-Sheet_3
       rect:
         serializedVersion: 2
-        x: 197
+        x: 199
         y: 16
         width: 58
         height: 44
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58e8d7b559ebf0c41a3a230ed9511aed
-      internalID: 459961404
+      spriteID: 1801f27504b52c748a2a9c0108a1c990
+      internalID: -861508147
       vertices: []
       indices: 
       edges: []
@@ -184,28 +184,7 @@ TextureImporter:
       name: Egg Attack-2-Sheet_4
       rect:
         serializedVersion: 2
-        x: 261
-        y: 15
-        width: 58
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e237bdfb93f58ad48bbe964d7fc5a77e
-      internalID: 1392215720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg Attack-2-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 323
+        x: 263
         y: 16
         width: 58
         height: 44
@@ -216,8 +195,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c28e65a7a902c84ea4a1b121a0a9acf
-      internalID: -2007132971
+      spriteID: 3da7c7e3708413945a4178303df690c6
+      internalID: 1817669250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg Attack-2-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 16
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5932c9fabc963904d931e7145c4b7694
+      internalID: 1939273478
       vertices: []
       indices: 
       edges: []
@@ -237,29 +237,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05f67c604b743414a836b0664095bc5b
-      internalID: -1692716990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg Attack-2-Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 261
-        y: 2
-        width: 2
-        height: 3
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b00d3fa475d60d34f91ea1b631ce2395
-      internalID: -179647704
+      spriteID: 0439cbb18fe13e54a89c9b9eb266bf0e
+      internalID: 1316674433
       vertices: []
       indices: 
       edges: []
@@ -275,14 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Egg Attack-2-Sheet_0: 756612917
-      Egg Attack-2-Sheet_1: 1407072654
-      Egg Attack-2-Sheet_2: -166314840
-      Egg Attack-2-Sheet_3: 459961404
-      Egg Attack-2-Sheet_4: 1392215720
-      Egg Attack-2-Sheet_5: -2007132971
-      Egg Attack-2-Sheet_6: -1692716990
-      Egg Attack-2-Sheet_7: -179647704
+      Egg Attack-2-Sheet_0: -794664969
+      Egg Attack-2-Sheet_1: -489919256
+      Egg Attack-2-Sheet_2: -1998324846
+      Egg Attack-2-Sheet_3: -861508147
+      Egg Attack-2-Sheet_4: 1817669250
+      Egg Attack-2-Sheet_5: 1939273478
+      Egg Attack-2-Sheet_6: 1316674433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
