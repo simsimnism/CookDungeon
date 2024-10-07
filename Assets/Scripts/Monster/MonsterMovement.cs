@@ -12,7 +12,7 @@ public class MonsterMovement : MonoBehaviour
     private MonsterManager monsterManager;
     private MonsterData monsterData;
 
-    private int currentHealth; // 현재 체력
+    private float currentHealth; // 현재 체력
 
     private void Start()
     {
@@ -79,7 +79,7 @@ public class MonsterMovement : MonoBehaviour
     }
 
     // 대미지를 받는 함수
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         Debug.Log(monsterData.name + "이(가) " + damage + " 대미지를 받았습니다. 현재 체력: " + currentHealth);

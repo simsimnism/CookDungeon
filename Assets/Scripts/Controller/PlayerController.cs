@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -55,18 +56,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) moveVertical = 0;
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) moveHorizontal = 0;
 
-        if (moveVertical == 0 && moveHorizontal == 0)
-        {
-            moveSpeed = Mathf.Lerp(moveSpeed, 0, Time.deltaTime * 10f);
-            return;
-        }
-
         // 대각선 방향 조정
         Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
 
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
         {
+            moveSpeed = 10f;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
 
