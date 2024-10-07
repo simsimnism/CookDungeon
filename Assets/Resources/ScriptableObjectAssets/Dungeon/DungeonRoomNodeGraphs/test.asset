@@ -40,7 +40,7 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 1ec4b6d75146c5a42853aa544ff70ea8, type: 2}
   rect:
     serializedVersion: 2
-    x: 246
+    x: 236
     y: 191
     width: 160
     height: 75
@@ -68,7 +68,7 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 1ec4b6d75146c5a42853aa544ff70ea8, type: 2}
   rect:
     serializedVersion: 2
-    x: 248
+    x: 238
     y: 293
     width: 160
     height: 75
@@ -95,7 +95,7 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: 1ec4b6d75146c5a42853aa544ff70ea8, type: 2}
   rect:
     serializedVersion: 2
-    x: 248
+    x: 238
     y: 392
     width: 160
     height: 75

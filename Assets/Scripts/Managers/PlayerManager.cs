@@ -4,31 +4,26 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-
-    // �̱��� �ν��Ͻ�
-    public static PlayerManager Instance { get; private set; }
-
-    // �÷��̾� �̵� �� �ִϸ��̼� ����
+    // 플레이어에 대한 정보
     public float speed = 3.0f;
     public Vector2 inputVec;
-    public string upAinme = "PlyerUp";
-    public string downAinme = "PlyerDown";
-    public string rightAinme = "PlyerRight";
-    public string LeftAinme = "PlyerLeft";
     public string deadAinme = "PlayerDead";
+    public float Max_speed = 5.0f;
+    public float decelerationFactor = 30f;
 
-    public int hp = 3;
+    public int hp;
     public string gameState = "playing";
     public bool inDamage = false;
 
-    // �뽬 ���� ����
-    public float dashSpeedMultiplier = 2.0f; // �뽬 �� �ӵ� ���
-    public float dashDuration = 0.2f; // �뽬 ���� �ð�
-    public float dashCooldown = 1.0f; // �뽬 ��Ÿ��
+    public float dashSpeedMultiplier = 2.0f;
+    public float dashDuration = 0.2f;
+    public float dashCooldown = 1.0f;
 
+
+
+    // 플레이어 수치 초기 설정
     public void Init()
     {
-        // �ʱ�ȭ �۾�
         hp = 3;
         gameState = "playing";
         inDamage = false;
