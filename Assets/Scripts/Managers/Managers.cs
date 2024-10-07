@@ -25,7 +25,7 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static GameManager GM { get { Init(); return Instance._game; } }
-    // public static PlayerManager Player { get { Init(); return Instance._player; } }
+    public static PlayerManager Player { get { Init(); return Instance._player; } }
 
     void Start()
     {
@@ -61,7 +61,7 @@ public class Managers : MonoBehaviour
 
     public static void Clear()
     {
-        //Input.Clear();
+        Input.Clear();
         Sound.Clear();
         Scene.Clear();
         UI.Clear();
