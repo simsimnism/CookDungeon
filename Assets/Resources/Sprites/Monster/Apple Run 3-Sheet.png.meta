@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c97fee47806a2546be665f7302e0b27
+guid: 3a13a23fca47eb046b90e16899bb0557
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,144 +93,89 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_0
+      name: Apple Run 3-Sheet_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 16
-        width: 27
-        height: 40
+        x: 16
+        y: 0
+        width: 34
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2183618d4e8edc845a1a725588712636
-      internalID: -814024193
+      spriteID: 6eb3eb8247cbc3342b11935e86b9d001
+      internalID: 556959560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_1
+      name: Apple Run 3-Sheet_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 16
-        width: 27
-        height: 40
+        x: 80
+        y: 0
+        width: 34
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56897849da769f4889444d04fbef706
-      internalID: 1153798097
+      spriteID: 68c3a3e6b9f581549b430d669392c9e2
+      internalID: 1238458737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_2
+      name: Apple Run 3-Sheet_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 16
-        width: 27
-        height: 40
+        x: 145
+        y: 0
+        width: 34
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8045d0b1a03f4c7488d0e89cae1a5451
-      internalID: 1393739296
+      spriteID: e1b0d17ae7e6fc04d816817d59dc418a
+      internalID: -613371132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_3
+      name: Apple Run 3-Sheet_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 16
-        width: 27
-        height: 40
+        x: 208
+        y: 0
+        width: 34
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8049eb21ada122a418d1368155801952
-      internalID: 1397092058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 275
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d9d7fc037510737488b00267394f259b
-      internalID: 1035346901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e203cdf5c0a2c041bb30c347e3a14c5
-      internalID: -1496481247
+      spriteID: caedb6ab1f8fa354badadc30f592d5c3
+      internalID: -142966907
       vertices: []
       indices: 
       edges: []
@@ -246,12 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 1-Sheet_0: -814024193
-      Cheolsu Run 1-Sheet_1: 1153798097
-      Cheolsu Run 1-Sheet_2: 1393739296
-      Cheolsu Run 1-Sheet_3: 1397092058
-      Cheolsu Run 1-Sheet_4: 1035346901
-      Cheolsu Run 1-Sheet_5: -1496481247
+      Apple Run 3-Sheet_0: 556959560
+      Apple Run 3-Sheet_1: 1238458737
+      Apple Run 3-Sheet_2: -613371132
+      Apple Run 3-Sheet_3: -142966907
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

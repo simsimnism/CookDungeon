@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c97fee47806a2546be665f7302e0b27
+guid: e99af98ca1d206943aaaed8b465359f9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,144 +93,215 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_0
+      name: Apple Spawn_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 16
-        width: 27
-        height: 40
+        x: 19
+        y: 0
+        width: 28
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2183618d4e8edc845a1a725588712636
-      internalID: -814024193
+      spriteID: 2887513f44675244ea19be91d4cdb25d
+      internalID: 794070405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_1
+      name: Apple Spawn_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 16
-        width: 27
-        height: 40
+        x: 74
+        y: 0
+        width: 40
+        height: 47
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56897849da769f4889444d04fbef706
-      internalID: 1153798097
+      spriteID: ee0c356b7d4e96c44979be8af520ff41
+      internalID: 1016446426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_2
+      name: Apple Spawn_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 16
-        width: 27
-        height: 40
+        x: 139
+        y: 0
+        width: 40
+        height: 51
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8045d0b1a03f4c7488d0e89cae1a5451
-      internalID: 1393739296
+      spriteID: 3e512b99710bdab4eaa979e404a3f1c8
+      internalID: -390493146
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_3
+      name: Apple Spawn_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 16
-        width: 27
-        height: 40
+        x: 199
+        y: 0
+        width: 47
+        height: 53
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8049eb21ada122a418d1368155801952
-      internalID: 1397092058
+      spriteID: d14c5462d126798418be1c019ef07a08
+      internalID: -567853192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_4
+      name: Apple Spawn_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 16
-        width: 27
-        height: 40
+        x: 264
+        y: 0
+        width: 48
+        height: 20
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d7fc037510737488b00267394f259b
-      internalID: 1035346901
+      spriteID: a78ba8a3edf89dd4b85aa113ca77912e
+      internalID: -2077491929
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_5
+      name: Apple Spawn_5
       rect:
         serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
+        x: 327
+        y: 0
+        width: 52
+        height: 17
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e203cdf5c0a2c041bb30c347e3a14c5
-      internalID: -1496481247
+      spriteID: d1bdb01a0941eba4792a762f0e0ecf7a
+      internalID: -1463406150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apple Spawn_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 0
+        width: 49
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad2b6481bb3cec4987384b9c71c5493
+      internalID: -1119008358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apple Spawn_7
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 0
+        width: 40
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57f7ee6c4b06768438556f1c86bcdb58
+      internalID: -1375841166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apple Spawn_8
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 0
+        width: 38
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64d22985d48f8543be8cafebf482d72
+      internalID: 2012242998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apple Spawn_9
+      rect:
+        serializedVersion: 2
+        x: 595
+        y: 0
+        width: 28
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 842195b7d93a6af4b8b5e99674e3f7e8
+      internalID: 337530165
       vertices: []
       indices: 
       edges: []
@@ -246,12 +317,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 1-Sheet_0: -814024193
-      Cheolsu Run 1-Sheet_1: 1153798097
-      Cheolsu Run 1-Sheet_2: 1393739296
-      Cheolsu Run 1-Sheet_3: 1397092058
-      Cheolsu Run 1-Sheet_4: 1035346901
-      Cheolsu Run 1-Sheet_5: -1496481247
+      Apple Spawn_0: 794070405
+      Apple Spawn_1: 1016446426
+      Apple Spawn_2: -390493146
+      Apple Spawn_3: -567853192
+      Apple Spawn_4: -2077491929
+      Apple Spawn_5: -1463406150
+      Apple Spawn_6: -1119008358
+      Apple Spawn_7: -1375841166
+      Apple Spawn_8: 2012242998
+      Apple Spawn_9: 337530165
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

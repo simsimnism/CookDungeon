@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c97fee47806a2546be665f7302e0b27
+guid: 0f5d1df93f466f744942a50f52ff918e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,144 +93,110 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_0
+      name: Egg Run-3-Sheet_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 16
-        width: 27
-        height: 40
+        x: 6
+        y: 13
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2183618d4e8edc845a1a725588712636
-      internalID: -814024193
+      spriteID: bbcf1e35abc034f43a20d01acc8255aa
+      internalID: -1623677450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_1
+      name: Egg Run-3-Sheet_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 16
-        width: 27
-        height: 40
+        x: 71
+        y: 13
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56897849da769f4889444d04fbef706
-      internalID: 1153798097
+      spriteID: 3bf0f0f71aa5177459146f90ed8b15b9
+      internalID: -1792358799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_2
+      name: Egg Run-3-Sheet_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 16
-        width: 27
-        height: 40
+        x: 133
+        y: 13
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8045d0b1a03f4c7488d0e89cae1a5451
-      internalID: 1393739296
+      spriteID: 5c7bae10bd938f542845df713fb1808e
+      internalID: -1905685725
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_3
+      name: Egg Run-3-Sheet_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 16
-        width: 27
-        height: 40
+        x: 197
+        y: 12
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8049eb21ada122a418d1368155801952
-      internalID: 1397092058
+      spriteID: a8f419a5f6e7da048b2b9c742ed81fc8
+      internalID: -1479197281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_4
+      name: Egg Run-3-Sheet_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 16
-        width: 27
-        height: 40
+        x: 262
+        y: 13
+        width: 53
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d7fc037510737488b00267394f259b
-      internalID: 1035346901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e203cdf5c0a2c041bb30c347e3a14c5
-      internalID: -1496481247
+      spriteID: 272b72930482ac847813db35b31c1714
+      internalID: 1371851386
       vertices: []
       indices: 
       edges: []
@@ -246,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 1-Sheet_0: -814024193
-      Cheolsu Run 1-Sheet_1: 1153798097
-      Cheolsu Run 1-Sheet_2: 1393739296
-      Cheolsu Run 1-Sheet_3: 1397092058
-      Cheolsu Run 1-Sheet_4: 1035346901
-      Cheolsu Run 1-Sheet_5: -1496481247
+      Egg Run-3-Sheet_0: -1623677450
+      Egg Run-3-Sheet_1: -1792358799
+      Egg Run-3-Sheet_2: -1905685725
+      Egg Run-3-Sheet_3: -1479197281
+      Egg Run-3-Sheet_4: 1371851386
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

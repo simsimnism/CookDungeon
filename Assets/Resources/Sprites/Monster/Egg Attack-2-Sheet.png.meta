@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c97fee47806a2546be665f7302e0b27
+guid: a9150921fd29e6343add536a9ce6693e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,144 +93,173 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_0
+      name: Egg Attack-2-Sheet_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 3
         y: 16
-        width: 27
-        height: 40
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2183618d4e8edc845a1a725588712636
-      internalID: -814024193
+      spriteID: f397359fba5262944bced744926a1e96
+      internalID: 756612917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_1
+      name: Egg Attack-2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 84
+        x: 68
         y: 16
-        width: 27
-        height: 40
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56897849da769f4889444d04fbef706
-      internalID: 1153798097
+      spriteID: fd0c6161ecdc9fb43a083541c1203457
+      internalID: 1407072654
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_2
+      name: Egg Attack-2-Sheet_2
       rect:
         serializedVersion: 2
-        x: 148
+        x: 132
         y: 16
-        width: 27
-        height: 40
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8045d0b1a03f4c7488d0e89cae1a5451
-      internalID: 1393739296
+      spriteID: 91c69374f6a35f243925666d558ece21
+      internalID: -166314840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_3
+      name: Egg Attack-2-Sheet_3
       rect:
         serializedVersion: 2
-        x: 212
+        x: 197
         y: 16
-        width: 27
-        height: 40
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8049eb21ada122a418d1368155801952
-      internalID: 1397092058
+      spriteID: 58e8d7b559ebf0c41a3a230ed9511aed
+      internalID: 459961404
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_4
+      name: Egg Attack-2-Sheet_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 16
-        width: 27
-        height: 40
+        x: 261
+        y: 15
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d7fc037510737488b00267394f259b
-      internalID: 1035346901
+      spriteID: e237bdfb93f58ad48bbe964d7fc5a77e
+      internalID: 1392215720
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_5
+      name: Egg Attack-2-Sheet_5
       rect:
         serializedVersion: 2
-        x: 338
+        x: 323
         y: 16
-        width: 27
-        height: 40
+        width: 58
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e203cdf5c0a2c041bb30c347e3a14c5
-      internalID: -1496481247
+      spriteID: 9c28e65a7a902c84ea4a1b121a0a9acf
+      internalID: -2007132971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg Attack-2-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 16
+        width: 58
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f67c604b743414a836b0664095bc5b
+      internalID: -1692716990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg Attack-2-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 2
+        width: 2
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b00d3fa475d60d34f91ea1b631ce2395
+      internalID: -179647704
       vertices: []
       indices: 
       edges: []
@@ -246,12 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 1-Sheet_0: -814024193
-      Cheolsu Run 1-Sheet_1: 1153798097
-      Cheolsu Run 1-Sheet_2: 1393739296
-      Cheolsu Run 1-Sheet_3: 1397092058
-      Cheolsu Run 1-Sheet_4: 1035346901
-      Cheolsu Run 1-Sheet_5: -1496481247
+      Egg Attack-2-Sheet_0: 756612917
+      Egg Attack-2-Sheet_1: 1407072654
+      Egg Attack-2-Sheet_2: -166314840
+      Egg Attack-2-Sheet_3: 459961404
+      Egg Attack-2-Sheet_4: 1392215720
+      Egg Attack-2-Sheet_5: -2007132971
+      Egg Attack-2-Sheet_6: -1692716990
+      Egg Attack-2-Sheet_7: -179647704
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c97fee47806a2546be665f7302e0b27
+guid: 75a655a84ebd2de42af2f2d18c46683a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,144 +93,110 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_0
+      name: Cabbage Guri Boom Effect-Sheet_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 16
-        width: 27
-        height: 40
+        x: 30
+        y: 25
+        width: 17
+        height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2183618d4e8edc845a1a725588712636
-      internalID: -814024193
+      spriteID: 218fc886a8e15fd48a58990c3f0babc1
+      internalID: 337270619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_1
+      name: Cabbage Guri Boom Effect-Sheet_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 16
-        width: 27
-        height: 40
+        x: 92
+        y: 24
+        width: 22
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c56897849da769f4889444d04fbef706
-      internalID: 1153798097
+      spriteID: 88fdcfcda4dcf624da247d478f8dbd36
+      internalID: 1020899283
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_2
+      name: Cabbage Guri Boom Effect-Sheet_2
       rect:
         serializedVersion: 2
-        x: 148
-        y: 16
-        width: 27
-        height: 40
+        x: 154
+        y: 20
+        width: 20
+        height: 29
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8045d0b1a03f4c7488d0e89cae1a5451
-      internalID: 1393739296
+      spriteID: 212568f2d93bed64992b68a5ab7e3033
+      internalID: -1499453360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_3
+      name: Cabbage Guri Boom Effect-Sheet_3
       rect:
         serializedVersion: 2
-        x: 212
-        y: 16
-        width: 27
-        height: 40
+        x: 214
+        y: 17
+        width: 32
+        height: 33
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8049eb21ada122a418d1368155801952
-      internalID: 1397092058
+      spriteID: 5e1c6e285793f4a4297d5749e6f404dc
+      internalID: -1228757840
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_4
+      name: Cabbage Guri Boom Effect-Sheet_4
       rect:
         serializedVersion: 2
-        x: 275
-        y: 16
-        width: 27
-        height: 40
+        x: 286
+        y: 23
+        width: 25
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9d7fc037510737488b00267394f259b
-      internalID: 1035346901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 1-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e203cdf5c0a2c041bb30c347e3a14c5
-      internalID: -1496481247
+      spriteID: 8788634f40cec9246ab0ea04ade44f2c
+      internalID: 573183384
       vertices: []
       indices: 
       edges: []
@@ -246,12 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 1-Sheet_0: -814024193
-      Cheolsu Run 1-Sheet_1: 1153798097
-      Cheolsu Run 1-Sheet_2: 1393739296
-      Cheolsu Run 1-Sheet_3: 1397092058
-      Cheolsu Run 1-Sheet_4: 1035346901
-      Cheolsu Run 1-Sheet_5: -1496481247
+      Cabbage Guri Boom Effect-Sheet_0: 337270619
+      Cabbage Guri Boom Effect-Sheet_1: 1020899283
+      Cabbage Guri Boom Effect-Sheet_2: -1499453360
+      Cabbage Guri Boom Effect-Sheet_3: -1228757840
+      Cabbage Guri Boom Effect-Sheet_4: 573183384
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
