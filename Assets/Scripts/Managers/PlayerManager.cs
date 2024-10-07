@@ -8,6 +8,8 @@ public class PlayerManager
     public float speed = 3.0f;
     public Vector2 inputVec;
     public string deadAinme = "PlayerDead";
+    public float Max_speed = 5.0f;
+    public float decelerationFactor = 30f;
 
     public int hp;
     public string gameState = "playing";

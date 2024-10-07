@@ -14,7 +14,7 @@ public class GameManager
     public void Init()
     {
         // 캐릭터 생성
-
+        GameObject Player = Managers.Resource.Instantiate("Player/Player");
 
 
         // 던전 레벨 리스트 생성
