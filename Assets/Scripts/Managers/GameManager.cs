@@ -11,11 +11,17 @@ public class GameManager
     // 초기 던전 레벨 값 (스테이지 번호)
     private int currentDungeonLevelListIndex = 0;
 
+    private bool _isMoving = true;
+
+    public bool IsMoving {  get { return _isMoving; } set { _isMoving = value; } }
+
     public void Init()
     {
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
 
+        // 카메라 세팅
+        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
 
         // 던전 레벨 리스트 생성
         dungeonLevelList = new List<DungeonLevelSO>();

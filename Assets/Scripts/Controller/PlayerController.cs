@@ -1,97 +1,72 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-// 플레이어의 이동, 애니메이션, 대미지 처리, 대쉬를 담당하는 스크립트
 public class PlayerController : MonoBehaviour
 {
-    // 이동 및 애니메이션 관련 변수들
-    private float drag = 1f;
-    private float decelerationFactor;
-    private float Max_speed;
-    private float _speed; // 현재 플레이어의 이동 속도
-    Rigidbody2D rbody; // 2D 물리 엔진 처리를 위한 Rigidbody2D 컴포넌트
-    bool isMoving = false; // 플레이어가 현재 이동 중인지 여부
-
-    // PlayerManager 싱글톤 참조
-    private PlayerManager pm;
-    private SpriteRenderer sr; // 플레이어의 SpriteRenderer 컴포넌트 참조 (투명도 조절 용도)
+    public string gameState;
+    public float moveSpeed;  //움직임 속도
 
     void Awake()
     {
-        rbody = GetComponent<Rigidbody2D>(); // Rigidbody2D 컴포넌트 가져오기
-        sr = GetComponent<SpriteRenderer>(); // SpriteRmienderer 컴포넌트 가져오기
-        rbody.drag = drag;
-        pm = Managers.Player; // PlayerManager 싱글톤 인스턴스 가져오기
-        _speed = pm.speed;
-        Max_speed = pm.Max_speed;
-        decelerationFactor = pm.decelerationFactor;
-    }
-
-    // 초기화
-    void Start()
-    {
-        //두번 누르는거 방지
-        Managers.Input.KeyAction -= OnKeyboard;
-        Managers.Input.KeyAction += OnKeyboard;
+        gameState = Managers.Player.gameState;
 
     }
 
-    // 매 프레임마다 호출되는 업데이트 함수
-    void Update()
+    private void Start()
     {
 
+        Managers.Input.KeyAction -= OnKeyMove;
+        Managers.Input.KeyAction += OnKeyMove;
     }
 
-    //키보드 인풋
-    void OnKeyboard()
+
+    //wasd로 상하좌우 이동&shift키로 달리기
+    private void OnKeyMove()
     {
-        Vector2 force = Vector2.zero; // 힘을 초기화
+        if (!Managers.GM.IsMoving)
+            return;
 
-        // 이동을 위한 키 입력 처리
-        if (Input.GetKey(KeyCode.W))
-        {
-            force += Vector2.up;
-        }
+        float moveVertical = 0;
+        float moveHorizontal = 0;
 
-        if (Input.GetKey(KeyCode.S))
-        {
-            force += Vector2.down;
-        }
+        if (Input.GetKey(KeyCode.W)) moveVertical = 1f;
 
         if (Input.GetKey(KeyCode.A))
         {
-            force += Vector2.left;
+            moveHorizontal = -1f;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
+
+        if (Input.GetKey(KeyCode.S))
+            moveVertical = -1f;
 
         if (Input.GetKey(KeyCode.D))
         {
-            force += Vector2.right;
+            moveHorizontal = -1f;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
-        // 키가 눌린 경우에만 힘을 가함
-        if (force != Vector2.zero)
-        {
-            // AddForce로 힘을 가하여 캐릭터를 이동시킴
-            rbody.AddForce(force * _speed);
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) moveVertical = 0;
+        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) moveHorizontal = 0;
 
-            // 속도를 제한함
-            if (rbody.velocity.magnitude > Max_speed)
-            {
-                rbody.velocity = rbody.velocity.normalized * Max_speed;
-            }
-            else
-            {
-                // 키 입력이 없을 때 더 빠른 감속 처리
-                rbody.velocity = Vector2.Lerp(rbody.velocity, Vector2.zero, Time.deltaTime * decelerationFactor);
-            }
+        if (moveVertical == 0 && moveHorizontal == 0)
+        {
+            moveSpeed = Mathf.Lerp(moveSpeed, 0, Time.deltaTime * 10f);
+            return;
+        }
+
+        Vector2 Direction = new Vector2(moveHorizontal, moveVertical).normalized;
+
+        transform.Translate(Direction * moveSpeed * Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = Mathf.Lerp(moveSpeed, 4, Time.deltaTime * 15f);
+        }
+        else
+        {
+            moveSpeed = Mathf.Lerp(moveSpeed, 2, Time.deltaTime * 15f);
         }
     }
 }
-
-
-
-
-
-
