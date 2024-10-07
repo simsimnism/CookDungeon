@@ -71,7 +71,7 @@ public class AnimeController : MonoBehaviour
         axisH = Input.GetAxisRaw("Horizontal"); // 좌우 입력 값 (-1, 0, 1)
         axisV = Input.GetAxisRaw("Vertical");   // 상하 입력 값 (-1, 0, 1)
 
-        // isMoving 상태 업데이트
+        // _isMoving 상태 업데이트
         isMoving = axisH != 0 || axisV != 0;
 
         // Shift 키를 누르면 대쉬를 시작
