@@ -9,8 +9,7 @@ public class Define
         Unknown,
         Game,
         MainMenu,
-        GameScene1,
-        GameScene2
+        GameScene,
     }
 
     public enum Sound
