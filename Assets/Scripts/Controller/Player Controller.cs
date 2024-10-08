@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     // 무적 상태와 반투명 상태를 관리하는 코루틴
     private IEnumerator BecomeInvincible()
     {
-        Color originalColor = spriteRenderer.color;
+        Color originalColor = Color.white;
 
         // 반투명 상태로 변경
         Color transparentColor = originalColor;
