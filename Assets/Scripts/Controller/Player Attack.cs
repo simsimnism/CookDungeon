@@ -17,12 +17,19 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartAttack();
-        }
+        Managers.Input.KeyAction -= Attack;
+        Managers.Input.KeyAction += Attack;
+  
     }
 
+    void Attack()
+    {
+        if(Input.GetMouseButtonDown(0))
+        { 
+            StartAttack(); 
+        }
+    }
+    
     void StartAttack()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
