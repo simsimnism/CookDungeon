@@ -1,159 +1,233 @@
+using Cook.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
+using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Weapon weapon; // 플레이어가 사용할 무기
-    public Transform attackPoint; // 공격이 발생할 위치
-    public float comboResetTime = 1.0f; // 콤보가 초기화되는 시간
-    private int comboStep = 0; // 현재 콤보 단계
-    private float lastClickTime = 0; // 마지막 공격 시간
 
-    public Animator animator; // 애니메이터를 제어하기 위한 Animator 컴포넌트
-    public float weaponHideTime = 5.0f; // 무기가 비가시화 되는 시간
-    private bool weaponVisible = true; // 무기 가시 상태
+    //플레이어 공격 관련 변수 PM에서 관리함
+    [SerializeField] private GameObject player;
+    [SerializeField] private int meleeAttackDamage;
+    [SerializeField] private float comboResetTime;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackAngle;
+    private int comboStep = 0;// 현재 콤보 단계
+    private bool isAttacking;  // 공격 중인지 여부
+    private float lastAttackTime;// 마지막 공격 시간
+    private bool canChainCombo; // 콤보 연결 가능 여부
+    private bool isShowingAttackRange;
+
+    //이건 삭제하면 안됨 다른 코드에서도 사용함
+    private Vector2 attackDirection;  // 현재 공격 방향
+
+    void Awake()
+    {
+        meleeAttackDamage = Managers.Player.meleeAttackDamage;
+        comboResetTime = Managers.Player.comboResetTime;
+        attackRadius = Managers.Player.attackRadius;
+        attackAngle = Managers.Player.attackAngle;
+        comboStep = Managers.Player.comboStep;
+        isAttacking = Managers.Player.isAttacking;
+        lastAttackTime = Managers.Player.lastAttackTime;
+        canChainCombo = Managers.Player.canChainCombo;
+        isShowingAttackRange = Managers.Player.isShowingAttackRange;    
+    }
+
+    void Start()
+    {
+        Managers.Input.KeyAction -= Attack;
+        Managers.Input.KeyAction += Attack;
+
+    }
 
     void Update()
     {
-        // 공격 입력 처리
-        if (Input.GetButtonDown("Fire1"))
-        {
-            HandleComboAttack();
-        }
+    }
 
-        // 콤보가 일정 시간 초과시 초기화
-        if (Time.time - lastClickTime > comboResetTime)
+    //공격범위 시각화 폐기 가능
+    void HideAttackRange() 
+    {
+        isShowingAttackRange = false;
+    }
+
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 첫 번째 공격 시작
+            if (!isAttacking)
+            {
+                Debug.Log("1공격");
+                StartAttack();
+                
+            }
+            // 콤보 연결
+            else if (canChainCombo)
+            {
+                Debug.Log("2공격");
+                ChainComboAttack();
+            }
+       
+        }
+    }
+
+    void StartAttack()
+    {
+
+        // 첫 번째 콤보 공격 실행
+        comboStep = 1;
+        isAttacking = true;
+        lastAttackTime = Time.time;
+        canChainCombo = true;
+
+        // 마우스 위치에 따라 4방위 공격 방향 결정
+        attackDirection = GetAttackDirection();
+
+        // 공격 시각화 활성화
+        isShowingAttackRange = true;
+
+        ExecuteAttack(attackDirection);
+        
+        // 0.5초 후에 공격 범위 시각화를 비활성화 (유니티에서는 Invoke 사용 가능)
+        Invoke("HideAttackRange", 0.5f); // 공격 범위 시각화 비활성화
+
+        Invoke("ResetCombo",  1f);
+    }
+
+    void ChainComboAttack()
+    {
+
+        // 기존 콤보 리셋 타이머 취소
+        CancelInvoke("ResetCombo");
+
+        // 두 번째 콤보 공격 실행
+        comboStep++;
+        lastAttackTime = Time.time;
+        canChainCombo = true;
+
+        // 마우스 위치에 따라 4방위 공격 방향 결정
+        attackDirection = GetAttackDirection();
+        // 공격 시각화 활성화
+        isShowingAttackRange = true;
+
+        ExecuteAttack(attackDirection);
+
+        //0.5초 후에 공격 범위 시각화를 비활성화
+        Invoke("HideAttackRange", 0.5f);
+
+        // 2단계 콤보 이후에는 콤보를 리셋
+        if (comboStep >= 2)  // 2단계 콤보
         {
             ResetCombo();
         }
-
-        // 일정 시간 공격이 없을 경우 무기 비가시화
-        if (Time.time - lastClickTime > weaponHideTime && weaponVisible)
-        {
-            HideWeapon();
-        }
     }
 
-    // 콤보 공격 처리
-    void HandleComboAttack()
+    // 4방위 공격 방향 계산 함수
+    Vector2 GetAttackDirection()
     {
-        lastClickTime = Time.time; // 마지막 클릭 시간을 업데이트
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPos = transform.position;
+        Vector2 direction = (mousePos - playerPos).normalized;
 
-        // 무기가 비가시화 상태라면 공격을 하기 전에 무기를 가시화
-        if (!weaponVisible)
-        {
-            ShowWeapon();
-        }
-
-        // 콤보 단계에 따른 공격
-        if (comboStep == 0)
-        {
-            comboStep = 1;
-            PerformAttack(1); // 1타 콤보 애니메이션
-        }
-        else if (comboStep == 1)
-        {
-            comboStep = 2;
-            PerformAttack(2); // 2타 콤보 애니메이션
-        }
-        else if (comboStep == 2)
-        {
-            comboStep = 3;
-            PerformAttack(3); // 3타 콤보 애니메이션
-        }
-    }
-
-    // 공격 처리 함수 (애니메이션 트리거 포함)
-    void PerformAttack(int comboStep)
-    {
-        if (weapon != null)
-        {
-            // 콤보 단계에 따른 애니메이션 트리거 설정
-            SetComboAnimation(comboStep);
-
-            // 공격 방향 설정 (마우스 방향으로)
-            Vector2 direction = GetMouseDirection();
-            RotatePlayerTowards(direction); // 플레이어 회전
-
-            // 무기 공격 처리 (데미지 계산)
-            weapon.DealDamage();
-        }
-    }
-
-    // 콤보 단계에 따른 애니메이션 트리거를 설정하는 함수
-    void SetComboAnimation(int comboStep)
-    {
-        string trigger = ""; // 애니메이션 트리거를 저장할 변수
-
-        // 콤보 단계에 따른 애니메이션 트리거 설정
-        switch (comboStep)
-        {
-            case 1:
-                trigger = "Combo1"; // 1타 콤보 애니메이션 트리거
-                break;
-            case 2:
-                trigger = "Combo2"; // 2타 콤보 애니메이션 트리거
-                break;
-            case 3:
-                trigger = "Combo3"; // 3타 콤보 애니메이션 트리거
-                break;
-        }
-
-        // 애니메이션이 연속 실행되도록 트리거 설정
-        if (!string.IsNullOrEmpty(trigger))
-        {
-            animator.SetTrigger(trigger); // 새로운 애니메이션 트리거 실행
-        }
-    }
-
-    // 플레이어가 마우스 방향을 향하도록 회전
-    void RotatePlayerTowards(Vector2 direction)
-    {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+        if (angle >= 45 && angle < 135)
+        {
+            // 상단 공격
+            if (direction.x >= 0)
+            {
+                // 우상단
+                return new Vector2(1, 1).normalized;
+            }
+            else
+            {
+                // 좌상단
+                return new Vector2(-1, 1).normalized;
+            }
+        }
+        else if (angle >= -135 && angle < -45)
+        {
+            // 하단 공격
+            if (direction.x >= 0)
+            {
+                // 우하단
+                return new Vector2(1, -1).normalized;
+            }
+            else
+            {
+                // 좌하단
+                return new Vector2(-1, -1).normalized;
+            }
+        }
+
+        return direction; // 기본적으로 마우스 방향을 반환
     }
 
-    // 마우스 방향 가져오기
-    Vector2 GetMouseDirection()
+    //실제 공격 함수
+    void ExecuteAttack(Vector2 attackDirection)
     {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - transform.position;
-        return direction.normalized; // 방향 벡터를 정규화하여 반환
+        // 공격 범위 내의 적들을 찾음
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("groundTileMap"))
+            {
+                Vector2 targetDir = (collider.transform.position - transform.position).normalized;
+                float angle = Vector2.Angle(attackDirection, targetDir);
+
+                if (angle <= attackAngle / 2)
+                {
+                    // 적에게 콤보 단계에 따른 데미지를 가함
+                    MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
+                    if (enemy != null)
+                    {
+                        int totalDamage = meleeAttackDamage * comboStep;
+                        enemy.TakeDamage(totalDamage);
+                        Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
+                    }
+                }
+            }
+        }
     }
 
-    // 콤보 초기화
     void ResetCombo()
     {
-        comboStep = 0;
+        comboStep = 0;            // 콤보 단계 리셋
+        isAttacking = false;      // 공격 상태 초기화
+        canChainCombo = false;    // 콤보 연결 불가능 상태
+        Debug.Log("콤보가 리셋되었습니다!");
     }
 
-    // 무기를 가시화하는 함수
-    void ShowWeapon()
+    // 공격 범위 시각화: 공격이 발생할 때만 부채꼴을 표시합니다.
+    void OnDrawGizmos()
     {
-        if (weapon != null)
+        if (isShowingAttackRange)
         {
-            weapon.SetVisible(true); // 무기를 가시화
-            weaponVisible = true;
-        }
-    }
+            Handles.color = new Color(1f, 0f, 0f, 0.2f);  // 빨간색, 투명도 20%
 
-    // 무기를 비가시화하는 함수
-    void HideWeapon()
-    {
-        if (weapon != null)
-        {
-            weapon.SetVisible(false); // 무기를 비가시화
-            weaponVisible = false;
-        }
-    }
+            // 부채꼴의 시작 각도와 끝 각도를 공격 방향에 맞게 설정
+            Vector3 forward = new Vector3(attackDirection.x, attackDirection.y, 0);
+            float halfAngle = attackAngle / 2;
 
-    // 무기를 변경하는 함수
-    public void ChangeWeapon(string newWeaponName)
-    {
-        if (weapon != null)
-        {
-            weapon.LoadWeaponData(newWeaponName); // 새로운 무기 로드
+            // Handles를 이용하여 부채꼴을 그림
+            Handles.DrawSolidArc(
+                transform.position,         // 부채꼴의 중심
+                Vector3.forward,            // 부채꼴을 그릴 평면 (Z축 기준)
+                Quaternion.Euler(0, 0, -halfAngle) * forward,  // 부채꼴의 시작 방향
+                attackAngle,                // 부채꼴의 전체 각도
+                attackRadius                // 부채꼴의 반경
+            );
+
+            // Gizmos를 사용하여 범위 경계선을 그릴 수도 있음
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
 }
+
+

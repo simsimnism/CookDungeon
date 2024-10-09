@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Player/Player.cs.meta
+guid: 505dd06e0d786b242a30177ce1753b4c
+========
+guid: 8442e5b57617a414993a61d974f2c49b
+>>>>>>>> Feature_이응3:Assets/Scripts/Controller/AnimeController.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

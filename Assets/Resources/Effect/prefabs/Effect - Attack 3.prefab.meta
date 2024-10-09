@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Effect/prefabs/Effect - Attack 3.prefab.meta
 guid: 0e88e5c49b716144e8492aab47c899c0
 PrefabImporter:
+========
+guid: ac7040bc5ee12fb4881148c70f8e0004
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> Feature_박건우2:Assets/Resources/Prefabs/Player.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

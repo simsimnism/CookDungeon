@@ -16,6 +16,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
+    MonsterManager _monster = new MonsterManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -25,7 +26,9 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
     public static UIManager UI { get { return Instance._ui; } }
     public static GameManager GM { get { Init(); return Instance._game; } }
-    // public static PlayerManager Player { get { Init(); return Instance._player; } }
+    public static PlayerManager Player { get { Init(); return Instance._player; } }
+
+    public static MonsterManager Monster {get { Init(); return Instance._monster; } }
 
     void Start()
     {
@@ -34,7 +37,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-        //_input.OnUpdate();
+        _input.OnUpdate();
     }
 
     static void Init()
@@ -54,13 +57,14 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+            s_instance._player.Init();
             s_instance._game.Init();
         }		
 	}
 
     public static void Clear()
     {
-        //Input.Clear();
+        Input.Clear();
         Sound.Clear();
         Scene.Clear();
         UI.Clear();

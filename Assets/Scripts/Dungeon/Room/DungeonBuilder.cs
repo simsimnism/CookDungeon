@@ -19,11 +19,6 @@ public class DungeonBuilder : MonoBehaviour
         LoadRoomNodeTypeList();
     }
 
-    public void Init()
-    {
-        LoadRoomNodeTypeList();
-    }
-
     private void LoadRoomNodeTypeList()
     {
         //GameResourcesÀÇ roomNodeTypeList¸¦ °¡Á®¿È.

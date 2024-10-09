@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Effect/prefabs/Effect - Attack 1.prefab.meta
 guid: 029f3ad8fd86f8949aa0886bfe4a5563
+========
+guid: 54af593647b81024ab01155e606b47be
+>>>>>>>> Feature_박건우2:Assets/Resources/Effect/prefabs/PlayerCamera.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
