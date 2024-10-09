@@ -49,7 +49,8 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 break;
             */
             case BTNType.Setting:
-                CanvasGroupON(Setting_BTN);
+                CanvasGroupON(Sound_BTN);
+                CanvasGroupOFF(Main_BTN);
                 Debug.Log("¿É¼Ç");
                 break;
             case BTNType.Sound:
