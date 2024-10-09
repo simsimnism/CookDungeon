@@ -100,7 +100,7 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             //enemy 태그일 경우
-            if (collider.CompareTag("enemy"))
+            if (collider.CompareTag("groundTileMap"))
             {
 
                 //targetDir: 적과의 플레이어 사이의 방향 벡터
