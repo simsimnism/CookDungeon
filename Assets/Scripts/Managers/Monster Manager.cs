@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterManager : MonoBehaviour
+public class MonsterManager 
 {
     public MonsterData[] normalMonsters;   // 일반 몬스터 배열
     public MonsterData[] specialMonsters;  // 특수 몬스터 배열

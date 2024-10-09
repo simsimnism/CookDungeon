@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterDataLoader : MonoBehaviour
+public class MonsterDataLoader 
 {
     // 몬스터 데이터를 JSON 파일 또는 다른 소스로부터 로드하는 함수
     public List<MonsterData> LoadMonsterData()

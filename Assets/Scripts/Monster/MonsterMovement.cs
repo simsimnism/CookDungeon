@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class MonsterMovement : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        monsterManager = FindObjectOfType<MonsterManager>();
+        monsterManager = Managers.Monster;
 
         // 몬스터 데이터를 로드 (ID에 따른 몬스터 로드)
         monsterData = monsterManager.GetMonsterDataByID(monsterID);
@@ -98,4 +99,5 @@ public class MonsterMovement : MonoBehaviour
         // 몬스터 제거 로직 (예: 파괴 또는 비활성화)
         Destroy(gameObject); // 몬스터 오브젝트 삭제
     }
+
 }
