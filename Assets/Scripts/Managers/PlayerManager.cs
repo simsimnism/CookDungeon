@@ -7,7 +7,7 @@ public class PlayerManager
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
     public float moveSpeed = 5.0f;//이동속도
     public float dashSpeed = 3f; // 대쉬 속도
-    public float dashDuration = 0.1f; // 대쉬 지속 시간
+    public float dashDuration = 0.3f; // 대쉬 지속 시간
     public bool isDashing = false;// 대쉬 여부
     public float transparencyFadeTime = 0.1f; // 투명화가 진행되는 시간
     public float transparencyHoldTime = 0.5f; // 투명화가 완료된 후 유지되는 시간
