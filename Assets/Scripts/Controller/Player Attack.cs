@@ -8,29 +8,43 @@ using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private float meleeAttackDamage = 10f;
-    [SerializeField] private float comboResetTime = 1f;
-    [SerializeField] private float attackRadius = 3f;
-    [SerializeField] private float attackAngle = 160f;
-    private int comboStep = 0;         // 현재 콤보 단계
-    private bool isAttacking = false;  // 공격 중인지 여부
-    private float lastAttackTime;      // 마지막 공격 시간
-    private bool canChainCombo = false; // 콤보 연결 가능 여부
 
-    //공격범위 시각화를 위한 코드(이후 삭제 가능)
-    private bool isShowingAttackRange = false;
+    //플레이어 공격 관련 변수 PM에서 관리함
+    [SerializeField] private GameObject player;
+    [SerializeField] private int meleeAttackDamage;
+    [SerializeField] private float comboResetTime;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackAngle;
+    private int comboStep = 0;// 현재 콤보 단계
+    private bool isAttacking;  // 공격 중인지 여부
+    private float lastAttackTime;// 마지막 공격 시간
+    private bool canChainCombo; // 콤보 연결 가능 여부
+    private bool isShowingAttackRange;
+
+    //이건 삭제하면 안됨 다른 코드에서도 사용함
     private Vector2 attackDirection;  // 현재 공격 방향
+
+    void Awake()
+    {
+        meleeAttackDamage = Managers.Player.meleeAttackDamage;
+        comboResetTime = Managers.Player.comboResetTime;
+        attackRadius = Managers.Player.attackRadius;
+        attackAngle = Managers.Player.attackAngle;
+        comboStep = Managers.Player.comboStep;
+        isAttacking = Managers.Player.isAttacking;
+        lastAttackTime = Managers.Player.lastAttackTime;
+        canChainCombo = Managers.Player.canChainCombo;
+        isShowingAttackRange = Managers.Player.isShowingAttackRange;    
+    }
 
     void Start()
     {
+        Managers.Input.KeyAction -= Attack;
+        Managers.Input.KeyAction += Attack;
     }
 
     void Update()
     {
-        Managers.Input.KeyAction -= Attack;
-        Managers.Input.KeyAction += Attack;
-
     }
 
     //공격범위 시각화 폐기 가능
@@ -41,11 +55,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Attack()
     {
-        if(Time.time- lastAttackTime > comboResetTime) 
-        {
-            ResetCombo();
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             // 첫 번째 공격 시작
@@ -155,6 +164,7 @@ public class PlayerAttack : MonoBehaviour
         return direction; // 기본적으로 마우스 방향을 반환
     }
 
+    //실제 공격 함수
     void ExecuteAttack(Vector2 attackDirection)
     {
         // 공격 범위 내의 적들을 찾음
@@ -173,7 +183,7 @@ public class PlayerAttack : MonoBehaviour
                     MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
                     if (enemy != null)
                     {
-                        int totalDamage = (int)meleeAttackDamage * comboStep;
+                        int totalDamage = meleeAttackDamage * comboStep;
                         enemy.TakeDamage(totalDamage);
                         Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
                     }
@@ -190,8 +200,6 @@ public class PlayerAttack : MonoBehaviour
         Debug.Log("콤보가 리셋되었습니다!");
     }
 
-
-    // 공격 범위 시각화: 공격이 발생할 때만 부채꼴을 표시합니다.
     // 공격 범위 시각화: 공격이 발생할 때만 부채꼴을 표시합니다.
     void OnDrawGizmos()
     {

@@ -16,6 +16,12 @@ public class GameManager
 
     private bool _isMoving = true;
 
+    //플레이어의 무적 상태를 관리
+    private bool _isInvincible = false;
+
+
+    public bool IsInvincible { get { return _isInvincible; } set { _isInvincible = value; } }
+
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; } }
 
     public void Init()

@@ -6,18 +6,27 @@ using UnityEngine.UIElements;
 
 public class AnimeController : MonoBehaviour
 {
-
-    private float speed;
+    [SerializeField] private GameObject player;
+    private float speed = 1;
+    private Animator anime;
     private PlayerManager pm;
-    private SpriteRenderer sr;
+    private SpriteRenderer rend;
     Rigidbody2D rbody;
+    private PlayerAttack pa;
+    private PlayerController pc;
+
+    
 
 
     void Awake()
     {
+        pm = GetComponent<PlayerManager>();
+        anime = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-        speed = Managers.Player.speed;
+        rend = GetComponent<SpriteRenderer>();
+        pa = GetComponent<PlayerAttack>();
+        pc = GetComponent<PlayerController>();
+        speed = Managers.Player.moveSpeed;
 
 
     }
@@ -31,13 +40,52 @@ public class AnimeController : MonoBehaviour
 
     }
 
-    void StarterImage()
+    //플레이어의 정지상태 애니매이션
+    void PlayerStand()
     {
+        if(!Managers.GM.IsMoving) 
+        {
+            anime.SetTrigger("Stand");
+        }
+
     }
 
-    void PlayAnime()
+    //플레이어의 이동상태 애니매이션
+    void PlayerSideWalk()
     {
+        if (Input.GetKeyDown(KeyCode.D)) 
+        {
+            anime.SetTrigger("RightWalk");
+        }
 
     }
+    void PlayerUpDownWalk()
+    {
+        if(Input.GetKeyDown(KeyCode.W)) 
+        {
+            anime.SetTrigger("UpWalk");
+        
+        }
+    }
+    
+    void PlayerDash() 
+    {
+        if(Input.GetKeyDown(KeyCode.LeftShift)) 
+        {
+            anime.SetTrigger("Dash");
+        }
+    }
+
+    //플레이어의 공격 상태 애니매이션
+    void Attackainime()
+    {
+        if(Input.GetMouseButton(0)) 
+        {
+            anime.SetTrigger("Attack1");
+        }
+
+    }
+
+
 
 }

@@ -5,21 +5,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    //아직 사용 안함
     public string gameState;
-    public float moveSpeed;  // 움직임 속도
-    public float dashSpeed = 6f; // 대쉬 속도
-    public float dashDuration = 0.5f; // 대쉬 지속 시간
-    public float invincibleDuration = 1f; // 무적 지속 시간
-    private bool isDashing = false; // 대쉬 중인지 여부
-    private bool isInvincible = false; // 무적인지 여부
-    private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
 
+    //Pm에서 사용할 변수
+    public float moveSpeed;  // 움직임 속도
+    public float dashSpeed; // 대쉬 속도
+    public float dashDuration; // 대쉬 지속 시간
+    private bool isDashing; // 대쉬 중인지 여부
+    
+    //GM에서 관리할 변수
+    private bool isInvincible; // 무적인지 여부
+
+    //각 스크립트에서 직접 관리?
+    public float invincibleDuration = 0.3f; // 무적 지속 시간
+    
+    private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
     private Vector2 dashDirection; // 대쉬 방향을 저장할 변수
     private Coroutine dashCoroutine;
 
     void Awake()
     {
-
+        isInvincible = Managers.GM.IsInvincible;
+        isDashing = Managers.Player.isDashing;
+        dashSpeed = Managers.Player.dashSpeed;
+        moveSpeed = Managers.Player.moveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -62,7 +72,7 @@ public class PlayerController : MonoBehaviour
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
         {
-            moveSpeed = 10f;
+            moveSpeed = Managers.Player.moveSpeed;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
 
@@ -97,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
         while (elapsedTime < dashDuration)
         {
+            dashSpeed = Managers.Player.dashSpeed;
             transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -122,6 +133,8 @@ public class PlayerController : MonoBehaviour
 
         // 원래 상태로 복구
         spriteRenderer.color = originalColor;
+        
+        //무적상태 종료
         isInvincible = false;
     }
 

@@ -4,18 +4,31 @@ using UnityEngine;
 
 public class PlayerManager
 {
-    // 플레이어에 대한 정보
-    public float speed = 3.0f;
-    public Vector2 inputVec;
-    public float Max_speed = 5.0f;
-    public float decelerationFactor = 30f;
+    // 플레이어 컨트롤러에서 사용할 이동 관련 변수
+    public float moveSpeed = 7.0f;//이동속도
+    public float dashSpeed = 8f; // 대쉬 속도
+    public float dashDuration = 0.3f; // 대쉬 지속 시간
+    public bool isDashing = false;// 대쉬 여부
 
+    //플레이어 어택에서 사용할 변수 
+    public int meleeAttackDamage = 10; //플레이어 데미지
+    public float comboResetTime = 1f;//콤보 리셋 시간
+    public float attackRadius = 3f;//공격 범위
+    public float attackAngle = 160f;//공걱의 부채꼴 각도
+
+    public int comboStep = 0;         // 현재 콤보 단계
+    public bool isAttacking = false;  // 공격 중인지 여부
+    public float lastAttackTime;      // 마지막 공격 시간
+    public bool canChainCombo = false; // 콤보 연결 가능 여부
+
+    //공격범위 시각화를 위한 코드(이후 삭제 가능)
+    public bool isShowingAttackRange = false; 
+
+
+    public Vector2 inputVec;
     public int hp;
     public bool inDamage = false;
 
-    public float dashSpeedMultiplier = 2.0f;
-    public float dashDuration = 0.2f;
-    public float dashCooldown = 1.0f;
 
 
 
