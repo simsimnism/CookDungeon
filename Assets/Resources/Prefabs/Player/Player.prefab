@@ -244,7 +244,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8230463252648597721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbc3515116400240afbfac2c9120921, type: 3}
+  m_Script: {fileID: 11500000, guid: 505dd06e0d786b242a30177ce1753b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
@@ -274,8 +274,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8230463252648597721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9cfc4fb6e2d014cad720d0de5c9442, type: 3}
+  m_Script: {fileID: 11500000, guid: b53d334bf6f8c8d44a1afd403d119e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   meleeAttackDamage: 10
   comboResetTime: 1
+  attackRadius: 3
+  attackAngle: 160

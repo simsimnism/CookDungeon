@@ -7,9 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public string gameState;
     public float moveSpeed;  // 움직임 속도
-    public float dashSpeed = 30f; // 대쉬 속도
+    public float dashSpeed = 6f; // 대쉬 속도
     public float dashDuration = 0.5f; // 대쉬 지속 시간
-    public float invincibleDuration = 0.5f; // 무적 지속 시간
+    public float invincibleDuration = 1f; // 무적 지속 시간
     private bool isDashing = false; // 대쉬 중인지 여부
     private bool isInvincible = false; // 무적인지 여부
     private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        gameState = Managers.Player.gameState;
+
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
         {
-            moveSpeed = 5f;
+            moveSpeed = 10f;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
 
