@@ -4,154 +4,219 @@ using System.Collections.Generic;
 using UnityEditor.Rendering;
 using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private float meleeAttackDamage = 10f; // 기본 근접 공격 데미지
-    [SerializeField] private float comboResetTime = 1f; // 콤보를 초기화하는 시간
+    [SerializeField] private float meleeAttackDamage = 10f;
+    [SerializeField] private float comboResetTime = 1f;
     [SerializeField] private float attackRadius = 3f;
     [SerializeField] private float attackAngle = 160f;
-    private int comboStep = 0;
-    private bool isAttacking = false;
-    private float lastAttackTime;
-    private bool canChainCombo = false; // 다음 콤보로 연결 가능한지 확인
+    private int comboStep = 0;         // 현재 콤보 단계
+    private bool isAttacking = false;  // 공격 중인지 여부
+    private float lastAttackTime;      // 마지막 공격 시간
+    private bool canChainCombo = false; // 콤보 연결 가능 여부
+
+    //공격범위 시각화를 위한 코드(이후 삭제 가능)
+    private bool isShowingAttackRange = false;
+    private Vector2 attackDirection;  // 현재 공격 방향
 
     void Start()
     {
-
     }
 
     void Update()
     {
         Managers.Input.KeyAction -= Attack;
         Managers.Input.KeyAction += Attack;
-  
+
+    }
+
+    //공격범위 시각화 폐기 가능
+    void HideAttackRange() 
+    {
+        isShowingAttackRange = false;
     }
 
     void Attack()
     {
-        if(Input.GetMouseButtonDown(0))
-        { 
-            StartAttack();
-            OnDrawGizmosSelected();
+        if(Time.time- lastAttackTime > comboResetTime) 
+        {
+            ResetCombo();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 첫 번째 공격 시작
+            if (!isAttacking)
+            {
+                Debug.Log("1공격");
+                StartAttack();
+                if (Time.time - lastAttackTime > comboResetTime)
+                {
+                    ResetCombo();
+                }
+
+            }
+            // 콤보 연결
+            else if (canChainCombo)
+            {
+                Debug.Log("2공격");
+                ChainComboAttack();
+            }
+       
         }
     }
-    
+
     void StartAttack()
     {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0; // 2D이므로 z 좌표는 0으로 설정
+        // 첫 번째 콤보 공격 실행
+        comboStep = 1;
+        isAttacking = true;
+        lastAttackTime = Time.time;
+        canChainCombo = true;
 
-        // 플레이어 위치
-        Vector3 playerPos = transform.position;
+        // 마우스 위치에 따라 4방위 공격 방향 결정
+        attackDirection = GetAttackDirection();
 
-        // 마우스 방향으로 공격 벡터 계산
-        Vector3 attackDirection = (mousePos - playerPos).normalized;
+        // 공격 시각화 활성화
+        isShowingAttackRange = true;
 
-        // 실제 공격 함수 실행 (방향을 전달)
-        meleeAttack(attackDirection);
+        ExecuteAttack(attackDirection);
+        
+        // 0.5초 후에 공격 범위 시각화를 비활성화 (유니티에서는 Invoke 사용 가능)
+        Invoke("HideAttackRange", 0.5f); // 공격 범위 시각화 비활성화
+
     }
 
-    //콤보 공격 관련 실행코드
-    void meleeAttack(Vector3 attackDirection)
+    void ChainComboAttack()
     {
-        if (isAttacking && !canChainCombo)
-            return; // 공격 중이고 다음 콤보로 연결되지 않으면 아무것도 하지 않음
+        // 두 번째 콤보 공격 실행
+        comboStep++;
+        lastAttackTime = Time.time;
+        canChainCombo = true;
 
-        // 첫 번째 공격 시작 시
-        if (comboStep == 0)
+        // 마우스 위치에 따라 4방위 공격 방향 결정
+        attackDirection = GetAttackDirection();
+        // 공격 시각화 활성화
+        isShowingAttackRange = true;
+
+        ExecuteAttack(attackDirection);
+
+        //0.5초 후에 공격 범위 시각화를 비활성화
+        Invoke("HideAttackRange", 0.5f);
+
+        // 2단계 콤보 이후에는 콤보를 리셋
+        if (comboStep >= 2)  // 2단계 콤보
         {
-            isAttacking = true;
-            Debug.Log("첫 번째 공격!");
-
-            // 첫 번째 공격 실행 로직
-            ExecuteAttack(attackDirection);
-
-            comboStep++;
-            lastAttackTime = Time.time;
-            canChainCombo = true; // 콤보 연결 가능 상태로 설정
-
-        }
-        // 두 번째 공격으로 연결
-        else if (comboStep == 1 && Time.time - lastAttackTime <= comboResetTime)
-        {
-            Debug.Log("두 번째 공격!");
-
-            // 두 번째 공격 실행 로직
-            ExecuteAttack(attackDirection);
-
-            comboStep = 0; // 콤보 초기화
-            isAttacking = false;
-            canChainCombo = false; // 콤보 끝, 연결 불가능 상태로 변경
-        }
-        else 
-        { 
             ResetCombo();
         }
     }
 
-    //공격의 범위 등 실제 공격 효과를 관리
-    void ExecuteAttack(Vector3 attackDirection)
+    // 4방위 공격 방향 계산 함수
+    Vector2 GetAttackDirection()
     {
-        // 실제 공격 효과 (애니메이션, 데미지 처리 등) 적용
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPos = transform.position;
+        Vector2 direction = (mousePos - playerPos).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (angle >= 45 && angle < 135)
+        {
+            // 상단 공격
+            if (direction.x >= 0)
+            {
+                // 우상단
+                return new Vector2(1, 1).normalized;
+            }
+            else
+            {
+                // 좌상단
+                return new Vector2(-1, 1).normalized;
+            }
+        }
+        else if (angle >= -135 && angle < -45)
+        {
+            // 하단 공격
+            if (direction.x >= 0)
+            {
+                // 우하단
+                return new Vector2(1, -1).normalized;
+            }
+            else
+            {
+                // 좌하단
+                return new Vector2(-1, -1).normalized;
+            }
+        }
+
+        return direction; // 기본적으로 마우스 방향을 반환
+    }
+
+    void ExecuteAttack(Vector2 attackDirection)
+    {
+        // 공격 범위 내의 적들을 찾음
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, attackRadius);
 
         foreach (Collider2D collider in colliders)
         {
-            //enemy 태그일 경우
             if (collider.CompareTag("groundTileMap"))
             {
-
-                //targetDir: 적과의 플레이어 사이의 방향 벡터
-                Vector3 targetDir= (collider.transform.position - transform.position).normalized;
-                
-                //플레이어의 공격 방향과 적 사이의 각도 계산
-                float angle = Vector3.Angle(attackDirection, targetDir); 
+                Vector2 targetDir = (collider.transform.position - transform.position).normalized;
+                float angle = Vector2.Angle(attackDirection, targetDir);
 
                 if (angle <= attackAngle / 2)
                 {
-                    // 적에게 데미지 적용
+                    // 적에게 콤보 단계에 따른 데미지를 가함
                     MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
                     if (enemy != null)
                     {
-                        int totalDamage = (int)meleeAttackDamage * (comboStep + 1);
-                        enemy.TakeDamage(totalDamage);//적에게 데미지 적용
-
+                        int totalDamage = (int)meleeAttackDamage * comboStep;
+                        enemy.TakeDamage(totalDamage);
+                        Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
                     }
                 }
             }
-            
-            
         }
-
-        // 콤보가 종료되면 다시 초기화 시간까지 대기
-        Invoke("ResetCombo", comboResetTime);
     }
 
     void ResetCombo()
     {
-        if (Time.time - lastAttackTime > comboResetTime)
+        comboStep = 0;            // 콤보 단계 리셋
+        isAttacking = false;      // 공격 상태 초기화
+        canChainCombo = false;    // 콤보 연결 불가능 상태
+        Debug.Log("콤보가 리셋되었습니다!");
+    }
+
+
+    // 공격 범위 시각화: 공격이 발생할 때만 부채꼴을 표시합니다.
+    // 공격 범위 시각화: 공격이 발생할 때만 부채꼴을 표시합니다.
+    void OnDrawGizmos()
+    {
+        if (isShowingAttackRange)
         {
-            comboStep = 0; // 시간이 지나면 콤보 초기화
-            isAttacking = false;
-            canChainCombo = false; // 더 이상 콤보 연결 불가능
+            Handles.color = new Color(1f, 0f, 0f, 0.2f);  // 빨간색, 투명도 20%
+
+            // 부채꼴의 시작 각도와 끝 각도를 공격 방향에 맞게 설정
+            Vector3 forward = new Vector3(attackDirection.x, attackDirection.y, 0);
+            float halfAngle = attackAngle / 2;
+
+            // Handles를 이용하여 부채꼴을 그림
+            Handles.DrawSolidArc(
+                transform.position,         // 부채꼴의 중심
+                Vector3.forward,            // 부채꼴을 그릴 평면 (Z축 기준)
+                Quaternion.Euler(0, 0, -halfAngle) * forward,  // 부채꼴의 시작 방향
+                attackAngle,                // 부채꼴의 전체 각도
+                attackRadius                // 부채꼴의 반경
+            );
+
+            // Gizmos를 사용하여 범위 경계선을 그릴 수도 있음
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
         }
     }
-
-    // 기즈모로 공격 범위를 시각적으로 표시
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-
-        // 부채꼴 공격 범위의 시작과 끝 지점을 계산
-        Vector3 rightBoundary = Quaternion.Euler(0, 0, attackAngle / 2) * Vector3.right;
-        Vector3 leftBoundary = Quaternion.Euler(0, 0, -attackAngle / 2) * Vector3.right;
-
-        // 공격 범위 반경을 사용해 부채꼴을 그리기
-        Gizmos.DrawWireSphere(transform.position, attackRadius);
-        Gizmos.DrawLine(transform.position, transform.position + rightBoundary * attackRadius);
-        Gizmos.DrawLine(transform.position, transform.position + leftBoundary * attackRadius);
-    }
 }
+
 
