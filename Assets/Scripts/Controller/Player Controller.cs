@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         if (!Managers.GM.IsMoving)
             return;
 
+
         float moveVertical = 0;
         float moveHorizontal = 0;
 
