@@ -7,9 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public string gameState;
     public float moveSpeed;  // 움직임 속도
-    public float dashSpeed = 6f; // 대쉬 속도
+    public float dashSpeed = 30f; // 대쉬 속도
     public float dashDuration = 0.5f; // 대쉬 지속 시간
-    public float invincibleDuration = 1f; // 무적 지속 시간
+    public float invincibleDuration = 0.5f; // 무적 지속 시간
     private bool isDashing = false; // 대쉬 중인지 여부
     private bool isInvincible = false; // 무적인지 여부
     private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
         {
-            moveSpeed = 10f;
+            moveSpeed = 5f;
             transform.Translate(direction * moveSpeed * Time.deltaTime);
         }
 
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     // 무적 상태와 반투명 상태를 관리하는 코루틴
     private IEnumerator BecomeInvincible()
     {
-        Color originalColor = spriteRenderer.color;
+        Color originalColor = Color.white;
 
         // 반투명 상태로 변경
         Color transparentColor = originalColor;

@@ -18,10 +18,6 @@ public class GameManager
     public bool IsMoving {  get { return _isMoving; } set { _isMoving = value; } }
 
 
-    private bool _isMoving = true;
-
-    public bool IsMoving {  get { return _isMoving; } set { _isMoving = value; } }
-
     public void Init()
     {
         // 캐릭터 생성
