@@ -41,6 +41,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Managers.Input.KeyAction -= Attack;
         Managers.Input.KeyAction += Attack;
+
     }
 
     void Update()
@@ -62,11 +63,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 Debug.Log("1공격");
                 StartAttack();
-                if (Time.time - lastAttackTime > comboResetTime)
-                {
-                    ResetCombo();
-                }
-
+                
             }
             // 콤보 연결
             else if (canChainCombo)
@@ -80,6 +77,7 @@ public class PlayerAttack : MonoBehaviour
 
     void StartAttack()
     {
+
         // 첫 번째 콤보 공격 실행
         comboStep = 1;
         isAttacking = true;
@@ -97,10 +95,15 @@ public class PlayerAttack : MonoBehaviour
         // 0.5초 후에 공격 범위 시각화를 비활성화 (유니티에서는 Invoke 사용 가능)
         Invoke("HideAttackRange", 0.5f); // 공격 범위 시각화 비활성화
 
+        Invoke("ResetCombo",  1f);
     }
 
     void ChainComboAttack()
     {
+
+        // 기존 콤보 리셋 타이머 취소
+        CancelInvoke("ResetCombo");
+
         // 두 번째 콤보 공격 실행
         comboStep++;
         lastAttackTime = Time.time;

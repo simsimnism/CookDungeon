@@ -13,19 +13,24 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed; // 대쉬 속도
     public float dashDuration; // 대쉬 지속 시간
     private bool isDashing; // 대쉬 중인지 여부
-    
+    private float transparencyFadeTime; // 투명화가 진행되는 시간
+    private float transparencyDuration; // 투명화가 완료된 후 유지되는 시간
+
     //GM에서 관리할 변수
     private bool isInvincible; // 무적인지 여부
 
     //각 스크립트에서 직접 관리?
-    public float invincibleDuration = 0.3f; // 무적 지속 시간
+    public float invincibleDuration = 0.5f; // 무적 지속 시간
     
     private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
     private Vector2 dashDirection; // 대쉬 방향을 저장할 변수
     private Coroutine dashCoroutine;
+    private Coroutine transparencyCoroutine;
 
     void Awake()
     {
+        transparencyDuration = Managers.Player.transparencyFadeTime;
+        transparencyFadeTime = Managers.Player.transparencyFadeTime;
         isInvincible = Managers.GM.IsInvincible;
         isDashing = Managers.Player.isDashing;
         dashSpeed = Managers.Player.dashSpeed;
@@ -81,11 +86,13 @@ public class PlayerController : MonoBehaviour
             // 대쉬를 시작할 때 이동 방향을 저장
             dashDirection = direction;
 
-            if (dashCoroutine != null)
+            if (dashCoroutine != null || transparencyCoroutine != null)
             {
-                StopCoroutine(dashCoroutine);
+                
+                StopAllCoroutines();
             }
             dashCoroutine = StartCoroutine(Dash());
+            transparencyCoroutine = StartCoroutine(Dash());
         }
         else if (!isDashing)
         {
@@ -101,6 +108,7 @@ public class PlayerController : MonoBehaviour
         float originalSpeed = moveSpeed;
 
         StartCoroutine(BecomeInvincible());
+        StartCoroutine(BecomeTransparent());    
 
         // 대쉬 동안 속도를 빠르게 하고, 저장된 방향으로 대쉬
         float elapsedTime = 0f;
@@ -119,24 +127,46 @@ public class PlayerController : MonoBehaviour
         dashCoroutine = null;
     }
 
-    // 무적 상태와 반투명 상태를 관리하는 코루틴
+    // 무적 상태를 관리하는 코루틴
     private IEnumerator BecomeInvincible()
     {
-        Color originalColor = Color.white;
-
-        // 반투명 상태로 변경
-        Color transparentColor = originalColor;
-        transparentColor.a = 0.5f; // 투명도 조정
-        spriteRenderer.color = transparentColor;
-
         yield return new WaitForSeconds(invincibleDuration);
 
-        // 원래 상태로 복구
-        spriteRenderer.color = originalColor;
-        
         //무적상태 종료
         isInvincible = false;
     }
+
+    private IEnumerator BecomeTransparent()
+{
+    Color originalColor = Color.white;
+
+    // 투명화 시작
+    float elapsedTime = 0f;
+    while (elapsedTime < transparencyFadeTime)
+    {
+        elapsedTime += Time.deltaTime;
+        float alpha = Mathf.Lerp(1f, 0.5f, elapsedTime / transparencyFadeTime); // 투명도를 점진적으로 변경
+        Color transparentColor = originalColor;
+        transparentColor.a = alpha;
+        spriteRenderer.color = transparentColor;
+        yield return null; // 다음 프레임까지 대기
+    }
+
+    // 투명 상태 유지
+    yield return new WaitForSeconds(transparencyDuration);
+
+    // 원래 상태로 복구
+    elapsedTime = 0f;
+    while (elapsedTime < transparencyFadeTime)
+    {
+        elapsedTime += Time.deltaTime;
+        float alpha = Mathf.Lerp(0.5f, 1f, elapsedTime / transparencyFadeTime); // 투명도를 원래대로 복구
+        Color transparentColor = originalColor;
+        transparentColor.a = alpha;
+        spriteRenderer.color = transparentColor;
+        yield return null; // 다음 프레임까지 대기
+    }
+}
 
     // 무적 상태 확인 (이 함수로 외부에서 확인 가능)
     public bool IsInvincible()
