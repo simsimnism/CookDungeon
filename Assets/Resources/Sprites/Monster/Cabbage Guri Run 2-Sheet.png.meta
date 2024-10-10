@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f3756512c59bbbb4c9ee40c12914d3b4
+guid: 25b1e5ffbe9b2c44c8c33af3c1bf183a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,68 +93,102 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flu person 2-Sheet_0
+      name: Cabbage Guri Run 2-Sheet_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 24
-        width: 30
-        height: 26
+        x: 16
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b558a347c0d26043b63294b2123c3a7
-      internalID: 982999793
+      spriteID: b017c221c9844f348b27107524ef1928
+      internalID: 1128636353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flu person 2-Sheet_1
+      name: Cabbage Guri Run 2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 23
-        width: 30
-        height: 26
+        x: 80
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 635ce31b51f461e459a79324b0e3ae66
-      internalID: -1164823431
+      spriteID: 9e753c44e22b58d4386c373923d855fb
+      internalID: 142504510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flu person 2-Sheet_2
+      name: Cabbage Guri Run 2-Sheet_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 23
-        width: 30
-        height: 26
+        x: 144
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9469230e883e7b4da0003f8ad7f3e15
-      internalID: 78411351
+      spriteID: 61f657411d835d841a9010e8a9c4b58a
+      internalID: -1990508896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cabbage Guri Run 2-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 22
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9372c0c5076c03142b928dc78bad9b77
+      internalID: -824036097
       vertices: []
       indices: 
       edges: []
@@ -170,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      flu person 2-Sheet_0: 982999793
-      flu person 2-Sheet_1: -1164823431
-      flu person 2-Sheet_2: 78411351
+      Cabbage Guri Run 2-Sheet_0: 1128636353
+      Cabbage Guri Run 2-Sheet_1: 142504510
+      Cabbage Guri Run 2-Sheet_2: -1990508896
+      Cabbage Guri Run 2-Sheet_3: -824036097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

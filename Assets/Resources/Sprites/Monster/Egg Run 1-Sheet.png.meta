@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ff93da6fe747b04b848246289ae276f
+guid: 17791497cd03e5b4d8ba76aa6bdce856
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,127 +110,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_0
+      name: Egg Run 1-Sheet_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 16
-        width: 27
+        x: 6
+        y: 11
+        width: 53
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ef00c643193f7c428ebff083a3de7e4
-      internalID: 1323616584
+      spriteID: 469bcebc25a4bd04ebc01de23b3ffbca
+      internalID: 1237088195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_1
+      name: Egg Run 1-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 16
-        width: 27
+        x: 70
+        y: 10
+        width: 53
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c48e4ede79b6f4b9aad326ffb23329
-      internalID: 1876845794
+      spriteID: b0d065db8793ae048b4947f7d89d6f8f
+      internalID: -704198758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_2
+      name: Egg Run 1-Sheet_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 16
-        width: 27
+        x: 133
+        y: 9
+        width: 53
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fed958a97d65b044ab94d5eb4c0faaff
-      internalID: -783932926
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 085556a21c6e04645b48143383291851
-      internalID: -1038710496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1813d3eca2de5f24e83db1a8d0be4f57
-      internalID: -813150724
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9044b8d43fb408418ace72f10727322
-      internalID: 98399502
+      spriteID: 679a0d90ef8535e49bb051f2f2089a9a
+      internalID: 1785555658
       vertices: []
       indices: 
       edges: []
@@ -246,12 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 2-Sheet_0: 1323616584
-      Cheolsu Run 2-Sheet_1: 1876845794
-      Cheolsu Run 2-Sheet_2: -783932926
-      Cheolsu Run 2-Sheet_3: -1038710496
-      Cheolsu Run 2-Sheet_4: -813150724
-      Cheolsu Run 2-Sheet_5: 98399502
+      Egg Run 1-Sheet_0: 1237088195
+      Egg Run 1-Sheet_1: -704198758
+      Egg Run 1-Sheet_2: 1785555658
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

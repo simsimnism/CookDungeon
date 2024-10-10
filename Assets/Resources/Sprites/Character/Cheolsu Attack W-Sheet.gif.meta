@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ff93da6fe747b04b848246289ae276f
+guid: e03d7cf81f26e2043bd3b670b3974a0e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_0
+      name: Cheolsu Attack W-Sheet_0
       rect:
         serializedVersion: 2
-        x: 18
+        x: 10
         y: 16
-        width: 27
-        height: 40
+        width: 36
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ef00c643193f7c428ebff083a3de7e4
-      internalID: 1323616584
+      spriteID: 3c8bfcc6a6b4a0a49b1748a5ad7c83eb
+      internalID: 1159281802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_1
+      name: Cheolsu Attack W-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
+        x: 67
         y: 16
-        width: 27
-        height: 40
+        width: 43
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c48e4ede79b6f4b9aad326ffb23329
-      internalID: 1876845794
+      spriteID: c4a9ffb51461550459c1e412c9a716bd
+      internalID: 676655968
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_2
+      name: Cheolsu Attack W-Sheet_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 16
-        width: 27
-        height: 40
+        x: 144
+        y: 9
+        width: 30
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fed958a97d65b044ab94d5eb4c0faaff
-      internalID: -783932926
+      spriteID: d2f01e2be9153234c991b7f35516401e
+      internalID: -1864121378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_3
+      name: Cheolsu Attack W-Sheet_3
       rect:
         serializedVersion: 2
-        x: 210
+        x: 212
         y: 16
-        width: 27
-        height: 40
+        width: 29
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +187,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 085556a21c6e04645b48143383291851
-      internalID: -1038710496
+      spriteID: 36f817859c3846f46955383e654b0330
+      internalID: 982888118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_4
+      name: Cheolsu Attack W-Sheet_4
       rect:
         serializedVersion: 2
-        x: 274
-        y: 16
-        width: 27
-        height: 40
+        x: 273
+        y: 8
+        width: 29
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1813d3eca2de5f24e83db1a8d0be4f57
-      internalID: -813150724
+      spriteID: be92ac0718c5be049a34dd54c5ab4fd3
+      internalID: -479541393
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_5
+      name: Cheolsu Attack W-Sheet_5
       rect:
         serializedVersion: 2
-        x: 338
+        x: 323
         y: 16
-        width: 27
-        height: 40
+        width: 42
+        height: 39
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,8 +229,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9044b8d43fb408418ace72f10727322
-      internalID: 98399502
+      spriteID: b3e6d0acedb446b4fbec8830a2b6f66c
+      internalID: 2088540096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cheolsu Attack W-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 16
+        width: 37
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d2ae87d27318549bb8886add110bfa
+      internalID: 154068095
       vertices: []
       indices: 
       edges: []
@@ -246,12 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 2-Sheet_0: 1323616584
-      Cheolsu Run 2-Sheet_1: 1876845794
-      Cheolsu Run 2-Sheet_2: -783932926
-      Cheolsu Run 2-Sheet_3: -1038710496
-      Cheolsu Run 2-Sheet_4: -813150724
-      Cheolsu Run 2-Sheet_5: 98399502
+      Cheolsu Attack W-Sheet_0: 1159281802
+      Cheolsu Attack W-Sheet_1: 676655968
+      Cheolsu Attack W-Sheet_2: -1864121378
+      Cheolsu Attack W-Sheet_3: 982888118
+      Cheolsu Attack W-Sheet_4: -479541393
+      Cheolsu Attack W-Sheet_5: 2088540096
+      Cheolsu Attack W-Sheet_6: 154068095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
