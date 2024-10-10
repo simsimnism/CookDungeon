@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75cbd4099dfa9c04cb413c383eecf0bb
+guid: 8d3f4a672fe73aa479f202d8975bf1ec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,17 +93,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Egg Run-1-Sheet_0
+      name: flu Person 3-Sheet_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 16
-        width: 58
-        height: 44
+        x: 17
+        y: 22
+        width: 30
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d94af17cb5434f42a030e8be8b1fd9b
-      internalID: 330861558
+      spriteID: d03139bb69d1b684eb6d6f965e98e84a
+      internalID: 515187532
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg Run-1-Sheet_1
+      name: flu Person 3-Sheet_1
       rect:
         serializedVersion: 2
-        x: 68
-        y: 16
-        width: 58
-        height: 44
+        x: 80
+        y: 21
+        width: 30
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a512863c3ded5bb46886a80be4d5117d
-      internalID: -157582591
+      spriteID: 16ca9876b79d3b7498d7d6b030d27962
+      internalID: 1878223656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg Run-1-Sheet_2
+      name: flu Person 3-Sheet_2
       rect:
         serializedVersion: 2
-        x: 132
-        y: 16
-        width: 58
-        height: 44
+        x: 145
+        y: 22
+        width: 30
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,50 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ec3c4494bc54074eb93e8a9ed2b58bf
-      internalID: 1986685784
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg Run-1-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 16
-        width: 58
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ca6b94747bf04ae41a96ef4d8c1d9ac6
-      internalID: 419553054
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg Run-1-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 263
-        y: 16
-        width: 53
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdb85ad654156c0448637dbb3b3527f0
-      internalID: -1689367250
+      spriteID: 42370e80793fe1e4b8a92097c87d8650
+      internalID: 244739824
       vertices: []
       indices: 
       edges: []
@@ -212,11 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Egg Run-1-Sheet_0: 330861558
-      Egg Run-1-Sheet_1: -157582591
-      Egg Run-1-Sheet_2: 1986685784
-      Egg Run-1-Sheet_3: 419553054
-      Egg Run-1-Sheet_4: -1689367250
+      flu Person 3-Sheet_0: 515187532
+      flu Person 3-Sheet_1: 1878223656
+      flu Person 3-Sheet_2: 244739824
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

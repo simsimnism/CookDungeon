@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7ff93da6fe747b04b848246289ae276f
+guid: 9041c2ceeed4d5e40ba0454f73f85724
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,127 +110,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_0
+      name: Cabbage Guri Run 3-Sheet_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 16
-        width: 27
-        height: 40
+        x: 17
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ef00c643193f7c428ebff083a3de7e4
-      internalID: 1323616584
+      spriteID: 0c1e2967056cbcd4c922eb24b6364e6b
+      internalID: 525911607
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_1
+      name: Cabbage Guri Run 3-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 16
-        width: 27
-        height: 40
+        x: 81
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5c48e4ede79b6f4b9aad326ffb23329
-      internalID: 1876845794
+      spriteID: f32e52368ae6b134f8acc22759f0110a
+      internalID: 1917338501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_2
+      name: Cabbage Guri Run 3-Sheet_2
       rect:
         serializedVersion: 2
-        x: 146
-        y: 16
-        width: 27
-        height: 40
+        x: 145
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fed958a97d65b044ab94d5eb4c0faaff
-      internalID: -783932926
+      spriteID: 7eec96d6ed983a94a97afef7280b7426
+      internalID: 6727805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_3
+      name: Cabbage Guri Run 3-Sheet_3
       rect:
         serializedVersion: 2
-        x: 210
-        y: 16
-        width: 27
-        height: 40
+        x: 209
+        y: 22
+        width: 31
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 085556a21c6e04645b48143383291851
-      internalID: -1038710496
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1813d3eca2de5f24e83db1a8d0be4f57
-      internalID: -813150724
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cheolsu Run 2-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 338
-        y: 16
-        width: 27
-        height: 40
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9044b8d43fb408418ace72f10727322
-      internalID: 98399502
+      spriteID: 995dca87d14e29a4a917f90cca29555b
+      internalID: -1687396394
       vertices: []
       indices: 
       edges: []
@@ -246,12 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cheolsu Run 2-Sheet_0: 1323616584
-      Cheolsu Run 2-Sheet_1: 1876845794
-      Cheolsu Run 2-Sheet_2: -783932926
-      Cheolsu Run 2-Sheet_3: -1038710496
-      Cheolsu Run 2-Sheet_4: -813150724
-      Cheolsu Run 2-Sheet_5: 98399502
+      Cabbage Guri Run 3-Sheet_0: 525911607
+      Cabbage Guri Run 3-Sheet_1: 1917338501
+      Cabbage Guri Run 3-Sheet_2: 6727805
+      Cabbage Guri Run 3-Sheet_3: -1687396394
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
