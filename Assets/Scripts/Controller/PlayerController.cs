@@ -134,7 +134,8 @@ public class PlayerController : MonoBehaviour
         //무적상태 종료
         isInvincible = false;
     }
-
+    
+    // 투명화 상태를 관리하는 코루틴
     private IEnumerator BecomeTransparent()
 {
     Color originalColor = Color.white;

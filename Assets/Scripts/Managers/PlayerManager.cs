@@ -6,7 +6,7 @@ public class PlayerManager
 {
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
     public float moveSpeed = 5.0f;//이동속도
-    public float dashSpeed = 3f; // 대쉬 속도
+    public float dashSpeed = 4f; // 대쉬 속도
     public float dashDuration = 0.3f; // 대쉬 지속 시간
     public bool isDashing = false;// 대쉬 여부
     public float transparencyFadeTime = 0.1f; // 투명화가 진행되는 시간
@@ -15,8 +15,8 @@ public class PlayerManager
     //플레이어 어택에서 사용할 변수 
     public int meleeAttackDamage = 10; //플레이어 데미지
     public float comboResetTime = 1f;//콤보 리셋 시간
-    public float attackRadius = 3f;//공격 범위
-    public float attackAngle = 160f;//공걱의 부채꼴 각도
+    public float attackRadius = 1.6f;//공격 범위
+    public float attackAngle = 140f;//공걱의 부채꼴 각도
 
     public int comboStep = 0;         // 현재 콤보 단계
     public bool isAttacking = false;  // 공격 중인지 여부

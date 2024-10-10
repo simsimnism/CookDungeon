@@ -1,4 +1,3 @@
-using Cook.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -19,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     private bool isAttacking;  // 공격 중인지 여부
     private float lastAttackTime;// 마지막 공격 시간
     private bool canChainCombo; // 콤보 연결 가능 여부
-    private bool isShowingAttackRange;
+    private bool isShowingAttackRange; //공격 범위를 가시화
 
     //이건 삭제하면 안됨 다른 코드에서도 사용함
     private Vector2 attackDirection;  // 현재 공격 방향
