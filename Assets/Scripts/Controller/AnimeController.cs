@@ -20,11 +20,13 @@ public class AnimeController : MonoBehaviour
     void Start()
     {
         PlayerAnime(); // 초기 애니메이션 설정
+        ComboAttack();
     }
 
     void Update()
     {
         PlayerAnime(); // 매 프레임마다 애니메이션 갱신
+        ComboAttack();
     }
 
     private void PlayerAnime()
@@ -122,16 +124,84 @@ public class AnimeController : MonoBehaviour
         animator.ResetTrigger("LeftDash");
         animator.ResetTrigger("UpDash");
         animator.ResetTrigger("DownDash");
+        animator.ResetTrigger("Attack1");
+        animator.ResetTrigger("Attack2");
         // 필요에 따라 더 추가
     }
 
-    // 플레이어의 공격 상태 애니메이션
-    void AttackAnime()
+    //콤보 공격의 애니매이션
+    void ComboAttack()
     {
-        if (Input.GetMouseButtonDown(0))
+        //스크린 월드 좌표에서 마우스 좌표를 가져옴
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //플레이어의 좌표를 가져옴
+        Vector2 playerPos = transform.position;
+        // 둘 사이의 간격을 계산
+        Vector2 direction = (mousePos - playerPos).normalized;
+        if (Managers.Player.comboStep == 1)
         {
-            ResetAllTriggers(); // 공격 시 다른 트리거 초기화
-            animator.SetTrigger("Attack1");
+            AttackTransform1(direction);
+        }
+        else if(Managers.Player.comboStep ==2)
+        {
+            AttackTransform2(direction);
+
         }
     }
+
+
+    // 플레이어의 공격 상태 애니메이션
+    private void AttackTransform1(Vector2 diretion)
+    {
+        //스크린 월드 좌표에서 마우스 좌표를 가져옴
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //플레이어의 좌표를 가져옴
+        Vector2 playerPos = transform.position;
+        // 둘 사이의 간격을 계산
+        Vector2 direction = (mousePos - playerPos).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+
+
+        //우측 공격모션
+        if (direction.x > 0)
+        {
+            // 공격 시 다른 트리거 초기화
+            rend.flipX = true;
+            animator.SetTrigger("Attack1");
+
+        }
+        else if (direction.x < 0)
+        {
+            rend.flipX = false;
+
+        }
+        ResetAllTriggers();
+    }
+    private void AttackTransform2(Vector2 direction2)
+    {
+        //스크린 월드 좌표에서 마우스 좌표를 가져옴
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //플레이어의 좌표를 가져옴
+        Vector2 playerPos = transform.position;
+        // 둘 사이의 간격을 계산
+        Vector2 direction = (mousePos - playerPos).normalized;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+
+        if (direction.x > 0)
+        {
+            rend.flipX = true;
+            animator.SetTrigger("Attack2");
+        }
+        else if (direction.x < 0)
+        {
+            rend.flipX = false;
+        }
+        ResetAllTriggers();
+
+    }
+
 }

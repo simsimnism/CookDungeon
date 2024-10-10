@@ -134,6 +134,7 @@ public class PlayerAttack : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
+        //공격방향 계산 함수
         if (angle >= 45 && angle < 135)
         {
             // 상단 공격
