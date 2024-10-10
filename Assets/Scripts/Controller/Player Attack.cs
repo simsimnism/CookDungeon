@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
     //이건 삭제하면 안됨 다른 코드에서도 사용함
     private Vector2 attackDirection;  // 현재 공격 방향
+    private Player playerS;
 
     void Awake()
     {
@@ -33,7 +34,8 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = Managers.Player.isAttacking;
         lastAttackTime = Managers.Player.lastAttackTime;
         canChainCombo = Managers.Player.canChainCombo;
-        isShowingAttackRange = Managers.Player.isShowingAttackRange;    
+        isShowingAttackRange = Managers.Player.isShowingAttackRange;  
+        playerS = player.GetComponent<Player>();
     }
 
     void Start()
@@ -88,6 +90,9 @@ public class PlayerAttack : MonoBehaviour
 
         // 공격 시각화 활성화
         isShowingAttackRange = true;
+
+        // 공격 시 움직임을 제한
+        playerS.DisableMovement();
 
         ExecuteAttack(attackDirection);
         
@@ -200,6 +205,9 @@ public class PlayerAttack : MonoBehaviour
         comboStep = 0;            // 콤보 단계 리셋
         isAttacking = false;      // 공격 상태 초기화
         canChainCombo = false;    // 콤보 연결 불가능 상태
+
+        playerS.EnableMovement();
+
         Debug.Log("콤보가 리셋되었습니다!");
     }
 
