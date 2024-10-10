@@ -28,7 +28,7 @@ public class Managers : MonoBehaviour
     public static GameManager GM { get { Init(); return Instance._game; } }
     public static PlayerManager Player { get { Init(); return Instance._player; } }
 
-    public static MonsterManager Monster {get { Init(); return Instance._monster; } }
+    public static MonsterManager Monster { get { Init(); return Instance._monster; } }
 
     void Start()
     {
