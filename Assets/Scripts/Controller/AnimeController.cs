@@ -12,6 +12,8 @@ public class AnimeController : MonoBehaviour
     private int comboStep = 0;
     private float lastAttackTime = 0f;
     private float comboDelay = 1.0f; // 콤보 유효 시간
+    private Vector3 mousePosition;
+    private bool isAttacking = false; // 공격 중 상태 플래그 추가
 
 
 
@@ -20,7 +22,7 @@ public class AnimeController : MonoBehaviour
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        
+
         // 플레이어의 Transform 자동 할당
     }
 
@@ -113,8 +115,7 @@ public class AnimeController : MonoBehaviour
         }
         else if (direction.x > 0) // 오른쪽으로 이동
         {
-            spriteRenderer.flipX = false; // 오른쪽을 바라보게
-            animator.SetTrigger("WalkLeft");
+            animator.SetTrigger("WalkRight");
         }
         else if (direction.y > 0) // 위쪽으로 이동
         {
@@ -137,8 +138,7 @@ public class AnimeController : MonoBehaviour
         }
         else if (direction.x > 0) // 오른쪽 대쉬
         {
-            spriteRenderer.flipX = false;
-            animator.SetTrigger("LeftDash");
+            animator.SetTrigger("RightDash");
         }
         else if (direction.y > 0) // 위쪽 대쉬
         {
@@ -150,21 +150,23 @@ public class AnimeController : MonoBehaviour
         }
     }
 
+
     void HandleAttack()
     {
+        isAttacking = true; // 공격 시작 상태로 변경
+
         // 마우스 좌표를 스크린에서 가져오고 z축 값을 0으로 고정
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = -10; // Z값을 -10으로 고정 (2D 월드 좌표 기준)
+        mousePosition.z = Camera.main.nearClipPlane; // Z값을 카메라의 가까운 클리핑 평면으로 설정
 
         // 스크린 좌표를 월드 좌표로 변환
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         // 캐릭터 위치에서 마우스 위치로 향하는 방향 벡터 계산
-        attackDirection = (worldPosition - (Vector2)transform.position).normalized;
+        Vector2 direction = (worldPosition - (Vector2)transform.position).normalized;
 
 
-
-        // 콤보 상태에 따라 다른 애니메이션 재생
+        // 애니메이션 트리거
         if (comboStep == 0)
         {
             animator.SetTrigger("Attack1");
@@ -174,24 +176,15 @@ public class AnimeController : MonoBehaviour
             animator.SetTrigger("Attack2");
         }
 
-        comboStep = (comboStep + 1) % 2;
-        lastAttackTime = Time.time;
+        comboStep = (comboStep + 1) % 2; // 콤보 단계 증가
+        lastAttackTime = Time.time; // 마지막 공격 시간 기록
     }
 
-    void SetAttackDirection()
+    public void OnAttackAnimationEnd() // 공격 애니메이션 종료 후 호출
     {
-        // 월드 좌표에서 마우스와 캐릭터의 X 좌표 비교
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
-        {
-            spriteRenderer = null;
-
-        }
-        // 마우스가 캐릭터의 오른쪽에 있을 때
-        else if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
-        {
-            spriteRenderer.flipX = false;
-        }
+        isAttacking = false; // 공격 상태를 리셋
     }
+
 
     // 애니메이션 트리거 초기화 함수
     private void ResetAllTriggers()
