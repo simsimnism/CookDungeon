@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53d334bf6f8c8d44a1afd403d119e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 8230463252648597721}
   meleeAttackDamage: 10
   comboResetTime: 1
   attackRadius: 3
@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 494c48bccca6802409189fd1445af005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8230463252648597721}
+  playerTransform: {fileID: 0}
 --- !u!95 &7691758564693186480
 Animator:
   serializedVersion: 5

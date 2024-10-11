@@ -34,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
         isAttacking = Managers.Player.isAttacking;
         lastAttackTime = Managers.Player.lastAttackTime;
         canChainCombo = Managers.Player.canChainCombo;
-        isShowingAttackRange = Managers.Player.isShowingAttackRange;  
+        isShowingAttackRange = Managers.Player.isShowingAttackRange;
         playerS = player.GetComponent<Player>();
     }
 

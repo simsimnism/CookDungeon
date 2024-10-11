@@ -154,7 +154,7 @@ public class AnimeController : MonoBehaviour
     {
         // 마우스 좌표를 스크린에서 가져오고 z축 값을 0으로 고정
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = -10; // Z값을 0으로 고정 (2D 월드 좌표 기준)
+        mousePosition.z = -10; // Z값을 -10으로 고정 (2D 월드 좌표 기준)
 
         // 스크린 좌표를 월드 좌표로 변환
         Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -162,8 +162,7 @@ public class AnimeController : MonoBehaviour
         // 캐릭터 위치에서 마우스 위치로 향하는 방향 벡터 계산
         attackDirection = (worldPosition - (Vector2)transform.position).normalized;
 
-        // 공격 방향에 따른 좌우 반전 설정
-        SetAttackDirection();
+
 
         // 콤보 상태에 따라 다른 애니메이션 재생
         if (comboStep == 0)
