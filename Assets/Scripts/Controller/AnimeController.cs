@@ -181,15 +181,15 @@ public class AnimeController : MonoBehaviour
     void SetAttackDirection()
     {
         // 월드 좌표에서 마우스와 캐릭터의 X 좌표 비교
-        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < transform.position.x)
         {
-            spriteRenderer.flipX = false;
- 
+            spriteRenderer = null;
+
         }
         // 마우스가 캐릭터의 오른쪽에 있을 때
-        else
+        else if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > transform.position.x)
         {
-            spriteRenderer.flipX = true; // 오른쪽 공격일 경우 스프라이트 반전
+            spriteRenderer.flipX = false;
         }
     }
 
