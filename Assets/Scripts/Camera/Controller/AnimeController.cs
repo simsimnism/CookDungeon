@@ -1,0 +1,167 @@
+using System.Collections;
+using UnityEngine;
+
+public class AnimeController : MonoBehaviour
+{
+    private Animator animator;
+    private Rigidbody2D rbody;
+    public Transform playerTransform;
+
+    private Vector2 attackDirection;
+    private int comboStep = 0;
+    private float lastAttackTime = 0f;
+    private float comboDelay = 1.0f; // 콤보 유효 시간
+    private float resetMouseDelay = 0.3f; // 마우스 좌표 리셋 시간
+    private Vector2 lastMousePosition; // 마지막 마우스 좌표 저장
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        rbody = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        PlayerAnime();   // 플레이어 애니메이션 갱신
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            HandleAttack();
+        }
+
+        if (Time.time - lastAttackTime > comboDelay)
+        {
+            comboStep = 0; // 콤보 상태 초기화
+        }
+    }
+
+    // 플레이어 애니메이션 처리
+    private void PlayerAnime()
+    {
+        HandleMovement();   // 이동 애니메이션 처리
+    }
+
+    // 이동 애니메이션 처리 함수
+    private void HandleMovement()
+    {
+        float moveVertical = 0;
+        float moveHorizontal = 0;
+
+        if (Input.GetKey(KeyCode.W)) moveVertical = 1f;
+        if (Input.GetKey(KeyCode.S)) moveVertical = -1f;
+        if (Input.GetKey(KeyCode.A)) moveHorizontal = -1f;
+        if (Input.GetKey(KeyCode.D)) moveHorizontal = -1f;
+
+        Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
+
+        if (direction != Vector2.zero)
+        {
+            PlayWalkAnimation(direction);
+        }
+        else
+        {
+            ResetAllTriggers();
+            animator.SetTrigger("Stand");  // 이동하지 않으면 스탠드 애니메이션 실행
+        }
+    }
+
+    // 걷기 애니메이션 실행 함수
+    private void PlayWalkAnimation(Vector2 direction)
+    {
+        ResetAllTriggers();
+
+        if (direction.x < 0) // 왼쪽 이동
+        {
+            animator.SetTrigger("WalkLeft");
+        }
+        else if (direction.x > 0) // 오른쪽 이동
+        {
+            animator.SetTrigger("WalkRight");
+        }
+        else if (direction.y > 0) // 위쪽 이동
+        {
+            animator.SetTrigger("WalkUp");
+        }
+        else if (direction.y < 0) // 아래쪽 이동
+        {
+            animator.SetTrigger("WalkDown");
+        }
+    }
+
+    // 공격 처리 함수
+    void HandleAttack()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = -10f; // Z 값을 -10으로 고정
+        Vector2 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        // 플레이어와 마우스 위치 사이의 거리 계산
+        float distanceToMouse = Vector2.Distance(worldPosition, playerTransform.position);
+
+        if (distanceToMouse > 0.1f) // 거리가 매우 짧지 않으면 공격 수행
+        {
+            lastMousePosition = worldPosition; // 마지막 마우스 좌표 저장
+            DetermineAttackDirection(worldPosition);
+        }
+
+        // 콤보 상태 업데이트
+        comboStep = (comboStep + 1) % 2; // 0과 1 사이에서 반복
+        lastAttackTime = Time.time;
+
+        // 0.3초 후에 마우스 좌표 리셋
+        Invoke("ResetMousePosition", resetMouseDelay);
+    }
+
+    // 공격 방향 결정 함수 (플레이어 방향과 무관하게 좌표 기반)
+    private void DetermineAttackDirection(Vector2 worldPosition)
+    {
+        attackDirection = (worldPosition - (Vector2)playerTransform.position).normalized;
+
+        ResetAllTriggers(); // 공격 전에 모든 트리거를 초기화
+
+        // 공격 방향 결정 (마우스 클릭 위치를 기준으로)
+        if (attackDirection.x > 0) // 오른쪽 공격
+        {
+            if (comboStep == 0)
+            {
+                animator.SetTrigger("RightAttack");
+            }
+            else
+            {
+                animator.SetTrigger("RightComboAttack");
+            }
+        }
+        else if (attackDirection.x < 0) // 왼쪽 공격
+        {
+            if (comboStep == 0)
+            {
+                animator.SetTrigger("LeftAttack");
+            }
+            else
+            {
+                animator.SetTrigger("LeftComboAttack");
+            }
+        }
+    }
+
+    // 마우스 좌표 리셋 함수
+    private void ResetMousePosition()
+    {
+        lastMousePosition = Vector2.zero; // 마우스 좌표를 0으로 리셋
+    }
+
+    // 애니메이션 트리거 초기화 함수
+    private void ResetAllTriggers()
+    {
+        // 모든 트리거를 초기화하여 상태 전환을 원활하게 함
+        animator.ResetTrigger("WalkLeft");
+        animator.ResetTrigger("WalkRight");
+        animator.ResetTrigger("WalkUp");
+        animator.ResetTrigger("WalkDown");
+        animator.ResetTrigger("Stand");
+        animator.ResetTrigger("LeftAttack");
+        animator.ResetTrigger("LeftComboAttack");
+        animator.ResetTrigger("RightAttack");
+        animator.ResetTrigger("RightComboAttack");
+    }
+}
