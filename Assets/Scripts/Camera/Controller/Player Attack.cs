@@ -198,7 +198,7 @@ public class PlayerAttack : MonoBehaviour
                         Vector3 hitDirection = (enemy.transform.position - transform.position).normalized;
 
                         // 몬스터에게 데미지를 주고 피격 방향 전달
-                        enemy.TakeDamage(totalDamage, hitDirection);
+                        //enemy.TakeDamage(totalDamage, hitDirection);
 
                         Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
                     }

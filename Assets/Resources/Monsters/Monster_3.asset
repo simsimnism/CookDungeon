@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85b082678c630b54f9dc7e7cbf480920, type: 3}
-  m_Name: Pptabee
+  m_Name: Monster_3
   m_EditorClassIdentifier: 
-  monsterName: 
-  monsterPrefab: {fileID: 4239965582340703874, guid: c2d11ba62a2fb014c96eb83e0a2fc001, type: 3}
-  health: 5
-  attack: 2
-  range: 3
-  speed: 3
+  monsterName: EggSlime
+  id: 3
+  health: 2
+  attack: 3
+  range: 4
+  speed: 4
+  monsterPrefab: {fileID: 4696647389124553893, guid: ea0e64d3aa082e142b2ae4aa4ace7996, type: 3}
