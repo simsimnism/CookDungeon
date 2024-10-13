@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50ac0673ecf3578498de39f9171b5183
+guid: 8378472eb5a01b04382269263941c75c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: flu person 1-Sheet_0
+      name: flu person Left-Sheet_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 22
-        width: 30
-        height: 26
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34e382dab2667504caeecd2a1772eed4
-      internalID: 2127974977
+      spriteID: 250184a18c665ac4790dba50c60c69b0
+      internalID: 1396471525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flu person 1-Sheet_1
+      name: flu person Left-Sheet_1
       rect:
         serializedVersion: 2
-        x: 81
-        y: 22
-        width: 30
-        height: 26
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d5e50851e6617e4495e4d7376e6b5a7
-      internalID: 1423107047
+      spriteID: efbc88c2ed0e8d742811a83f87610711
+      internalID: -1226856214
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flu person 1-Sheet_2
+      name: flu person Left-Sheet_2
       rect:
         serializedVersion: 2
-        x: 145
-        y: 22
-        width: 30
-        height: 26
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7d902221f06da648aebe7344f92f167
-      internalID: -1170152713
+      spriteID: 23f9c746311deb54bbda190c8418ee15
+      internalID: 772416942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: flu person 1-Sheet_3
+      name: flu person Left-Sheet_3
       rect:
         serializedVersion: 2
-        x: 208
-        y: 22
-        width: 30
-        height: 26
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fb5c64cf4a52534cb960ae919bcf161
-      internalID: -284456888
+      spriteID: 2e617c8d6fb3db04b8f420b3b3aba70d
+      internalID: 1186419472
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      flu person 1-Sheet_0: 2127974977
-      flu person 1-Sheet_1: 1423107047
-      flu person 1-Sheet_2: -1170152713
-      flu person 1-Sheet_3: -284456888
+      flu person Left-Sheet_0: 1396471525
+      flu person Left-Sheet_1: -1226856214
+      flu person Left-Sheet_2: 772416942
+      flu person Left-Sheet_3: 1186419472
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

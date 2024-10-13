@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2bef02542eaf3a34c882138856d2000b
+guid: 96e926a059f4a6940a74a8ad96ad24de
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,43 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cabbage Guri Standing-Sheet_0
+      name: flu person Left-Sheet 1_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 21
-        width: 31
-        height: 27
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63584865c6d6d0e4bbaa5f4f352f893f
-      internalID: 156772366
+      spriteID: 0cc6a21294cdbdf4583777ba710fa5ac
+      internalID: 2080114215
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabbage Guri Standing-Sheet_1
+      name: flu person Left-Sheet 1_1
       rect:
         serializedVersion: 2
-        x: 84
-        y: 21
-        width: 31
-        height: 27
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02733616f13785047966cd10907651b6
-      internalID: 1559248989
+      spriteID: adbf79c9be23bb449ab5b9d14e2b04fa
+      internalID: -725913096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flu person Left-Sheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c50bee011d46cdd4589b067398b036d3
+      internalID: -1122813147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flu person Left-Sheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1bdffd1067ff9d408a449f8995dca3a
+      internalID: -1161507339
       vertices: []
       indices: 
       edges: []
@@ -149,8 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cabbage Guri Standing-Sheet_0: 156772366
-      Cabbage Guri Standing-Sheet_1: 1559248989
+      flu person Left-Sheet 1_0: 2080114215
+      flu person Left-Sheet 1_1: -725913096
+      flu person Left-Sheet 1_2: -1122813147
+      flu person Left-Sheet 1_3: -1161507339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
