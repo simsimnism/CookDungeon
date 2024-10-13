@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 109d21a8dded107469e9285e4eb433fc
+guid: 96737b81c15fca44da620b9d88775b63
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_0
+      name: Egg Attack-3-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfc9bd40210163c4cb63bc279c85618b
-      internalID: 200028600
+      spriteID: 14425dbe798ef784dadd3281cd9ae25d
+      internalID: 1938015855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_1
+      name: Egg Attack-3-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bca8de4f15b30f44787375895306cad0
-      internalID: -760257736
+      spriteID: d52c46d6efc12a94caac6382346ff2fb
+      internalID: 114957064
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_2
+      name: Egg Attack-3-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5436c4992436d24fa989a225276340c
-      internalID: 1199957299
+      spriteID: 6882764809565b2449c79a9cb1c897fc
+      internalID: 303183409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_3
+      name: Egg Attack-3-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,8 +174,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1c7c7b30e6e1da40a8b15bd7aac7866
-      internalID: 825276368
+      spriteID: edb560e41ca72db40ac42665cd60c972
+      internalID: 255837667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg Attack-3-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d17ad7dd4f32caa40ac347ae90fcd4b7
+      internalID: 381908860
       vertices: []
       indices: 
       edges: []
@@ -191,10 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Apple Run 1-Sheet_0: 200028600
-      Apple Run 1-Sheet_1: -760257736
-      Apple Run 1-Sheet_2: 1199957299
-      Apple Run 1-Sheet_3: 825276368
+      Egg Attack-3-Sheet_0: 1938015855
+      Egg Attack-3-Sheet_1: 114957064
+      Egg Attack-3-Sheet_2: 303183409
+      Egg Attack-3-Sheet_3: 255837667
+      Egg Attack-3-Sheet_4: 381908860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

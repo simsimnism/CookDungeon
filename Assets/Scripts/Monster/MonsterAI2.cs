@@ -4,6 +4,7 @@ using System.Collections;
 //오랜지 복어
 public class MonsterAI2 : MonoBehaviour
 {
+    public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
     [SerializeField] private GameObject monsters;
     public int health;
     public int attack;

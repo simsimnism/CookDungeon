@@ -18,4 +18,4 @@ MonoBehaviour:
   attack: 3
   range: 4
   speed: 4
-  monsterPrefab: {fileID: 4696647389124553893, guid: ea0e64d3aa082e142b2ae4aa4ace7996, type: 3}
+  monsterPrefab: {fileID: 2265763813283399209, guid: 657784766781788469f957d89d5f410c, type: 3}

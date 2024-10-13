@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 109d21a8dded107469e9285e4eb433fc
+guid: b16e5047d3d2248438152e188dda98d6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_0
+      name: Egg Run 3-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfc9bd40210163c4cb63bc279c85618b
-      internalID: 200028600
+      spriteID: 908444f68815f8f4cadbd82492a52fc7
+      internalID: -1746065576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_1
+      name: Egg Run 3-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bca8de4f15b30f44787375895306cad0
-      internalID: -760257736
+      spriteID: ec79d4bf217f92249b9d4418a5e61d4a
+      internalID: -77423853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Apple Run 1-Sheet_2
+      name: Egg Run 3-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,29 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5436c4992436d24fa989a225276340c
-      internalID: 1199957299
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Apple Run 1-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b1c7c7b30e6e1da40a8b15bd7aac7866
-      internalID: 825276368
+      spriteID: 273402a5cfca2f14fbaf294882d05a9c
+      internalID: 175375525
       vertices: []
       indices: 
       edges: []
@@ -191,10 +170,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Apple Run 1-Sheet_0: 200028600
-      Apple Run 1-Sheet_1: -760257736
-      Apple Run 1-Sheet_2: 1199957299
-      Apple Run 1-Sheet_3: 825276368
+      Egg Run 3-Sheet_0: -1746065576
+      Egg Run 3-Sheet_1: -77423853
+      Egg Run 3-Sheet_2: 175375525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

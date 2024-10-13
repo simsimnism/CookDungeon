@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 388213027478052459}
   - component: {fileID: 87644822016141275}
-  - component: {fileID: -343654557977344635}
-  - component: {fileID: -6460254651018969016}
-  - component: {fileID: -2407578948689173670}
-  - component: {fileID: 5174891038099430039}
-  - component: {fileID: -2810748591911703764}
+  - component: {fileID: -2344803054856608363}
+  - component: {fileID: -2270416371409192126}
+  - component: {fileID: -4808152356837087357}
+  - component: {fileID: 7633341290609793492}
+  - component: {fileID: -7306445047071159869}
+  - component: {fileID: -6869352901291980912}
+  - component: {fileID: -1061583787807533325}
   m_Layer: 0
   m_Name: Mandrapple
   m_TagString: Monsters
@@ -89,7 +91,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &-343654557977344635
+--- !u!210 &-2344803054856608363
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243285967915163506}
+  m_Enabled: 1
+  m_SortingLayerID: 723745149
+  m_SortingLayer: 6
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+--- !u!61 &-2270416371409192126
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,34 +148,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.48}
   m_EdgeRadius: 0
---- !u!50 &-6460254651018969016
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2243285967915163506}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!60 &-2407578948689173670
+--- !u!60 &-4808152356837087357
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,19 +204,34 @@ PolygonCollider2D:
       - {x: 0.099999994, y: -0.19}
       - {x: 0.14999999, y: -0.17}
   m_UseDelaunayMesh: 0
---- !u!210 &5174891038099430039
-SortingGroup:
+--- !u!50 &7633341290609793492
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2243285967915163506}
-  m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
---- !u!114 &-2810748591911703764
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 1
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &-7306445047071159869
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -242,8 +244,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDataSO: {fileID: 11400000, guid: 1373059746c0e0446bb27dc7102a791f, type: 2}
-  player: {fileID: 8118453436467839789, guid: b0ebcd5c7eefd2449bf7c94ade2d42e8, type: 3}
+  player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2
   knockbackDistance: 2
   changeDirectionTime: 3
+--- !u!114 &-6869352901291980912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243285967915163506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38a20c8d31d7ed48b7127ae3b4d15c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &-1061583787807533325
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243285967915163506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4cd8328149eb5a84d84f5440ec606832, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

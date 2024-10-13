@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6877487810564072977}
   - component: {fileID: 5511086977247236210}
   - component: {fileID: 1044063251598758480}
+  - component: {fileID: 7060042728825364998}
+  - component: {fileID: 5655372390081733592}
   m_Layer: 0
   m_Name: Potabee
   m_TagString: Monsters
@@ -247,3 +249,36 @@ MonoBehaviour:
   maxKnockbackDistance: 2
   knockbackDistance: 2
   changeDirectionTime: 3
+--- !u!114 &7060042728825364998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239965582340703874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38a20c8d31d7ed48b7127ae3b4d15c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &5655372390081733592
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239965582340703874}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2df5cd5e2c3d7374d89f6c4fc478258f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
