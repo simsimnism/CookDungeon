@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Resources;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement; // 임시 고치기
 
 public class GameManager
 {
@@ -25,20 +27,32 @@ public class GameManager
 
     public void Init()
     {
-        previousGameState = GameState.title;
-        gameState = GameState.title;
-
         GameStart();
+        //previousGameState = GameState.gameStarted;
+        //gameState = GameState.gameStarted;
+    }
+
+    public void HandleGameState()
+    {
+        switch (gameState)
+        {
+            case GameState.title:
+                break;
+            case GameState.gameStarted:
+                // 임시 고치기 ( 씬이 로드 되기도 전에 GameStart함수를 실행시켜서 null 레퍼런스가 나와서 방지용 코드 )
+                Scene scene = SceneManager.GetActiveScene();
+                if (scene.name == "GameScene")
+                {
+                    GameStart();
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     void GameStart()
     {
-        // 캐릭터 생성
-        GameObject Player = Managers.Resource.Instantiate("Player/Player");
-
-        // 카메라 세팅
-        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
-
         // 던전 레벨 리스트 생성
         dungeonLevelList = new List<DungeonLevelSO>();
 
@@ -58,11 +72,21 @@ public class GameManager
         {
             Debug.LogError("유효하지 않은 던전 레벨 인덱스: " + currentDungeonLevelListIndex);
         }
+
+        // 캐릭터 생성
+        GameObject Player = Managers.Resource.Instantiate("Player/Player");
+
+        // 카메라 세팅
+        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
+
+        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
     }
 
     // 최종적으로 던전을 생성하는 함수
     void genDungeon(int dungeonLevelListIndex)
     {
+        Debug.Log(dungeonLevelListIndex);
+        Debug.Log(dungeonLevelList[dungeonLevelListIndex] == null);
         // 던전 인덱스 번호에 따라 던전 리스트에 있는 던전을 생성 
         bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
 

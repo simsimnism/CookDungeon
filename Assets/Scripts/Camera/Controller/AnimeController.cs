@@ -13,6 +13,7 @@ public class AnimeController : MonoBehaviour
     private float comboDelay = 1.0f; // 콤보 유효 시간
     private float resetMouseDelay = 0.3f; // 마우스 좌표 리셋 시간
     private Vector2 lastMousePosition; // 마지막 마우스 좌표 저장
+    private bool isAttacking = false;  // 공격 상태 체크
 
     void Awake()
     {
@@ -22,7 +23,10 @@ public class AnimeController : MonoBehaviour
 
     void Update()
     {
-        PlayerAnime();   // 플레이어 애니메이션 갱신
+        if (!isAttacking)
+        {
+            PlayerAnime(); // 플레이어 애니메이션 갱신
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -54,7 +58,7 @@ public class AnimeController : MonoBehaviour
 
         Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
 
-        if (direction != Vector2.zero)
+        if (direction != Vector2.zero && !isAttacking) // 공격 중일 때는 이동 애니메이션 중단
         {
             PlayWalkAnimation(direction);
         }
@@ -101,6 +105,7 @@ public class AnimeController : MonoBehaviour
         if (distanceToMouse > 0.1f) // 거리가 매우 짧지 않으면 공격 수행
         {
             lastMousePosition = worldPosition; // 마지막 마우스 좌표 저장
+            isAttacking = true;  // 공격 상태 설정
             DetermineAttackDirection(worldPosition);
         }
 
@@ -122,6 +127,8 @@ public class AnimeController : MonoBehaviour
         // 공격 방향 결정 (마우스 클릭 위치를 기준으로)
         if (attackDirection.x > 0) // 오른쪽 공격
         {
+            
+
             if (comboStep == 0)
             {
                 animator.SetTrigger("RightAttack");
@@ -133,6 +140,8 @@ public class AnimeController : MonoBehaviour
         }
         else if (attackDirection.x < 0) // 왼쪽 공격
         {
+
+
             if (comboStep == 0)
             {
                 animator.SetTrigger("LeftAttack");
@@ -142,6 +151,15 @@ public class AnimeController : MonoBehaviour
                 animator.SetTrigger("LeftComboAttack");
             }
         }
+
+        // 공격이 끝난 후 상태 초기화
+        Invoke("EndAttack", 0.3f);  // 공격이 끝난 후 0.3초 뒤에 공격 상태 해제
+    }
+
+    // 공격 상태 종료 함수
+    private void EndAttack()
+    {
+        isAttacking = false;  // 공격 상태 해제
     }
 
     // 마우스 좌표 리셋 함수

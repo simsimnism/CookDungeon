@@ -286,7 +286,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Disable the room trigger collider that is used to trigger when the player enters a room
+    /// Disable the room trigger collider that is used to trigger when the player3 enters a room
     /// </summary>
     public void DisableRoomCollider()
     {
@@ -294,7 +294,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Enable the room trigger collider that is used to trigger when the player enters a room
+    /// Enable the room trigger collider that is used to trigger when the player3 enters a room
     /// </summary>
     public void EnableRoomCollider()
     {

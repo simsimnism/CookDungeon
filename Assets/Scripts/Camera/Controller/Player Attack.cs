@@ -92,7 +92,7 @@ public class PlayerAttack : MonoBehaviour
         isShowingAttackRange = true;
 
         // 공격 시 움직임을 제한
-        playerS.DisableMovement();
+        Managers.Player.DisableMovement();
 
         ExecuteAttack(attackDirection);
         
@@ -172,7 +172,7 @@ public class PlayerAttack : MonoBehaviour
         return direction; // 기본적으로 마우스 방향을 반환
     }
 
-    //실제 공격 함수
+    // 실제 공격 함수
     void ExecuteAttack(Vector2 attackDirection)
     {
         // 공격 범위 내의 적들을 찾음
@@ -180,7 +180,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D collider in colliders)
         {
-            if (collider.CompareTag("groundTileMap"))
+            if (collider.CompareTag("Monsters"))
             {
                 Vector2 targetDir = (collider.transform.position - transform.position).normalized;
                 float angle = Vector2.Angle(attackDirection, targetDir);
@@ -188,11 +188,18 @@ public class PlayerAttack : MonoBehaviour
                 if (angle <= attackAngle / 2)
                 {
                     // 적에게 콤보 단계에 따른 데미지를 가함
-                    MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
+                    MonsterAI enemy = collider.GetComponent<MonsterAI>();
                     if (enemy != null)
                     {
+                        // 콤보 단계에 따른 총 데미지를 계산
                         int totalDamage = meleeAttackDamage * comboStep;
-                        enemy.TakeDamage(totalDamage);
+
+                        // 피격 방향(공격받은 방향) 계산
+                        Vector3 hitDirection = (enemy.transform.position - transform.position).normalized;
+
+                        // 몬스터에게 데미지를 주고 피격 방향 전달
+                        enemy.TakeDamage(totalDamage, hitDirection);
+
                         Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
                     }
                 }
@@ -200,13 +207,14 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+
     void ResetCombo()
     {
         comboStep = 0;            // 콤보 단계 리셋
         isAttacking = false;      // 공격 상태 초기화
         canChainCombo = false;    // 콤보 연결 불가능 상태
 
-        playerS.EnableMovement();
+        Managers.Player.EnableMovement();
 
         Debug.Log("콤보가 리셋되었습니다!");
     }

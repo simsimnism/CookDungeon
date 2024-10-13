@@ -19,6 +19,7 @@ TagManager:
   - frontTileMap5
   - miniMapPlayer
   - playerMapPlayer
+  - Monsters
   layers:
   - Default
   - TransparentFX
