@@ -250,6 +250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  invincibilityDuration: 0.7
+  invin: 0
+  isDashing: 0
+  moveSpeed: 0
 --- !u!114 &5621252204521465343
 MonoBehaviour:
   m_ObjectHideFlags: 0

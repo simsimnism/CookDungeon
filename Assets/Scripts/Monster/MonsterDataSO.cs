@@ -1,5 +1,8 @@
 using UnityEngine;
 
+//몬스터의 스크립터블 오브젝트 ai작성과 사용시에는 
+//몬스터의 이름을 프리팹의 이름과 일치시켜서 사용할것
+//AI 작성시에는 몬스터 AI의 Start함수를 참조할것
 [CreateAssetMenu(fileName = "MonsterDataSO", menuName = "ScriptableObjects/MonsterDataSO", order = 1)]
 public class MonsterDataSO : ScriptableObject
 {

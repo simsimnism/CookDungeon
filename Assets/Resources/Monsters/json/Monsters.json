@@ -6,7 +6,7 @@
       "health": 100,
       "attack": 20,
       "range": 5,
-      "speed": 10
+      "speed": 3
     },
     {
       "name": "MushLon",
@@ -22,7 +22,7 @@
       "health": 90,
       "attack": 18,
       "range": 4,
-      "speed": 9
+      "speed": 3
     },
     {
       "name": "Cabbagegury",
@@ -38,7 +38,7 @@
       "health": 120,
       "attack": 25,
       "range": 6,
-      "speed": 12
+      "speed": 0
     },
     {
       "name": "Potabee",
