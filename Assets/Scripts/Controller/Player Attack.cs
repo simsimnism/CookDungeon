@@ -1,4 +1,3 @@
-using Cook.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Rendering;
@@ -183,11 +182,11 @@ public class PlayerAttack : MonoBehaviour
                 if (angle <= attackAngle / 2)
                 {
                     // 적에게 콤보 단계에 따른 데미지를 가함
-                    MonsterMovement enemy = collider.GetComponent<MonsterMovement>();
+                    MonsterAI enemy = collider.GetComponent<MonsterAI>();
                     if (enemy != null)
                     {
                         int totalDamage = meleeAttackDamage * comboStep;
-                        enemy.TakeDamage(totalDamage);
+                        // enemy.TakeDamage(totalDamage);
                         Debug.Log($"콤보 {comboStep}로 {enemy.name}에게 {totalDamage} 데미지를 입혔습니다.");
                     }
                 }

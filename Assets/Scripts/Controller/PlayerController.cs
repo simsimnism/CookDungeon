@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //아직 사용 안함
-    public string gameState;
 
     //Pm에서 사용할 변수
     public float moveSpeed;  // 움직임 속도

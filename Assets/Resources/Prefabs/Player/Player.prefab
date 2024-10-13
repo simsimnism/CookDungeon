@@ -89,9 +89,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 723745149
+  m_SortingLayer: 6
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1323616584, guid: 7ff93da6fe747b04b848246289ae276f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -135,7 +135,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.11041834}
+  m_Offset: {x: -0.0012454242, y: -0.15899064}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -146,7 +146,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27, y: 0.17916335}
+  m_Size: {x: 0.33476308, y: 0.19909044}
   m_EdgeRadius: 0
 --- !u!60 &8180922095436034569
 PolygonCollider2D:
@@ -192,21 +192,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.1069883, y: -0.061484776}
-      - {x: 0.06343969, y: -0.018002283}
-      - {x: 0.10503914, y: 0.022778627}
-      - {x: 0.10380256, y: 0.14882195}
-      - {x: 0.10871014, y: 0.1474198}
-      - {x: 0.046806663, y: 0.1973024}
-      - {x: -0.053937797, y: 0.1950925}
-      - {x: -0.1125657, y: 0.15092516}
-      - {x: -0.112527356, y: 0.018382624}
-      - {x: -0.077880725, y: -0.011175856}
-      - {x: -0.114668995, y: -0.058530107}
-      - {x: -0.114999995, y: -0.12428455}
-      - {x: -0.08043594, y: -0.16774563}
-      - {x: 0.06541244, y: -0.17102514}
-      - {x: 0.10695734, y: -0.122882426}
+    - - {x: 0.098926574, y: -0.021001685}
+      - {x: 0.16482928, y: 0.034241155}
+      - {x: 0.17222777, y: 0.22712818}
+      - {x: 0.07296097, y: 0.30939233}
+      - {x: -0.08133755, y: 0.31465507}
+      - {x: -0.17868493, y: 0.23230268}
+      - {x: -0.18068103, y: 0.029572025}
+      - {x: -0.11426354, y: -0.012868077}
+      - {x: -0.17135851, y: -0.0856057}
+      - {x: -0.16745895, y: -0.2528936}
+      - {x: 0.1598599, y: -0.26420242}
+      - {x: 0.16017696, y: -0.100797825}
   m_UseDelaunayMesh: 0
 --- !u!50 &5973181294550040213
 Rigidbody2D:
@@ -219,8 +216,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.43536693
+  m_UseAutoMass: 0
+  m_Mass: 0.7
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -248,6 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  invincibilityDuration: 0.7
+  invin: 0
+  isDashing: 0
+  moveSpeed: 0
 --- !u!114 &5621252204521465343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +261,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5670b16d50c97044c8634cf514c3e6ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameState: 
   moveSpeed: 0
   dashSpeed: 6
   dashDuration: 0.5

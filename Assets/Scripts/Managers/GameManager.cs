@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Resources;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement; // 임시 고치기
 
 public class GameManager
 {
     [HideInInspector] public GameState gameState; // 현재 게임 상태
     [HideInInspector] public GameState previousGameState; // 이전 게임 상태
+
+    // 현재 & 이전 방에 대한 정보
+    private Room currentRoom;
+    private Room previousRoom;
 
     // 던전 레벨 리스트 설정
     private List<DungeonLevelSO> dungeonLevelList;
@@ -27,17 +33,51 @@ public class GameManager
     {
         previousGameState = GameState.title;
         gameState = GameState.title;
+    }
 
-        GameStart();
+    public void HandleGameState()
+    {
+        switch (gameState)
+        {
+            case GameState.title:
+                break;
+            case GameState.gameStarted:
+                // 임시 고치기 ( 씬이 로드 되기도 전에 GameStart함수를 실행시켜서 null 레퍼런스가 나와서 방지용 코드 )
+                Scene scene = SceneManager.GetActiveScene();
+                if (scene.name == "GameScene")
+                {
+                    GameStart();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    // 방이 변경되는 이벤트
+    private void EventHandle_RoomChangeEvent(RoomChangeEvent roomChangedEventArgs)
+    {
+        SetCurrentRoom(roomChangedEventArgs.room);
+    }
+
+    // 현재 플레이어가 있는 방의 정보를 가져오는 함수
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
+    // 현재 플레이어가 있는 방을 설정하는 함수
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
     }
 
     void GameStart()
     {
-        // 캐릭터 생성
-        GameObject Player = Managers.Resource.Instantiate("Player/Player");
+        // Subscribe to room changed event.
+        EventHandle.OnRoomChange += EventHandle_RoomChangeEvent;
 
-        // 카메라 세팅
-        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
 
         // 던전 레벨 리스트 생성
         dungeonLevelList = new List<DungeonLevelSO>();
@@ -58,6 +98,16 @@ public class GameManager
         {
             Debug.LogError("유효하지 않은 던전 레벨 인덱스: " + currentDungeonLevelListIndex);
         }
+
+        EventHandle.CallRoomChangeEvent(currentRoom);
+
+        // 캐릭터 생성
+        GameObject Player = Managers.Resource.Instantiate("Player/Player");
+
+        // 카메라 세팅
+        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
+
+        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
     }
 
     // 최종적으로 던전을 생성하는 함수
@@ -71,5 +121,11 @@ public class GameManager
         {
             Debug.LogError("던전 생성 실패 - 지정된 방과 노드 그래프에서 던전을 만들 수 없습니다.");
         }
+    }
+
+    // 현재 던전 레벨 값을 호출
+    public DungeonLevelSO GetCurrentDungeonLevel()
+    {
+        return dungeonLevelList[currentDungeonLevelListIndex];
     }
 }
