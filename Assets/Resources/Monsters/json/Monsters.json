@@ -19,7 +19,7 @@
     {
       "name": "EggSlime",
       "id": 3,
-      "health": 1,
+      "health": 10,
       "attack": 1,
       "range": 4,
       "speed": 3
