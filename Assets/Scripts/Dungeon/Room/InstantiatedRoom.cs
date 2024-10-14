@@ -10,18 +10,18 @@ public class InstantiatedRoom : MonoBehaviour
 {
     [HideInInspector] public Room room;
     [HideInInspector] public Grid grid;
-    [HideInInspector] public Tilemap groundTilemap;
-    [HideInInspector] public Tilemap decoration1Tilemap;
-    [HideInInspector] public Tilemap decoration2Tilemap;
-    [HideInInspector] public Tilemap decoration3Tilemap;
-    [HideInInspector] public Tilemap decoration4Tilemap;
-    [HideInInspector] public Tilemap frontTilemap1;
-    [HideInInspector] public Tilemap frontTilemap2;
-    [HideInInspector] public Tilemap frontTilemap3;
-    [HideInInspector] public Tilemap frontTilemap4;
-    [HideInInspector] public Tilemap frontTilemap5;
-    [HideInInspector] public Tilemap collisionTilemap;
-    [HideInInspector] public Tilemap minimapTilemap;
+    [HideInInspector] public Tilemap groundTileMap;
+    [HideInInspector] public Tilemap decorationTileMap1;
+    [HideInInspector] public Tilemap decorationTileMap2;
+    [HideInInspector] public Tilemap decorationTileMap3;
+    [HideInInspector] public Tilemap decorationTileMap4;
+    [HideInInspector] public Tilemap frontTileMap1;
+    [HideInInspector] public Tilemap frontTileMap2;
+    [HideInInspector] public Tilemap frontTileMap3;
+    [HideInInspector] public Tilemap frontTileMap4;
+    [HideInInspector] public Tilemap frontTileMap5;
+    [HideInInspector] public Tilemap collisionTileMap;
+    [HideInInspector] public Tilemap minimapTileMap;
     //[HideInInspector] public int[,] aStarMovementPenalty;  // 2차원 배열을 사용하여 AStar 경로 찾기에 사용할 타일맵의 이동 패널티를 저장 (현재 AStar 기법을 사용하지 않음)
     //[HideInInspector] public int[,] aStarItemObstacles; // 이동 가능한 구조물의 위치를 저장 (현재 AStar 기법을 사용하지 않음)
     [HideInInspector] public Bounds roomColliderBounds;
@@ -85,55 +85,55 @@ public class InstantiatedRoom : MonoBehaviour
         {
             if (tilemap.gameObject.tag == "groundTileMap")
             {
-                groundTilemap = tilemap;
+                groundTileMap = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap1")
             {
-                decoration1Tilemap = tilemap;
+                decorationTileMap1 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap2")
             {
-                decoration2Tilemap = tilemap;
+                decorationTileMap2 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap3")
             {
-                decoration3Tilemap = tilemap;
+                decorationTileMap3 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap4")
             {
-                decoration4Tilemap = tilemap;
+                decorationTileMap4 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap1")
             {
-                frontTilemap1 = tilemap;
+                frontTileMap1 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap2")
             {
-                frontTilemap2 = tilemap;
+                frontTileMap2 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap3")
             {
-                frontTilemap3 = tilemap;
+                frontTileMap3 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap4")
             {
-                frontTilemap4 = tilemap;
+                frontTileMap4 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap5")
             {
-                frontTilemap5 = tilemap;
+                frontTileMap5 = tilemap;
             }
             else if (tilemap.gameObject.tag == "collisionTileMap")
             {
-                collisionTilemap = tilemap;
+                collisionTileMap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "minimapTileMap")
+            else if (tilemap.gameObject.tag == "miniMapTileMap")
             {
-                minimapTilemap = tilemap;
+                minimapTileMap = tilemap;
             }
             else
             {
-                groundTilemap = tilemap;
+                groundTileMap = tilemap;
             }
         }
     }
@@ -150,64 +150,64 @@ public class InstantiatedRoom : MonoBehaviour
                 continue;
 
             // Block unconnected doorways using tiles on tilemaps
-            if (collisionTilemap != null)
+            if (collisionTileMap != null)
             {
-                BlockADoorwayOnTilemapLayer(collisionTilemap, doorway);
+                BlockADoorwayOnTilemapLayer(collisionTileMap, doorway);
             }
 
-            if (minimapTilemap != null)
+            if (minimapTileMap != null)
             {
-                BlockADoorwayOnTilemapLayer(minimapTilemap, doorway);
+                BlockADoorwayOnTilemapLayer(minimapTileMap, doorway);
             }
 
-            if (groundTilemap != null)
+            if (groundTileMap != null)
             {
-                BlockADoorwayOnTilemapLayer(groundTilemap, doorway);
+                BlockADoorwayOnTilemapLayer(groundTileMap, doorway);
             }
 
-            if (decoration1Tilemap != null)
+            if (decorationTileMap1 != null)
             {
-                BlockADoorwayOnTilemapLayer(decoration1Tilemap, doorway);
+                BlockADoorwayOnTilemapLayer(decorationTileMap1, doorway);
             }
 
-            if (decoration2Tilemap != null)
+            if (decorationTileMap2 != null)
             {
-                BlockADoorwayOnTilemapLayer(decoration2Tilemap, doorway);
+                BlockADoorwayOnTilemapLayer(decorationTileMap2, doorway);
             }
 
-            if (decoration3Tilemap != null)
+            if (decorationTileMap3 != null)
             {
-                BlockADoorwayOnTilemapLayer(decoration3Tilemap, doorway);
+                BlockADoorwayOnTilemapLayer(decorationTileMap3, doorway);
             }
 
-            if (decoration4Tilemap != null)
+            if (decorationTileMap4 != null)
             {
-                BlockADoorwayOnTilemapLayer(decoration4Tilemap, doorway);
+                BlockADoorwayOnTilemapLayer(decorationTileMap4, doorway);
             }
 
-            if (frontTilemap1 != null)
+            if (frontTileMap1 != null)
             {
-                BlockADoorwayOnTilemapLayer(frontTilemap1, doorway);
+                BlockADoorwayOnTilemapLayer(frontTileMap1, doorway);
             }
 
-            if (frontTilemap2 != null)
+            if (frontTileMap2 != null)
             {
-                BlockADoorwayOnTilemapLayer(frontTilemap2, doorway);
+                BlockADoorwayOnTilemapLayer(frontTileMap2, doorway);
             }
 
-            if (frontTilemap3 != null)
+            if (frontTileMap3 != null)
             {
-                BlockADoorwayOnTilemapLayer(frontTilemap3, doorway);
+                BlockADoorwayOnTilemapLayer(frontTileMap3, doorway);
             }
 
-            if (frontTilemap4 != null)
+            if (frontTileMap4 != null)
             {
-                BlockADoorwayOnTilemapLayer(frontTilemap4, doorway);
+                BlockADoorwayOnTilemapLayer(frontTileMap4, doorway);
             }
 
-            if (frontTilemap5 != null)
+            if (frontTileMap5 != null)
             {
-                BlockADoorwayOnTilemapLayer(frontTilemap5, doorway);
+                BlockADoorwayOnTilemapLayer(frontTileMap5, doorway);
             }
         }
     }
@@ -290,7 +290,7 @@ public class InstantiatedRoom : MonoBehaviour
     private void DisableCollisionTilemapRenderer()
     {
         // Disable collision tilemap renderer
-        TilemapRenderer tmp = collisionTilemap.gameObject.GetComponent<TilemapRenderer>();
+        TilemapRenderer tmp = collisionTileMap.gameObject.GetComponent<TilemapRenderer>();
         tmp.enabled = false;
     }
 

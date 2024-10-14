@@ -2,15 +2,15 @@ using UnityEngine;
 using System.Collections;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-//에그 슬라임, 포테비, 만드래플
 public class MonsterAI : MonoBehaviour
 {
-    [SerializeField] private MonsterDataSO monsterData;
-    public int health;
-    public int attack;
-    public int attackrange;
-    public float range;
-    public float speed;
+    public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
+
+    private int health;
+    private int attack;
+    private float range;
+    private float speed;
+    private int id;  // 몬스터의 ID
     public Transform player;
 
     //넉백 관련 로직
@@ -24,30 +24,103 @@ public class MonsterAI : MonoBehaviour
     private Vector2 randomDirection; // 랜덤 이동 방향
     public float changeDirectionTime = 3f; //랜덤방향 이동 변경주기
     private float timer = 0; // 랜덤이동 타이머
-
     private enum MonsterState { Idle, Chasing }; // 상태 관리
     private MonsterState currentState = MonsterState.Idle;
 
     void Start()
     {
-        // 스크립터블 오브젝트의 값을 할당
-        if (monsterData != null)
-        {
-            health = monsterData.health;
-            attack = monsterData.attack;
-            range = monsterData.range;
-            speed = monsterData.speed;
-        }
+        // "(Clone)"을 제거하고 이름을 가져옴
+        string monsterName = gameObject.name.Replace("(Clone)", "").Trim();
 
-        randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        // 이름을 기준으로 몬스터 데이터를 검색
+        MonsterDataSO data = Managers.Data.GetMonsterDataByName(monsterName);
+        if (data != null)
+        {
+            AssignData(data);  // 데이터를 AI에 할당
+        }
+        else
+        {
+            Debug.LogError($"Monster 이름을 파싱할 수 없습니다: {monsterName}");
+        }
+        MonsterCollisionIgnore();
+
+    }
+
+    // 데이터를 할당하는 메서드
+    void AssignData(MonsterDataSO data)
+    {
+        monsterDataSO = data;
+
+        health = monsterDataSO.health;
+        attack = monsterDataSO.attack;
+        range = monsterDataSO.range;
+        speed = monsterDataSO.speed;
+
+        Debug.Log($"몬스터 데이터 적용됨: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
     }
 
     void Update()
     {
-        player = GameObject.FindWithTag("Player").transform; // 플레이어 오브젝트를 태그로 찾아 Transform 할당
+        player = GameObject.FindWithTag("Player").transform;
         MonsterMovement();
+        // z축 좌표 고정
+        Vector3 fixedPosition = transform.position;
+        fixedPosition.z = 0;  // 원하는 z값으로 고정, 예: 0
+        transform.position = fixedPosition;
     }
 
+    // 몬스터가 데미지를 입는 메서드 (예시)
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+
+    void MonsterMovement()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < range)
+        {
+            currentState = MonsterState.Chasing;
+        }
+        else
+        {
+            currentState = MonsterState.Idle;
+        }
+
+        if (currentState == MonsterState.Chasing)
+        {
+            ChasePlayer();
+        }
+        else if (currentState == MonsterState.Idle)
+        {
+            RandomMovement();
+        }
+    }
+
+    //플레이어를 추적하는 로직
+    void ChasePlayer()
+    {
+        Vector2 direction = (player.position - transform.position).normalized;
+        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+    }
+
+    void RandomMovement()
+    {
+        timer += Time.deltaTime;
+        if (timer > changeDirectionTime)
+        {
+            randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            timer = 0f;
+        }
+
+        transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
+    }
 
     // 모든 몬스터가 플레이어의 공격을 받아 데미지를 입는 로직
     public void TakeDamage(int damage, Vector3 hitDirection)
@@ -117,6 +190,7 @@ public class MonsterAI : MonoBehaviour
         Destroy(gameObject);  // 몬스터 오브젝트 제거
     }
 
+    //몬스터의 충돌처리
     void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어와 충돌 시
@@ -130,55 +204,26 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    //-----------------------------------------------------------------//
-
-    //몬스터의 전체적인 움직임을 관리하는 코드
-    void MonsterMovement()
+    //몬스터끼리 충돌하지 않도록 하는 로직
+    void MonsterCollisionIgnore()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        // "Monster" 태그를 가진 모든 오브젝트를 찾습니다.
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monsters");
 
-        // 플레이어를 감지하면 추적 상태로 전환, 감지 범위 밖에 있으면 랜덤 이동 상태
-        if (distanceToPlayer < range)
+        // 각 몬스터 오브젝트들의 Collider를 가져와 서로 충돌을 무시하도록 설정합니다.
+        for (int i = 0; i < monsters.Length; i++)
         {
-            currentState = MonsterState.Chasing;
-        }
-        else
-        {
-            currentState = MonsterState.Idle;
-        }
+            for (int j = i + 1; j < monsters.Length; j++)
+            {
+                Collider col1 = monsters[i].GetComponent<Collider>();
+                Collider col2 = monsters[j].GetComponent<Collider>();
 
-        if (currentState == MonsterState.Chasing)
-        {
-            // 플레이어 추적 로직
-            ChasePlayer();
+                if (col1 != null && col2 != null)
+                {
+                    // 두 Collider 간의 충돌을 무시합니다.
+                    Physics.IgnoreCollision(col1, col2);
+                }
+            }
         }
-        else if (currentState == MonsterState.Idle)
-        {
-            // 랜덤 이동 로직
-            RandomMovement();
-        }
-
-    }
-
-    //몬스터가 플레이어를 추적하는 로직
-    void ChasePlayer()
-    {
-        // 플레이어를 향해 이동
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-    }
-
-    void RandomMovement()
-    {
-        // 랜덤 이동 로직
-        timer += Time.deltaTime;
-        if (timer > changeDirectionTime)
-        {
-            // 방향을 랜덤하게 변경
-            randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            timer = 0f; // 타이머 리셋
-        }
-        // 랜덤 방향으로 이동
-        transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
     }
 }
