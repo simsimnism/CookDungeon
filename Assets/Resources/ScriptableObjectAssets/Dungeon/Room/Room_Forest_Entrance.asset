@@ -51,5 +51,6 @@ MonoBehaviour:
     doorwayCopyTileHeight: 5
     isConnected: 0
     isUnavailable: 0
-  spawnPositionArray:
-  - {x: 0, y: 0}
+  spawnPositionArray: []
+  monsterByLevelList: []
+  roomMonsterSpawnParametersList: []
