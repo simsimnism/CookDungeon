@@ -1,0 +1,52 @@
+{
+"monsters": [
+    {
+      "name": "Mandrapple",
+      "id": 1,
+      "health": 5,
+      "attack": 1,
+      "range": 5,
+      "speed": 3
+    },
+    {
+      "name": "MushLon",
+      "id": 2,
+      "health": 120,
+      "attack": 25,
+      "range": 6,
+      "speed": 12
+    },
+    {
+      "name": "EggSlime",
+      "id": 3,
+      "health": 1,
+      "attack": 1,
+      "range": 4,
+      "speed": 3
+    },
+    {
+      "name": "Cabbagegury",
+      "id": 4,
+      "health": 100,
+      "attack": 20,
+      "range": 5,
+      "speed": 10
+    },
+    {
+      "name": "Orengeblowfish",
+      "id": 5,
+      "health": 120,
+      "attack": 25,
+      "range": 6,
+      "speed": 0
+    },
+    {
+      "name": "Potabee",
+      "id": 6,
+      "health": 5,
+      "attack": 1,
+      "range": 4,
+      "speed": 3
+    }
+  ]
+}
