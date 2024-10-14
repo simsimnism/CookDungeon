@@ -15,4 +15,8 @@ public static class Settings
     public const int maxDungeonRebuildAttemptsForRoomGraph = 1000;
     public const int maxDungeonBuildAttempts = 10;
     #endregion
+
+    #region 게임오브젝트 태그
+    public const string playerTag = "Player";
+    #endregion
 }

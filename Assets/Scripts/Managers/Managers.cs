@@ -16,7 +16,6 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
-    MonsterManager _monster = new MonsterManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -28,7 +27,6 @@ public class Managers : MonoBehaviour
     public static GameManager GM { get { Init(); return Instance._game; } }
     public static PlayerManager Player { get { Init(); return Instance._player; } }
 
-    public static MonsterManager Monster { get { Init(); return Instance._monster; } }
 
     void Start()
     {
@@ -37,6 +35,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
+        _game.HandleGameState();
         _input.OnUpdate();
     }
 

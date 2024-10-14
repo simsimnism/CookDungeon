@@ -38,7 +38,7 @@ public class DungeonBuilder : MonoBehaviour
         while (!dungeonBuildSuccessful && dungeonBuildAttempts < Settings.maxDungeonBuildAttempts)
         {
             dungeonBuildAttempts++;
-
+            
             // 리스트의 룸 노드 그래프를 랜덤으로 가져온다.
             RoomNodeGraphSO roomNodeGraph = SelectRandomRoomNodeGraph(currentDungeonLevel.roomNodeGraphList);
 
@@ -551,9 +551,12 @@ public class DungeonBuilder : MonoBehaviour
         room.templateID = roomTemplate.guid;
         room.id = roomNode.id;
         room.prefab = roomTemplate.prefab;
+        room.roomNodeType = roomTemplate.roomNodeType;
         room.lowerBounds = roomTemplate.lowerBounds;
         room.upperBounds = roomTemplate.upperBounds;
         room.spawnPositionArray = roomTemplate.spawnPositionArray;
+        room.MonsterByLevelList = roomTemplate.monsterByLevelList;
+        room.roomLevelMonsterSpawnParametersList = roomTemplate.roomMonsterSpawnParametersList;
         room.templateLowerBounds = roomTemplate.lowerBounds;
         room.templateUpperBounds = roomTemplate.upperBounds;
         room.childRoomIDList = CopyStringList(roomNode.childRoomNodeIDList);
@@ -564,10 +567,18 @@ public class DungeonBuilder : MonoBehaviour
         {
             room.parentRoomID = "";
             room.isPreviouslyVisited = true;
+
+            Managers.GM.SetCurrentRoom(room);
         }
         else
         {
             room.parentRoomID = roomNode.parentRoomNodeIDList[0];
+        }
+
+        // If there are no enemies to spawn then default the room to be clear of enemies
+        if (room.GetNumberOfSpawnMonsters(Managers.GM.GetCurrentDungeonLevel()) == 0)
+        {
+            room.isClearedOfMonster = true;
         }
 
         return room;

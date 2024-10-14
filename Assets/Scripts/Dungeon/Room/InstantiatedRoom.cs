@@ -43,6 +43,20 @@ public class InstantiatedRoom : MonoBehaviour
 
     private BoxCollider2D boxCollider2D;
 
+    // Trigger room changed event when player enters a room
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the player triggered the collider
+        if (collision.tag == Settings.playerTag && room != Managers.GM.GetCurrentRoom())
+        {
+            // Set room as visited
+            this.room.isPreviouslyVisited = true;
+
+            // Call room changed event
+            EventHandle.CallRoomChangeEvent(room);
+        }
+    }
+
     /// <summary>
     /// Initialise The Instantiated Room
     /// </summary>
@@ -125,80 +139,6 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Block doorway horizontally - for North and South doorways
-    /// </summary>
-    private void BlockDoorwayHorizontally(Tilemap tilemap, Doorway doorway)
-    {
-        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
-
-        // loop through all tiles to copy
-        for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
-        {
-            for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
-            {
-                // Get rotation of tile being copied
-                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
-
-                // Copy tile
-                tilemap.SetTile(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
-
-                // Set rotation of tile copied
-                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), transformMatrix);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Block doorway vertically - for East and West doorways
-    /// </summary>
-    private void BlockDoorwayVertically(Tilemap tilemap, Doorway doorway)
-    {
-        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
-
-        // loop through all tiles to copy
-        for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
-        {
-
-            for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
-            {
-                // Get rotation of tile being copied
-                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
-
-                // Copy tile
-                tilemap.SetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
-
-                // Set rotation of tile copied
-                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
-
-            }
-
-        }
-    }
-
-    /// <summary>
-    /// Block a doorway on a tilemap layer
-    /// </summary>
-    private void BlockADoorwayOnTilemapLayer(Tilemap tilemap, Doorway doorway)
-    {
-        switch (doorway.orientation)
-        {
-            case Orientation.north:
-            case Orientation.south:
-                BlockDoorwayHorizontally(tilemap, doorway);
-                break;
-
-            case Orientation.east:
-            case Orientation.west:
-                BlockDoorwayVertically(tilemap, doorway);
-                break;
-
-            case Orientation.none:
-                break;
-        }
-
-    }
-
-    /// <summary>
     /// Block Off Unused Doorways In The Room
     /// </summary>
     private void BlockOffUnusedDoorWays()
@@ -273,20 +213,89 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
+    /// Block doorway horizontally - for North and South doorways
+    /// </summary>
+    private void BlockDoorwayHorizontally(Tilemap tilemap, Doorway doorway)
+    {
+        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+
+        // loop through all tiles to copy
+        for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+        {
+            for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+            {
+                // Get rotation of tile being copied
+                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+
+                // Copy tile
+                tilemap.SetTile(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
+
+                // Set rotation of tile copied
+                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + 1 + xPos, startPosition.y - yPos, 0), transformMatrix);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Block doorway vertically - for East and West doorways
+    /// </summary>
+    private void BlockDoorwayVertically(Tilemap tilemap, Doorway doorway)
+    {
+        Vector2Int startPosition = doorway.doorwayStartCopyPosition;
+
+        // loop through all tiles to copy
+        for (int yPos = 0; yPos < doorway.doorwayCopyTileHeight; yPos++)
+        {
+
+            for (int xPos = 0; xPos < doorway.doorwayCopyTileWidth; xPos++)
+            {
+                // Get rotation of tile being copied
+                Matrix4x4 transformMatrix = tilemap.GetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0));
+
+                // Copy tile
+                tilemap.SetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), tilemap.GetTile(new Vector3Int(startPosition.x + xPos, startPosition.y - yPos, 0)));
+
+                // Set rotation of tile copied
+                tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Block a doorway on a tilemap layer
+    /// </summary>
+    private void BlockADoorwayOnTilemapLayer(Tilemap tilemap, Doorway doorway)
+    {
+        switch (doorway.orientation)
+        {
+            case Orientation.north:
+            case Orientation.south:
+                BlockDoorwayHorizontally(tilemap, doorway);
+                break;
+
+            case Orientation.east:
+            case Orientation.west:
+                BlockDoorwayVertically(tilemap, doorway);
+                break;
+
+            case Orientation.none:
+                break;
+        }
+
+    }
+
+    /// <summary>
     /// Disable collision tilemap renderer
     /// </summary>
     private void DisableCollisionTilemapRenderer()
     {
         // Disable collision tilemap renderer
-        Debug.Log(collisionTilemap == null);
         TilemapRenderer tmp = collisionTilemap.gameObject.GetComponent<TilemapRenderer>();
-        Debug.Log(tmp == null);
         tmp.enabled = false;
-
     }
 
     /// <summary>
-    /// Disable the room trigger collider that is used to trigger when the player3 enters a room
+    /// Disable the room trigger collider that is used to trigger when the player enters a room
     /// </summary>
     public void DisableRoomCollider()
     {
@@ -294,7 +303,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Enable the room trigger collider that is used to trigger when the player3 enters a room
+    /// Enable the room trigger collider that is used to trigger when the player enters a room
     /// </summary>
     public void EnableRoomCollider()
     {

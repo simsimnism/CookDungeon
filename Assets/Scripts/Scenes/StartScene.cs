@@ -17,10 +17,13 @@ public class StartScene : MonoBehaviour
         sceneManagerEx.LoadScene(Define.Scene.GameScene);
     }
 
-    
+    public void ChangeGameState()
+    {
+        Managers.GM.gameState = GameState.gameStarted;
+    }
 
     void Update()
     {
-        
+
     }
 }

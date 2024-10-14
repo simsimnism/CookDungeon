@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b082678c630b54f9dc7e7cbf480920, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d39355d893900e4a835161d2887024c, type: 3}
   m_Name: Monster_3
   m_EditorClassIdentifier: 
   monsterName: EggSlime
-  id: 3
+  id: 1
   health: 2
-  attack: 3
-  range: 4
+  attack: 2
+  range: 3
   speed: 4
   monsterPrefab: {fileID: 2265763813283399209, guid: 657784766781788469f957d89d5f410c, type: 3}
