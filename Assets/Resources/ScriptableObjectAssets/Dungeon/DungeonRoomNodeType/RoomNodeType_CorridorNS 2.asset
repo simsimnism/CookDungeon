@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5db2dfce61c60a749ae67c2cdbc32eb0, type: 3}
-  m_Name: RoomNodeType_CorridorNS
+  m_Name: RoomNodeType_CorridorNS 2
   m_EditorClassIdentifier: 
-  roomNodeTypeName: Corridor NS
+  roomNodeTypeName: Corridor NS 2
   displayInNodeGraphEditor: 0
   isCorridor: 0
   isCorridorNS: 1

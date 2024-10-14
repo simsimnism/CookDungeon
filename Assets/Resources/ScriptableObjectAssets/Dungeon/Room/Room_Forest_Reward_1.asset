@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5574b4783d1e8f143b90b98d3cf33029, type: 3}
-  m_Name: Room_Forest_Small_1
+  m_Name: Room_Forest_Reward_1
   m_EditorClassIdentifier: 
-  guid: 56fc05527da94844e9f711d5ea71378d
-  prefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
-  previousPrefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
-  roomNodeType: {fileID: 11400000, guid: f6d74b37aa1103c4c9dfc02d2d92f932, type: 2}
+  guid: e0cafa2f2b512b448afbfca5ac1e5caa
+  prefab: {fileID: 1258344168438666370, guid: 4a437d8ea0bb14b458b18fe59c73b200, type: 3}
+  previousPrefab: {fileID: 1258344168438666370, guid: 4a437d8ea0bb14b458b18fe59c73b200, type: 3}
+  roomNodeType: {fileID: 11400000, guid: f5580f3fd21bacb46ae76adfb004488d, type: 2}
   lowerBounds: {x: -16, y: -11}
   upperBounds: {x: 15, y: 11}
   doorwayList:
