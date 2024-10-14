@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85b082678c630b54f9dc7e7cbf480920, type: 3}
-  m_Name: Monster_6
+  m_Script: {fileID: 11500000, guid: 5d39355d893900e4a835161d2887024c, type: 3}
+  m_Name: Potabee
   m_EditorClassIdentifier: 
-  monsterName: Potabee
-  id: 3
-  health: 4
-  attack: 2
-  range: 3
-  speed: 4
+  monsterName: 
+  id: 0
+  health: 0
+  attack: 0
+  range: 0
+  speed: 0
   monsterPrefab: {fileID: 4239965582340703874, guid: c2d11ba62a2fb014c96eb83e0a2fc001, type: 3}

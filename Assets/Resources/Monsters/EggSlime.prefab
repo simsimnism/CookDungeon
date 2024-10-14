@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4727370840148506838}
   - component: {fileID: -749647483778836300}
   - component: {fileID: 4634940977397453763}
-  - component: {fileID: 1403964476283751776}
+  - component: {fileID: 1258657697969428814}
   m_Layer: 0
   m_Name: EggSlime
   m_TagString: Monsters
@@ -263,7 +263,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1403964476283751776
+--- !u!114 &1258657697969428814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,10 +272,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2265763813283399209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981afdf5eb75bde4c85fe56799e0bfda, type: 3}
+  m_Script: {fileID: 11500000, guid: ce4895813493e23468af713f004a5b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterDataSO: {fileID: 11400000, guid: 96cd55ae84e47294c98716cb80d0a805, type: 2}
+  monsterData: {fileID: 11400000, guid: f41a258f60a9e4740a7eb498798d7676, type: 2}
+  health: 0
+  attack: 0
+  attackrange: 0
+  range: 0
+  speed: 0
   player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2

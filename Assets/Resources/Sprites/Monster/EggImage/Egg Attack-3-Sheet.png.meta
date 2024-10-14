@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-guid: 1ca35c459b627624ab7612bd7a6f4632
-========
 guid: 96737b81c15fca44da620b9d88775b63
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -76,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,32 +93,10 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      name: Cabbage Guri Run 2-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 22
-        width: 31
-        height: 27
-========
       name: Egg Attack-3-Sheet_0
       rect:
         serializedVersion: 2
@@ -130,35 +104,20 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      spriteID: b017c221c9844f348b27107524ef1928
-      internalID: 1128636353
-========
       spriteID: 14425dbe798ef784dadd3281cd9ae25d
       internalID: 1938015855
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      name: Cabbage Guri Run 2-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 22
-        width: 31
-        height: 27
-========
       name: Egg Attack-3-Sheet_1
       rect:
         serializedVersion: 2
@@ -166,35 +125,20 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      spriteID: 9e753c44e22b58d4386c373923d855fb
-      internalID: 142504510
-========
       spriteID: d52c46d6efc12a94caac6382346ff2fb
       internalID: 114957064
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      name: Cabbage Guri Run 2-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 22
-        width: 31
-        height: 27
-========
       name: Egg Attack-3-Sheet_2
       rect:
         serializedVersion: 2
@@ -202,35 +146,20 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      spriteID: 61f657411d835d841a9010e8a9c4b58a
-      internalID: -1990508896
-========
       spriteID: 6882764809565b2449c79a9cb1c897fc
       internalID: 303183409
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      name: Cabbage Guri Run 2-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 22
-        width: 31
-        height: 27
-========
       name: Egg Attack-3-Sheet_3
       rect:
         serializedVersion: 2
@@ -238,18 +167,13 @@ TextureImporter:
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      spriteID: 9372c0c5076c03142b928dc78bad9b77
-      internalID: -824036097
-========
       spriteID: edb560e41ca72db40ac42665cd60c972
       internalID: 255837667
       vertices: []
@@ -273,7 +197,6 @@ TextureImporter:
       bones: []
       spriteID: d17ad7dd4f32caa40ac347ae90fcd4b7
       internalID: 381908860
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
       vertices: []
       indices: 
       edges: []
@@ -289,18 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/Cabbage Guri Run 2-Sheet.png.meta
-      Cabbage Guri Run 2-Sheet_0: 1128636353
-      Cabbage Guri Run 2-Sheet_1: 142504510
-      Cabbage Guri Run 2-Sheet_2: -1990508896
-      Cabbage Guri Run 2-Sheet_3: -824036097
-========
       Egg Attack-3-Sheet_0: 1938015855
       Egg Attack-3-Sheet_1: 114957064
       Egg Attack-3-Sheet_2: 303183409
       Egg Attack-3-Sheet_3: 255837667
       Egg Attack-3-Sheet_4: 381908860
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/EggImage/Egg Attack-3-Sheet.png.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
