@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
     public float speed; // 총알 속도
     public float damage; // 총알 데미지
     private Vector2 direction; // 발사 방향
-    public Transform player;
 
     // 총알을 발사할 때 방향 설정
     public void SetDirection(Vector2 dir)
@@ -20,13 +19,6 @@ public class Bullet : MonoBehaviour
     {
         // 총알을 설정된 방향으로 이동
         transform.Translate(direction * speed * Time.deltaTime);
-    }
-
-    //플레이어를 추적하는 로직
-    void ChasePlayer()
-    {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,7 +33,7 @@ public class Bullet : MonoBehaviour
         }
 
         // 장애물이나 다른 물체와 충돌했을 때도 총알을 파괴
-        if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("여기에 벽과 관련된 테그 적어용 태그가 뭔지 몰라서"))
         {
             DestroyBullet();
         }

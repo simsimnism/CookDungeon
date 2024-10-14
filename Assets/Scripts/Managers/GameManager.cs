@@ -11,6 +11,10 @@ public class GameManager
     [HideInInspector] public GameState gameState; // 현재 게임 상태
     [HideInInspector] public GameState previousGameState; // 이전 게임 상태
 
+    // 현재 & 이전 방에 대한 정보
+    private Room currentRoom;
+    private Room previousRoom;
+
     // 던전 레벨 리스트 설정
     private List<DungeonLevelSO> dungeonLevelList;
     // 초기 던전 레벨 값 (스테이지 번호)
@@ -27,9 +31,8 @@ public class GameManager
 
     public void Init()
     {
-        GameStart();
-        //previousGameState = GameState.gameStarted;
-        //gameState = GameState.gameStarted;
+        previousGameState = GameState.title;
+        gameState = GameState.title;
     }
 
     public void HandleGameState()
@@ -51,8 +54,31 @@ public class GameManager
         }
     }
 
+    // 방이 변경되는 이벤트
+    private void EventHandle_RoomChangeEvent(RoomChangeEvent roomChangedEventArgs)
+    {
+        SetCurrentRoom(roomChangedEventArgs.room);
+    }
+
+    // 현재 플레이어가 있는 방의 정보를 가져오는 함수
+    public Room GetCurrentRoom()
+    {
+        return currentRoom;
+    }
+
+    // 현재 플레이어가 있는 방을 설정하는 함수
+    public void SetCurrentRoom(Room room)
+    {
+        previousRoom = currentRoom;
+        currentRoom = room;
+    }
+
     void GameStart()
     {
+        // Subscribe to room changed event.
+        EventHandle.OnRoomChange += EventHandle_RoomChangeEvent;
+
+
         // 던전 레벨 리스트 생성
         dungeonLevelList = new List<DungeonLevelSO>();
 
@@ -73,6 +99,8 @@ public class GameManager
             Debug.LogError("유효하지 않은 던전 레벨 인덱스: " + currentDungeonLevelListIndex);
         }
 
+        EventHandle.CallRoomChangeEvent(currentRoom);
+
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
 
@@ -85,8 +113,6 @@ public class GameManager
     // 최종적으로 던전을 생성하는 함수
     void genDungeon(int dungeonLevelListIndex)
     {
-        Debug.Log(dungeonLevelListIndex);
-        Debug.Log(dungeonLevelList[dungeonLevelListIndex] == null);
         // 던전 인덱스 번호에 따라 던전 리스트에 있는 던전을 생성 
         bool dungeonBuiltSucessfully = DungeonBuilder.Instance.GenerateDungeon(dungeonLevelList[dungeonLevelListIndex]);
 
@@ -97,4 +123,9 @@ public class GameManager
         }
     }
 
+    // 현재 던전 레벨 값을 호출
+    public DungeonLevelSO GetCurrentDungeonLevel()
+    {
+        return dungeonLevelList[currentDungeonLevelListIndex];
+    }
 }
