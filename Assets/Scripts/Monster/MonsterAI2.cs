@@ -136,7 +136,6 @@ public class MonsterAI2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        attack = 1;
         // 플레이어와 충돌 시
         if (other.CompareTag("Player"))
         {
