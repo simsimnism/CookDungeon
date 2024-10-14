@@ -78,28 +78,37 @@ public class PlayerAttack : MonoBehaviour
 
     void StartAttack()
     {
+        // 공격이 시작될 때 콤보 초기화
+        if (!isAttacking)
+        {
+            comboStep = 1;
+            isAttacking = true;
+            lastAttackTime = Time.time;
+            canChainCombo = true;
 
-        // 첫 번째 콤보 공격 실행
-        comboStep = 1;
-        isAttacking = true;
-        lastAttackTime = Time.time;
-        canChainCombo = true;
+            // 공격 중 이동을 멈춤
+            Managers.Player.DisableMovement();
 
-        // 마우스 위치에 따라 4방위 공격 방향 결정
-        attackDirection = GetAttackDirection();
+            // 공격 실행
+            ExecuteAttack(attackDirection);
 
-        // 공격 시각화 활성화
-        isShowingAttackRange = true;
+            // 공격 후 이동을 다시 활성화하는 타이머 초기화
+            ResetComboWithDelay();
+        }
+        else if (canChainCombo)
+        {
+            // 연속 공격의 경우 타이머를 다시 초기화
+            ResetComboWithDelay();
+            ChainComboAttack();
+        }
+    }
 
-        // 공격 시 움직임을 제한
-        Managers.Player.DisableMovement();
-
-        ExecuteAttack(attackDirection);
-        
-        // 0.5초 후에 공격 범위 시각화를 비활성화 (유니티에서는 Invoke 사용 가능)
-        Invoke("HideAttackRange", 0.5f); // 공격 범위 시각화 비활성화
-
-        Invoke("ResetCombo",  1f);
+    // 일정 시간이 지나면 콤보를 리셋하고 이동을 허용하는 함수
+    void ResetComboWithDelay()
+    {
+        // 기존 콤보 리셋 타이머를 취소하고 새로 설정
+        CancelInvoke("ResetCombo");
+        Invoke("ResetCombo", comboResetTime);  // comboResetTime 동안 공격하지 않으면 콤보 리셋
     }
 
     void ChainComboAttack()

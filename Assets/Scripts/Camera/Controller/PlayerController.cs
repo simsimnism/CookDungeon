@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
     // WASD로 상하좌우 이동 & Shift키로 대쉬와 무적 상태
     private void OnKeyMove()
     {
+
+        // 이동 가능 여부 체크
+        if (!Managers.Player.canMove)
+            return;
+
         if (!Managers.GM.IsMoving)
             return;
 
@@ -102,6 +107,8 @@ public class PlayerController : MonoBehaviour
     // 대쉬와 무적 상태를 관리하는 코루틴
     private IEnumerator Dash()
     {
+        if (Managers.Player.isAttacking)
+            yield break;
         isDashing = true;
         isInvincible = true;
         float originalSpeed = moveSpeed;
