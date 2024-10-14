@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class AnimeController : MonoBehaviour
 {
+    //파티션을 관리하는 코드
+    public GameObject RightAttackEffect;
+    public GameObject LeftAttackEffect;
+    public GameObject RightComboEffect;
+    public GameObject LeftComboEffect;
+
     private Animator animator;
     private Rigidbody2D rbody;
     public Transform playerTransform;
@@ -10,19 +16,21 @@ public class AnimeController : MonoBehaviour
     private Vector2 attackDirection;
     private int comboStep = 0;
     private float lastAttackTime = 0f;
-    private float comboDelay = 1.0f; // 콤보 유효 시간
+    private float comboDelay = 0.5f; // 콤보 유효 시간
     private float resetMouseDelay = 0.3f; // 마우스 좌표 리셋 시간
     private Vector2 lastMousePosition; // 마지막 마우스 좌표 저장
     private bool isAttacking = false;  // 공격 상태 체크
 
     void Awake()
     {
+
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        
         if (!isAttacking)
         {
             PlayerAnime(); // 플레이어 애니메이션 갱신
@@ -30,6 +38,8 @@ public class AnimeController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            // 매 프레임마다 회전값을 (0, 0, 0)으로 고정
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             HandleAttack();
         }
 
@@ -131,10 +141,14 @@ public class AnimeController : MonoBehaviour
 
             if (comboStep == 0)
             {
+                RightAttackEffect.SetActive(false);
+                RightAttackEffect.SetActive(true);
                 animator.SetTrigger("RightAttack");
             }
             else
             {
+                RightComboEffect.SetActive(false);
+                RightComboEffect.SetActive(true);
                 animator.SetTrigger("RightComboAttack");
             }
         }
@@ -144,10 +158,14 @@ public class AnimeController : MonoBehaviour
 
             if (comboStep == 0)
             {
+                LeftAttackEffect.SetActive(false);
+                LeftAttackEffect.SetActive(true);
                 animator.SetTrigger("LeftAttack");
             }
             else
             {
+                LeftComboEffect.SetActive(false);
+                LeftComboEffect.SetActive(true);
                 animator.SetTrigger("LeftComboAttack");
             }
         }
