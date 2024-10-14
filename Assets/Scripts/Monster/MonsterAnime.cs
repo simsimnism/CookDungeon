@@ -16,11 +16,17 @@ public class MonsterAnime : MonoBehaviour
 
         // 시작할 때 이전 위치를 현재 위치로 초기화
         previousPosition = transform.position;
+
+        // 매 프레임마다 회전 값을 (0, 0, 0)으로 고정합니다.
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 매 프레임마다 회전 값을 (0, 0, 0)으로 고정합니다.
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
         // 현재 몬스터 위치 가져오기
         Vector3 currentPosition = transform.position;
 

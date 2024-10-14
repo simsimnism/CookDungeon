@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public bool isDashing;
 
     // Pm에서 관리
+    private int MaxHP;
     private int Hp;
     private bool inDamage;
     public float moveSpeed;
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        MaxHP = Managers.Player.MaxHP;
         Hp = Managers.Player.hp;
         inDamage = Managers.Player.inDamage;
         invin = Managers.GM.IsInvincible;

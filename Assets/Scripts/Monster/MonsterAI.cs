@@ -42,6 +42,8 @@ public class MonsterAI : MonoBehaviour
         {
             Debug.LogError($"Monster 이름을 파싱할 수 없습니다: {monsterName}");
         }
+        MonsterCollisionIgnore();
+
     }
 
     // 데이터를 할당하는 메서드
@@ -101,6 +103,7 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
+    //플레이어를 추적하는 로직
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
@@ -187,6 +190,7 @@ public class MonsterAI : MonoBehaviour
         Destroy(gameObject);  // 몬스터 오브젝트 제거
     }
 
+    //몬스터의 충돌처리
     void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어와 충돌 시
@@ -199,5 +203,27 @@ public class MonsterAI : MonoBehaviour
             }
         }
     }
+    
+    //몬스터끼리 충돌하지 않도록 하는 로직
+    void MonsterCollisionIgnore()
+    {
+        // "Monster" 태그를 가진 모든 오브젝트를 찾습니다.
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monsters");
 
+        // 각 몬스터 오브젝트들의 Collider를 가져와 서로 충돌을 무시하도록 설정합니다.
+        for (int i = 0; i < monsters.Length; i++)
+        {
+            for (int j = i + 1; j < monsters.Length; j++)
+            {
+                Collider col1 = monsters[i].GetComponent<Collider>();
+                Collider col2 = monsters[j].GetComponent<Collider>();
+
+                if (col1 != null && col2 != null)
+                {
+                    // 두 Collider 간의 충돌을 무시합니다.
+                    Physics.IgnoreCollision(col1, col2);
+                }
+            }
+        }
+    }
 }

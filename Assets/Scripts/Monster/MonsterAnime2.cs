@@ -9,7 +9,7 @@ public class MonsterAnime2 : MonoBehaviour
     private string currentTrigger = "";  // 현재 활성화된 트리거 저장
     public Transform player;
     public MonsterAI Ma;
-    public float attackRange = 4f;  // 공격 범위 설정
+    public float attackRange = 5f;  // 공격 범위 설정
     private bool isAttacking = false;  // 현재 공격 중인지 확인
 
     void Awake()
@@ -27,10 +27,16 @@ public class MonsterAnime2 : MonoBehaviour
 
         // 시작할 때 이전 위치를 현재 위치로 초기화
         previousPosition = transform.position;
+
+        // 처음에 회전 값을 (0, 0, 0)으로 설정합니다.
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void Update()
     {
+        // 매 프레임마다 회전 값을 (0, 0, 0)으로 고정합니다.
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
         // 현재 몬스터 위치 가져오기
         Vector3 currentPosition = transform.position;
 

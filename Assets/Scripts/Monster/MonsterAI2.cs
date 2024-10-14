@@ -22,12 +22,60 @@ public class MonsterAI2 : MonoBehaviour
 
     void Start()
     {
-        Orenge();
+        // "(Clone)"을 제거하고 이름을 가져옴
+        string monsterName = gameObject.name.Replace("(Clone)", "").Trim();
+
+        // 이름을 기준으로 몬스터 데이터를 검색
+        MonsterDataSO data = Managers.Data.GetMonsterDataByName(monsterName);
+        if (data != null)
+        {
+            AssignData(data);  // 데이터를 AI에 할당
+        }
+        else
+        {
+            Debug.LogError($"Monster 이름을 파싱할 수 없습니다: {monsterName}");
+        }
+        MonsterCollisionIgnore();
+    }
+
+    // 데이터를 할당하는 메서드
+    void AssignData(MonsterDataSO data)
+    {
+        monsterDataSO = data;
+
+        health = monsterDataSO.health;
+        attack = monsterDataSO.attack;
+        range = monsterDataSO.range;
+        speed = monsterDataSO.speed;
+
+        Debug.Log($"몬스터 데이터 적용됨: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
     }
 
     void Update()
     {
         Orenge();
+    }
+
+    void MonsterCollisionIgnore()
+    {
+        // "Monster" 태그를 가진 모든 오브젝트를 찾습니다.
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monsters");
+
+        // 각 몬스터 오브젝트들의 Collider를 가져와 서로 충돌을 무시하도록 설정합니다.
+        for (int i = 0; i < monsters.Length; i++)
+        {
+            for (int j = i + 1; j < monsters.Length; j++)
+            {
+                Collider col1 = monsters[i].GetComponent<Collider>();
+                Collider col2 = monsters[j].GetComponent<Collider>();
+
+                if (col1 != null && col2 != null)
+                {
+                    // 두 Collider 간의 충돌을 무시합니다.
+                    Physics.IgnoreCollision(col1, col2);
+                }
+            }
+        }
     }
 
     // 모든 몬스터가 플레이어의 공격을 받아 데미지를 입는 로직
