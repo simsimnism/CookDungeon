@@ -71,16 +71,6 @@ public class MonsterAI : MonoBehaviour
         transform.position = fixedPosition;
     }
 
-    // 몬스터가 데미지를 입는 메서드 (예시)
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
 
     void MonsterMovement()
     {
