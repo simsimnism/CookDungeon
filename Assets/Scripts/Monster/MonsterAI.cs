@@ -120,48 +120,6 @@ public class MonsterAI : MonoBehaviour
         transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
     }
 
-    void MonsterMovement()
-    {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer < range)
-        {
-            currentState = MonsterState.Chasing;
-        }
-        else
-        {
-            currentState = MonsterState.Idle;
-        }
-
-        if (currentState == MonsterState.Chasing)
-        {
-            ChasePlayer();
-        }
-        else if (currentState == MonsterState.Idle)
-        {
-            RandomMovement();
-        }
-    }
-
-    //�÷��̾ �����ϴ� ����
-    void ChasePlayer()
-    {
-        Vector2 direction = (player.position - transform.position).normalized;
-        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-    }
-
-    void RandomMovement()
-    {
-        timer += Time.deltaTime;
-        if (timer > changeDirectionTime)
-        {
-            randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-            timer = 0f;
-        }
-
-        transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
-    }
-
     // ��� ���Ͱ� �÷��̾��� ������ �޾� �������� �Դ� ����
     public void TakeDamage(int damage, Vector3 hitDirection)
     {
