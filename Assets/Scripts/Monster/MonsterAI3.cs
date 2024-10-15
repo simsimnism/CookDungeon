@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+// 베추구리
 public class MonsterAI3 : MonoBehaviour
 {
     public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
@@ -16,7 +17,6 @@ public class MonsterAI3 : MonoBehaviour
     // 넉백 관련 로직
     public float knockbackForce = 2f;  // AddForce에 사용할 힘
     public float maxKnockbackDistance = 2f;  // 최대 이동 거리
-    public float knockbackDistance = 2f;  // 정해진 넉백 거리
     private Vector3 knockbackStartPos;  // 넉백이 시작된 위치
     Rigidbody2D rb;
 
@@ -85,40 +85,72 @@ public class MonsterAI3 : MonoBehaviour
     {
         if (isAttacking) return;  // 공격 중일 때 다른 행동을 하지 않음
 
+        // 플레이어와 몬스터 사이 거리 계산
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
+        Debug.Log($"플레이어와의 거리: {distanceToPlayer} / 공격 범위: {attackRange}");
+        attackRange = 3;
+        // 플레이어가 공격 범위 안에 들어오면 공격 실행
+        if (distanceToPlayer <= attackRange)
+        {
+            StartCoroutine(StopAndAttackPlayer());  // 즉시 공격
+            return;  // 공격을 시작하면 추격 중단
+        }
+
+        // 공격 범위 안에 있지 않으면 플레이어 추격
         if (distanceToPlayer < range)
         {
             currentState = MonsterState.Chasing;
+            ChasePlayer();  // 추격
         }
         else
         {
             currentState = MonsterState.Idle;
-        }
-
-        if (currentState == MonsterState.Chasing)
-        {
-            StartCoroutine(StopAndAttackPlayer());  // 플레이어 감지 시 행동 멈추고 공격
-        }
-        else if (currentState == MonsterState.Idle)
-        {
-            RandomMovement();
+            RandomMovement();  // 플레이어가 없을 때는 랜덤 이동
         }
     }
 
-    // 0.5초 후 플레이어와 자신에게 데미지를 주는 코루틴
+    // 1초 후 플레이어와 자신에게 데미지를 주는 코루틴
     IEnumerator StopAndAttackPlayer()
     {
-        isAttacking = true;  // 공격 중으로 상태 전환
-        Debug.Log("플레이어를 감지했습니다. 0.5초 후에 공격합니다.");
+        if (isAttacking) yield break;  // 이미 공격 중이면 중복 실행 방지
 
-        // 0.5초 대기
+        isAttacking = true;  // 공격 중으로 상태 전환
+        Debug.Log("플레이어를 감지했습니다. 1초 후에 공격합니다.");
+
+        // 1초 대기
         yield return new WaitForSeconds(1f);
 
         // 플레이어와 자신에게 데미지 주기
         AttackPlayerAndSelf();
 
-        isAttacking = false;  // 공격이 끝나면 다시 행동 가능
+        // 공격이 끝나면 다시 행동 가능
+        isAttacking = false;
+    }
+
+    // 플레이어에게만 범위 내에서 데미지를 주는 메서드
+    void AttackPlayerAndSelf()
+    {
+        // 자신의 위치를 기준으로 원형 범위 내의 콜라이더 탐색
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, attackRange);
+
+        foreach (var hit in hits)
+        {
+            // 탐지된 객체가 플레이어라면 데미지
+            if (hit.CompareTag("Player"))
+            {
+                Player playerComponent = hit.GetComponent<Player>();
+                if (playerComponent != null)
+                {
+                    playerComponent.TakeDamage(attack);
+                    Debug.Log($"플레이어 {playerComponent.name}에게 {attack} 데미지를 주었습니다.");
+                }
+            }
+        }
+
+        // 자신에게도 데미지
+        TakeDamage(attack);
+        Debug.Log($"자신 {gameObject.name}에게 {attack} 데미지를 주었습니다.");
     }
 
     // 플레이어를 추적하는 로직
@@ -126,12 +158,6 @@ public class MonsterAI3 : MonoBehaviour
     {
         Vector2 direction = (player.position - transform.position).normalized;
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-
-        // 공격 사거리 내에 플레이어가 들어오면 공격
-        if (Vector2.Distance(transform.position, player.position) <= range + 1f)
-        {
-            AttackPlayerAndSelf();
-        }
     }
 
     void RandomMovement()
@@ -144,40 +170,6 @@ public class MonsterAI3 : MonoBehaviour
         }
 
         transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
-    }
-
-    // 플레이어와 몬스터에게 모두 데미지를 주는 메서드
-    void AttackPlayerAndSelf()
-    {
-        // 플레이어에게 데미지
-        Player playerComponent = player.GetComponent<Player>();
-        if (playerComponent != null)
-        {
-            playerComponent.TakeDamage(attack);
-        }
-
-        // 몬스터 자신에게도 데미지
-        TakeDamage(attack);
-
-        Debug.Log($"{gameObject.name}가 {playerComponent.name}에게 {attack} 데미지를 주고, 자신도 {attack} 데미지를 받았습니다.");
-    }
-
-    // 모든 몬스터가 플레이어의 공격을 받아 데미지를 입는 로직
-    public void TakeDamage(int damage, Vector3 hitDirection)
-    {
-        // 체력 감소
-        health -= damage;
-        Debug.Log($"{gameObject.name} 가 {damage} 의 데미지를, remaining health: {health}");
-
-        // 체력이 0 이하로 떨어지면 몬스터 사망
-        if (health <= 0)
-        {
-            Die();
-            return;
-        }
-
-        // 피격 시 밀려나는 효과 (노크백)
-        Knockback(hitDirection);
     }
 
     // 넉백 처리 (코루틴으로 거리 체크)
@@ -265,5 +257,12 @@ public class MonsterAI3 : MonoBehaviour
                 }
             }
         }
+    }
+
+    // 공격 범위를 시각적으로 확인하기 위한 Gizmo
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }
