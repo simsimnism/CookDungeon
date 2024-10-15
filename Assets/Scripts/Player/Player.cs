@@ -10,19 +10,21 @@ public class Player : MonoBehaviour
     public bool invin;
     public bool isDashing;
 
-    //Hp바와 연동
+    // HP 바와 연동
     private HpBar hpBar;
 
     // Pm에서 관리
     private int MaxHP;
-    private int currentHP;// 현재 체력
+    private int currentHP; // 현재 체력
     private bool inDamage;
     public float moveSpeed;
     private Vector2 dashDiretion;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider; // 플레이어의 Collider2D 참조
+    private Rigidbody2D rb;
 
-    Rigidbody2D rb;
+    // 게임 오버 패널 추가
+    public GameObject gameOverPanel; // 게임 오버 UI 패널 연결
 
     void Awake()
     {
@@ -47,6 +49,12 @@ public class Player : MonoBehaviour
             hpBar.Initialize(MaxHP);
         }
 
+        // 게임 오버 패널을 태그로 동적으로 찾음
+        gameOverPanel = GameObject.FindWithTag("GameOverPanel");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false); // 게임 오버 패널을 비활성화 상태로 시작
+        }
     }
 
     void Update()
@@ -56,17 +64,6 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(StartInvincibility());
         }
-        if (isDashing && IsTouchingWallLayer())
-        {
-            StopDash();
-        }
-    }
-
-    // 대쉬를 중단하는 로직
-    void StopDash()
-    {
-        isDashing = false; // 대쉬 상태 중단
-        rb.velocity = Vector2.zero; // 속도 멈춤
     }
 
     // 플레이어 생성
@@ -87,6 +84,12 @@ public class Player : MonoBehaviour
             if (hpBar != null)
             {
                 hpBar.UpdateHealth(currentHP);
+            }
+
+            // 체력이 0이 되었을 때 죽는 로직
+            if (currentHP <= 0)
+            {
+                Die(); // 사망 함수 호출
             }
 
             // 데미지를 입으면 무적 상태 시작
@@ -138,31 +141,9 @@ public class Player : MonoBehaviour
 
         // 무적 상태 해제 및 색상, 충돌 원래대로 복원
         spriteRenderer.color = originalColor;
-
-        // 충돌을 다시 활성화하기 전에 벽 레이어를 감지
-        if (IsTouchingWallLayer())
-        {
-            playerCollider.enabled = true; // 벽 레이어를 감지하면 충돌 다시 활성화
-        }
+        playerCollider.enabled = true; // 충돌 다시 활성화
         invin = false;
     }
-    // 벽 레이어를 감지하는 함수
-    bool IsTouchingWallLayer()
-    {
-        // 벽에 해당하는 레이어가 있다고 가정 (예: 레이어 8)
-        int wallLayer = LayerMask.NameToLayer("Wall");
-        LayerMask wallLayerMask = 1 << wallLayer;
-
-        // 벽 레이어에 해당하는 물체와의 충돌을 감지
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDiretion, 0.5f, wallLayerMask); // 대쉬 방향으로 벽 감지
-        if (hit.collider != null && hit.collider.gameObject.layer == wallLayer)
-        {
-            return true; // 벽 레이어에 닿았으면 true 반환
-        }
-        return false;
-    }
-
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -180,8 +161,15 @@ public class Player : MonoBehaviour
         Managers.GM.IsMoving = true;
     }
 
+    // 사망 로직
     void Die()
     {
-        // 사망 로직
+        // 게임 오버 패널 활성화
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        // 시간 멈춤
+        Time.timeScale = 0f;
     }
 }
