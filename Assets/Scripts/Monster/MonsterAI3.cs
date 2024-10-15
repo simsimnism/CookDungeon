@@ -27,7 +27,7 @@ public class MonsterAI3 : MonoBehaviour
     private enum MonsterState { Idle, Chasing }; // 상태 관리
     private MonsterState currentState = MonsterState.Idle;
 
-    private bool isAttacking = false;  // 플레이어 공격 중인지 여부를 추적
+    public bool isAttacking = false;  // 플레이어 공격 중인지 여부를 추적
 
     void Start()
     {
