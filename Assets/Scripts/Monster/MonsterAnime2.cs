@@ -1,7 +1,6 @@
 using UnityEngine;
 
-
-//에그슬라임 애니매이션
+// 에그슬라임 애니매이션
 public class MonsterAnime2 : MonoBehaviour
 {
     private Animator animator;
@@ -19,7 +18,9 @@ public class MonsterAnime2 : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        // 플레이어를 찾는 함수를 호출
+        FindPlayer();
+
         animator = GetComponent<Animator>();
 
         // 기본 상태를 Stand로 설정 (처음에는 대기 상태)
@@ -34,6 +35,12 @@ public class MonsterAnime2 : MonoBehaviour
 
     void Update()
     {
+        // 매 프레임마다 플레이어가 있는지 확인하고 없으면 다시 찾기 시도
+        if (player == null)
+        {
+            FindPlayer();
+        }
+
         // 매 프레임마다 회전 값을 (0, 0, 0)으로 고정합니다.
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -71,6 +78,16 @@ public class MonsterAnime2 : MonoBehaviour
 
         // 현재 위치를 이전 위치로 업데이트
         previousPosition = currentPosition;
+    }
+
+    // 플레이어를 찾는 함수
+    private void FindPlayer()
+    {
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.transform;
+        }
     }
 
     // 공격 상태일 때 실행되는 애니메이션 설정 함수
