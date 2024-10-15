@@ -9,6 +9,7 @@ public class MonsterAI : MonoBehaviour
     private int health;
     private int attack;
     private float range;
+    private float attackRange;
     private float speed;
     private int id;  // 몬스터의 ID
     public Transform player;
@@ -53,6 +54,7 @@ public class MonsterAI : MonoBehaviour
 
         health = monsterDataSO.health;
         attack = monsterDataSO.attack;
+        attackRange = monsterDataSO.attackRange;
         range = monsterDataSO.range;
         speed = monsterDataSO.speed;
 

@@ -7,6 +7,7 @@ public class MonsterAI3 : MonoBehaviour
 
     private int health;
     private int attack;
+    private int attackRange;
     private float range;
     private float speed;
     private int id;  // 몬스터의 ID
@@ -25,6 +26,8 @@ public class MonsterAI3 : MonoBehaviour
     private float timer = 0; // 랜덤 이동 타이머
     private enum MonsterState { Idle, Chasing }; // 상태 관리
     private MonsterState currentState = MonsterState.Idle;
+
+    private bool isAttacking = false;  // 플레이어 공격 중인지 여부를 추적
 
     void Start()
     {
@@ -51,6 +54,7 @@ public class MonsterAI3 : MonoBehaviour
 
         health = monsterDataSO.health;
         attack = monsterDataSO.attack;
+        attackRange = monsterDataSO.attackRange;
         range = monsterDataSO.range;
         speed = monsterDataSO.speed;
 
@@ -79,6 +83,8 @@ public class MonsterAI3 : MonoBehaviour
 
     void MonsterMovement()
     {
+        if (isAttacking) return;  // 공격 중일 때 다른 행동을 하지 않음
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer < range)
@@ -92,12 +98,27 @@ public class MonsterAI3 : MonoBehaviour
 
         if (currentState == MonsterState.Chasing)
         {
-            ChasePlayer();
+            StartCoroutine(StopAndAttackPlayer());  // 플레이어 감지 시 행동 멈추고 공격
         }
         else if (currentState == MonsterState.Idle)
         {
             RandomMovement();
         }
+    }
+
+    // 0.5초 후 플레이어와 자신에게 데미지를 주는 코루틴
+    IEnumerator StopAndAttackPlayer()
+    {
+        isAttacking = true;  // 공격 중으로 상태 전환
+        Debug.Log("플레이어를 감지했습니다. 0.5초 후에 공격합니다.");
+
+        // 0.5초 대기
+        yield return new WaitForSeconds(1f);
+
+        // 플레이어와 자신에게 데미지 주기
+        AttackPlayerAndSelf();
+
+        isAttacking = false;  // 공격이 끝나면 다시 행동 가능
     }
 
     // 플레이어를 추적하는 로직

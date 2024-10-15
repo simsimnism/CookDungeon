@@ -31,6 +31,7 @@ public class DataManager
         public string name;
         public int health;
         public int attack;
+        public int attackRange;
         public float range;
         public float speed;
     }
@@ -65,6 +66,7 @@ public class DataManager
             monsterDataSO.monsterName = entry.Value.name;
             monsterDataSO.health = entry.Value.health;
             monsterDataSO.attack = entry.Value.attack;
+            monsterDataSO.attackRange = entry.Value.attackRange;
             monsterDataSO.range = entry.Value.range;
             monsterDataSO.speed = entry.Value.speed;
 
