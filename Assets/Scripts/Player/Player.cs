@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
         moveSpeed = Managers.Player.moveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 참조 가져오기
         playerCollider = GetComponent<Collider2D>(); // Collider2D 참조 가져오기
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -56,6 +56,17 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(StartInvincibility());
         }
+        if (isDashing && IsTouchingWallLayer())
+        {
+            StopDash();
+        }
+    }
+
+    // 대쉬를 중단하는 로직
+    void StopDash()
+    {
+        isDashing = false; // 대쉬 상태 중단
+        rb.velocity = Vector2.zero; // 속도 멈춤
     }
 
     // 플레이어 생성
@@ -127,9 +138,31 @@ public class Player : MonoBehaviour
 
         // 무적 상태 해제 및 색상, 충돌 원래대로 복원
         spriteRenderer.color = originalColor;
-        playerCollider.enabled = true; // 충돌 다시 활성화
+
+        // 충돌을 다시 활성화하기 전에 벽 레이어를 감지
+        if (IsTouchingWallLayer())
+        {
+            playerCollider.enabled = true; // 벽 레이어를 감지하면 충돌 다시 활성화
+        }
         invin = false;
     }
+    // 벽 레이어를 감지하는 함수
+    bool IsTouchingWallLayer()
+    {
+        // 벽에 해당하는 레이어가 있다고 가정 (예: 레이어 8)
+        int wallLayer = LayerMask.NameToLayer("Wall");
+        LayerMask wallLayerMask = 1 << wallLayer;
+
+        // 벽 레이어에 해당하는 물체와의 충돌을 감지
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dashDiretion, 0.5f, wallLayerMask); // 대쉬 방향으로 벽 감지
+        if (hit.collider != null && hit.collider.gameObject.layer == wallLayer)
+        {
+            return true; // 벽 레이어에 닿았으면 true 반환
+        }
+        return false;
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

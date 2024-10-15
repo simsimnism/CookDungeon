@@ -7,7 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MonsterAI : MonoBehaviour
 {
-    public MonsterDataSO monsterDataSO;  // ScriptableObject�� �����͸� ����
+    public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
 
     private int health;
     private int attack;
@@ -16,37 +16,37 @@ public class MonsterAI : MonoBehaviour
     private float attackRange;
 
     private float speed;
-    private int id;  // ������ ID
+    private int id;  // 몬스터의 ID
     public Transform player;
 
-    //�˹� ���� ����
-    public float knockbackForce = 2f;  // AddForce�� ����� ��
-    public float maxKnockbackDistance = 2f;  // �ִ� �̵� �Ÿ�
-    public float knockbackDistance = 2f;  // ������ �˹� �Ÿ�
-    private Vector3 knockbackStartPos;  // �˹��� ���۵� ��ġ
+    //넉백 관련 로직
+    public float knockbackForce = 2f;  // AddForce에 사용할 힘
+    public float maxKnockbackDistance = 2f;  // 최대 이동 거리
+    public float knockbackDistance = 2f;  // 정해진 넉백 거리
+    private Vector3 knockbackStartPos;  // 넉백이 시작된 위치
     Rigidbody2D rb;
 
-    //�����̵� ���÷���
-    private Vector2 randomDirection; // ���� �̵� ����
-    public float changeDirectionTime = 3f; //�������� �̵� �����ֱ�
-    private float timer = 0; // �����̵� Ÿ�̸�
-    private enum MonsterState { Idle, Chasing }; // ���� ����
+    //랜덤이동 관련로직
+    private Vector2 randomDirection; // 랜덤 이동 방향
+    public float changeDirectionTime = 3f; //랜덤방향 이동 변경주기
+    private float timer = 0; // 랜덤이동 타이머
+    private enum MonsterState { Idle, Chasing }; // 상태 관리
     private MonsterState currentState = MonsterState.Idle;
 
     void Start()
     {
-        // "(Clone)"�� �����ϰ� �̸��� ������
+        // "(Clone)"을 제거하고 이름을 가져옴
         string monsterName = gameObject.name.Replace("(Clone)", "").Trim();
 
-        // �̸��� �������� ���� �����͸� �˻�
+        // 이름을 기준으로 몬스터 데이터를 검색
         MonsterDataSO data = Managers.Data.GetMonsterDataByName(monsterName);
         if (data != null)
         {
-            AssignData(data);  // �����͸� AI�� �Ҵ�
+            AssignData(data);  // 데이터를 AI에 할당
         }
         else
         {
-            Debug.LogError($"Monster �̸��� �Ľ��� �� �����ϴ�: {monsterName}");
+            Debug.LogError($"Monster 이름을 파싱할 수 없습니다: {monsterName}");
         }
         MonsterCollisionIgnore();
 
@@ -65,7 +65,7 @@ public class MonsterAI : MonoBehaviour
         range = monsterDataSO.range;
         speed = monsterDataSO.speed;
 
-        Debug.Log($"���� ������ �����: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
+        Debug.Log($"몬스터 데이터 적용됨: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
     }
 
     void Update()
@@ -125,7 +125,7 @@ public class MonsterAI : MonoBehaviour
     {
         // ü�� ����
         health -= damage;
-        Debug.Log($"{gameObject.name} �� {damage} �� ��������, remaining health: {health}");
+        Debug.Log($"{gameObject.name} 가 {damage} 의 데미지를, remaining health: {health}");
 
         // ü���� 0 ���Ϸ� �������� ���� ���
         if (health <= 0)
