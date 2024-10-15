@@ -22,34 +22,36 @@ MonoBehaviour:
   - position: {x: -24, y: 2}
     orientation: 3
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -24, y: 7}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
     isConnected: 0
     isUnavailable: 0
   - position: {x: 23, y: 2}
     orientation: 1
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: 17, y: 7}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
     isConnected: 0
     isUnavailable: 0
   - position: {x: -1, y: 19}
     orientation: 0
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -5, y: 19}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 6
     isConnected: 0
     isUnavailable: 0
   - position: {x: -1, y: -16}
     orientation: 2
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -5, y: -9}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 8
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
   - {x: 0, y: 0}
+  monsterByLevelList: []
+  roomMonsterSpawnParametersList: []
