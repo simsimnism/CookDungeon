@@ -45,10 +45,6 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    void Update()
-    {
-    }
-
     //공격범위 시각화 폐기 가능
     void HideAttackRange() 
     {

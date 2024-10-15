@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
+[RequireComponent(typeof(DestroyEvent))]
+[RequireComponent(typeof(MonsterDestroy))]
+
 public class MonsterAI : MonoBehaviour
 {
     public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
@@ -69,17 +72,6 @@ public class MonsterAI : MonoBehaviour
         transform.position = fixedPosition;
     }
 
-    // 몬스터가 데미지를 입는 메서드 (예시)
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0)
-        {
-            Die();
-        }
-    }
-
-
     void MonsterMovement()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
@@ -132,7 +124,7 @@ public class MonsterAI : MonoBehaviour
         // 체력이 0 이하로 떨어지면 몬스터 사망
         if (health <= 0)
         {
-            Die();
+            MonsterDestroyed();
             return;
         }
 
@@ -183,11 +175,11 @@ public class MonsterAI : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    // 몬스터가 죽을 때 처리
-    void Die()
+    // 몬스터가 죽을 때 삭제하는 함수
+    private void MonsterDestroyed()
     {
-        Debug.Log($"{gameObject.name} has died!");
-        Destroy(gameObject);  // 몬스터 오브젝트 제거
+        DestroyEvent destroyedEvent = GetComponent<DestroyEvent>();
+        destroyedEvent.CallDestroyedEvent(false, 0);
     }
 
     //몬스터의 충돌처리

@@ -146,23 +146,24 @@ public class MonsterSpawner : MonoBehaviour
         GameObject monster = Instantiate(monsterData.monsterPrefab, position, Quaternion.identity, transform);
 
         // 몬스터 파괴 이벤트를 구독함
-        //monster.GetComponent<DestroyEvent>().OnDestroyed += Enemy_OnDestroyed;
+        monster.GetComponent<DestroyEvent>().OnDestroyed += Enemy_OnDestroyed;
     }
 
     // 몬스터 제거 함수
     private void Enemy_OnDestroyed(DestroyEvent destroyedEvent, DestroyedEventArgs destroyedEventArgs)
     {
-        // Unsubscribe from event
+        // 이벤트 구독 해제
         destroyedEvent.OnDestroyed -= Enemy_OnDestroyed;
 
-        // reduce current enemy count
+        // 방 안에 있는 현재 몬스터의 수를 줄임
         currentEnemyCount--;
+        Debug.Log("현재 남은 적 수 : " + currentEnemyCount);
 
         if (currentEnemyCount <= 0 && enemiesSpawnedSoFar == enemiesToSpawn)
         {
             currentRoom.isClearedOfMonster = true;
 
-            // Set game state
+            // 게임 스테이트 변경
             if (Managers.GM.gameState == GameState.MonsterBattle)
             {
                 Managers.GM.gameState = GameState.playingLevel;
@@ -175,11 +176,12 @@ public class MonsterSpawner : MonoBehaviour
                 Managers.GM.previousGameState = GameState.BossBattle;
             }
 
-            // 문이 열림
+            // 문이 열림 (문 미완)
             // currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
 
-            // Trigger room enemies defeated event
+            // 방에 몬스터가 없어서 클리어되었다는 이벤트 출력
             EventHandle.CallRoomMonsterClearEvent(currentRoom);
+            Debug.Log("방을 클리어 했습니다!");
         }
     }
 }

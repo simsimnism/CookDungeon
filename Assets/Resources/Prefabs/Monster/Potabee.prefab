@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7060042728825364998}
   - component: {fileID: 5655372390081733592}
   - component: {fileID: -5739336872881472273}
+  - component: {fileID: 4677970938706137011}
   m_Layer: 0
   m_Name: Potabee
   m_TagString: Monsters
@@ -276,14 +277,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4895813493e23468af713f004a5b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 11400000, guid: 1c51afa627bf72a4e9cc0a2558ff7042, type: 2}
-  health: 1
-  attack: 1
-  attackrange: 1
-  range: 2
-  speed: 3
+  monsterDataSO: {fileID: 0}
   player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2
   knockbackDistance: 2
   changeDirectionTime: 3
+--- !u!114 &4677970938706137011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239965582340703874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

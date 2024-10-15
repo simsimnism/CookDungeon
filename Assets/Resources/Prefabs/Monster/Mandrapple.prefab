@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -6869352901291980912}
   - component: {fileID: -1061583787807533325}
   - component: {fileID: 4892160119629054789}
+  - component: {fileID: 6202692428919447373}
   m_Layer: 0
   m_Name: Mandrapple
   m_TagString: Monsters
@@ -276,14 +277,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4895813493e23468af713f004a5b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterData: {fileID: 11400000, guid: dc1faf4a3e4d2ad4c980bb382a814171, type: 2}
-  health: 0
-  attack: 0
-  attackrange: 0
-  range: 0
-  speed: 0
+  monsterDataSO: {fileID: 0}
   player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2
   knockbackDistance: 2
   changeDirectionTime: 3
+--- !u!114 &6202692428919447373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243285967915163506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

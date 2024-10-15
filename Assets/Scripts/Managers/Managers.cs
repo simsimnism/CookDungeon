@@ -33,7 +33,7 @@ public class Managers : MonoBehaviour
         Init();
 	}
 
-    void Update()
+    void FixedUpdate()
     {
         _game.HandleGameState();
         _input.OnUpdate();
