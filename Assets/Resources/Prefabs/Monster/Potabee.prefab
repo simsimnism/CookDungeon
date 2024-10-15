@@ -16,8 +16,7 @@ GameObject:
   - component: {fileID: 5511086977247236210}
   - component: {fileID: 7060042728825364998}
   - component: {fileID: 5655372390081733592}
-  - component: {fileID: -5739336872881472273}
-  - component: {fileID: 4677970938706137011}
+  - component: {fileID: -3222496418682476685}
   m_Layer: 0
   m_Name: Potabee
   m_TagString: Monsters
@@ -265,7 +264,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5739336872881472273
+--- !u!114 &-3222496418682476685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -277,21 +276,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4895813493e23468af713f004a5b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterDataSO: {fileID: 0}
+  monsterDataSO: {fileID: 11400000, guid: 1c51afa627bf72a4e9cc0a2558ff7042, type: 2}
   player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2
   knockbackDistance: 2
   changeDirectionTime: 3
---- !u!114 &4677970938706137011
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4239965582340703874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

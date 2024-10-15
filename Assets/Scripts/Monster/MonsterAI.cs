@@ -7,68 +7,74 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MonsterAI : MonoBehaviour
 {
-    public MonsterDataSO monsterDataSO;  // ScriptableObject·Î µ¥ÀÌÅÍ¸¦ ÀúÀå
+    public MonsterDataSO monsterDataSO;  // ScriptableObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     private int health;
     private int attack;
     private float range;
+
+    private float attackRange;
+
     private float speed;
-    private int id;  // ¸ó½ºÅÍÀÇ ID
+    private int id;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID
     public Transform player;
 
-    //³Ë¹é °ü·Ã ·ÎÁ÷
-    public float knockbackForce = 2f;  // AddForce¿¡ »ç¿ëÇÒ Èû
-    public float maxKnockbackDistance = 2f;  // ÃÖ´ë ÀÌµ¿ °Å¸®
-    public float knockbackDistance = 2f;  // Á¤ÇØÁø ³Ë¹é °Å¸®
-    private Vector3 knockbackStartPos;  // ³Ë¹éÀÌ ½ÃÀÛµÈ À§Ä¡
+    //ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float knockbackForce = 2f;  // AddForceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+    public float maxKnockbackDistance = 2f;  // ï¿½Ö´ï¿½ ï¿½Ìµï¿½ ï¿½Å¸ï¿½
+    public float knockbackDistance = 2f;  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¹ï¿½ ï¿½Å¸ï¿½
+    private Vector3 knockbackStartPos;  // ï¿½Ë¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½Ä¡
     Rigidbody2D rb;
 
-    //·£´ýÀÌµ¿ °ü·Ã·ÎÁ÷
-    private Vector2 randomDirection; // ·£´ý ÀÌµ¿ ¹æÇâ
-    public float changeDirectionTime = 3f; //·£´ý¹æÇâ ÀÌµ¿ º¯°æÁÖ±â
-    private float timer = 0; // ·£´ýÀÌµ¿ Å¸ÀÌ¸Ó
-    private enum MonsterState { Idle, Chasing }; // »óÅÂ °ü¸®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½
+    private Vector2 randomDirection; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+    public float changeDirectionTime = 3f; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
+    private float timer = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½Ìµï¿½ Å¸ï¿½Ì¸ï¿½
+    private enum MonsterState { Idle, Chasing }; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     private MonsterState currentState = MonsterState.Idle;
 
     void Start()
     {
-        // "(Clone)"À» Á¦°ÅÇÏ°í ÀÌ¸§À» °¡Á®¿È
+        // "(Clone)"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         string monsterName = gameObject.name.Replace("(Clone)", "").Trim();
 
-        // ÀÌ¸§À» ±âÁØÀ¸·Î ¸ó½ºÅÍ µ¥ÀÌÅÍ¸¦ °Ë»ö
+        // ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ë»ï¿½
         MonsterDataSO data = Managers.Data.GetMonsterDataByName(monsterName);
         if (data != null)
         {
-            AssignData(data);  // µ¥ÀÌÅÍ¸¦ AI¿¡ ÇÒ´ç
+            AssignData(data);  // ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ AIï¿½ï¿½ ï¿½Ò´ï¿½
         }
         else
         {
-            Debug.LogError($"Monster ÀÌ¸§À» ÆÄ½ÌÇÒ ¼ö ¾ø½À´Ï´Ù: {monsterName}");
+            Debug.LogError($"Monster ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ä½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½: {monsterName}");
         }
         MonsterCollisionIgnore();
 
     }
 
-    // µ¥ÀÌÅÍ¸¦ ÇÒ´çÇÏ´Â ¸Þ¼­µå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½Ò´ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½
     void AssignData(MonsterDataSO data)
     {
         monsterDataSO = data;
 
         health = monsterDataSO.health;
         attack = monsterDataSO.attack;
+
+        attackRange = monsterDataSO.attackRange;
+
         range = monsterDataSO.range;
         speed = monsterDataSO.speed;
 
-        Debug.Log($"¸ó½ºÅÍ µ¥ÀÌÅÍ Àû¿ëµÊ: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
     }
 
     void Update()
     {
         player = GameObject.FindWithTag("Player").transform;
         MonsterMovement();
-        // zÃà ÁÂÇ¥ °íÁ¤
+        // zï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½
         Vector3 fixedPosition = transform.position;
-        fixedPosition.z = 0;  // ¿øÇÏ´Â z°ªÀ¸·Î °íÁ¤, ¿¹: 0
+        fixedPosition.z = 0;  // ï¿½ï¿½ï¿½Ï´ï¿½ zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½: 0
         transform.position = fixedPosition;
     }
 
@@ -95,7 +101,7 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    //ÇÃ·¹ÀÌ¾î¸¦ ÃßÀûÇÏ´Â ·ÎÁ÷
+    //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;
@@ -114,43 +120,85 @@ public class MonsterAI : MonoBehaviour
         transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
     }
 
-    // ¸ðµç ¸ó½ºÅÍ°¡ ÇÃ·¹ÀÌ¾îÀÇ °ø°ÝÀ» ¹Þ¾Æ µ¥¹ÌÁö¸¦ ÀÔ´Â ·ÎÁ÷
+    void MonsterMovement()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+
+        if (distanceToPlayer < range)
+        {
+            currentState = MonsterState.Chasing;
+        }
+        else
+        {
+            currentState = MonsterState.Idle;
+        }
+
+        if (currentState == MonsterState.Chasing)
+        {
+            ChasePlayer();
+        }
+        else if (currentState == MonsterState.Idle)
+        {
+            RandomMovement();
+        }
+    }
+
+    //ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    void ChasePlayer()
+    {
+        Vector2 direction = (player.position - transform.position).normalized;
+        transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+    }
+
+    void RandomMovement()
+    {
+        timer += Time.deltaTime;
+        if (timer > changeDirectionTime)
+        {
+            randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+            timer = 0f;
+        }
+
+        transform.position += (Vector3)randomDirection * speed * Time.deltaTime;
+    }
+
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô´ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void TakeDamage(int damage, Vector3 hitDirection)
     {
-        // Ã¼·Â °¨¼Ò
+        // Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         health -= damage;
-        Debug.Log($"{gameObject.name} °¡ {damage} ÀÇ µ¥¹ÌÁö¸¦, remaining health: {health}");
+        Debug.Log($"{gameObject.name} ï¿½ï¿½ {damage} ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, remaining health: {health}");
 
-        // Ã¼·ÂÀÌ 0 ÀÌÇÏ·Î ¶³¾îÁö¸é ¸ó½ºÅÍ »ç¸Á
+        // Ã¼ï¿½ï¿½ï¿½ï¿½ 0 ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (health <= 0)
         {
             MonsterDestroyed();
             return;
         }
 
-        // ÇÇ°Ý ½Ã ¹Ð·Á³ª´Â È¿°ú (³ëÅ©¹é)
+        // ï¿½Ç°ï¿½ ï¿½ï¿½ ï¿½Ð·ï¿½ï¿½ï¿½ï¿½ï¿½ È¿ï¿½ï¿½ (ï¿½ï¿½Å©ï¿½ï¿½)
         Knockback(hitDirection);
     }
 
-    // ³Ë¹é Ã³¸® (ÄÚ·çÆ¾À¸·Î °Å¸® Ã¼Å©)
+    // ï¿½Ë¹ï¿½ Ã³ï¿½ï¿½ (ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ Ã¼Å©)
     public void Knockback(Vector3 hitDirection)
     {
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
-            // ³Ë¹é ½ÃÀÛ À§Ä¡ ÀúÀå
+            // ï¿½Ë¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
             knockbackStartPos = transform.position;
 
-            // ÇÇ°Ý ¹æÇâÀ¸·Î AddForce Àû¿ë
+            // ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AddForce ï¿½ï¿½ï¿½ï¿½
             Vector2 knockbackDirection = hitDirection.normalized * knockbackForce;
             rb.AddForce(knockbackDirection, ForceMode2D.Impulse);
 
-            // ³Ë¹é Áß °Å¸® Ã¼Å©¸¦ À§ÇÑ ÄÚ·çÆ¾ ½ÇÇà
+            // ï¿½Ë¹ï¿½ ï¿½ï¿½ ï¿½Å¸ï¿½ Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
             StartCoroutine(CheckKnockbackDistance(rb));
         }
     }
 
-    // ³Ë¹é °Å¸® Ã¼Å© ÄÚ·çÆ¾
+    // ï¿½Ë¹ï¿½ ï¿½Å¸ï¿½ Ã¼Å© ï¿½Ú·ï¿½Æ¾
     private IEnumerator CheckKnockbackDistance(Rigidbody2D rb)
     {
         while (true)
@@ -159,50 +207,50 @@ public class MonsterAI : MonoBehaviour
 
             if (distanceMoved >= maxKnockbackDistance)
             {
-                // ÃÖ´ë ÀÌµ¿ °Å¸®¸¦ ³ÑÀ¸¸é ³Ë¹é Áß´Ü
+                // ï¿½Ö´ï¿½ ï¿½Ìµï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¹ï¿½ ï¿½ß´ï¿½
                 StopKnockback(rb);
-                yield break;  // ÄÚ·çÆ¾ Á¾·á
+                yield break;  // ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½
             }
 
-            yield return null;  // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+            yield return null;  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         }
     }
 
-    // ³Ë¹é Áß´Ü Ã³¸®
+    // ï¿½Ë¹ï¿½ ï¿½ß´ï¿½ Ã³ï¿½ï¿½
     void StopKnockback(Rigidbody2D rb)
     {
-        // Rigidbody2DÀÇ ¼Óµµ¸¦ 0À¸·Î ¼³Á¤ÇÏ¿© ¸ØÃã
+        // Rigidbody2Dï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½
         rb.velocity = Vector2.zero;
     }
 
-    // ¸ó½ºÅÍ°¡ Á×À» ¶§ »èÁ¦ÇÏ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     private void MonsterDestroyed()
     {
         DestroyEvent destroyedEvent = GetComponent<DestroyEvent>();
         destroyedEvent.CallDestroyedEvent(false, 0);
     }
 
-    //¸ó½ºÅÍÀÇ Ãæµ¹Ã³¸®
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹Ã³ï¿½ï¿½
     void OnTriggerEnter2D(Collider2D other)
     {
-        // ÇÃ·¹ÀÌ¾î¿Í Ãæµ¹ ½Ã
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½
         if (other.CompareTag("Player"))
         {
             Player player = other.GetComponent<Player>();
             if (player != null)
             {
-                player.TakeDamage(attack);  // ÇÃ·¹ÀÌ¾î¿¡°Ô ¸ó½ºÅÍÀÇ °ø°Ý·Â¸¸Å­ µ¥¹ÌÁö ÀÔÈû
+                player.TakeDamage(attack);  // ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·Â¸ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             }
         }
     }
 
-    //¸ó½ºÅÍ³¢¸® Ãæµ¹ÇÏÁö ¾Êµµ·Ï ÇÏ´Â ·ÎÁ÷
+    //ï¿½ï¿½ï¿½Í³ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½
     void MonsterCollisionIgnore()
     {
-        // "Monster" ÅÂ±×¸¦ °¡Áø ¸ðµç ¿ÀºêÁ§Æ®¸¦ Ã£½À´Ï´Ù.
+        // "Monster" ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½Ï´ï¿½.
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monsters");
 
-        // °¢ ¸ó½ºÅÍ ¿ÀºêÁ§Æ®µéÀÇ Collider¸¦ °¡Á®¿Í ¼­·Î Ãæµ¹À» ¹«½ÃÇÏµµ·Ï ¼³Á¤ÇÕ´Ï´Ù.
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ Colliderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         for (int i = 0; i < monsters.Length; i++)
         {
             for (int j = i + 1; j < monsters.Length; j++)
@@ -212,7 +260,7 @@ public class MonsterAI : MonoBehaviour
 
                 if (col1 != null && col2 != null)
                 {
-                    // µÎ Collider °£ÀÇ Ãæµ¹À» ¹«½ÃÇÕ´Ï´Ù.
+                    // ï¿½ï¿½ Collider ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
                     Physics.IgnoreCollision(col1, col2);
                 }
             }

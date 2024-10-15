@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4dd7695fe3a230b4c8bf3ecef20908f8
+guid: 2babaf3fbef85724cac4f722aae39ba8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -63,16 +63,16 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 2
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,7 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Egg Attack-3-Sheet_0
+      name: Cabbage.1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f39de50a963faed4281fd855a576e5ea
-      internalID: 1470279178
+      spriteID: 0b3bc2dda21eab7478a4acec4a8e5343
+      internalID: -2024906315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg Attack-3-Sheet_1
+      name: Cabbage.1_1
       rect:
         serializedVersion: 2
         x: 64
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab89f0009e4007049a751aa9a81da2ea
-      internalID: 83303924
+      spriteID: 7438a38c9915a044fb18c6c6df22c0ea
+      internalID: -695965796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg Attack-3-Sheet_2
+      name: Cabbage.1_2
       rect:
         serializedVersion: 2
         x: 128
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e51e2ac2d8024ef4cb6ddf7e45c7acac
-      internalID: -122091389
+      spriteID: b23e86a4f41e41e4baa62f776b5d9ed5
+      internalID: -894076295
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg Attack-3-Sheet_3
+      name: Cabbage.1_3
       rect:
         serializedVersion: 2
         x: 192
@@ -174,29 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72e8aef0552f1d547abc746925daec31
-      internalID: -1524318993
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Egg Attack-3-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2724f60cc2662004da93edf809339f50
-      internalID: -4212169
+      spriteID: 84cc9e9b53189e94caf6f5b5a6d9b8a0
+      internalID: 194822459
       vertices: []
       indices: 
       edges: []
@@ -204,7 +183,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 11ea54d2a8ff8934493c974cd62a9473
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -212,11 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Egg Attack-3-Sheet_0: 1470279178
-      Egg Attack-3-Sheet_1: 83303924
-      Egg Attack-3-Sheet_2: -122091389
-      Egg Attack-3-Sheet_3: -1524318993
-      Egg Attack-3-Sheet_4: -4212169
+      Cabbage.1_0: -2024906315
+      Cabbage.1_1: -695965796
+      Cabbage.1_2: -894076295
+      Cabbage.1_3: 194822459
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
