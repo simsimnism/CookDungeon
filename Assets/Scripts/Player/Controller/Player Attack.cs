@@ -36,6 +36,7 @@ public class PlayerAttack : MonoBehaviour
         canChainCombo = Managers.Player.canChainCombo;
         isShowingAttackRange = Managers.Player.isShowingAttackRange;
         playerS = player.GetComponent<Player>();
+        isAttacking = false;
     }
 
     void Start()
