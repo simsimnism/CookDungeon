@@ -103,7 +103,6 @@ public class BtnType : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
                 {
                     ClickSound(null);  // ClickEvent가 아니라면 null을 전달
                 }
-                SceneManager.LoadScene("MAIN");
                 break;
         }
     }
