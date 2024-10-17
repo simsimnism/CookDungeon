@@ -4,11 +4,11 @@
       "name": "Fruit Salad",
       "id": 1,
       "description": "A delicious mix of fruits.",
-      "amount": 1, //수량
+      "amount": 1,
       "itemType": "Recipe",
-      "requiredIngredients": [ 1, 5 ], //아이템의 조합
-      "healthRecovery": 20, //체력 회복량
-      "fullnessRecovery": 15 //포만도 회볼량
+      "requiredIngredients": [ 1, 5 ], 
+      "healthRecovery": 20,
+      "fullnessRecovery": 15 
     },
     {
       "name": "Vegetable Salad",

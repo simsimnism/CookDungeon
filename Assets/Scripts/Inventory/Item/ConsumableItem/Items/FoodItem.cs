@@ -10,7 +10,6 @@ public class FoodItem : ConsumableItem
     public override void Use()
     {
         base.Use();
-        // 추가적인 음식 관련 처리 가능
         Debug.Log($"{Name}을(를) 사용하여 체력을 회복했습니다.");
     }
 }
