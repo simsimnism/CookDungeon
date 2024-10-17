@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "name": "Fruit Salad",
+      "id": 1,
+      "description": "A delicious mix of fruits.",
+      "amount": 1, //수량
+      "itemType": "Recipe",
+      "requiredIngredients": [ 1, 5 ], //아이템의 조합
+      "healthRecovery": 20, //체력 회복량
+      "fullnessRecovery": 15 //포만도 회볼량
+    },
+    {
+      "name": "Vegetable Salad",
+      "id": 2,
+      "description": "A healthy mix of vegetables.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 6, 7 ],
+      "healthRecovery": 25,
+      "fullnessRecovery": 20
+    },
+    {
+      "name": "Meat Stew",
+      "id": 3,
+      "description": "A hearty stew made with meat and vegetables.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 3, 6 ],
+      "healthRecovery": 40,
+      "fullnessRecovery": 35
+    },
+    {
+      "name": "Chicken Soup",
+      "id": 4,
+      "description": "A warm soup made with chicken.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 8, 9 ],
+      "healthRecovery": 50,
+      "fullnessRecovery": 40
+    },
+    {
+      "name": "Omelette",
+      "id": 5,
+      "description": "A fluffy omelette made from eggs.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 9, 7 ],
+      "healthRecovery": 30,
+      "fullnessRecovery": 25
+    },
+    {
+      "name": "Grilled Fish",
+      "id": 6,
+      "description": "A savory grilled fish dish.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 4, 6 ],
+      "healthRecovery": 35,
+      "fullnessRecovery": 30
+    },
+    {
+      "name": "Cheese Sandwich",
+      "id": 7,
+      "description": "A tasty sandwich with cheese.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 7, 2 ],
+      "healthRecovery": 25,
+      "fullnessRecovery": 20
+    },
+    {
+      "name": "Banana Smoothie",
+      "id": 8,
+      "description": "A refreshing banana smoothie.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 5, 10 ],
+      "healthRecovery": 15,
+      "fullnessRecovery": 10
+    },
+    {
+      "name": "Carrot Juice",
+      "id": 9,
+      "description": "A healthy carrot juice drink.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 6, 10 ],
+      "healthRecovery": 20,
+      "fullnessRecovery": 15
+    },
+    {
+      "name": "Meat Pie",
+      "id": 10,
+      "description": "A delicious pie made with meat.",
+      "amount": 1,
+      "itemType": "Recipe",
+      "requiredIngredients": [ 3, 2 ],
+      "healthRecovery": 45,
+      "fullnessRecovery": 40
+    }
+  ]
+}

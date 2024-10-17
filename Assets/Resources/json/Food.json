@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "name": "Apple",
+      "id": 1,
+      "description": "A fresh apple that restores health.",
+      "amount": 5,
+      "itemType": "Food",
+      "healthRecovery": 10,
+      "fullnessRecovery": 5
+    },
+    {
+      "name": "Bread",
+      "id": 2,
+      "description": "A loaf of bread that restores energy.",
+      "amount": 3,
+      "itemType": "Food",
+      "healthRecovery": 20,
+      "fullnessRecovery": 15
+    },
+    {
+      "name": "Meat",
+      "id": 3,
+      "description": "A piece of meat that provides substantial nourishment.",
+      "amount": 2,
+      "itemType": "Food",
+      "healthRecovery": 50,
+      "fullnessRecovery": 30
+    },
+    {
+      "name": "Fish",
+      "id": 4,
+      "description": "A grilled fish that restores stamina.",
+      "amount": 2,
+      "itemType": "Food",
+      "healthRecovery": 35,
+      "fullnessRecovery": 20
+    },
+    {
+      "name": "Banana",
+      "id": 5,
+      "description": "A banana that gives a quick boost of energy.",
+      "amount": 5,
+      "itemType": "Food",
+      "healthRecovery": 15,
+      "fullnessRecovery": 8
+    },
+    {
+      "name": "Carrot",
+      "id": 6,
+      "description": "A fresh carrot full of vitamins.",
+      "amount": 4,
+      "itemType": "Food",
+      "healthRecovery": 10,
+      "fullnessRecovery": 5
+    },
+    {
+      "name": "Cheese",
+      "id": 7,
+      "description": "A block of cheese for extra strength.",
+      "amount": 1,
+      "itemType": "Food",
+      "healthRecovery": 25,
+      "fullnessRecovery": 20
+    },
+    {
+      "name": "Chicken",
+      "id": 8,
+      "description": "A roasted chicken that fills you up.",
+      "amount": 1,
+      "itemType": "Food",
+      "healthRecovery": 60,
+      "fullnessRecovery": 40
+    },
+    {
+      "name": "Egg",
+      "id": 9,
+      "description": "A boiled egg for quick recovery.",
+      "amount": 6,
+      "itemType": "Food",
+      "healthRecovery": 5,
+      "fullnessRecovery": 3
+    },
+    {
+      "name": "Milk",
+      "id": 10,
+      "description": "A bottle of milk that strengthens bones.",
+      "amount": 3,
+      "itemType": "Food",
+      "healthRecovery": 10,
+      "fullnessRecovery": 8
+    }
+  ]
+}
