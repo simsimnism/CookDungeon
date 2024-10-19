@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Managers.Player.Init();
         Managers.Input.KeyAction -= OnKeyMove;
         Managers.Input.KeyAction += OnKeyMove;
     }

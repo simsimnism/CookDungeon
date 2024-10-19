@@ -10,19 +10,21 @@ public class Player : MonoBehaviour
     public bool invin;
     public bool isDashing;
 
-    //Hp바와 연동
+    // HP 바와 연동
     private HpBar hpBar;
 
     // Pm에서 관리
     private int MaxHP;
-    private int currentHP;// 현재 체력
+    private int currentHP; // 현재 체력
     private bool inDamage;
     public float moveSpeed;
     private Vector2 dashDiretion;
     private SpriteRenderer spriteRenderer;
     private Collider2D playerCollider; // 플레이어의 Collider2D 참조
+    private Rigidbody2D rb;
 
-    Rigidbody2D rb;
+    // 게임 오버 패널 추가
+    public GameObject gameOverPanel; // 게임 오버 UI 패널 연결
 
     void Awake()
     {
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
         moveSpeed = Managers.Player.moveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>(); // SpriteRenderer 참조 가져오기
         playerCollider = GetComponent<Collider2D>(); // Collider2D 참조 가져오기
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Start()
@@ -47,6 +49,12 @@ public class Player : MonoBehaviour
             hpBar.Initialize(MaxHP);
         }
 
+        // 게임 오버 패널을 태그로 동적으로 찾음
+        gameOverPanel = GameObject.FindWithTag("GameOverPanel");
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false); // 게임 오버 패널을 비활성화 상태로 시작
+        }
     }
 
     void Update()
@@ -76,6 +84,12 @@ public class Player : MonoBehaviour
             if (hpBar != null)
             {
                 hpBar.UpdateHealth(currentHP);
+            }
+
+            // 체력이 0이 되었을 때 죽는 로직
+            if (currentHP <= 0)
+            {
+                Die(); // 사망 함수 호출
             }
 
             // 데미지를 입으면 무적 상태 시작
@@ -147,8 +161,15 @@ public class Player : MonoBehaviour
         Managers.GM.IsMoving = true;
     }
 
+    // 사망 로직
     void Die()
     {
-        // 사망 로직
+        // 게임 오버 패널 활성화
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        // 시간 멈춤
+        Time.timeScale = 0f;
     }
 }

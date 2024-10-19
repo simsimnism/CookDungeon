@@ -88,5 +88,6 @@ public class PlayerManager
     // 플레이어 수치 초기 설정
     public void Init()
     {
+        canMove = true;
     }
 }

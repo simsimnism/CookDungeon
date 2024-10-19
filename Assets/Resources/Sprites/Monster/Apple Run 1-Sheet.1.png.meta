@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
 guid: 6e4c501eb792b534696e8f27d35c6d68
-========
-guid: 910bc2865ba7ae14299c2a20e6c0ce93
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -67,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -89,20 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,31 +100,19 @@ TextureImporter:
       name: Apple Run 1-Sheet.1_0
       rect:
         serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-        x: 18
-        y: 21
-        width: 30
-        height: 26
-========
         x: 0
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-      spriteID: b0f881f7c7ffa9340b3d8e593c3ebe60
-      internalID: -1782541320
-========
-      spriteID: fb0c658933d46764f9263739d21ec37f
-      internalID: 290913470
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
+      spriteID: 0852c9bcc8d559d419d10cc5ffa12506
+      internalID: 475792342
       vertices: []
       indices: 
       edges: []
@@ -150,31 +121,19 @@ TextureImporter:
       name: Apple Run 1-Sheet.1_1
       rect:
         serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-        x: 80
-        y: 23
-        width: 30
-        height: 26
-========
         x: 64
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-      spriteID: b3c637d465d6a6e449933c0ceda0b005
-      internalID: 2072437587
-========
-      spriteID: 0c726999172a3f446a29b307b1e33173
-      internalID: -14769276
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
+      spriteID: bb432ba7f775ba54394482d209825aec
+      internalID: -1751766553
       vertices: []
       indices: 
       edges: []
@@ -183,31 +142,19 @@ TextureImporter:
       name: Apple Run 1-Sheet.1_2
       rect:
         serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-        x: 144
-        y: 20
-        width: 30
-        height: 26
-========
         x: 128
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-      spriteID: 6b45d184bb01f0a4491bab9d74835268
-      internalID: 389907222
-========
-      spriteID: 0529a565d4697df48bd70c37d251fe41
-      internalID: 1996452896
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
+      spriteID: 523f16927e985344c99a47f731610c08
+      internalID: -1593668039
       vertices: []
       indices: 
       edges: []
@@ -216,31 +163,19 @@ TextureImporter:
       name: Apple Run 1-Sheet.1_3
       rect:
         serializedVersion: 2
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-        x: 207
-        y: 22
-        width: 30
-        height: 26
-========
         x: 192
         y: 0
         width: 64
         height: 64
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-      spriteID: 3164cbca8a44bc64c8b6daa080f5e069
-      internalID: 1181475163
-========
-      spriteID: daee4d113a38d6e41998c8becd20f66b
-      internalID: -402867573
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
+      spriteID: bb648c70f91b5d44db5daa3485d874eb
+      internalID: 59055713
       vertices: []
       indices: 
       edges: []
@@ -248,7 +183,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: b5af52dd1884f534484408478e387f6c
     internalID: 0
     vertices: []
     indices: 
@@ -256,17 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-<<<<<<<< HEAD:Assets/Resources/Sprites/Monster/flu person 1-Sheet.png.meta
-      flu person 1-Sheet_0: -1782541320
-      flu person 1-Sheet_1: 2072437587
-      flu person 1-Sheet_2: 389907222
-      flu person 1-Sheet_3: 1181475163
-========
-      Apple Run 1-Sheet.1_0: 290913470
-      Apple Run 1-Sheet.1_1: -14769276
-      Apple Run 1-Sheet.1_2: 1996452896
-      Apple Run 1-Sheet.1_3: -402867573
->>>>>>>> Feature_이응4:Assets/Resources/Sprites/Monster/Apple Run 1-Sheet.1.png.meta
+      Apple Run 1-Sheet.1_0: 475792342
+      Apple Run 1-Sheet.1_1: -1751766553
+      Apple Run 1-Sheet.1_2: -1593668039
+      Apple Run 1-Sheet.1_3: 59055713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

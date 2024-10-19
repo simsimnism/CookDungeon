@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 3849294494452876960}
   - component: {fileID: 6877487810564072977}
   - component: {fileID: 5511086977247236210}
-  - component: {fileID: 1044063251598758480}
   - component: {fileID: 7060042728825364998}
   - component: {fileID: 5655372390081733592}
+  - component: {fileID: -3222496418682476685}
   m_Layer: 0
   m_Name: Potabee
   m_TagString: Monsters
@@ -216,7 +216,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 0.13295671
+  m_Mass: 1.1966103
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -231,24 +231,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1044063251598758480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4239965582340703874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981afdf5eb75bde4c85fe56799e0bfda, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monsterDataSO: {fileID: 11400000, guid: ed29fbbe93f41ec4a90a83af928193b6, type: 2}
-  player: {fileID: 8118453436467839789, guid: b0ebcd5c7eefd2449bf7c94ade2d42e8, type: 3}
-  knockbackForce: 2
-  maxKnockbackDistance: 2
-  knockbackDistance: 2
-  changeDirectionTime: 3
 --- !u!114 &7060042728825364998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,3 +264,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3222496418682476685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4239965582340703874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce4895813493e23468af713f004a5b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterDataSO: {fileID: 11400000, guid: 1c51afa627bf72a4e9cc0a2558ff7042, type: 2}
+  player: {fileID: 0}
+  knockbackForce: 2
+  maxKnockbackDistance: 2
+  knockbackDistance: 2
+  changeDirectionTime: 3

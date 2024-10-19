@@ -22,34 +22,56 @@ MonoBehaviour:
   - position: {x: -20, y: 2}
     orientation: 3
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -20, y: 7}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
     isConnected: 0
     isUnavailable: 0
   - position: {x: 21, y: 2}
     orientation: 1
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: 15, y: 7}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
     isConnected: 0
     isUnavailable: 0
   - position: {x: 0, y: 16}
     orientation: 0
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -4, y: 16}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 6
     isConnected: 0
     isUnavailable: 0
   - position: {x: 0, y: -13}
     orientation: 2
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -4, y: -6}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 8
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
-  - {x: 0, y: 0}
+  - {x: -1, y: 4}
+  - {x: 2, y: 4}
+  - {x: -1, y: 1}
+  - {x: 2, y: 1}
+  - {x: -8, y: 2}
+  - {x: 9, y: 2}
+  monsterByLevelList:
+  - dungeonLevel: {fileID: 11400000, guid: a84803e228a2f5e4dae33c9178ec568c, type: 2}
+    spawnableObjectRatioList:
+    - dungeonObject: {fileID: 11400000, guid: f41a258f60a9e4740a7eb498798d7676, type: 2}
+      ratio: 2
+    - dungeonObject: {fileID: 11400000, guid: dc1faf4a3e4d2ad4c980bb382a814171, type: 2}
+      ratio: 1
+    - dungeonObject: {fileID: 11400000, guid: 1c51afa627bf72a4e9cc0a2558ff7042, type: 2}
+      ratio: 2
+  roomMonsterSpawnParametersList:
+  - dungeonLevel: {fileID: 11400000, guid: a84803e228a2f5e4dae33c9178ec568c, type: 2}
+    minTotalEnemiesToSpawn: 6
+    maxTotalEnemiesToSpawn: 10
+    minConcurrentEnemies: 3
+    maxConcurrentEnemies: 6
+    minSpawnInterval: 5
+    maxSpawnInterval: 5

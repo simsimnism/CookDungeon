@@ -23,7 +23,11 @@ public class AnimeController : MonoBehaviour
 
     void Awake()
     {
-
+        isAttacking = false;
+        RightAttackEffect.SetActive(false);
+        LeftAttackEffect.SetActive(false);
+        RightComboEffect.SetActive(false);
+        LeftComboEffect.SetActive(false);
         animator = GetComponent<Animator>();
         rbody = GetComponent<Rigidbody2D>();
     }

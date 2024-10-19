@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,19 +93,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,10 +100,10 @@ TextureImporter:
       name: Cabbage Guri Run-Sheet_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 21
-        width: 31
-        height: 27
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 07bd8fbcd5129924982d0cceef15ca43
-      internalID: 67826686
+      spriteID: 3f4f0ad826d8b5545bcb50df347afa7f
+      internalID: -467444617
       vertices: []
       indices: 
       edges: []
@@ -134,10 +121,10 @@ TextureImporter:
       name: Cabbage Guri Run-Sheet_1
       rect:
         serializedVersion: 2
-        x: 83
-        y: 20
-        width: 31
-        height: 27
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e8f95880105d1d429607c5c248da47e
-      internalID: 2084906744
+      spriteID: c61db39304718a248a819680757f4175
+      internalID: -180753149
       vertices: []
       indices: 
       edges: []
@@ -155,10 +142,10 @@ TextureImporter:
       name: Cabbage Guri Run-Sheet_2
       rect:
         serializedVersion: 2
-        x: 147
-        y: 21
-        width: 31
-        height: 27
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d9bf986ea444064f9991685e5e74b1f
-      internalID: 1497554451
+      spriteID: 5236ff92918a0d44a9acf58619157e6a
+      internalID: 1324654603
       vertices: []
       indices: 
       edges: []
@@ -176,10 +163,10 @@ TextureImporter:
       name: Cabbage Guri Run-Sheet_3
       rect:
         serializedVersion: 2
-        x: 211
-        y: 20
-        width: 31
-        height: 27
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 953a655a73a88ab4c88c3f590f75b3c9
-      internalID: 193432254
+      spriteID: 5da90d7ed580f6442bae8d91e5af4311
+      internalID: 334358792
       vertices: []
       indices: 
       edges: []
@@ -204,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cabbage Guri Run-Sheet_0: 67826686
-      Cabbage Guri Run-Sheet_1: 2084906744
-      Cabbage Guri Run-Sheet_2: 1497554451
-      Cabbage Guri Run-Sheet_3: 193432254
+      Cabbage Guri Run-Sheet_0: -467444617
+      Cabbage Guri Run-Sheet_1: -180753149
+      Cabbage Guri Run-Sheet_2: 1324654603
+      Cabbage Guri Run-Sheet_3: 334358792
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

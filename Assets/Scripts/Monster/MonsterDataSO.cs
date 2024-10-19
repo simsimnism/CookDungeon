@@ -10,6 +10,7 @@ public class MonsterDataSO : ScriptableObject
     public int id;              // 몬스터 ID
     public int health;          // 체력
     public int attack;          // 공격력
+    public int attackRange;
     public float range;         // 공격 범위
     public float speed;         // 이동 속도
 
