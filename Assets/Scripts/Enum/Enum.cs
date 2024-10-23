@@ -8,11 +8,6 @@ public enum Orientation
     none
 }
 
-public enum ItemType
-{
-    Food,
-    Recipe,
-}
 
 // 플레이어의 방향
 public enum PlayerOrientation
