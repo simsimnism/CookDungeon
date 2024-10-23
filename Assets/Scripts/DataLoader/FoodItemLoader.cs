@@ -18,12 +18,13 @@ public class FoodItemLoader
             // 변환된 데이터를 Dictionary에 저장
             foreach (var item in foodData.items)
             {
-                // FoodItem 객체 생성
+                // itemType을 포함하여 FoodItem 객체 생성
                 FoodItem foodItem = new FoodItem(
                     item.name,
                     item.id,
                     item.description,
                     item.amount,
+                    item.itemType,  // itemType 전달
                     item.amount,  // maxAmount와 initialAmount 동일하게 설정
                     item.healthRecovery,
                     item.fullnessRecovery
@@ -55,7 +56,6 @@ public class FoodData
     public List<FoodItemData> items;
 }
 
-// FoodItemData 클래스도 정의 필요
 [System.Serializable]
 public class FoodItemData
 {
@@ -63,6 +63,7 @@ public class FoodItemData
     public int id;
     public string description;
     public int amount;
+    public string itemType;  // JSON에 아이템 타입 필드 추가
     public int healthRecovery;
     public int fullnessRecovery;
 }
