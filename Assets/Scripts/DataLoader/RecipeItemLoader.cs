@@ -18,6 +18,9 @@ public class RecipeItemLoader
             // 변환된 데이터를 Dictionary에 저장
             foreach (var item in recipeData.items)
             {
+                // 아이템 스프라이트 불러오기
+                Sprite itemSprite = Resources.Load<Sprite>($"Sprites/{item.name}");
+
                 RecipeItem recipeItem = new RecipeItem(
                     item.name,
                     item.id,
@@ -26,7 +29,8 @@ public class RecipeItemLoader
                     item.amount,  // maxAmount와 initialAmount 동일하게 설정
                     item.healthRecovery,
                     item.fullnessRecovery,
-                    new List<int>(item.requiredIngredients)
+                    new List<int>(item.requiredIngredients),
+                    itemSprite // 스프라이트 전달
                 );
                 _recipeItems.Add(item.id, recipeItem);
             }

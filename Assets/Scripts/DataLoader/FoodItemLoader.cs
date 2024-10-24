@@ -18,6 +18,9 @@ public class FoodItemLoader
             // 변환된 데이터를 Dictionary에 저장
             foreach (var item in foodData.items)
             {
+                // 스프라이트 로드 (이름을 통해서 로드)
+                Sprite itemSprite = Resources.Load<Sprite>($"Sprites/{item.name}");
+
                 // itemType을 포함하여 FoodItem 객체 생성
                 FoodItem foodItem = new FoodItem(
                     item.name,
@@ -27,7 +30,8 @@ public class FoodItemLoader
                     item.itemType,  // itemType 전달
                     item.amount,  // maxAmount와 initialAmount 동일하게 설정
                     item.healthRecovery,
-                    item.fullnessRecovery
+                    item.fullnessRecovery,
+                    itemSprite  // 스프라이트 전달
                 );
                 _foodItems.Add(item.id, foodItem);
             }

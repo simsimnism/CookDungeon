@@ -3,24 +3,40 @@ using UnityEngine;
 
 public class InventoryPopup : UI_Popup
 {
+    public bool isOpen = false;  // 팝업이 열려 있는지 여부를 저장하는 변수
+
+    // 인벤토리 팝업을 열거나 닫는 함수
+    public void ToggleInventoryPopup(List<Item> playerItems)
+    {
+        if (!isOpen)  // 팝업이 닫혀 있을 때
+        {
+            Initialize(playerItems);  // 인벤토리를 초기화하면서 팝업을 염
+            isOpen = true;
+        }
+        else  // 팝업이 열려 있을 때
+        {
+            CloseInventory();  // 팝업을 닫음
+            isOpen = false;
+        }
+    }
+
+    // 인벤토리를 초기화하는 함수
     public void Initialize(List<Item> playerItems)
     {
-        // 인벤토리 팝업을 열 때 호출 (아이템 슬롯 초기화, 필터링 등)
         Debug.Log("인벤토리 팝업 초기화 중...");
+        // 아이템 목록을 슬롯에 반영하는 로직이 추가될 수 있음
     }
 
+    // 인벤토리를 닫는 함수
     public void CloseInventory()
     {
-        // 팝업 닫기 전 상태 저장 작업 (필요할 경우)
-        SaveInventoryState(); 
-
-        // 팝업 닫기
-        Managers.UI.ClosePopupUI(this);
+        SaveInventoryState();  // 닫기 전 상태를 저장 (필요할 경우)
+        Managers.UI.ClosePopupUI(this);  // 팝업을 닫음
     }
 
+    // 인벤토리 상태를 저장하는 함수
     private void SaveInventoryState()
     {
-        // 인벤토리 상태를 저장하는 작업 (필요한 경우에만 호출)
         Debug.Log("인벤토리 상태를 저장했습니다.");
     }
 }

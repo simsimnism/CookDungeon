@@ -5,8 +5,8 @@ public class RecipeItem : ConsumableItem
 {
     public List<int> RequiredIngredients { get; private set; }
 
-    public RecipeItem(string name, int id, string description, int maxAmount, int initialAmount, int healthRecovery, int fullnessRecovery, List<int> requiredIngredients)
-        : base(name, id, description, maxAmount, initialAmount, healthRecovery, fullnessRecovery)
+    public RecipeItem(string name, int id, string description, int maxAmount, int initialAmount, int healthRecovery, int fullnessRecovery, List<int> requiredIngredients, Sprite itemSprite)
+        : base(name, id, description, maxAmount, initialAmount, healthRecovery, fullnessRecovery, itemSprite) // 스프라이트 전달
     {
         RequiredIngredients = requiredIngredients;
     }

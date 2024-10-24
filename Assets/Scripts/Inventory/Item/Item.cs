@@ -8,14 +8,16 @@ public class Item
     public string Description { get; private set; }
     public int MaxAmount { get; private set; }
     public int Amount { get; protected set; }
+    public Sprite ItemSprite { get; private set; } // 스프라이트 필드 추가
 
-    public Item(string name, int id, string description, int maxAmount, int initialAmount)
+    public Item(string name, int id, string description, int maxAmount, int initialAmount, Sprite itemSprite)
     {
         Name = name;
         ID = id;
         Description = description;
         MaxAmount = maxAmount;
-        Amount = Mathf.Clamp(initialAmount, 0, MaxAmount); // 초기 개수 설정
+        Amount = Mathf.Clamp(initialAmount, 0, MaxAmount);
+        ItemSprite = itemSprite; // 생성자에서 스프라이트 설정
     }
 
     public virtual void Use()
