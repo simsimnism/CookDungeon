@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSlot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int Index { get; set; }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateSlot(Item itemData)
     {
-        
+        if (itemData != null)
+        {
+            // 슬롯에 아이템 데이터 반영 (예: 이미지, 이름)
+        }
+        else
+        {
+            // 빈 슬롯 처리
+        }
     }
 }
