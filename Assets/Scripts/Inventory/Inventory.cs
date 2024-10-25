@@ -7,6 +7,12 @@ public class Inventory : MonoBehaviour
     private DataManager _dataManager; // DataManager를 통해 FoodItemLoader 가져오기
     public GameObject inventorySlotPrefab; // 인벤토리 슬롯 UI 프리팹
     private object inventoryUIPanel;
+    private InventoryPopup popup;
+
+    void Awake()
+    {
+        popup = GetComponent<InventoryPopup>();
+    }
 
     void Start()
     {
@@ -24,6 +30,22 @@ public class Inventory : MonoBehaviour
 
         // Init 호출 제거 - 이미 초기화되었을 것이므로 불필요한 호출을 방지
         // _dataManager.Init(); 
+    }
+
+    void Update()
+    {
+        Managers.Input.KeyAction -= OpenInventory;
+        Managers.Input.KeyAction += OpenInventory;
+    }
+
+    void OpenInventory()
+    {
+        // I 키 입력을 감지
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // 인벤토리 팝업을 토글
+            popup.ToggleInventoryPopup(Managers.Inventory.items);
+        }
     }
 
     // 게임 중 아이템을 습득하는 함수 (프리팹 이름이 ID와 같을 때)
