@@ -10,7 +10,7 @@ public class InventoryPopup : UI_Popup
     {
         if (!isOpen)  // 팝업이 닫혀 있을 때
         {
-            Initialize(playerItems);  // 인벤토리를 초기화하면서 팝업을 염
+            ShowInventory(playerItems);  // 인벤토리를 초기화하면서 팝업을 염
             isOpen = true;
         }
         else  // 팝업이 열려 있을 때
@@ -18,6 +18,13 @@ public class InventoryPopup : UI_Popup
             CloseInventory();  // 팝업을 닫음
             isOpen = false;
         }
+    }
+
+    // 인벤토리를 표시하는 함수
+    private void ShowInventory(List<Item> playerItems)
+    {
+        Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");  // 인벤토리 팝업을 UIManager를 통해 열음
+        Initialize(playerItems);  // 인벤토리를 초기화
     }
 
     // 인벤토리를 초기화하는 함수
@@ -31,7 +38,7 @@ public class InventoryPopup : UI_Popup
     public void CloseInventory()
     {
         SaveInventoryState();  // 닫기 전 상태를 저장 (필요할 경우)
-        Managers.UI.ClosePopupUI(this);  // 팝업을 닫음
+        Managers.UI.ClosePopupUI(this);  // UIManager를 통해 팝업을 닫음
     }
 
     // 인벤토리 상태를 저장하는 함수
