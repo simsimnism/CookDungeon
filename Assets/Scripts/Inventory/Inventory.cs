@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     private List<Item> items; // 인벤토리에 저장된 아이템 리스트
-    public FoodItemLoader foodItemLoader; // FoodItemLoader를 통해 아이템 데이터 로드 (상속 구조 활용)
+    private DataManager _dataManager; // DataManager를 통해 FoodItemLoader 가져오기
     public GameObject inventorySlotPrefab; // 인벤토리 슬롯 UI 프리팹
     private object inventoryUIPanel;
 
@@ -14,22 +13,24 @@ public class Inventory : MonoBehaviour
         // items 리스트 초기화
         items = new List<Item>();
 
-        // JSON 데이터로부터 FoodItem 로드
-        if (foodItemLoader != null)
+        // DataManager를 통해 FoodItemLoader 가져오기
+        _dataManager = Managers.Data;  // DataManager 인스턴스 찾기
+
+        if (_dataManager == null)
         {
-            foodItemLoader.LoadFoodData("Resorces/json/Food");  // JSON 파일 경로 설정
+            Debug.LogError("DataManager를 찾을 수 없습니다.");
+            return;
         }
-        else
-        {
-            Debug.LogError("FoodItemLoader가 할당되지 않았습니다.");
-        }
+
+        // Init 호출 제거 - 이미 초기화되었을 것이므로 불필요한 호출을 방지
+        // _dataManager.Init(); 
     }
 
     // 게임 중 아이템을 습득하는 함수 (프리팹 이름이 ID와 같을 때)
     public bool AddItemByPrefabID(string prefabName)
     {
-        // 프리팹 이름을 ID로 변환하고 FoodItem을 로드
-        FoodItem foodItem = foodItemLoader?.GetFoodItemByPrefabName(prefabName);
+        // DataManager를 통해 FoodItem을 가져옴
+        FoodItem foodItem = _dataManager?.GetFoodItemByPrefabName(prefabName);
 
         if (foodItem != null)
         {
@@ -80,7 +81,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-
     // 인벤토리에 있는 모든 아이템 출력
     public void DisplayInventory()
     {
@@ -89,5 +89,4 @@ public class Inventory : MonoBehaviour
             Debug.Log($"아이템: {item.Name}, 수량: {item.Amount}/{item.MaxAmount}");
         }
     }
-    
 }

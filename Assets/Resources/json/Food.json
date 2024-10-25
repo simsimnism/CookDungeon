@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Apple",
-      "id": 1,
+      "id": 100,
       "description": "A fresh apple that restores health.",
       "amount": 5,
       "itemType": "Fruit",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Bread",
-      "id": 2,
+      "id": 101,
       "description": "A loaf of bread that restores energy.",
       "amount": 3,
       "itemType": "Vegetable",
@@ -20,7 +20,7 @@
     },
     {
       "name": "Potato",
-      "id": 3,
+      "id": 102,
       "description": "A piece of meat that provides substantial nourishment.",
       "amount": 2,
       "itemType": "Fruit",
@@ -29,7 +29,7 @@
     },
     {
       "name": "Mushi",
-      "id": 4,
+      "id": 103,
       "description": "A grilled fish that restores stamina.",
       "amount": 2,
       "itemType": "Vegetable",
@@ -38,7 +38,7 @@
     },
     {
       "name": "Orenge",
-      "id": 5,
+      "id": 104,
       "description": "A banana that gives a quick boost of energy.",
       "amount": 5,
       "itemType": "Fruit",
@@ -47,7 +47,7 @@
     },
     {
       "name": "Cabbage",
-      "id": 6,
+      "id": 105,
       "description": "A fresh carrot full of vitamins.",
       "amount": 4,
       "itemType": "Vegetable",
@@ -56,7 +56,7 @@
     },
     {
       "name": "Cheese",
-      "id": 7,
+      "id": 106,
       "description": "A block of cheese for extra strength.",
       "amount": 1,
       "itemType": "Food",
@@ -65,7 +65,7 @@
     },
     {
       "name": "Chicken",
-      "id": 8,
+      "id": 107,
       "description": "A roasted chicken that fills you up.",
       "amount": 1,
       "itemType": "",
@@ -74,7 +74,7 @@
     },
     {
       "name": "Egg",
-      "id": 9,
+      "id": 108,
       "description": "A boiled egg for quick recovery.",
       "amount": 6,
       "itemType": "",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Milk",
-      "id": 10,
+      "id": 109,
       "description": "A bottle of milk that strengthens bones.",
       "amount": 3,
       "itemType": "",

@@ -2,7 +2,7 @@
   "items": [
     {
       "name": "Sword",
-      "id": 1,
+      "id": 501,
       "description": "A sharp sword for melee attacks.",
       "amount": 1,
       "itemType": "Weapon",
@@ -11,7 +11,7 @@
     },
     {
       "name": "Bow",
-      "id": 2,
+      "id": 502,
       "description": "A longbow for ranged attacks.",
       "amount": 1,
       "itemType": "Weapon",
@@ -20,7 +20,7 @@
     },
     {
       "name": "Axe",
-      "id": 3,
+      "id": 503,
       "description": "A heavy axe with strong attack power.",
       "amount": 1,
       "itemType": "Weapon",
@@ -29,7 +29,7 @@
     },
     {
       "name": "Dagger",
-      "id": 4,
+      "id": 504,
       "description": "A fast dagger for quick attacks.",
       "amount": 1,
       "itemType": "Weapon",
@@ -38,7 +38,7 @@
     },
     {
       "name": "Staff",
-      "id": 5,
+      "id": 505,
       "description": "A magical staff that shoots spells.",
       "amount": 1,
       "itemType": "Weapon",
@@ -47,7 +47,7 @@
     },
     {
       "name": "Hammer",
-      "id": 6,
+      "id": 506,
       "description": "A large hammer that delivers powerful blows.",
       "amount": 1,
       "itemType": "Weapon",
@@ -56,7 +56,7 @@
     },
     {
       "name": "Spear",
-      "id": 7,
+      "id": 507,
       "description": "A long spear for extended reach.",
       "amount": 1,
       "itemType": "Weapon",
@@ -65,7 +65,7 @@
     },
     {
       "name": "Crossbow",
-      "id": 8,
+      "id": 508,
       "description": "A crossbow that shoots bolts with high accuracy.",
       "amount": 1,
       "itemType": "Weapon",
@@ -74,7 +74,7 @@
     },
     {
       "name": "Mace",
-      "id": 9,
+      "id": 509,
       "description": "A blunt mace for crushing enemies.",
       "amount": 1,
       "itemType": "Weapon",
@@ -83,7 +83,7 @@
     },
     {
       "name": "Magic Wand",
-      "id": 10,
+      "id": 510,
       "description": "A wand that casts powerful spells.",
       "amount": 1,
       "itemType": "Weapon",

@@ -4,7 +4,7 @@
       "name": "Fruit Salad",
       "id": 1,
       "description": "A delicious mix of fruits.",
-      "amount": 1,
+      "amount": 201,
       "itemType": "Recipe",
       "requiredIngredients": [ 1, 5 ], 
       "healthRecovery": 20,
@@ -12,7 +12,7 @@
     },
     {
       "name": "Vegetable Salad",
-      "id": 2,
+      "id": 202,
       "description": "A healthy mix of vegetables.",
       "amount": 1,
       "itemType": "Recipe",
@@ -22,7 +22,7 @@
     },
     {
       "name": "Meat Stew",
-      "id": 3,
+      "id": 203,
       "description": "A hearty stew made with meat and vegetables.",
       "amount": 1,
       "itemType": "Recipe",
@@ -32,7 +32,7 @@
     },
     {
       "name": "Chicken Soup",
-      "id": 4,
+      "id": 204,
       "description": "A warm soup made with chicken.",
       "amount": 1,
       "itemType": "Recipe",
@@ -42,7 +42,7 @@
     },
     {
       "name": "Omelette",
-      "id": 5,
+      "id": 205,
       "description": "A fluffy omelette made from eggs.",
       "amount": 1,
       "itemType": "Recipe",
@@ -52,7 +52,7 @@
     },
     {
       "name": "Grilled Fish",
-      "id": 6,
+      "id": 206,
       "description": "A savory grilled fish dish.",
       "amount": 1,
       "itemType": "Recipe",
@@ -62,7 +62,7 @@
     },
     {
       "name": "Cheese Sandwich",
-      "id": 7,
+      "id": 207,
       "description": "A tasty sandwich with cheese.",
       "amount": 1,
       "itemType": "Recipe",
@@ -72,7 +72,7 @@
     },
     {
       "name": "Banana Smoothie",
-      "id": 8,
+      "id": 208,
       "description": "A refreshing banana smoothie.",
       "amount": 1,
       "itemType": "Recipe",
@@ -82,7 +82,7 @@
     },
     {
       "name": "Carrot Juice",
-      "id": 9,
+      "id": 209,
       "description": "A healthy carrot juice drink.",
       "amount": 1,
       "itemType": "Recipe",
@@ -92,7 +92,7 @@
     },
     {
       "name": "Meat Pie",
-      "id": 10,
+      "id": 210,
       "description": "A delicious pie made with meat.",
       "amount": 1,
       "itemType": "Recipe",
