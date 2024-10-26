@@ -37,9 +37,18 @@ public class InventoryPopup : UI_Popup
     // 인벤토리를 닫는 함수
     public void CloseInventory()
     {
+        if (!isOpen)
+        {
+            Debug.LogWarning("인벤토리 팝업이 이미 닫혀 있습니다.");
+            return;
+        }
+
         SaveInventoryState();  // 닫기 전 상태를 저장 (필요할 경우)
         Managers.UI.ClosePopupUI(this);  // UIManager를 통해 팝업을 닫음
+        isOpen = false;  // 팝업 상태를 닫힌 상태로 설정
+        Debug.Log("인벤토리 팝업이 닫혔습니다.");
     }
+
 
     // 인벤토리 상태를 저장하는 함수
     private void SaveInventoryState()

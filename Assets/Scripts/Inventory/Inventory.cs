@@ -34,18 +34,11 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        Managers.Input.KeyAction -= OpenInventory;
-        Managers.Input.KeyAction += OpenInventory;
     }
 
     void OpenInventory()
     {
-        // I 키 입력을 감지
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            // 인벤토리 팝업을 토글
-            popup.ToggleInventoryPopup(Managers.Inventory.items);
-        }
+      
     }
 
     // 게임 중 아이템을 습득하는 함수 (프리팹 이름이 ID와 같을 때)

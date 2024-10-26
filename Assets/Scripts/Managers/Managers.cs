@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
-    InventoryManager _inventory = new InventoryManager();   
+    InventoryManager _inventory = new InventoryManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -30,23 +29,23 @@ public class Managers : MonoBehaviour
 
     public static InventoryManager Inventory { get { Init(); return Instance._inventory; } }
 
-
     void Start()
     {
         Init();
-	}
+        SceneManager.sceneLoaded += OnSceneLoaded;  // 씬 로드 이벤트 등록
+    }
 
     void FixedUpdate()
     {
         _game.HandleGameState();
-        _input.OnUpdate();
+        _input.OnUpdate();  // 매 프레임 입력 업데이트
     }
 
     static void Init()
     {
         if (s_instance == null)
         {
-			GameObject go = GameObject.Find("@Managers");
+            GameObject go = GameObject.Find("@Managers");
             if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
@@ -56,15 +55,28 @@ public class Managers : MonoBehaviour
             DontDestroyOnLoad(go);
             s_instance = go.GetComponent<Managers>();
 
-
-
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
             s_instance._player.Init();
             s_instance._inventory.Init();
-        }		
-	}
+        }
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // 게임 씬에서만 InventoryManager를 재초기화하여 KeyAction 등록
+        if (scene.name != "TitleScene")
+        {
+            _inventory.Init();
+            Debug.Log("게임 씬에서 InventoryManager가 재초기화되었습니다.");
+        }
+    }
+
+    void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;  // 씬 로드 이벤트 해제
+    }
 
     public static void Clear()
     {

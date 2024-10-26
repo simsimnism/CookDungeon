@@ -11,29 +11,26 @@ public class InventoryManager
     // 초기화 메서드
     public void Init()
     {
-
-        // inventoryPopup이 null 상태라면 프리팹을 동적으로 로드하여 할당
-        if (inventoryPopup == null)
+        // 타이틀 씬이 아닌 경우에만 인벤토리를 초기화하고 로드
+        if (SceneManager.GetActiveScene().name != "TitleScene")
         {
-            GameObject popupPrefab = Managers.Resource.Instantiate("UI/Popup/InventoryPopup");
-            inventoryPopup = popupPrefab.GetComponent<InventoryPopup>();
-
-            if (inventoryPopup == null)
-                Debug.LogError("InventoryPopup 프리팹이 올바르게 할당되지 않았습니다.");
-            else
-                Debug.Log("InventoryPopup 프리팹이 동적으로 할당되었습니다.");
+            Managers.Input.KeyAction += OnKeyPress;  // 키 입력 이벤트에 콜백 등록
+            LoadInventory();  // 인벤토리 로드
         }
-
-        Managers.Input.KeyAction += OnKeyPress;  // 키 입력 이벤트에 콜백 등록
-        LoadInventory();  // 인벤토리 로드
+        else
+        {
+            Debug.Log("타이틀 씬에서는 인벤토리를 초기화하지 않습니다.");
+        }
     }
 
 
-    // 키 입력 처리: 'I' 키를 눌렀을 때 인벤토리 팝업 토글
+
     private void OnKeyPress()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        // Tab 키를 눌렀을 때만 인벤토리 토글 시도
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
+            Debug.Log("탭 키가 눌렸습니다. 인벤토리를 토글합니다.");
             ToggleInventory();
         }
     }
@@ -41,10 +38,28 @@ public class InventoryManager
     // 인벤토리 팝업 상태를 토글하는 함수
     public void ToggleInventory()
     {
+        // 현재 씬이 타이틀 씬일 경우 인벤토리 팝업을 열지 않음
+        if (SceneManager.GetActiveScene().name == "TitleScene")
+        {
+            Debug.Log("현재 타이틀 씬에서는 인벤토리를 열 수 없습니다.");
+            return;
+        }
+
+        // 처음으로 ToggleInventory가 호출될 때 프리팹을 할당
         if (inventoryPopup == null)
         {
-            Debug.LogWarning("InventoryPopup is not assigned.");
-            return;
+            GameObject popupPrefab = Managers.Resource.Instantiate("UI/Popup/InventoryPopup");
+            inventoryPopup = popupPrefab.GetComponent<InventoryPopup>();
+
+            if (inventoryPopup == null)
+            {
+                Debug.LogError("InventoryPopup 프리팹이 올바르게 할당되지 않았습니다.");
+                return;
+            }
+            else
+            {
+                Debug.Log("InventoryPopup 프리팹이 동적으로 할당되었습니다.");
+            }
         }
 
         inventoryPopup.ToggleInventoryPopup(items);  // 인벤토리 팝업 열기/닫기
