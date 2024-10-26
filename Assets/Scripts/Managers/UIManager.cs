@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager
@@ -13,11 +12,11 @@ public class UIManager
     {
         get
         {
-			GameObject root = GameObject.Find("@UI_Root");
-			if (root == null)
-				root = new GameObject { name = "@UI_Root" };
+            GameObject root = GameObject.Find("@UI_Root");
+            if (root == null)
+                root = new GameObject { name = "@UI_Root" };
             return root;
-		}
+        }
     }
 
     public void SetCanvas(GameObject go, bool sort = true)
@@ -37,34 +36,41 @@ public class UIManager
         }
     }
 
-	public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
-	{
-		if (string.IsNullOrEmpty(name))
-			name = typeof(T).Name;
+    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
 
-		GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
-		if (parent != null)
-			go.transform.SetParent(parent);
+        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+        if (parent != null)
+            go.transform.SetParent(parent);
 
-		return Util.GetOrAddComponent<T>(go);
-	}
+        return Util.GetOrAddComponent<T>(go);
+    }
 
-	public T ShowSceneUI<T>(string name = null) where T : UI_Scene
-	{
-		if (string.IsNullOrEmpty(name))
-			name = typeof(T).Name;
+    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
 
-		GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-		T sceneUI = Util.GetOrAddComponent<T>(go);
+        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        T sceneUI = Util.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
-		go.transform.SetParent(Root.transform);
+        go.transform.SetParent(Root.transform);
 
-		return sceneUI;
-	}
+        return sceneUI;
+    }
 
-	public T ShowPopupUI<T>(string name = null) where T : UI_Popup
+    public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
+        // 중복 생성 방지
+        if (GetPopup<T>() != null)
+        {
+            Debug.Log($"{typeof(T).Name} 팝업이 이미 열려 있습니다.");
+            return null;
+        }
+
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
@@ -74,22 +80,57 @@ public class UIManager
 
         go.transform.SetParent(Root.transform);
 
-		return popup;
+        return popup;
+    }
+
+
+    // 특정 타입의 팝업이 열려 있는지 확인하는 메서드
+    public T GetPopup<T>() where T : UI_Popup
+    {
+        foreach (UI_Popup popup in _popupStack)
+        {
+            if (popup is T)
+                return popup as T;
+        }
+        return null;
     }
 
     public void ClosePopupUI(UI_Popup popup)
     {
-		if (_popupStack.Count == 0)
-			return;
-
-        if (_popupStack.Peek() != popup)
-        {
-            Debug.Log("Close Popup Failed!");
+        if (_popupStack.Count == 0)
             return;
-        }
 
-        ClosePopupUI();
+        // 스택 내에서 해당 팝업을 찾아 닫기
+        if (_popupStack.Contains(popup))
+        {
+            Stack<UI_Popup> tempStack = new Stack<UI_Popup>();
+
+            // 원하는 팝업을 찾기 전까지 임시 스택에 옮김
+            while (_popupStack.Peek() != popup)
+            {
+                tempStack.Push(_popupStack.Pop());
+            }
+
+            // 찾은 팝업을 닫고 파괴
+            UI_Popup targetPopup = _popupStack.Pop();
+            targetPopup.gameObject.SetActive(false);  // 비활성화
+            Managers.Resource.Destroy(targetPopup.gameObject);  // 파괴
+            _order--;
+
+            // 임시 스택에 있던 팝업들을 다시 원래 스택으로 옮김
+            while (tempStack.Count > 0)
+            {
+                _popupStack.Push(tempStack.Pop());
+            }
+
+            Debug.Log($"{popup.name} 팝업이 닫혔습니다.");
+        }
+        else
+        {
+            Debug.Log("스택에 해당 팝업이 없습니다.");
+        }
     }
+
 
     public void ClosePopupUI()
     {

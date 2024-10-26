@@ -30,7 +30,7 @@ public class InventoryManager
         // Tab 키를 눌렀을 때만 인벤토리 토글 시도
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Debug.Log("탭 키가 눌렸습니다. 인벤토리를 토글합니다.");
+
             ToggleInventory();
         }
     }

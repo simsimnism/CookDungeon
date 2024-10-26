@@ -5,20 +5,29 @@ public class InventoryPopup : UI_Popup
 {
     public bool isOpen = false;  // 팝업이 열려 있는지 여부를 저장하는 변수
 
-    // 인벤토리 팝업을 열거나 닫는 함수
     public void ToggleInventoryPopup(List<Item> playerItems)
     {
-        if (!isOpen)  // 팝업이 닫혀 있을 때
+        if (!isOpen)
         {
-            ShowInventory(playerItems);  // 인벤토리를 초기화하면서 팝업을 염
-            isOpen = true;
+            InventoryPopup existingPopup = Managers.UI.GetPopup<InventoryPopup>();
+            if (existingPopup == null)
+            {
+                ShowInventory(playerItems);
+                isOpen = true;
+            }
+            else
+            {
+                Debug.Log("이미 열려 있는 인벤토리 팝업을 감지했습니다.");
+            }
         }
-        else  // 팝업이 열려 있을 때
+        else
         {
-            CloseInventory();  // 팝업을 닫음
+            CloseInventory();
             isOpen = false;
         }
     }
+
+
 
     // 인벤토리를 표시하는 함수
     private void ShowInventory(List<Item> playerItems)
