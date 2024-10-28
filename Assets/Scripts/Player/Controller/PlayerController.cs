@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         // 대각선 방향 조정
         Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
 
-        /*
+
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
         {
@@ -104,11 +104,10 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 2, Time.deltaTime * 15f);
         }
-        */
     }
 
 
-    /*
+
     // 대쉬와 무적 상태를 관리하는 코루틴
     private IEnumerator Dash()
     {
@@ -187,5 +186,4 @@ public class PlayerController : MonoBehaviour
     {
         return isInvincible;
     }
-    */
 }
