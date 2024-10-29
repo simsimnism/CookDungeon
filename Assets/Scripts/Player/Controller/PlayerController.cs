@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     //각 스크립트에서 직접 관리?
     public float invincibleDuration = 1f; // 무적 지속 시간
-    
+
     private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
     private Vector2 dashDirection; // 대쉬 방향을 저장할 변수
     private Coroutine dashCoroutine;
@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
             if (dashCoroutine != null || transparencyCoroutine != null)
             {
-                
+
                 StopAllCoroutines();
             }
             dashCoroutine = StartCoroutine(Dash());
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         float originalSpeed = moveSpeed;
 
         StartCoroutine(BecomeTransparent());
-        StartCoroutine(BecomeTransparent());    
+        StartCoroutine(BecomeTransparent());
 
         // 대쉬 동안 속도를 빠르게 하고, 저장된 방향으로 대쉬
         float elapsedTime = 0f;
