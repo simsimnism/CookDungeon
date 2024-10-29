@@ -9,7 +9,7 @@ public class MonsterAI : MonoBehaviour
 {
     public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
 
-    private int health;
+    public int health;
     private int attack;
     private float range;
 
