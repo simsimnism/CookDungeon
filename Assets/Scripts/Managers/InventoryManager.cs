@@ -27,43 +27,47 @@ public class InventoryManager
 
     private void OnKeyPress()
     {
-        // Tab 키를 눌렀을 때만 인벤토리 토글 시도
-        if (Input.GetKeyDown(KeyCode.Tab))
+        // Q 키를 눌렀을 때만 인벤토리 토글 시도
+        if (Input.GetKeyDown(KeyCode.Q))
         {
 
             ToggleInventory();
         }
     }
 
-    // 인벤토리 팝업 상태를 토글하는 함수
     public void ToggleInventory()
     {
-        // 현재 씬이 타이틀 씬일 경우 인벤토리 팝업을 열지 않음
         if (SceneManager.GetActiveScene().name == "TitleScene")
         {
             Debug.Log("현재 타이틀 씬에서는 인벤토리를 열 수 없습니다.");
             return;
         }
 
-        // 처음으로 ToggleInventory가 호출될 때 프리팹을 할당
+        // `UIManager`의 스택에서 `InventoryPopup` 확인 및 토글
+        inventoryPopup = Managers.UI.GetPopup<InventoryPopup>();
+
         if (inventoryPopup == null)
         {
-            GameObject popupPrefab = Managers.Resource.Instantiate("UI/Popup/InventoryPopup");
-            inventoryPopup = popupPrefab.GetComponent<InventoryPopup>();
-
-            if (inventoryPopup == null)
+            // 팝업이 없으면 새로 생성 (UIManager를 통해 관리)
+            inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");
+            if (inventoryPopup != null)
             {
-                Debug.LogError("InventoryPopup 프리팹이 올바르게 할당되지 않았습니다.");
-                return;
+                inventoryPopup.Initialize(items);  // 아이템 리스트 초기화
+                Debug.Log("InventoryPopup 프리팹이 동적으로 생성되었습니다.");
             }
             else
             {
-                Debug.Log("InventoryPopup 프리팹이 동적으로 할당되었습니다.");
+                Debug.LogError("InventoryPopup 프리팹을 생성하지 못했습니다.");
             }
         }
-
-        inventoryPopup.ToggleInventoryPopup(items);  // 인벤토리 팝업 열기/닫기
+        else
+        {
+            // 이미 열린 경우 UIManager를 통해 닫기
+            Managers.UI.ClosePopupUI(inventoryPopup);
+        }
     }
+
+
 
     // 아이템 추가
     public bool AddItem(Item newItem)

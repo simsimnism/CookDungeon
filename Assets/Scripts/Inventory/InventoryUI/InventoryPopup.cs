@@ -43,7 +43,6 @@ public class InventoryPopup : UI_Popup
         // 아이템 목록을 슬롯에 반영하는 로직이 추가될 수 있음
     }
 
-    // 인벤토리를 닫는 함수
     public void CloseInventory()
     {
         if (!isOpen)
@@ -53,10 +52,24 @@ public class InventoryPopup : UI_Popup
         }
 
         SaveInventoryState();  // 닫기 전 상태를 저장 (필요할 경우)
-        Managers.UI.ClosePopupUI(this);  // UIManager를 통해 팝업을 닫음
+
+        // UIManager 스택에서 팝업이 존재할 경우 닫기
+        if (Managers.UI.GetPopup<InventoryPopup>() != null)
+        {
+            Managers.UI.ClosePopupUI(this);
+        }
+        else
+        {
+            Debug.LogWarning("UIManager 스택에 해당 팝업이 없습니다.");
+        }
+
+        // 인벤토리 팝업을 비활성화하여 UI에서 보이지 않도록 설정
+        gameObject.SetActive(false);
         isOpen = false;  // 팝업 상태를 닫힌 상태로 설정
         Debug.Log("인벤토리 팝업이 닫혔습니다.");
     }
+
+
 
 
     // 인벤토리 상태를 저장하는 함수

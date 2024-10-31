@@ -83,7 +83,6 @@ public class UIManager
         return popup;
     }
 
-
     // 특정 타입의 팝업이 열려 있는지 확인하는 메서드
     public T GetPopup<T>() where T : UI_Popup
     {
@@ -100,24 +99,20 @@ public class UIManager
         if (_popupStack.Count == 0)
             return;
 
-        // 스택 내에서 해당 팝업을 찾아 닫기
         if (_popupStack.Contains(popup))
         {
             Stack<UI_Popup> tempStack = new Stack<UI_Popup>();
 
-            // 원하는 팝업을 찾기 전까지 임시 스택에 옮김
             while (_popupStack.Peek() != popup)
             {
                 tempStack.Push(_popupStack.Pop());
             }
 
-            // 찾은 팝업을 닫고 파괴
             UI_Popup targetPopup = _popupStack.Pop();
-            targetPopup.gameObject.SetActive(false);  // 비활성화
-            Managers.Resource.Destroy(targetPopup.gameObject);  // 파괴
+            targetPopup.gameObject.SetActive(false);  // 팝업을 UI에서 비활성화
+            Managers.Resource.Destroy(targetPopup.gameObject);  // 이후 파괴
             _order--;
 
-            // 임시 스택에 있던 팝업들을 다시 원래 스택으로 옮김
             while (tempStack.Count > 0)
             {
                 _popupStack.Push(tempStack.Pop());
@@ -131,13 +126,13 @@ public class UIManager
         }
     }
 
-
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0)
             return;
 
         UI_Popup popup = _popupStack.Pop();
+        popup.gameObject.SetActive(false);  // 팝업 비활성화 추가
         Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         _order--;
