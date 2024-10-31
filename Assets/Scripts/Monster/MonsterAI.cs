@@ -181,12 +181,52 @@ public class MonsterAI : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    // ���Ͱ� ���� �� �����ϴ� �Լ�
     private void MonsterDestroyed()
     {
         DestroyEvent destroyedEvent = GetComponent<DestroyEvent>();
         destroyedEvent.CallDestroyedEvent(false, 0);
+
+        // 5% 확률로 프리팹 드랍
+        float dropChance = Random.Range(0f, 1f);
+        if (dropChance <= 1f)  // 5% 확률 체크
+        {
+            string prefabPath = null;
+
+            // 몬스터의 ID에 따른 드랍 프리팹 경로 설정
+            switch (id)
+            {
+                case 1: // 예: ID가 1인 몬스터
+                    prefabPath = "Food/101";  // 사과 프리팹 경로
+                    break;
+                case 3: // 예: ID가 2인 몬스터
+                    prefabPath = "Food/102";  // 빵 프리팹 경로
+                    break;
+                case 6: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/106";  // 치즈 프리팹 경로
+                    break;
+                default:
+                    prefabPath = "Food/DefaultFood";  // 기본 드랍 아이템 경로
+                    break;
+            }
+
+            // Managers.Resource를 통해 프리팹 소환
+            if (prefabPath != null)
+            {
+                GameObject dropPrefab = Managers.Resource.Instantiate(prefabPath, null);  // 부모 객체 지정 없이 인스턴스화
+                if (dropPrefab != null)
+                {
+                    dropPrefab.transform.position = transform.position;  // 드랍 위치 설정
+                    Debug.Log($"{prefabPath} 프리팹이 성공적으로 드랍되었습니다.");
+                }
+                else
+                {
+                    Debug.LogWarning("프리팹 드랍 실패: 경로를 확인하세요.");
+                }
+            }
+        }
     }
+
+
 
     //������ �浹ó��
     void OnTriggerEnter2D(Collider2D other)
