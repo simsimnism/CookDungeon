@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager
@@ -64,13 +65,6 @@ public class UIManager
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
-        // 중복 생성 방지
-        if (GetPopup<T>() != null)
-        {
-            Debug.Log($"{typeof(T).Name} 팝업이 이미 열려 있습니다.");
-            return null;
-        }
-
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
@@ -83,47 +77,18 @@ public class UIManager
         return popup;
     }
 
-    // 특정 타입의 팝업이 열려 있는지 확인하는 메서드
-    public T GetPopup<T>() where T : UI_Popup
-    {
-        foreach (UI_Popup popup in _popupStack)
-        {
-            if (popup is T)
-                return popup as T;
-        }
-        return null;
-    }
-
     public void ClosePopupUI(UI_Popup popup)
     {
         if (_popupStack.Count == 0)
             return;
 
-        if (_popupStack.Contains(popup))
+        if (_popupStack.Peek() != popup)
         {
-            Stack<UI_Popup> tempStack = new Stack<UI_Popup>();
-
-            while (_popupStack.Peek() != popup)
-            {
-                tempStack.Push(_popupStack.Pop());
-            }
-
-            UI_Popup targetPopup = _popupStack.Pop();
-            targetPopup.gameObject.SetActive(false);  // 팝업을 UI에서 비활성화
-            Managers.Resource.Destroy(targetPopup.gameObject);  // 이후 파괴
-            _order--;
-
-            while (tempStack.Count > 0)
-            {
-                _popupStack.Push(tempStack.Pop());
-            }
-
-            Debug.Log($"{popup.name} 팝업이 닫혔습니다.");
+            Debug.Log("Close Popup Failed!");
+            return;
         }
-        else
-        {
-            Debug.Log("스택에 해당 팝업이 없습니다.");
-        }
+
+        ClosePopupUI();
     }
 
     public void ClosePopupUI()
@@ -132,7 +97,6 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        popup.gameObject.SetActive(false);  // 팝업 비활성화 추가
         Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         _order--;

@@ -32,7 +32,6 @@ public class Managers : MonoBehaviour
     void Start()
     {
         Init();
-        SceneManager.sceneLoaded += OnSceneLoaded;  // 씬 로드 이벤트 등록
     }
 
     void FixedUpdate()
@@ -59,24 +58,9 @@ public class Managers : MonoBehaviour
             s_instance._pool.Init();
             s_instance._sound.Init();
             s_instance._player.Init();
-            s_instance._inventory.Init();
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // 게임 씬에서만 InventoryManager를 재초기화하여 KeyAction 등록
-        if (scene.name != "TitleScene")
-        {
-            _inventory.Init();
-            Debug.Log("게임 씬에서 InventoryManager가 재초기화되었습니다.");
-        }
-    }
-
-    void OnDestroy()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;  // 씬 로드 이벤트 해제
-    }
 
     public static void Clear()
     {
