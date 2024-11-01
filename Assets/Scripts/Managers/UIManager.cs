@@ -77,20 +77,7 @@ public class UIManager
         return popup;
     }
 
-    public void ClosePopupUI(UI_Popup popup)
-    {
-        if (_popupStack.Count == 0)
-            return;
-
-        if (_popupStack.Peek() != popup)
-        {
-            Debug.Log("Close Popup Failed!");
-            return;
-        }
-
-        ClosePopupUI();
-    }
-
+    // 가장 최근에 추가된 팝업을 닫는 메서드
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0)

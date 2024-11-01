@@ -1,13 +1,26 @@
 using UnityEngine;
 
-public class InventoryPopup : MonoBehaviour
+public class InventoryPopup : UI_Popup
 {
-    public KeyCode toggleKey = KeyCode.Q;  // 인벤토리 창을 열고 닫는 키
+    public KeyCode toggleKey = KeyCode.Q; // 인벤토리 창을 열고 닫는 키
     private GameObject _inventoryCanvas;   // 인벤토리 캔버스 프리팹을 가리킬 변수
+
+    public override void Init()
+    {
+        base.Init(); // 부모 클래스(UI_Popup)의 Init() 호출하여 기본 설정
+
+        if (_inventoryCanvas == null)
+        {
+            LoadInventoryCanvas();
+            if (_inventoryCanvas != null)
+                _inventoryCanvas.SetActive(false); // 시작 시 비활성화
+        }
+    }
 
     private void Start()
     {
         Managers.Input.KeyAction += OnKeyPress;
+        Init(); // Start에서 Init을 호출하여 초기화 시작
     }
 
     private void OnDestroy()
@@ -25,36 +38,36 @@ public class InventoryPopup : MonoBehaviour
 
     private void TogglePopup()
     {
-        if (_inventoryCanvas == null)
-        {
-            // 처음 한 번만 프리팹을 로드
-            LoadInventoryCanvas();
-        }
+        if (_inventoryCanvas == null) return;
 
-        if (_inventoryCanvas != null)
+        if (_inventoryCanvas.activeInHierarchy)
         {
-            // 활성 상태를 반전시켜 열거나 닫기
-            bool isActive = _inventoryCanvas.activeInHierarchy;
-            _inventoryCanvas.SetActive(!isActive);
+            CloseInventoryPopup();
+        }
+        else
+        {
+            Managers.UI.ShowPopupUI<InventoryPopup>(); // 팝업 스택에 추가
+            _inventoryCanvas.SetActive(true); // 인벤토리 창을 활성화
         }
     }
 
+    private void CloseInventoryPopup()
+    {
+        if (_inventoryCanvas != null)
+        {
+            _inventoryCanvas.SetActive(false); // 인벤토리 캔버스를 비활성화
+            Managers.UI.ClosePopupUI(); // 팝업 스택에서 제거
+        }
+    }
 
     private bool LoadInventoryCanvas()
     {
-        if (Managers.Resource == null)
+        if (Managers.Resource == null || Managers.UI == null || Managers.UI.Root == null)
         {
-            Debug.LogError("Managers.Resource is not initialized.");
+            Debug.LogError("Managers.Resource, Managers.UI, 또는 UI Root가 초기화되지 않았습니다.");
             return false;
         }
 
-        if (Managers.UI == null || Managers.UI.Root == null)
-        {
-            Debug.LogError("Managers.UI or Managers.UI.Root is not initialized.");
-            return false;
-        }
-
-        // 프리팹을 지정된 경로에서 로드
         GameObject originalPrefab = Managers.Resource.Load<GameObject>("Prefabs/UI/Popup/InventoryPopup");
         if (originalPrefab == null)
         {
@@ -63,13 +76,6 @@ public class InventoryPopup : MonoBehaviour
         }
 
         _inventoryCanvas = Object.Instantiate(originalPrefab, Managers.UI.Root.transform);
-        if (_inventoryCanvas == null)
-        {
-            Debug.LogError("Failed to instantiate inventory canvas prefab.");
-            return false;
-        }
-
-        return true;
+        return _inventoryCanvas != null;
     }
-
 }
