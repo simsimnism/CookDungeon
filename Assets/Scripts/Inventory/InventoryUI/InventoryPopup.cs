@@ -48,6 +48,7 @@ public class InventoryPopup : UI_Popup
         {
             Managers.UI.ShowPopupUI<InventoryPopup>(); // 팝업 스택에 추가
             _inventoryCanvas.SetActive(true); // 인벤토리 창을 활성화
+            Debug.Log("InventoryPopup opened"); // 디버그 메시지 추가
         }
     }
 
@@ -56,9 +57,16 @@ public class InventoryPopup : UI_Popup
         if (_inventoryCanvas != null)
         {
             _inventoryCanvas.SetActive(false); // 인벤토리 캔버스를 비활성화
-            Managers.UI.ClosePopupUI(); // 팝업 스택에서 제거
+            Debug.Log("Inventory canvas set to inactive.");
+
+            Destroy(_inventoryCanvas); // 동적으로 할당된 프리팹을 완전히 제거
+            _inventoryCanvas = null; // 참조 해제
         }
+
+        Managers.UI.ClosePopupUI(); // 팝업 스택에서 최상위 팝업 제거
+        Debug.Log("InventoryPopup closed and destroyed.");
     }
+
 
     private bool LoadInventoryCanvas()
     {

@@ -37,34 +37,15 @@ public class UIManager
         }
     }
 
-    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
-    {
-        if (string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
-        if (parent != null)
-            go.transform.SetParent(parent);
-
-        return Util.GetOrAddComponent<T>(go);
-    }
-
-    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
-    {
-        if (string.IsNullOrEmpty(name))
-            name = typeof(T).Name;
-
-        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-        T sceneUI = Util.GetOrAddComponent<T>(go);
-        _sceneUI = sceneUI;
-
-        go.transform.SetParent(Root.transform);
-
-        return sceneUI;
-    }
-
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
+        // 같은 팝업이 이미 스택에 있을 경우 새로 추가하지 않음
+        if (IsPopupOpen<T>())
+        {
+            Debug.Log($"Popup {typeof(T).Name} is already open.");
+            return null;
+        }
+
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
@@ -74,10 +55,10 @@ public class UIManager
 
         go.transform.SetParent(Root.transform);
 
+        Debug.Log($"Popup added: {popup.name}, Stack count: {_popupStack.Count}");
         return popup;
     }
 
-    // 가장 최근에 추가된 팝업을 닫는 메서드
     public void ClosePopupUI()
     {
         if (_popupStack.Count == 0)
@@ -87,6 +68,8 @@ public class UIManager
         Managers.Resource.Destroy(popup.gameObject);
         popup = null;
         _order--;
+
+        Debug.Log($"Popup removed. Stack count: {_popupStack.Count}");
     }
 
     public void CloseAllPopupUI()
@@ -99,5 +82,16 @@ public class UIManager
     {
         CloseAllPopupUI();
         _sceneUI = null;
+    }
+
+    // 특정 타입의 팝업이 이미 열려 있는지 확인하는 메서드
+    public bool IsPopupOpen<T>() where T : UI_Popup
+    {
+        foreach (UI_Popup popup in _popupStack)
+        {
+            if (popup is T)
+                return true;
+        }
+        return false;
     }
 }
