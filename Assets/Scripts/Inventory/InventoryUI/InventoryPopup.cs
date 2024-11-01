@@ -8,24 +8,19 @@ public class InventoryPopup : UI_Popup
     public override void Init()
     {
         base.Init(); // 부모 클래스(UI_Popup)의 Init() 호출하여 기본 설정
-
         if (_inventoryCanvas == null)
         {
             LoadInventoryCanvas();
-            if (_inventoryCanvas != null)
-                _inventoryCanvas.SetActive(false); // 시작 시 비활성화
         }
     }
 
+    private void Awake()
+    {
+         Init();
+    }
     private void Start()
     {
         Managers.Input.KeyAction += OnKeyPress;
-        Init(); // Start에서 Init을 호출하여 초기화 시작
-    }
-
-    private void OnDestroy()
-    {
-        Managers.Input.KeyAction -= OnKeyPress;
     }
 
     private void OnKeyPress()
@@ -36,9 +31,10 @@ public class InventoryPopup : UI_Popup
         }
     }
 
+    //인벤토리를 여는 함수
     private void TogglePopup()
     {
-        if (_inventoryCanvas == null) return;
+        if (_inventoryCanvas == null) return; // 만약 Canvas가 로드되지 않았으면 종료
 
         if (_inventoryCanvas.activeInHierarchy)
         {
@@ -46,28 +42,23 @@ public class InventoryPopup : UI_Popup
         }
         else
         {
-            Managers.UI.ShowPopupUI<InventoryPopup>(); // 팝업 스택에 추가
             _inventoryCanvas.SetActive(true); // 인벤토리 창을 활성화
-            Debug.Log("InventoryPopup opened"); // 디버그 메시지 추가
         }
     }
 
+    //인벤토리를 닫는 함수
     private void CloseInventoryPopup()
     {
         if (_inventoryCanvas != null)
         {
             _inventoryCanvas.SetActive(false); // 인벤토리 캔버스를 비활성화
-            Debug.Log("Inventory canvas set to inactive.");
-
-            Destroy(_inventoryCanvas); // 동적으로 할당된 프리팹을 완전히 제거
-            _inventoryCanvas = null; // 참조 해제
         }
 
         Managers.UI.ClosePopupUI(); // 팝업 스택에서 최상위 팝업 제거
         Debug.Log("InventoryPopup closed and destroyed.");
     }
 
-
+    //인벤토리 캔버스를 불러오는 로직
     private bool LoadInventoryCanvas()
     {
         if (Managers.Resource == null || Managers.UI == null || Managers.UI.Root == null)
@@ -84,6 +75,7 @@ public class InventoryPopup : UI_Popup
         }
 
         _inventoryCanvas = Object.Instantiate(originalPrefab, Managers.UI.Root.transform);
-        return _inventoryCanvas != null;
+        _inventoryCanvas.SetActive(false); // 처음에는 비활성화 상태로 시작
+        return true;
     }
 }
