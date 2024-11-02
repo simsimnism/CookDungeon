@@ -14,6 +14,7 @@ public class GameManager
     // 현재 & 이전 방에 대한 정보
     private Room currentRoom;
     private Room previousRoom;
+    private Player player;
 
     // 던전 레벨 리스트 설정
     private List<DungeonLevelSO> dungeonLevelList;
@@ -108,6 +109,11 @@ public class GameManager
         GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
 
         gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
+    }
+
+    public Player GetPlayer()
+    {
+        return player;
     }
 
     // 최종적으로 던전을 생성하는 함수
