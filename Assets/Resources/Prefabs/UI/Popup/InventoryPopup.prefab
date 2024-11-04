@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 832022724013726006}
   - component: {fileID: 3070738463322804746}
   - component: {fileID: 362112031651668553}
-  - component: {fileID: 2717700487447419694}
+  - component: {fileID: 3163708210665812654}
   m_Layer: 5
   m_Name: InventoryPopup
   m_TagString: Untagged
@@ -623,7 +623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotPrefab: {fileID: 0}
---- !u!114 &2717700487447419694
+--- !u!114 &3163708210665812654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -635,6 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0f6b67028b1464284bffab2eb2c119, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggleKey: 113
 --- !u!1 &1861109891035434716
 GameObject:
   m_ObjectHideFlags: 0

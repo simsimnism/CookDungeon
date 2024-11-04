@@ -61,7 +61,7 @@ public class MonsterAI : MonoBehaviour
         attack = monsterDataSO.attack;
 
         attackRange = monsterDataSO.attackRange;
-
+        id = monsterDataSO.id;  
         range = monsterDataSO.range;
         speed = monsterDataSO.speed;
 
@@ -188,7 +188,7 @@ public class MonsterAI : MonoBehaviour
 
         // 5% 확률로 프리팹 드랍
         float dropChance = Random.Range(0f, 1f);
-        if (dropChance <= 1f)  // 5% 확률 체크
+        if (dropChance <= 0.05f)  // 5% 확률 체크
         {
             string prefabPath = null;
 
@@ -198,7 +198,7 @@ public class MonsterAI : MonoBehaviour
                 case 1: // 예: ID가 1인 몬스터
                     prefabPath = "Food/101";  // 사과 프리팹 경로
                     break;
-                case 3: // 예: ID가 2인 몬스터
+                case 3: 
                     prefabPath = "Food/102";  // 빵 프리팹 경로
                     break;
                 case 6: // 예: ID가 3인 몬스터

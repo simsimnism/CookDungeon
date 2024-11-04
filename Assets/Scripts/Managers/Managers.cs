@@ -34,6 +34,11 @@ public class Managers : MonoBehaviour
         Init();
     }
 
+    void Update()
+    {
+        _inventory.Update();
+    }
+
     void FixedUpdate()
     {
         _game.HandleGameState();

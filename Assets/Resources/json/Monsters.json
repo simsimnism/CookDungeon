@@ -3,7 +3,7 @@
     {
       "name": "Mandrapple",
       "id": 1,
-      "health": 5,
+      "health": 10,
       "attack": 1,
       "attackRange ": 3,
       "range": 5,
