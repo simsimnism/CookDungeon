@@ -58,7 +58,7 @@ public class MonsterSpawner : MonoBehaviour
         enemyMaxConcurrentSpawnNumber = GetConcurrentEnemies();
 
         // 문을 잠구기
-        // currentRoom.instantiatedRoom.LockDoors();
+        currentRoom.instantiatedRoom.LockDoors();
 
         // Spawn enemies
         SpawnEnemies();
@@ -177,7 +177,7 @@ public class MonsterSpawner : MonoBehaviour
             }
 
             // 문이 열림 (문 미완)
-            // currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
+            currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
 
             // 방에 몬스터가 없어서 클리어되었다는 이벤트 출력
             EventHandle.CallRoomMonsterClearEvent(currentRoom);
