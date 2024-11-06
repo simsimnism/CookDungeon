@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Managers : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
-    MonsterManager _monster = new MonsterManager();
+    InventoryManager _inventory = new InventoryManager();
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -28,23 +27,29 @@ public class Managers : MonoBehaviour
     public static GameManager GM { get { Init(); return Instance._game; } }
     public static PlayerManager Player { get { Init(); return Instance._player; } }
 
-    public static MonsterManager Monster { get { Init(); return Instance._monster; } }
+    public static InventoryManager Inventory { get { Init(); return Instance._inventory; } }
 
     void Start()
     {
         Init();
-	}
+    }
 
     void Update()
     {
-        _input.OnUpdate();
+        _inventory.Update();
+    }
+
+    void FixedUpdate()
+    {
+        _game.HandleGameState();
+        _input.OnUpdate();  // 매 프레임 입력 업데이트
     }
 
     static void Init()
     {
         if (s_instance == null)
         {
-			GameObject go = GameObject.Find("@Managers");
+            GameObject go = GameObject.Find("@Managers");
             if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
@@ -58,9 +63,9 @@ public class Managers : MonoBehaviour
             s_instance._pool.Init();
             s_instance._sound.Init();
             s_instance._player.Init();
-            s_instance._game.Init();
-        }		
-	}
+        }
+    }
+
 
     public static void Clear()
     {

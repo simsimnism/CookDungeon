@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25b1e5ffbe9b2c44c8c33af3c1bf183a
+guid: df2925e3822a01041823b9d4021273cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -63,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 0
+  applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 0
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -85,20 +85,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,19 +100,19 @@ TextureImporter:
       name: Cabbage Guri Run 2-Sheet_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 22
-        width: 31
-        height: 27
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b017c221c9844f348b27107524ef1928
-      internalID: 1128636353
+      spriteID: 9b4be90a4fc677049b013eb41575ef10
+      internalID: 1341593285
       vertices: []
       indices: 
       edges: []
@@ -134,19 +121,19 @@ TextureImporter:
       name: Cabbage Guri Run 2-Sheet_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 22
-        width: 31
-        height: 27
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9e753c44e22b58d4386c373923d855fb
-      internalID: 142504510
+      spriteID: 97d217291b56ab9439e8d2715267f628
+      internalID: 1526919694
       vertices: []
       indices: 
       edges: []
@@ -155,19 +142,19 @@ TextureImporter:
       name: Cabbage Guri Run 2-Sheet_2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 22
-        width: 31
-        height: 27
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61f657411d835d841a9010e8a9c4b58a
-      internalID: -1990508896
+      spriteID: 57563ca0343a29446852e4911bcb7a35
+      internalID: 264916269
       vertices: []
       indices: 
       edges: []
@@ -176,19 +163,19 @@ TextureImporter:
       name: Cabbage Guri Run 2-Sheet_3
       rect:
         serializedVersion: 2
-        x: 208
-        y: 22
-        width: 31
-        height: 27
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9372c0c5076c03142b928dc78bad9b77
-      internalID: -824036097
+      spriteID: 9b9f0304a17b1f649835bf8bf4f3d99e
+      internalID: -1792659203
       vertices: []
       indices: 
       edges: []
@@ -204,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cabbage Guri Run 2-Sheet_0: 1128636353
-      Cabbage Guri Run 2-Sheet_1: 142504510
-      Cabbage Guri Run 2-Sheet_2: -1990508896
-      Cabbage Guri Run 2-Sheet_3: -824036097
+      Cabbage Guri Run 2-Sheet_0: 1341593285
+      Cabbage Guri Run 2-Sheet_1: 1526919694
+      Cabbage Guri Run 2-Sheet_2: 264916269
+      Cabbage Guri Run 2-Sheet_3: -1792659203
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

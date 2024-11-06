@@ -10,18 +10,18 @@ public class InstantiatedRoom : MonoBehaviour
 {
     [HideInInspector] public Room room;
     [HideInInspector] public Grid grid;
-    [HideInInspector] public Tilemap groundTilemap;
-    [HideInInspector] public Tilemap decoration1Tilemap;
-    [HideInInspector] public Tilemap decoration2Tilemap;
-    [HideInInspector] public Tilemap decoration3Tilemap;
-    [HideInInspector] public Tilemap decoration4Tilemap;
-    [HideInInspector] public Tilemap frontTilemap1;
-    [HideInInspector] public Tilemap frontTilemap2;
-    [HideInInspector] public Tilemap frontTilemap3;
-    [HideInInspector] public Tilemap frontTilemap4;
-    [HideInInspector] public Tilemap frontTilemap5;
-    [HideInInspector] public Tilemap collisionTilemap;
-    [HideInInspector] public Tilemap minimapTilemap;
+    [HideInInspector] public Tilemap groundTileMap;
+    [HideInInspector] public Tilemap decorationTileMap1;
+    [HideInInspector] public Tilemap decorationTileMap2;
+    [HideInInspector] public Tilemap decorationTileMap3;
+    [HideInInspector] public Tilemap decorationTileMap4;
+    [HideInInspector] public Tilemap frontTileMap1;
+    [HideInInspector] public Tilemap frontTileMap2;
+    [HideInInspector] public Tilemap frontTileMap3;
+    [HideInInspector] public Tilemap frontTileMap4;
+    [HideInInspector] public Tilemap frontTileMap5;
+    [HideInInspector] public Tilemap collisionTileMap;
+    [HideInInspector] public Tilemap minimapTileMap;
     //[HideInInspector] public int[,] aStarMovementPenalty;  // 2차원 배열을 사용하여 AStar 경로 찾기에 사용할 타일맵의 이동 패널티를 저장 (현재 AStar 기법을 사용하지 않음)
     //[HideInInspector] public int[,] aStarItemObstacles; // 이동 가능한 구조물의 위치를 저장 (현재 AStar 기법을 사용하지 않음)
     [HideInInspector] public Bounds roomColliderBounds;
@@ -42,6 +42,20 @@ public class InstantiatedRoom : MonoBehaviour
     [SerializeField] private GameObject environmentGameObject;
 
     private BoxCollider2D boxCollider2D;
+
+    // Trigger room changed event when player enters a room
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // If the player triggered the collider
+        if (collision.tag == Settings.playerTag && room != Managers.GM.GetCurrentRoom())
+        {
+            // Set room as visited
+            this.room.isPreviouslyVisited = true;
+
+            // Call room changed event
+            EventHandle.CallRoomChangeEvent(room);
+        }
+    }
 
     /// <summary>
     /// Initialise The Instantiated Room
@@ -71,55 +85,129 @@ public class InstantiatedRoom : MonoBehaviour
         {
             if (tilemap.gameObject.tag == "groundTileMap")
             {
-                groundTilemap = tilemap;
+                groundTileMap = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap1")
             {
-                decoration1Tilemap = tilemap;
+                decorationTileMap1 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap2")
             {
-                decoration2Tilemap = tilemap;
+                decorationTileMap2 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap3")
             {
-                decoration3Tilemap = tilemap;
+                decorationTileMap3 = tilemap;
             }
             else if (tilemap.gameObject.tag == "decorationTileMap4")
             {
-                decoration4Tilemap = tilemap;
+                decorationTileMap4 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap1")
             {
-                frontTilemap1 = tilemap;
+                frontTileMap1 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap2")
             {
-                frontTilemap2 = tilemap;
+                frontTileMap2 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap3")
             {
-                frontTilemap3 = tilemap;
+                frontTileMap3 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap4")
             {
-                frontTilemap4 = tilemap;
+                frontTileMap4 = tilemap;
             }
             else if (tilemap.gameObject.tag == "frontTileMap5")
             {
-                frontTilemap5 = tilemap;
+                frontTileMap5 = tilemap;
             }
             else if (tilemap.gameObject.tag == "collisionTileMap")
             {
-                collisionTilemap = tilemap;
+                collisionTileMap = tilemap;
             }
-            else if (tilemap.gameObject.tag == "minimapTileMap")
+            else if (tilemap.gameObject.tag == "miniMapTileMap")
             {
-                minimapTilemap = tilemap;
+                minimapTileMap = tilemap;
             }
             else
             {
-                groundTilemap = tilemap;
+                groundTileMap = tilemap;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Block Off Unused Doorways In The Room
+    /// </summary>
+    private void BlockOffUnusedDoorWays()
+    {
+        // Loop through all doorways
+        foreach (Doorway doorway in room.doorWayList)
+        {
+            if (doorway.isConnected)
+                continue;
+
+            // Block unconnected doorways using tiles on tilemaps
+            if (collisionTileMap != null)
+            {
+                BlockADoorwayOnTilemapLayer(collisionTileMap, doorway);
+            }
+
+            if (minimapTileMap != null)
+            {
+                BlockADoorwayOnTilemapLayer(minimapTileMap, doorway);
+            }
+
+            if (groundTileMap != null)
+            {
+                BlockADoorwayOnTilemapLayer(groundTileMap, doorway);
+            }
+
+            if (decorationTileMap1 != null)
+            {
+                BlockADoorwayOnTilemapLayer(decorationTileMap1, doorway);
+            }
+
+            if (decorationTileMap2 != null)
+            {
+                BlockADoorwayOnTilemapLayer(decorationTileMap2, doorway);
+            }
+
+            if (decorationTileMap3 != null)
+            {
+                BlockADoorwayOnTilemapLayer(decorationTileMap3, doorway);
+            }
+
+            if (decorationTileMap4 != null)
+            {
+                BlockADoorwayOnTilemapLayer(decorationTileMap4, doorway);
+            }
+
+            if (frontTileMap1 != null)
+            {
+                BlockADoorwayOnTilemapLayer(frontTileMap1, doorway);
+            }
+
+            if (frontTileMap2 != null)
+            {
+                BlockADoorwayOnTilemapLayer(frontTileMap2, doorway);
+            }
+
+            if (frontTileMap3 != null)
+            {
+                BlockADoorwayOnTilemapLayer(frontTileMap3, doorway);
+            }
+
+            if (frontTileMap4 != null)
+            {
+                BlockADoorwayOnTilemapLayer(frontTileMap4, doorway);
+            }
+
+            if (frontTileMap5 != null)
+            {
+                BlockADoorwayOnTilemapLayer(frontTileMap5, doorway);
             }
         }
     }
@@ -169,9 +257,7 @@ public class InstantiatedRoom : MonoBehaviour
 
                 // Set rotation of tile copied
                 tilemap.SetTransformMatrix(new Vector3Int(startPosition.x + xPos, startPosition.y - 1 - yPos, 0), transformMatrix);
-
             }
-
         }
     }
 
@@ -199,90 +285,13 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     /// <summary>
-    /// Block Off Unused Doorways In The Room
-    /// </summary>
-    private void BlockOffUnusedDoorWays()
-    {
-        // Loop through all doorways
-        foreach (Doorway doorway in room.doorWayList)
-        {
-            if (doorway.isConnected)
-                continue;
-
-            // Block unconnected doorways using tiles on tilemaps
-            if (collisionTilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(collisionTilemap, doorway);
-            }
-
-            if (minimapTilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(minimapTilemap, doorway);
-            }
-
-            if (groundTilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(groundTilemap, doorway);
-            }
-
-            if (decoration1Tilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(decoration1Tilemap, doorway);
-            }
-
-            if (decoration2Tilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(decoration2Tilemap, doorway);
-            }
-
-            if (decoration3Tilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(decoration3Tilemap, doorway);
-            }
-
-            if (decoration4Tilemap != null)
-            {
-                BlockADoorwayOnTilemapLayer(decoration4Tilemap, doorway);
-            }
-
-            if (frontTilemap1 != null)
-            {
-                BlockADoorwayOnTilemapLayer(frontTilemap1, doorway);
-            }
-
-            if (frontTilemap2 != null)
-            {
-                BlockADoorwayOnTilemapLayer(frontTilemap2, doorway);
-            }
-
-            if (frontTilemap3 != null)
-            {
-                BlockADoorwayOnTilemapLayer(frontTilemap3, doorway);
-            }
-
-            if (frontTilemap4 != null)
-            {
-                BlockADoorwayOnTilemapLayer(frontTilemap4, doorway);
-            }
-
-            if (frontTilemap5 != null)
-            {
-                BlockADoorwayOnTilemapLayer(frontTilemap5, doorway);
-            }
-        }
-    }
-
-    /// <summary>
     /// Disable collision tilemap renderer
     /// </summary>
     private void DisableCollisionTilemapRenderer()
     {
         // Disable collision tilemap renderer
-        Debug.Log(collisionTilemap == null);
-        TilemapRenderer tmp = collisionTilemap.gameObject.GetComponent<TilemapRenderer>();
-        Debug.Log(tmp == null);
+        TilemapRenderer tmp = collisionTileMap.gameObject.GetComponent<TilemapRenderer>();
         tmp.enabled = false;
-
     }
 
     /// <summary>

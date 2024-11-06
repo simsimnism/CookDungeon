@@ -13,11 +13,11 @@ public class UIManager
     {
         get
         {
-			GameObject root = GameObject.Find("@UI_Root");
-			if (root == null)
-				root = new GameObject { name = "@UI_Root" };
+            GameObject root = GameObject.Find("@UI_Root");
+            if (root == null)
+                root = new GameObject { name = "@UI_Root" };
             return root;
-		}
+        }
     }
 
     public void SetCanvas(GameObject go, bool sort = true)
@@ -37,33 +37,33 @@ public class UIManager
         }
     }
 
-	public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
-	{
-		if (string.IsNullOrEmpty(name))
-			name = typeof(T).Name;
+    public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
 
-		GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
-		if (parent != null)
-			go.transform.SetParent(parent);
+        GameObject go = Managers.Resource.Instantiate($"UI/SubItem/{name}");
+        if (parent != null)
+            go.transform.SetParent(parent);
 
-		return Util.GetOrAddComponent<T>(go);
-	}
+        return Util.GetOrAddComponent<T>(go);
+    }
 
-	public T ShowSceneUI<T>(string name = null) where T : UI_Scene
-	{
-		if (string.IsNullOrEmpty(name))
-			name = typeof(T).Name;
+    public T ShowSceneUI<T>(string name = null) where T : UI_Scene
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
 
-		GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
-		T sceneUI = Util.GetOrAddComponent<T>(go);
+        GameObject go = Managers.Resource.Instantiate($"UI/Scene/{name}");
+        T sceneUI = Util.GetOrAddComponent<T>(go);
         _sceneUI = sceneUI;
 
-		go.transform.SetParent(Root.transform);
+        go.transform.SetParent(Root.transform);
 
-		return sceneUI;
-	}
+        return sceneUI;
+    }
 
-	public T ShowPopupUI<T>(string name = null) where T : UI_Popup
+    public T ShowPopupUI<T>(string name = null) where T : UI_Popup
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
@@ -74,13 +74,13 @@ public class UIManager
 
         go.transform.SetParent(Root.transform);
 
-		return popup;
+        return popup;
     }
 
     public void ClosePopupUI(UI_Popup popup)
     {
-		if (_popupStack.Count == 0)
-			return;
+        if (_popupStack.Count == 0)
+            return;
 
         if (_popupStack.Peek() != popup)
         {

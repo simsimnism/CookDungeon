@@ -16,24 +16,62 @@ MonoBehaviour:
   prefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
   previousPrefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
   roomNodeType: {fileID: 11400000, guid: f6d74b37aa1103c4c9dfc02d2d92f932, type: 2}
-  lowerBounds: {x: -16, y: -7}
-  upperBounds: {x: 15, y: 7}
+  lowerBounds: {x: -16, y: -11}
+  upperBounds: {x: 15, y: 11}
   doorwayList:
-  - position: {x: -15, y: 0}
+  - position: {x: -16, y: 0}
     orientation: 3
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: -16, y: 5}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
     isConnected: 0
     isUnavailable: 0
-  - position: {x: 14, y: 0}
+  - position: {x: 15, y: 0}
     orientation: 1
     doorPrefab: {fileID: 0}
-    doorwayStartCopyPosition: {x: 0, y: 0}
-    doorwayCopyTileWidth: 0
-    doorwayCopyTileHeight: 0
+    doorwayStartCopyPosition: {x: 9, y: 4}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 8
+    isConnected: 0
+    isUnavailable: 0
+  - position: {x: -1, y: 11}
+    orientation: 0
+    doorPrefab: {fileID: 0}
+    doorwayStartCopyPosition: {x: -5, y: 11}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 6
+    isConnected: 0
+    isUnavailable: 0
+  - position: {x: -1, y: -11}
+    orientation: 2
+    doorPrefab: {fileID: 0}
+    doorwayStartCopyPosition: {x: -5, y: -5}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 7
     isConnected: 0
     isUnavailable: 0
   spawnPositionArray:
-  - {x: 0, y: 0}
+  - {x: 4, y: 3}
+  - {x: 3, y: -2}
+  - {x: -5, y: -4}
+  - {x: -6, y: 4}
+  - {x: -6, y: 0}
+  - {x: 7, y: 0}
+  monsterByLevelList:
+  - dungeonLevel: {fileID: 11400000, guid: a84803e228a2f5e4dae33c9178ec568c, type: 2}
+    spawnableObjectRatioList:
+    - dungeonObject: {fileID: 11400000, guid: dc1faf4a3e4d2ad4c980bb382a814171, type: 2}
+      ratio: 1
+    - dungeonObject: {fileID: 11400000, guid: f41a258f60a9e4740a7eb498798d7676, type: 2}
+      ratio: 1
+    - dungeonObject: {fileID: 11400000, guid: 1c51afa627bf72a4e9cc0a2558ff7042, type: 2}
+      ratio: 1
+  roomMonsterSpawnParametersList:
+  - dungeonLevel: {fileID: 11400000, guid: a84803e228a2f5e4dae33c9178ec568c, type: 2}
+    minTotalEnemiesToSpawn: 4
+    maxTotalEnemiesToSpawn: 6
+    minConcurrentEnemies: 2
+    maxConcurrentEnemies: 3
+    minSpawnInterval: 2
+    maxSpawnInterval: 2

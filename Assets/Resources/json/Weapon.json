@@ -1,0 +1,94 @@
+{
+  "items": [
+    {
+      "name": "Sword",
+      "id": 501,
+      "description": "A sharp sword for melee attacks.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 50,
+      "attackSpeed": 1.2
+    },
+    {
+      "name": "Bow",
+      "id": 502,
+      "description": "A longbow for ranged attacks.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 35,
+      "attackSpeed": 0.8
+    },
+    {
+      "name": "Axe",
+      "id": 503,
+      "description": "A heavy axe with strong attack power.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 70,
+      "attackSpeed": 0.9
+    },
+    {
+      "name": "Dagger",
+      "id": 504,
+      "description": "A fast dagger for quick attacks.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 25,
+      "attackSpeed": 1.5
+    },
+    {
+      "name": "Staff",
+      "id": 505,
+      "description": "A magical staff that shoots spells.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 40,
+      "attackSpeed": 1.0
+    },
+    {
+      "name": "Hammer",
+      "id": 506,
+      "description": "A large hammer that delivers powerful blows.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 80,
+      "attackSpeed": 0.7
+    },
+    {
+      "name": "Spear",
+      "id": 507,
+      "description": "A long spear for extended reach.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 60,
+      "attackSpeed": 1.1
+    },
+    {
+      "name": "Crossbow",
+      "id": 508,
+      "description": "A crossbow that shoots bolts with high accuracy.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 45,
+      "attackSpeed": 0.9
+    },
+    {
+      "name": "Mace",
+      "id": 509,
+      "description": "A blunt mace for crushing enemies.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 65,
+      "attackSpeed": 0.8
+    },
+    {
+      "name": "Magic Wand",
+      "id": 510,
+      "description": "A wand that casts powerful spells.",
+      "amount": 1,
+      "itemType": "Weapon",
+      "damage": 55,
+      "attackSpeed": 1.3
+    }
+  ]
+}

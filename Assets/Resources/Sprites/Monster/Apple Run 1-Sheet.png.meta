@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -93,19 +93,6 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,10 +100,10 @@ TextureImporter:
       name: Apple Run 1-Sheet_0
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 0
-        width: 34
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +111,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbc94106cf846604e9bdcb6e39d214ec
-      internalID: 1118149866
+      spriteID: bfc9bd40210163c4cb63bc279c85618b
+      internalID: 200028600
       vertices: []
       indices: 
       edges: []
@@ -134,10 +121,10 @@ TextureImporter:
       name: Apple Run 1-Sheet_1
       rect:
         serializedVersion: 2
-        x: 78
+        x: 64
         y: 0
-        width: 34
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be87137747b549149a57e14511fd8369
-      internalID: 895284463
+      spriteID: bca8de4f15b30f44787375895306cad0
+      internalID: -760257736
       vertices: []
       indices: 
       edges: []
@@ -155,10 +142,10 @@ TextureImporter:
       name: Apple Run 1-Sheet_2
       rect:
         serializedVersion: 2
-        x: 142
+        x: 128
         y: 0
-        width: 34
-        height: 48
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +153,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a57e37bc9d02b2e4ea2531afffa7058f
-      internalID: 1563391506
+      spriteID: c5436c4992436d24fa989a225276340c
+      internalID: 1199957299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Apple Run 1-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c7c7b30e6e1da40a8b15bd7aac7866
+      internalID: 825276368
       vertices: []
       indices: 
       edges: []
@@ -183,9 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Apple Run 1-Sheet_0: 1118149866
-      Apple Run 1-Sheet_1: 895284463
-      Apple Run 1-Sheet_2: 1563391506
+      Apple Run 1-Sheet_0: 200028600
+      Apple Run 1-Sheet_1: -760257736
+      Apple Run 1-Sheet_2: 1199957299
+      Apple Run 1-Sheet_3: 825276368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
