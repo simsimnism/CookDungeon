@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemSlot : MonoBehaviour
 {
     public Image icon;
-    public Text itemName;
+    public TMP_Text itemName;  // TMP_Text·Î º¯°æ
 
     public void SetItem(Item item)
     {
@@ -15,8 +16,6 @@ public class ItemSlot : MonoBehaviour
 
     public void ClearItem()
     {
-        icon.sprite = null;
-        itemName.text = "";
-        icon.enabled = false;
+        
     }
 }
