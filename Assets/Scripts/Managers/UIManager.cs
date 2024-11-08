@@ -68,6 +68,9 @@ public class UIManager
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
+        // 호출 횟수 확인을 위한 디버그 로그 추가
+        Debug.Log($"ShowPopupUI 호출됨: {name}");
+
         GameObject go = Managers.Resource.Instantiate($"UI/Popup/{name}");
         T popup = Util.GetOrAddComponent<T>(go);
         _popupStack.Push(popup);
@@ -76,6 +79,7 @@ public class UIManager
 
         return popup;
     }
+
 
     public void ClosePopupUI(UI_Popup popup)
     {

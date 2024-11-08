@@ -8,12 +8,19 @@ public class InventoryManager
 
     public void Update()
     {
+        
+    }
+
+    public void OnKeyDown()
+    {
         // E 키 입력을 감지하여 인벤토리 열고 닫기
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("OnKeyDown 호출됨"); // 호출 횟수 추적
             ToggleInventory();
         }
     }
+
 
     private void ToggleInventory()
     {
@@ -57,11 +64,16 @@ public class InventoryManager
         }
     }
 
-    // 임시로 프리팹 이름을 아이템으로 변환하는 메서드 (예시)
     private Item CreateItemFromPrefab(string prefabName)
     {
-        // 실제로는 아이템 데이터를 로드하거나 아이템 DB에서 조회하여 생성할 수 있습니다.
-        Sprite itemSprite = Resources.Load<Sprite>($"Sprites/{prefabName}");
-        return new Item(prefabName, 1, "설명", 99, 1, itemSprite); // 기본 아이템 생성 (예시)
+        // Resources 폴더 내 "Sprites" 폴더에서 prefabName과 일치하는 스프라이트를 불러옵니다.
+        Sprite itemSprite = Resources.Load<Sprite>($"Sprites/Food/{prefabName}");
+        if (itemSprite == null)
+        {
+            Debug.LogWarning($"스프라이트를 찾을 수 없습니다: {prefabName}");
+            return null;
+        }
+        return new Item(prefabName, 1, "설명", 99, 1, itemSprite);
     }
+
 }
