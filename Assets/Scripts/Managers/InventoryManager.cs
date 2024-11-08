@@ -20,12 +20,15 @@ public class InventoryManager
 
     private void OpenInventory()
     {
-        _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");
-        _isInventoryOpen = true;
+        if (_inventoryPopup == null)
+        {
+            _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");
+        }
 
         if (_inventoryPopup != null)
         {
             slotGenerate = _inventoryPopup.GetComponentInChildren<Inventory>();
+            _isInventoryOpen = true;
         }
     }
 
@@ -41,7 +44,8 @@ public class InventoryManager
 
     public void AddItemToInventory(string prefabName)
     {
-        if (slotGenerate == null)
+        // slotGenerate가 null이거나 초기화되지 않은 경우 인벤토리를 열어 초기화
+        if (slotGenerate == null || !slotGenerate.isInitialized)
         {
             OpenInventory();
         }
@@ -57,7 +61,8 @@ public class InventoryManager
         ItemSlot slot = slotGenerate.GetEmptySlot();
         if (slot != null)
         {
-            slot.SetItem(item);
+            slot.SetItem(item); // 빈 슬롯에 아이템 설정
+            Debug.Log($"아이템 {item.Name}을 슬롯에 추가하였습니다.");
         }
         else
         {

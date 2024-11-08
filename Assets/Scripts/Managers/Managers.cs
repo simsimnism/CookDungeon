@@ -36,12 +36,12 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
+        _input.OnUpdate();  // 매 프레임 입력 업데이트
     }
 
     void FixedUpdate()
     {
         _game.HandleGameState();
-        _input.OnUpdate();  // 매 프레임 입력 업데이트
     }
 
     static void Init()
