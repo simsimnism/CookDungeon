@@ -36,7 +36,6 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-        _inventory.OnKeyDown();
     }
 
     void FixedUpdate()

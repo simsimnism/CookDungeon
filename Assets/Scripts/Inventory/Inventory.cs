@@ -4,82 +4,47 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<string, Item> inventoryItems = new Dictionary<string, Item>();
+    public GameObject slotPrefab;
+    public Transform slotParent;
+    public int slotCount = 12;
     private ItemSlot[] slots;
-    private DataManager dataManager;  // DataManager 참조 추가
-
-    [SerializeField] private GameObject itemInfoPanel;
-    [SerializeField] private Text itemNameText;
-    [SerializeField] private Text itemDescriptionText;
-    [SerializeField] private Image itemSpriteImage;
-    [SerializeField] private Transform slotParent;
+    private Queue<int> emptySlotIndices = new Queue<int>();
 
     private void Start()
     {
-        slots = slotParent.GetComponentsInChildren<ItemSlot>();
-        dataManager = new DataManager();
-        dataManager.Init(); // 데이터 초기화
+        GenerateSlots();
     }
 
-    // 아이템 습득 요청을 받아 처리하는 메서드
-    public void AcquireItem(string prefabName)
+    private void GenerateSlots()
     {
-        Item item = dataManager.GetFoodItemByPrefabName(prefabName);
-        if (item != null)
+        slots = new ItemSlot[slotCount];
+        for (int i = 0; i < slotCount; i++)
         {
-            AddItem(item);
-        }
-        else
-        {
-            Debug.LogWarning($"{prefabName}에 해당하는 아이템을 찾을 수 없습니다.");
+            GameObject slotObj = Instantiate(slotPrefab, slotParent);
+            slots[i] = slotObj.GetComponent<ItemSlot>();
+            emptySlotIndices.Enqueue(i);
         }
     }
 
-    // 아이템을 인벤토리에 추가하는 메서드 (기존 메서드)
-    public void AddItem(Item item)
+    public ItemSlot GetEmptySlot()
     {
-        if (inventoryItems.ContainsKey(item.Name))
+        if (emptySlotIndices.Count > 0)
         {
-            inventoryItems[item.Name].AddAmount(1);
-            UpdateSlot(inventoryItems[item.Name]);
+            int index = emptySlotIndices.Dequeue();
+            return slots[index];
         }
-        else
-        {
-            inventoryItems.Add(item.Name, item);
-            AddItemToSlot(item);
-            DisplayItemInfo(item);
-        }
+        Debug.LogWarning("빈 슬롯을 찾을 수 없습니다.");
+        return null;
     }
-
-    private void AddItemToSlot(Item item)
+    public void AddEmptySlotIndex(ItemSlot slot)
     {
-        foreach (ItemSlot slot in slots)
+        for (int i = 0; i < slots.Length; i++)
         {
-            if (!slot.GetComponent<Image>().enabled)
+            if (slots[i] == slot)
             {
-                slot.SetItem(item);
+                emptySlotIndices.Enqueue(i);
                 break;
             }
         }
-    }
-
-    private void UpdateSlot(Item item)
-    {
-        foreach (ItemSlot slot in slots)
-        {
-            if (slot.GetComponent<Image>().sprite == item.ItemSprite)
-            {
-                slot.SetItem(item);
-                break;
-            }
-        }
-    }
-
-    private void DisplayItemInfo(Item item)
-    {
-        itemInfoPanel.SetActive(true);
-        itemNameText.text = item.Name;
-        itemDescriptionText.text = item.Description;
-        itemSpriteImage.sprite = item.ItemSprite;
     }
 }

@@ -26,11 +26,15 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashCoroutine;
     private Coroutine transparencyCoroutine;
 
+    //인벤토리 팝업 관련 변수
+    public InventoryPopup InventoryPopup;
+
     // 아이템 습득 관련 변수
     private PickupItem currentPickupItem; // 현재 범위 내 아이템 참조
 
     void Awake()
     {
+        InventoryPopup = GetComponent<InventoryPopup>();
         transparencyHoldTime = Managers.Player.transparencyHoldTime;
         transparencyFadeTime = Managers.Player.transparencyFadeTime;
         isInvincible = Managers.GM.IsInvincible;
@@ -107,6 +111,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && currentPickupItem != null)
         {
             currentPickupItem.Pickup(); // 아이템 습득
+        }
+
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Managers.Inventory.ToggleInventory();
         }
     }
 
