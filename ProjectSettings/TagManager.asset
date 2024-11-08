@@ -21,6 +21,7 @@ TagManager:
   - playerMapPlayer
   - Monsters
   - miniMapTileMap
+  - PickupItem
   layers:
   - Default
   - TransparentFX
