@@ -25,7 +25,6 @@ public class MonsterAI3 : MonoBehaviour
     public float changeDirectionTime = 3f; // 랜덤 방향 이동 변경 주기
     private float timer = 0; // 랜덤 이동 타이머
     private enum MonsterState { Idle, Chasing }; // 상태 관리
-    private MonsterState currentState = MonsterState.Idle;
 
     public bool isAttacking = false;  // 플레이어 공격 중인지 여부를 추적
 
@@ -100,12 +99,11 @@ public class MonsterAI3 : MonoBehaviour
         // 공격 범위 안에 있지 않으면 플레이어 추격
         if (distanceToPlayer < range)
         {
-            currentState = MonsterState.Chasing;
             ChasePlayer();  // 추격
         }
         else
         {
-            currentState = MonsterState.Idle;
+
             RandomMovement();  // 플레이어가 없을 때는 랜덤 이동
         }
     }

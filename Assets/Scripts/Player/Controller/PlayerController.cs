@@ -26,6 +26,9 @@ public class PlayerController : MonoBehaviour
     private Coroutine dashCoroutine;
     private Coroutine transparencyCoroutine;
 
+    // 아이템 습득 관련 변수
+    private PickupItem currentPickupItem; // 현재 범위 내 아이템 참조
+
     void Awake()
     {
         transparencyHoldTime = Managers.Player.transparencyHoldTime;
@@ -44,10 +47,9 @@ public class PlayerController : MonoBehaviour
         Managers.Input.KeyAction += OnKeyMove;
     }
 
-    // WASD로 상하좌우 이동 & Shift키로 대쉬와 무적 상태
+    // WASD로 상하좌우 이동 & Shift키로 대쉬와 무적 상태 & F키로 아이템 습득
     private void OnKeyMove()
     {
-
         // 이동 가능 여부 체크
         if (!Managers.Player.canMove)
             return;
@@ -59,17 +61,15 @@ public class PlayerController : MonoBehaviour
         float moveHorizontal = 0;
 
         if (Input.GetKey(KeyCode.W)) moveVertical = 1f;
-
         if (Input.GetKey(KeyCode.A))
         {
             moveHorizontal = -1f;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         if (Input.GetKey(KeyCode.S)) moveVertical = -1f;
-
         if (Input.GetKey(KeyCode.D))
         {
-            moveHorizontal = -1f; // 여기서 방향 오류 수정
+            moveHorizontal = -1f; // 방향 오류 수정
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
 
         // 대각선 방향 조정
         Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
-
 
         // 대쉬 중이 아닐 때만 이동 방향 갱신
         if (!isDashing)
@@ -94,7 +93,6 @@ public class PlayerController : MonoBehaviour
 
             if (dashCoroutine != null || transparencyCoroutine != null)
             {
-
                 StopAllCoroutines();
             }
             dashCoroutine = StartCoroutine(Dash());
@@ -104,9 +102,13 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = Mathf.Lerp(moveSpeed, 2, Time.deltaTime * 15f);
         }
+
+        // F 키로 아이템 습득
+        if (Input.GetKeyDown(KeyCode.F) && currentPickupItem != null)
+        {
+            currentPickupItem.Pickup(); // 아이템 습득
+        }
     }
-
-
 
     // 대쉬와 무적 상태를 관리하는 코루틴
     private IEnumerator Dash()
@@ -179,11 +181,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
     // 무적 상태 확인 (이 함수로 외부에서 확인 가능)
     public bool IsInvincible()
     {
         return isInvincible;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // "PickupItem" 태그가 있는 오브젝트와 충돌 시
+        if (other.CompareTag("PickupItem"))
+        {
+            currentPickupItem = other.GetComponent<PickupItem>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        // "PickupItem" 태그가 있는 오브젝트와 충돌 해제 시
+        if (other.CompareTag("PickupItem"))
+        {
+            currentPickupItem = null;
+        }
     }
 }

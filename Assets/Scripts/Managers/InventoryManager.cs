@@ -4,15 +4,23 @@ public class InventoryManager
 {
     private InventoryPopup _inventoryPopup;
     private bool _isInventoryOpen = false;
+    public InventorySlotGenerate slotGenerate; // 슬롯 생성 스크립트 참조
 
     public void Update()
+    {
+        
+    }
+
+    public void OnKeyDown()
     {
         // E 키 입력을 감지하여 인벤토리 열고 닫기
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("OnKeyDown 호출됨"); // 호출 횟수 추적
             ToggleInventory();
         }
     }
+
 
     private void ToggleInventory()
     {
@@ -28,18 +36,44 @@ public class InventoryManager
 
     private void OpenInventory()
     {
-        // 인벤토리 팝업 생성 및 표시
         _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");
         _isInventoryOpen = true;
     }
 
     private void CloseInventory()
     {
-        // 인벤토리 팝업 닫기
         if (_inventoryPopup != null)
         {
             _inventoryPopup.ClosePopupUI();
             _isInventoryOpen = false;
         }
     }
+
+    // 아이템을 인벤토리에 추가하는 메서드
+    public void AddItemToInventory(string prefabName)
+    {
+        // 프리팹 이름을 통해 아이템 정보를 가져와 슬롯에 추가
+        Item item = CreateItemFromPrefab(prefabName); // 임시 메서드로 아이템 생성
+        if (item != null)
+        {
+            ItemSlot slot = slotGenerate.GetEmptySlot(); // 빈 슬롯 가져오기
+            if (slot != null)
+            {
+                slot.SetItem(item); // 슬롯에 아이템 추가
+            }
+        }
+    }
+
+    private Item CreateItemFromPrefab(string prefabName)
+    {
+        // Resources 폴더 내 "Sprites" 폴더에서 prefabName과 일치하는 스프라이트를 불러옵니다.
+        Sprite itemSprite = Resources.Load<Sprite>($"Sprites/Food/{prefabName}");
+        if (itemSprite == null)
+        {
+            Debug.LogWarning($"스프라이트를 찾을 수 없습니다: {prefabName}");
+            return null;
+        }
+        return new Item(prefabName, 1, "설명", 99, 1, itemSprite);
+    }
+
 }
