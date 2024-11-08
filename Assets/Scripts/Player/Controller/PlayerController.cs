@@ -187,18 +187,18 @@ public class PlayerController : MonoBehaviour
         return isInvincible;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        // 플레이어가 PickupItem 범위에 들어왔을 때
+        // "PickupItem" 태그가 있는 오브젝트와 충돌 시
         if (other.CompareTag("PickupItem"))
         {
             currentPickupItem = other.GetComponent<PickupItem>();
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        // 플레이어가 PickupItem 범위를 벗어났을 때
+        // "PickupItem" 태그가 있는 오브젝트와 충돌 해제 시
         if (other.CompareTag("PickupItem"))
         {
             currentPickupItem = null;

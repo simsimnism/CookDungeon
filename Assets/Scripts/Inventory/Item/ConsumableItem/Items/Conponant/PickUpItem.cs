@@ -27,7 +27,7 @@ public class PickupItem : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // 플레이어가 범위에 들어왔을 때
         if (other.CompareTag("Player"))
@@ -37,7 +37,7 @@ public class PickupItem : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         // 플레이어가 범위를 벗어났을 때
         if (other.CompareTag("Player"))
