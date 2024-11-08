@@ -9,7 +9,6 @@ public class AnimeController : MonoBehaviour
     public Transform playerTransform;
 
     private Vector2 attackDirection;
-    private int comboStep = 0;
     private bool isAttacking = false;  // 공격 상태 체크
 
     void Awake()

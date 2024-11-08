@@ -6,7 +6,7 @@ public class ItemSlot : MonoBehaviour
     public Image itemImage;         // 슬롯의 아이템 이미지
     public Text itemAmountText;     // 슬롯의 아이템 개수 텍스트
 
-    private Item currentItem;
+    public Item currentItem;
 
     // 슬롯에 아이템을 설정하는 메서드
     public void SetItem(Item item)
