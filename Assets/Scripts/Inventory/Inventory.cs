@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,15 @@ public class Inventory : MonoBehaviour
     private ItemSlot[] slots;
     public bool isInitialized = false;
 
-    private void OnEnable()
+    private void Start() // Start에서 초기화를 진행하여 모든 게임 오브젝트가 준비된 후 슬롯을 설정
+    {
+        if (!isInitialized)
+        {
+            InitializeSlots();
+        }
+    }
+
+    public void InitializeSlots()
     {
         if (slotPrefab == null || slotParent == null)
         {
@@ -18,16 +26,6 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        if (!isInitialized)
-        {
-            GenerateSlots();
-            isInitialized = true;
-            Debug.Log("슬롯 초기화 완료");
-        }
-    }
-
-    private void GenerateSlots()
-    {
         slots = new ItemSlot[slotCount];
         for (int i = 0; i < slotCount; i++)
         {
@@ -38,7 +36,6 @@ public class Inventory : MonoBehaviour
                 continue;
             }
 
-            // ItemSlot 컴포넌트가 없다면 추가
             ItemSlot itemSlot = slotObj.GetComponent<ItemSlot>();
             if (itemSlot == null)
             {
@@ -46,17 +43,15 @@ public class Inventory : MonoBehaviour
                 Debug.LogWarning($"ItemSlot 컴포넌트가 프리팹에 없어서 자동으로 추가되었습니다: 인덱스 {i}");
             }
 
+            itemSlot.currentItem = null; // 명확하게 null로 초기화
             slots[i] = itemSlot;
-            if (slots[i] == null)
-            {
-                Debug.LogError($"슬롯 오브젝트에 ItemSlot 컴포넌트를 할당할 수 없습니다: 인덱스 {i}");
-            }
-            else
-            {
-                slots[i].parentInventory = this;
-                Debug.Log($"슬롯 {i} 초기화 완료, currentItem: {slots[i].currentItem?.Name ?? "null"}");
-            }
+            slots[i].parentInventory = this;
+
+            Debug.Log($"슬롯 {i} 초기화 완료, currentItem: {slots[i].currentItem?.Name ?? "null"}");
         }
+
+        isInitialized = true;
+        Debug.Log("모든 슬롯 초기화 완료.");
     }
 
     public ItemSlot GetEmptySlot()
@@ -67,16 +62,15 @@ public class Inventory : MonoBehaviour
             return null;
         }
 
+        // 빈 슬롯 탐색 시 디버그 로그 추가
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i] != null && slots[i].currentItem == null) // currentItem을 직접 검사
+            Debug.Log($"슬롯 {i} 상태 확인, currentItem: {slots[i].currentItem?.Name ?? "null"}");
+
+            if (slots[i] != null && slots[i].IsEmpty())
             {
                 Debug.Log($"빈 슬롯 찾음: 인덱스 {i}");
                 return slots[i];
-            }
-            else
-            {
-                Debug.Log($"슬롯 {i}는 비어있지 않습니다. currentItem: {slots[i].currentItem?.Name ?? "null"}");
             }
         }
 
