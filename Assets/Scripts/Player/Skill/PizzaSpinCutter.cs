@@ -8,7 +8,7 @@ public class PizzaSpinCutter : MonoBehaviour
     public float radius = 2f;
     public float rotationSpeed = 200f;
     public float duration = 5f;
-    private int knifeCount = 2;
+    private int knifeCount = 2; // 시작 칼 개수
     private List<GameObject> knives = new List<GameObject>();
 
     public void ActivateSkill()
@@ -19,16 +19,19 @@ public class PizzaSpinCutter : MonoBehaviour
 
     private void SpawnKnives()
     {
-        DestroyKnives();
-        float angleStep = 360f / knifeCount;
+        DestroyKnives(); // 기존 칼 제거
+        float angleStep = 360f / knifeCount; // 칼 사이의 각도 차
+
         for (int i = 0; i < knifeCount; i++)
         {
-            float angle = i * angleStep;
-            GameObject knife = Instantiate(pizzaKnifePrefab, transform.position, Quaternion.identity);
-            knife.transform.SetParent(transform);
-            knife.transform.localPosition = new Vector3(radius, 0, 0); // 반경에 맞춰 위치 설정
-            knife.transform.DOLocalRotate(new Vector3(0, 0, 360), 1f / rotationSpeed, RotateMode.FastBeyond360)
-                .SetLoops(-1, LoopType.Restart); // 지속 회전
+            float angle = i * angleStep * Mathf.Deg2Rad; // 라디안으로 변환
+            Vector3 position = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius; // 원형 배열 위치 계산
+            GameObject knife = Instantiate(pizzaKnifePrefab, transform.position + position, Quaternion.identity);
+            knife.transform.SetParent(transform); // 플레이어 기준으로 배치
+
+            // 피자칼을 플레이어 주위로 회전하도록 초기화
+            knife.AddComponent<PizzaKnife>().Initialize(radius, rotationSpeed, transform);
+
             knives.Add(knife);
         }
     }

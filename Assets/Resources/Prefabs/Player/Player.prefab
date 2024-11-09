@@ -20,6 +20,10 @@ GameObject:
   - component: {fileID: 2197750277363042519}
   - component: {fileID: -7212628119788705017}
   - component: {fileID: -2161336275990677533}
+  - component: {fileID: 7230781881235056908}
+  - component: {fileID: 6760921261668312528}
+  - component: {fileID: 5729850085079224659}
+  - component: {fileID: 439189845956120409}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -334,11 +338,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9659e408c8a1d9b49a14200ee98687f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appleJuiceSkill: {fileID: 7735036453479346045, guid: 5f36f92daf86c484c8b7790252e0dffc, type: 3}
-  pizzaSpinCutter: {fileID: 35271495685366395, guid: 9be9b0fe300acff478e94ecd1b579bd1, type: 3}
-  eggCabbageSpirit: {fileID: 3853040339667578430, guid: 7743295fe1de50e469ed25148dc9b775, type: 3}
-  candyAppleRoll: {fileID: 1561795361155049655, guid: 10ab51d16c8f82e4199686ddc5dd5a2a, type: 3}
+  appleJuiceSkill: {fileID: 439189845956120409}
+  pizzaSpinCutter: {fileID: 7230781881235056908}
+  eggCabbageSpirit: {fileID: 6760921261668312528}
+  candyAppleRoll: {fileID: 5729850085079224659}
   appleJuiceCooldown: 5
-  pizzaSpinCooldown: 8
-  eggCabbageCooldown: 10
-  candyAppleCooldown: 12
+  pizzaSpinCooldown: 5
+  eggCabbageCooldown: 5
+  candyAppleCooldown: 5
+--- !u!114 &7230781881235056908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96a266a7e04bf374fb494ba0ed7fba00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pizzaKnifePrefab: {fileID: 482774722012170693, guid: 10032f4fa968d7c4cbf190dae799f94b, type: 3}
+  radius: 2
+  rotationSpeed: 200
+  duration: 5
+--- !u!114 &6760921261668312528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7400abd18526b594c809005fd788529a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spiritPrefab: {fileID: 2947856784731344065, guid: 5782eab30f1934243b9481ed3dc4f047, type: 3}
+  spawnInterval: 1
+  rotationSpeed: 50
+  radius: 3
+--- !u!114 &5729850085079224659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d25078f331f6241a5de10174841fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candyAppleBallPrefab: {fileID: 7277912707359058159, guid: 6d2632356e26e594e84e0ae9ef2a1e0a, type: 3}
+--- !u!114 &439189845956120409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef3b93d0ee233f48be08400e71c31ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appleJuiceEffect: {fileID: 3909660761192287430, guid: 5f36f92daf86c484c8b7790252e0dffc, type: 3}
+  skillManager: {fileID: -2161336275990677533}
+  initialRadius: 1
+  finalRadius: 3
+  duration: 5
+  damagePerSecond: 10

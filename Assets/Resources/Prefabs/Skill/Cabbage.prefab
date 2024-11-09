@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1914476834356386962}
   - component: {fileID: 416314346183997668}
+  - component: {fileID: 8473663433172377168}
   m_Layer: 0
   m_Name: Cabbage
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8473663433172377168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893473487539664017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac72b4daac5bcf24a9ddee40b5a7597d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
