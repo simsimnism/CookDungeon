@@ -4,36 +4,31 @@ using UnityEngine;
 public class FoodItemLoader
 {
     private Dictionary<int, FoodItem> _foodItems = new Dictionary<int, FoodItem>();
+    private Dictionary<string, FoodItem> _foodItemsByName = new Dictionary<string, FoodItem>();
 
     public void LoadFoodData(string jsonPath)
     {
-        // Resources 폴더에서 JSON 파일을 불러옴
-        TextAsset jsonData = Resources.Load<TextAsset>(jsonPath);
+        TextAsset jsonData = Managers.Resource.Load<TextAsset>(jsonPath);
 
         if (jsonData != null)
         {
-            // JSON 데이터를 FoodData로 변환
             var foodData = JsonUtility.FromJson<FoodData>(jsonData.text);
 
-            // 변환된 데이터를 Dictionary에 저장
             foreach (var item in foodData.items)
             {
-                // 스프라이트 로드 (이름을 통해서 로드)
-                Sprite itemSprite = Resources.Load<Sprite>($"Sprites/{item.name}");
-
-                // itemType을 포함하여 FoodItem 객체 생성
+                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/{item.name}");
                 FoodItem foodItem = new FoodItem(
                     item.name,
                     item.id,
                     item.description,
-                    item.amount,
-                    item.itemType,  // itemType 전달
-                    item.amount,  // maxAmount와 initialAmount 동일하게 설정
+                    item.MaxAmount,
+                    item.itemType,
                     item.healthRecovery,
                     item.fullnessRecovery,
-                    itemSprite  // 스프라이트 전달
+                    itemSprite
                 );
                 _foodItems.Add(item.id, foodItem);
+                _foodItemsByName.Add(item.name, foodItem);
             }
         }
         else
@@ -42,18 +37,19 @@ public class FoodItemLoader
         }
     }
 
-    // 프리팹 이름으로 FoodItem 반환
+    public FoodItem GetFoodItemById(int id)
+    {
+        _foodItems.TryGetValue(id, out var item);
+        return item;
+    }
+
     public FoodItem GetFoodItemByPrefabName(string prefabName)
     {
-        if (int.TryParse(prefabName, out int id) && _foodItems.ContainsKey(id))
-        {
-            return _foodItems[id];
-        }
-        return null;
+        _foodItemsByName.TryGetValue(prefabName, out var item);
+        return item;
     }
 }
 
-// JSON 데이터를 저장할 클래스
 [System.Serializable]
 public class FoodData
 {
@@ -66,8 +62,8 @@ public class FoodItemData
     public string name;
     public int id;
     public string description;
-    public int amount;
-    public string itemType;  // JSON에 아이템 타입 필드 추가
+    public int MaxAmount;
+    public string itemType;
     public int healthRecovery;
     public int fullnessRecovery;
 }

@@ -6,28 +6,40 @@ public class Item
     public string Name { get; private set; }
     public int ID { get; private set; }
     public string Description { get; private set; }
-    public int MaxAmount { get; private set; }
+    public int MaxAmount { get; private set; } = 99; // 기본 최대 수량을 99로 설정
     public int Amount { get; protected set; }
-    public Sprite ItemSprite { get; private set; } // 스프라이트 필드 추가
+    public Sprite ItemSprite { get; set; }
 
     public Item(string name, int id, string description, int maxAmount, int initialAmount, Sprite itemSprite)
     {
         Name = name;
         ID = id;
         Description = description;
-        MaxAmount = maxAmount;
-        Amount = Mathf.Clamp(initialAmount, 0, MaxAmount);
-        ItemSprite = itemSprite; // 생성자에서 스프라이트 설정
+        MaxAmount = maxAmount > 0 ? maxAmount : 99; // MaxAmount가 0 이하이면 기본값 99로 설정
+        Amount = Mathf.Clamp(initialAmount > 0 ? initialAmount : 1, 0, MaxAmount); // 기본 수량을 최소 1로 설정
+        ItemSprite = itemSprite;
+    }
+
+    public void SetAmount(int amount)
+    {
+        Amount = Mathf.Clamp(amount, 0, MaxAmount);
     }
 
     public virtual void Use()
     {
-        Debug.Log($"{Name}을(를) 사용했습니다.");
-        Amount = Mathf.Max(Amount - 1, 0); // 아이템 사용 시 개수 감소
+        if (Amount > 0)
+        {
+            Amount--;
+            Debug.Log($"{Name}을(를) 사용했습니다. 남은 수량: {Amount}");
+        }
+        if (Amount <= 0)
+        {
+            Debug.Log($"{Name}의 수량이 모두 소진되었습니다.");
+        }
     }
 
     public void AddAmount(int amount)
     {
-        Amount = Mathf.Clamp(Amount + amount, 0, MaxAmount); // 수량 추가
+        Amount = Mathf.Clamp(Amount + amount, 0, MaxAmount);
     }
 }

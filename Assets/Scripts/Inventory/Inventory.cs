@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,7 +10,11 @@ public class Inventory : MonoBehaviour
     private ItemSlot[] slots;
     public bool isInitialized = false;
 
-    private void Start() // Start에서 초기화를 진행하여 모든 게임 오브젝트가 준비된 후 슬롯을 설정
+    // 아이템과 스프라이트 캐시를 위한 딕셔너리
+    private Dictionary<string, Item> _itemCache = new Dictionary<string, Item>();
+    private Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
+
+    private void Start()
     {
         if (!isInitialized)
         {
@@ -30,51 +34,98 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < slotCount; i++)
         {
             GameObject slotObj = Instantiate(slotPrefab, slotParent);
-            if (slotObj == null)
-            {
-                Debug.LogError($"슬롯 프리팹이 생성되지 않았습니다: 인덱스 {i}");
-                continue;
-            }
-
-            ItemSlot itemSlot = slotObj.GetComponent<ItemSlot>();
-            if (itemSlot == null)
-            {
-                itemSlot = slotObj.AddComponent<ItemSlot>();
-                Debug.LogWarning($"ItemSlot 컴포넌트가 프리팹에 없어서 자동으로 추가되었습니다: 인덱스 {i}");
-            }
-
-            itemSlot.currentItem = null; // 명확하게 null로 초기화
+            ItemSlot itemSlot = slotObj.GetComponent<ItemSlot>() ?? slotObj.AddComponent<ItemSlot>();
+            itemSlot.ClearSlot();
+            itemSlot.parentInventory = this;
             slots[i] = itemSlot;
-            slots[i].parentInventory = this;
+        }
+        isInitialized = true;
+    }
 
-            Debug.Log($"슬롯 {i} 초기화 완료, currentItem: {slots[i].currentItem?.Name ?? "null"}");
+    public bool AddItemToInventoryByName(string prefabName)
+    {
+        // 캐시에서 아이템 확인
+        if (_itemCache.TryGetValue(prefabName, out var cachedItem))
+        {
+            // 기존 아이템이 있는 경우 수량만 증가
+            ItemSlot existingSlot = FindItemSlotByName(cachedItem.Name);
+            if (existingSlot != null)
+            {
+                if (existingSlot.currentItem.Amount >= existingSlot.currentItem.MaxAmount)
+                {
+                    Debug.LogWarning($"{cachedItem.Name} 아이템의 수량이 최대치입니다.");
+                    return false;
+                }
+
+                existingSlot.currentItem.AddAmount(1);
+                existingSlot.UpdateAmountText();
+                Debug.Log($"{cachedItem.Name}의 수량 증가: {existingSlot.currentItem.Amount}");
+                return true;
+            }
+        }
+        else
+        {
+            // 새로운 아이템 생성 및 캐시에 저장
+            Item item = Managers.Data.GetFoodItemByPrefabName(prefabName) ?? (Item)Managers.Data.GetRecipeItemByPrefabName(prefabName);
+            if (item == null)
+            {
+                Debug.LogWarning($"아이템 '{prefabName}'을(를) 찾을 수 없습니다.");
+                return false;
+            }
+
+            item.ItemSprite = LoadSpriteWithCaching($"Sprites/Food/{prefabName}");
+            item.SetAmount(1);
+            _itemCache[prefabName] = item;
+
+            // 빈 슬롯에 새 아이템 추가
+            ItemSlot emptySlot = GetEmptySlot();
+            if (emptySlot != null)
+            {
+                emptySlot.SetItem(item);
+                Debug.Log($"{item.Name} 새 슬롯에 추가 - 현재 수량: {item.Amount}");
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("빈 슬롯을 찾을 수 없거나 인벤토리가 가득 찼습니다.");
+                return false;
+            }
         }
 
-        isInitialized = true;
-        Debug.Log("모든 슬롯 초기화 완료.");
+        return false;
+    }
+
+    private Sprite LoadSpriteWithCaching(string spritePath)
+    {
+        if (_spriteCache.TryGetValue(spritePath, out var cachedSprite))
+            return cachedSprite;
+
+        Sprite newSprite = Resources.Load<Sprite>(spritePath);
+        if (newSprite != null)
+            _spriteCache[spritePath] = newSprite;
+        else
+            Debug.LogWarning($"스프라이트를 찾을 수 없습니다: {spritePath}");
+
+        return newSprite;
     }
 
     public ItemSlot GetEmptySlot()
     {
-        if (slots == null)
+        foreach (var slot in slots)
         {
-            Debug.LogError("슬롯 배열이 초기화되지 않았습니다.");
-            return null;
+            if (slot != null && slot.IsEmpty())
+                return slot;
         }
+        return null;
+    }
 
-        // 빈 슬롯 탐색 시 디버그 로그 추가
-        for (int i = 0; i < slots.Length; i++)
+    public ItemSlot FindItemSlotByName(string name)
+    {
+        foreach (var slot in slots)
         {
-            Debug.Log($"슬롯 {i} 상태 확인, currentItem: {slots[i].currentItem?.Name ?? "null"}");
-
-            if (slots[i] != null && slots[i].IsEmpty())
-            {
-                Debug.Log($"빈 슬롯 찾음: 인덱스 {i}");
-                return slots[i];
-            }
+            if (slot != null && slot.currentItem != null && slot.currentItem.Name == name)
+                return slot;
         }
-
-        Debug.LogWarning("빈 슬롯을 찾을 수 없습니다. 모든 슬롯이 채워져 있습니다.");
         return null;
     }
 }

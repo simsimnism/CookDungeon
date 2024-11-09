@@ -30,7 +30,7 @@ public class InventoryManager
             slotGenerate = _inventoryPopup.GetComponentInChildren<Inventory>();
             if (slotGenerate != null && !slotGenerate.isInitialized)
             {
-                slotGenerate.InitializeSlots(); // 초기화 메서드를 호출
+                slotGenerate.InitializeSlots();
             }
 
             _isInventoryOpen = true;
@@ -58,23 +58,29 @@ public class InventoryManager
             OpenInventory();
         }
 
-        Sprite itemSprite = Resources.Load<Sprite>($"Sprites/Food/{prefabName}");
+        Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/Food/{prefabName}");
         if (itemSprite == null)
         {
             Debug.LogWarning($"아이템 스프라이트를 찾을 수 없습니다: {prefabName}");
             return;
         }
 
-        Item item = new Item(prefabName, 101, "아이템 설명", 99, 1, itemSprite);
-        ItemSlot slot = slotGenerate.GetEmptySlot();
-        if (slot != null)
+        Item item = Managers.Data.GetFoodItemByPrefabName(prefabName) ?? (Item)Managers.Data.GetRecipeItemByPrefabName(prefabName);
+        if (item == null)
         {
-            slot.SetItem(item);
-            Debug.Log($"아이템 {item.Name}을 슬롯에 추가하였습니다.");
+            Debug.LogWarning($"아이템 '{prefabName}'을(를) 찾을 수 없습니다.");
+            return;
+        }
+
+        item.ItemSprite = itemSprite;
+
+        if (slotGenerate.AddItemToInventoryByName(prefabName))
+        {
+            Debug.Log($"아이템 {item.Name}을 인벤토리에 추가하였습니다.");
         }
         else
         {
-            Debug.LogWarning("빈 슬롯을 찾을 수 없습니다.");
+            Debug.LogWarning("빈 슬롯을 찾을 수 없거나 인벤토리가 가득 찼습니다.");
         }
     }
 }

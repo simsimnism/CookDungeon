@@ -1,13 +1,12 @@
 using UnityEngine;
 
-[System.Serializable]
 public class ConsumableItem : Item
 {
     public int HealthRecovery { get; private set; }
     public int FullnessRecovery { get; private set; }
 
     public ConsumableItem(string name, int id, string description, int maxAmount, int initialAmount, int healthRecovery, int fullnessRecovery, Sprite itemSprite)
-        : base(name, id, description, maxAmount, initialAmount, itemSprite) // 스프라이트 전달
+        : base(name, id, description, maxAmount, initialAmount, itemSprite)
     {
         HealthRecovery = healthRecovery;
         FullnessRecovery = fullnessRecovery;

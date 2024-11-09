@@ -1,38 +1,35 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class RecipeItemLoader
 {
     private Dictionary<int, RecipeItem> _recipeItems = new Dictionary<int, RecipeItem>();
+    private Dictionary<string, RecipeItem> _recipeItemsByName = new Dictionary<string, RecipeItem>();
 
     public void LoadRecipeData(string jsonPath)
     {
-        // Resources 폴더에서 JSON 파일을 불러옴 (확장자 제외)
-        TextAsset jsonData = Resources.Load<TextAsset>(jsonPath);
+        TextAsset jsonData = Managers.Resource.Load<TextAsset>(jsonPath);
 
         if (jsonData != null)
         {
-            // JSON 데이터를 RecipeData로 변환
             var recipeData = JsonUtility.FromJson<RecipeData>(jsonData.text);
 
-            // 변환된 데이터를 Dictionary에 저장
             foreach (var item in recipeData.items)
             {
-                // 아이템 스프라이트 불러오기
-                Sprite itemSprite = Resources.Load<Sprite>($"Sprites/{item.name}");
-
+                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/{item.name}");
                 RecipeItem recipeItem = new RecipeItem(
                     item.name,
                     item.id,
                     item.description,
-                    item.amount,
-                    item.amount,  // maxAmount와 initialAmount 동일하게 설정
+                    item.MaxAmount,
+                    item.itemType,
                     item.healthRecovery,
                     item.fullnessRecovery,
-                    new List<int>(item.requiredIngredients),
-                    itemSprite // 스프라이트 전달
+                    item.requiredIngredients,
+                    itemSprite
                 );
                 _recipeItems.Add(item.id, recipeItem);
+                _recipeItemsByName.Add(item.name, recipeItem);
             }
         }
         else
@@ -41,17 +38,19 @@ public class RecipeItemLoader
         }
     }
 
+    public RecipeItem GetRecipeItemById(int id)
+    {
+        _recipeItems.TryGetValue(id, out var item);
+        return item;
+    }
+
     public RecipeItem GetRecipeItemByPrefabName(string prefabName)
     {
-        if (int.TryParse(prefabName, out int id) && _recipeItems.ContainsKey(id))
-        {
-            return _recipeItems[id];
-        }
-        return null;
+        _recipeItemsByName.TryGetValue(prefabName, out var item);
+        return item;
     }
 }
 
-// JSON 데이터를 저장할 클래스
 [System.Serializable]
 public class RecipeData
 {
@@ -64,7 +63,8 @@ public class RecipeItemData
     public string name;
     public int id;
     public string description;
-    public int amount;
+    public int MaxAmount;
+    public string itemType;
     public int healthRecovery;
     public int fullnessRecovery;
     public List<int> requiredIngredients;
