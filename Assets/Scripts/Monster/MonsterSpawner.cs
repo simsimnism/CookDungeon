@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 [DisallowMultipleComponent]
@@ -11,6 +12,8 @@ public class MonsterSpawner : MonoBehaviour
     private int enemyMaxConcurrentSpawnNumber;
     private Room currentRoom;
     private RoomEnemySpawnParameters roomEnemySpawnParameters;
+
+    private Coroutine spawnCoroutine; // 몬스터 스폰 코루틴을 저장할 변수
 
     private void OnEnable()
     {
@@ -55,7 +58,7 @@ public class MonsterSpawner : MonoBehaviour
         currentRoom.instantiatedRoom.LockDoors();
 
         // 몬스터 스폰
-        StartCoroutine(SpawnEnemiesRoutine());
+        spawnCoroutine = StartCoroutine(SpawnEnemiesRoutine());
     }
 
     // 몬스터를 스폰하는 코루틴
@@ -140,5 +143,29 @@ public class MonsterSpawner : MonoBehaviour
             EventHandle.CallRoomMonsterClearEvent(currentRoom);
             Debug.Log("방을 클리어 했습니다!");
         }
+    }
+
+    // 현재 방의 모든 몬스터를 삭제하는 메서드
+    public void RemoveAllMonsters()
+    {
+        // 몬스터 스폰 코루틴 중지
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null; // 코루틴 변수 초기화
+        }
+
+        // 현재 방에 있는 모든 몬스터를 찾아서 삭제
+        foreach (var monster in FindObjectsOfType<MonsterAI>()) // Monster는 몬스터의 스크립트 이름입니다.
+        {
+            Destroy(monster.gameObject); // 몬스터 오브젝트 삭제
+        }
+
+        // 현재 몬스터 카운트와 스폰된 몬스터 수 초기화
+        currentEnemyCount = 0;
+        enemiesSpawnedSoFar = 0;
+        currentRoom.isClearedOfMonster = true; // 방 클리어 상태 업데이트
+
+        Debug.Log("모든 몬스터가 삭제되었습니다.");
     }
 }

@@ -132,6 +132,8 @@ public class Cauldron : MonoBehaviour
     {
         isFireOFF = true;
         // 몬스터 삭제
+        monsterSpawner.RemoveAllMonsters();
+        Debug.Log("모든 몬스터가 삭제되었습니다.");
     }
 
     void OnDisable()
