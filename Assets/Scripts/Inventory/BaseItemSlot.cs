@@ -5,32 +5,45 @@ using System.Collections.Generic;
 
 public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Image itemImage;  // 슬롯에 표시되는 아이템 이미지
+    public Image itemImage;
+    private Image draggedImage;
+    protected Item cachedItem;
+
+    private void Awake()
+    {
+        draggedImage = new GameObject("DraggedImage").AddComponent<Image>();
+        draggedImage.sprite = itemImage.sprite;
+        draggedImage.raycastTarget = false;
+        draggedImage.transform.SetParent(transform.root);
+        draggedImage.transform.SetAsLastSibling();
+        draggedImage.gameObject.SetActive(false);
+    }
+
     public abstract Item GetItem();
     public abstract void SetItem(Item item);
     public abstract void ClearSlot();
     public abstract bool IsEmpty();
 
-    private Image draggedImage;
+    protected void SetImageAlpha(float alpha)
+    {
+        var color = itemImage.color;
+        color.a = alpha;
+        itemImage.color = color;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (GetItem() == null) return;
 
-        // 드래그 시 임시 이미지 생성
-        draggedImage = new GameObject("DraggedImage").AddComponent<Image>();
         draggedImage.sprite = itemImage.sprite;
-        draggedImage.raycastTarget = false;
-        draggedImage.transform.SetParent(transform.root);  // 최상위에 추가하여 UI 이동
-        draggedImage.transform.SetAsLastSibling();
-
-        // 원래 슬롯 이미지를 숨김
-        itemImage.enabled = false;
+        draggedImage.transform.position = eventData.position;
+        draggedImage.gameObject.SetActive(true);
+        SetImageAlpha(0f);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (draggedImage != null)
+        if (draggedImage != null && draggedImage.gameObject.activeSelf)
         {
             draggedImage.transform.position = eventData.position;
         }
@@ -40,31 +53,74 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
     {
         if (draggedImage != null)
         {
-            Destroy(draggedImage.gameObject);
+            draggedImage.gameObject.SetActive(false);
         }
+        SetImageAlpha(1f);
 
-        itemImage.enabled = true;
-
-        // 마우스 위치에서 드롭 대상 슬롯을 정확히 감지
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
 
-        BaseItemSlot targetSlot = null;
-
         foreach (var result in results)
         {
-            if (result.gameObject.TryGetComponent<BaseItemSlot>(out targetSlot) && targetSlot != this)
+            if (result.gameObject.TryGetComponent<BaseItemSlot>(out BaseItemSlot targetSlot) && targetSlot != this)
             {
+                if (CanSwap(targetSlot))
+                {
+                    ConfirmSwap(targetSlot);
+                }
                 break;
             }
         }
+        ClearCache();
+    }
 
-        if (targetSlot != null)
+    protected virtual bool CanSwap(BaseItemSlot targetSlot)
+    {
+        return true;
+    }
+
+    protected virtual void SwapItems(BaseItemSlot targetSlot)
+    {
+        Item tempItem = targetSlot.GetItem();
+        targetSlot.SetItem(GetItem());
+        SetItem(tempItem);
+        ClearCache();
+    }
+
+    private void ConfirmSwap(BaseItemSlot targetSlot)
+    {
+        ShowConfirmationDialog(() => SwapItems(targetSlot));
+    }
+
+    private void ShowConfirmationDialog(System.Action onConfirm)
+    {
+        bool userConfirmed = true;
+        if (userConfirmed)
         {
-            // 아이템을 타겟 슬롯에 설정하고, 드래그 시작 슬롯 비우기
-            targetSlot.SetItem(GetItem());
-            ClearSlot();  // 원래 슬롯 비우기
+            onConfirm?.Invoke();
         }
     }
 
+    // BaseItemSlot.cs 내에 추가
+    public void LoadItemData(string spriteName)
+    {
+        Item item = Managers.Data.GetFoodItemByPrefabName(spriteName) ?? Managers.Data.GetRecipeItemByPrefabName(spriteName);
+        if (item != null)
+        {
+            SetItem(item);
+            cachedItem = item;
+            Debug.Log($"{spriteName}의 데이터를 성공적으로 로드했습니다.");
+        }
+        else
+        {
+            Debug.LogWarning($"'{spriteName}'에 해당하는 JSON 데이터를 찾을 수 없습니다.");
+        }
+    }
+
+
+    public void ClearCache()
+    {
+        cachedItem = null;
+        Debug.Log("캐시가 초기화되었습니다.");
+    }
 }

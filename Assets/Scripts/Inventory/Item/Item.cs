@@ -37,6 +37,13 @@ public class Item
             Debug.Log($"{Name}의 수량이 모두 소진되었습니다.");
         }
     }
+    // Item.cs 내에 추가
+    public void DecreaseAmount(int amount)
+    {
+        Amount -= amount;
+        if (Amount < 0) Amount = 0;
+    }
+
 
     public void AddAmount(int amount)
     {

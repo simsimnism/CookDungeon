@@ -5,7 +5,7 @@
       "id": 100,
       "description": "A fresh apple that restores health.",
       "MaxAmount": 99,
-      "itemType": "Fruit",
+      "itemType": "1",
       "healthRecovery": 10,
       "fullnessRecovery": 5
     },
@@ -14,7 +14,7 @@
       "id": 101,
       "description": "A loaf of bread that restores energy.",
       "MaxAmount": 99,
-      "itemType": "Vegetable",
+      "itemType": "2",
       "healthRecovery": 20,
       "fullnessRecovery": 15
     },
@@ -23,7 +23,7 @@
       "id": 102,
       "description": "A piece of meat that provides substantial nourishment.",
       "MaxAmount": 99,
-      "itemType": "Fruit",
+      "itemType": "3",
       "healthRecovery": 50,
       "fullnessRecovery": 30
     },
@@ -32,7 +32,7 @@
       "id": 103,
       "description": "A grilled fish that restores stamina.",
       "MaxAmount": 99,
-      "itemType": "Vegetable",
+      "itemType": "2",
       "healthRecovery": 35,
       "fullnessRecovery": 20
     },
@@ -41,16 +41,16 @@
       "id": 104,
       "description": "A banana that gives a quick boost of energy.",
       "MaxAmount": 99,
-      "itemType": "Fruit",
+      "itemType": "2",
       "healthRecovery": 15,
       "fullnessRecovery": 8
     },
     {
-      "name": "Cabbage",
+      "name": "3",
       "id": 105,
       "description": "A fresh carrot full of vitamins.",
       "MaxAmount": 99,
-      "itemType": "Vegetable",
+      "itemType": "",
       "healthRecovery": 10,
       "fullnessRecovery": 5
     },
@@ -59,7 +59,7 @@
       "id": 106,
       "description": "A block of cheese for extra strength.",
       "MaxAmount": 99,
-      "itemType": "Food",
+      "itemType": "",
       "healthRecovery": 25,
       "fullnessRecovery": 20
     },

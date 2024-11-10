@@ -1,34 +1,31 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CookingSlot : BaseItemSlot
 {
-    public TMP_Text itemAmountText;
+
+    // CookingSlot.cs 내에 추가
+    public Inventory parentInventory;
+
     public FoodItem currentFoodItem;
+    public TMP_Text itemAmountText;
+
+
 
     public override void SetItem(Item item)
     {
         if (item is FoodItem foodItem)
         {
             currentFoodItem = foodItem;
+            itemImage.sprite = foodItem.ItemSprite;
+            itemImage.enabled = true;
+            SetImageAlpha(1f);
+            UpdateAmountText();
 
-            // 스프라이트 설정
-            if (currentFoodItem.ItemSprite != null)
+            if (parentInventory != null)
             {
-                itemImage.sprite = currentFoodItem.ItemSprite;
-                itemImage.enabled = true;
-                var color = itemImage.color;
-                color.a = 1f;
-                itemImage.color = color;
+                parentInventory.RemoveItemByName(foodItem.Name);
             }
-            else
-            {
-                ClearSlot();
-            }
-
-            // 요리 UI 상태 업데이트
-            FindObjectOfType<CookingUI>()?.UpdateCookingState();
         }
         else
         {
@@ -38,20 +35,18 @@ public class CookingSlot : BaseItemSlot
 
     public override Item GetItem() => currentFoodItem;
 
+    // CookingSlot.cs
     public override void ClearSlot()
     {
         currentFoodItem = null;
         itemImage.sprite = null;
         itemImage.enabled = false;
-
-        // 투명하게 설정하여 이미지가 보이지 않도록 함
-        var color = itemImage.color;
-        color.a = 0f;
-        itemImage.color = color;
-
+        SetImageAlpha(0f);
+        cachedItem = null;
         if (itemAmountText != null)
             itemAmountText.text = "";
     }
+
 
     public override bool IsEmpty() => currentFoodItem == null;
 
@@ -59,5 +54,22 @@ public class CookingSlot : BaseItemSlot
     {
         if (itemAmountText != null)
             itemAmountText.text = currentFoodItem?.Amount > 1 ? currentFoodItem.Amount.ToString() : "";
+    }
+
+    private void Start()
+    {
+        if (parentInventory == null)
+        {
+            Debug.LogWarning("parentInventory가 설정되지 않았습니다. 수동으로 할당했는지 확인하세요.");
+        }
+
+        if (currentFoodItem != null && currentFoodItem.ItemSprite != null)
+        {
+            string spriteName = itemImage.sprite?.name ?? "";
+            if (!string.IsNullOrEmpty(spriteName))
+            {
+                LoadItemData(spriteName);
+            }
+        }
     }
 }

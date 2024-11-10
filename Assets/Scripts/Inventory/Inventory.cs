@@ -68,7 +68,6 @@ public class Inventory : MonoBehaviour
                 return false;
             }
 
-            // Load sprite and assign it to the item
             item.ItemSprite = LoadSpriteWithCaching($"Sprites/Food/{prefabName}");
             item.SetAmount(1);
             _itemCache[prefabName] = item;
@@ -124,14 +123,19 @@ public class Inventory : MonoBehaviour
         return null;
     }
 
-    public void SwapItems(ItemSlot slotA, ItemSlot slotB)
+    public bool RemoveItemByName(string itemName)
     {
-        if (slotA == null || slotB == null) return;
-
-        Item tempItem = slotA.currentItem;
-        slotA.SetItem(slotB.currentItem);
-        slotB.SetItem(tempItem);
-
-        Debug.Log($"{slotA.currentItem?.Name ?? "ºó ½½·Ô"}¿Í {slotB.currentItem?.Name ?? "ºó ½½·Ô"} ±³È¯ ¿Ï·á");
+        var slot = FindItemSlotByName(itemName);
+        if (slot != null && slot.currentItem != null)
+        {
+            slot.currentItem.DecreaseAmount(1);
+            if (slot.currentItem.Amount <= 0)
+            {
+                slot.ClearSlot();
+                _itemCache.Remove(itemName);
+            }
+            return true;
+        }
+        return false;
     }
 }

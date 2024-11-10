@@ -6,7 +6,7 @@
       "description": "A delicious mix of fruits.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [1, 5], 
+      "requiredIngredients": [1, 2], 
       "healthRecovery": 20,
       "fullnessRecovery": 15 
     },
@@ -16,7 +16,7 @@
       "description": "A healthy mix of vegetables.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [6, 7],
+      "requiredIngredients": [1, 3],
       "healthRecovery": 25,
       "fullnessRecovery": 20
     },
