@@ -24,21 +24,17 @@ public class MonsterSpawner : MonoBehaviour
         EventHandle.OnRoomChange -= StaticEventHandler_OnRoomChanged;
     }
 
-    // 현재 방을 변경하는 함수
     private void StaticEventHandler_OnRoomChanged(RoomChangeEvent roomChangedEvent)
     {
         enemiesSpawnedSoFar = 0;
         currentEnemyCount = 0;
 
         currentRoom = roomChangedEvent.room;
+    }
 
-        // 방 타입이 복도나 입구라면 리턴
-        if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance)
-            return;
-
-        // 방이 이미 클리어 되었다면 리턴
-        if (currentRoom.isClearedOfMonster) return;
-
+    // 가마솥에서 몬스터를 생성하는 함수
+    public void SpawnMonsters()
+    {
         // 몬스터를 랜덤으로 생성
         enemiesToSpawn = currentRoom.GetNumberOfSpawnMonsters(Managers.GM.GetCurrentDungeonLevel());
 
@@ -48,9 +44,7 @@ public class MonsterSpawner : MonoBehaviour
         // 만약 스폰할 적이 없다면 리턴
         if (enemiesToSpawn == 0)
         {
-            // 방이 클리어 되었다
             currentRoom.isClearedOfMonster = true;
-
             return;
         }
 
@@ -61,26 +55,6 @@ public class MonsterSpawner : MonoBehaviour
         currentRoom.instantiatedRoom.LockDoors();
 
         // 몬스터 스폰
-        SpawnMonsters();
-    }
-
-    // 몬스터 스폰
-    private void SpawnMonsters()
-    {
-        // 게임 스테이트를 변경 (보스 전투)
-        if (Managers.GM.gameState == GameState.bossRoom)
-        {
-            Managers.GM.previousGameState = GameState.bossRoom;
-            Managers.GM.gameState = GameState.BossBattle;
-        }
-
-        // 게임 스테이트를 변경 (일반 전투)
-        else if (Managers.GM.gameState == GameState.playingLevel)
-        {
-            Managers.GM.previousGameState = GameState.playingLevel;
-            Managers.GM.gameState = GameState.MonsterBattle;
-        }
-
         StartCoroutine(SpawnEnemiesRoutine());
     }
 
@@ -119,7 +93,7 @@ public class MonsterSpawner : MonoBehaviour
     /// </summary>
     private float GetEnemySpawnInterval()
     {
-        return (Random.Range(roomEnemySpawnParameters.minSpawnInterval, roomEnemySpawnParameters.maxSpawnInterval));
+        return Random.Range(roomEnemySpawnParameters.minSpawnInterval, roomEnemySpawnParameters.maxSpawnInterval);
     }
 
     /// <summary>
@@ -127,7 +101,7 @@ public class MonsterSpawner : MonoBehaviour
     /// </summary>
     private int GetConcurrentEnemies()
     {
-        return (Random.Range(roomEnemySpawnParameters.minConcurrentEnemies, roomEnemySpawnParameters.maxConcurrentEnemies));
+        return Random.Range(roomEnemySpawnParameters.minConcurrentEnemies, roomEnemySpawnParameters.maxConcurrentEnemies);
     }
 
     // 지정된 위치에 적을 생성하는 함수
@@ -138,9 +112,6 @@ public class MonsterSpawner : MonoBehaviour
 
         // 현재 몬스터 카운트에 1 추가 ( 몬스터가 죽을 때 감소 )
         currentEnemyCount++;
-
-        // 현재 던전 레벨을 가져옴.
-        DungeonLevelSO dungeonLevel = Managers.GM.GetCurrentDungeonLevel();
 
         // 몬스터 인스턴스화
         GameObject monster = Instantiate(monsterData.monsterPrefab, position, Quaternion.identity, transform);
@@ -163,20 +134,6 @@ public class MonsterSpawner : MonoBehaviour
         {
             currentRoom.isClearedOfMonster = true;
 
-            // 게임 스테이트 변경
-            if (Managers.GM.gameState == GameState.MonsterBattle)
-            {
-                Managers.GM.gameState = GameState.playingLevel;
-                Managers.GM.previousGameState = GameState.MonsterBattle;
-            }
-
-            else if (Managers.GM.gameState == GameState.BossBattle)
-            {
-                Managers.GM.gameState = GameState.bossRoom;
-                Managers.GM.previousGameState = GameState.BossBattle;
-            }
-
-            // 문이 열림 (문 미완)
             currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
 
             // 방에 몬스터가 없어서 클리어되었다는 이벤트 출력

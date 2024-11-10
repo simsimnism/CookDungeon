@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Cauldron : MonoBehaviour
 {
+    public MonsterSpawner monsterSpawner; // 몬스터 스포너를 연결합니다.
+
     private bool isPlayerInRange = false; // 플레이어가 범위 안에 있는지 확인
 
     public float TimerDuration; // 타이머 시간
@@ -11,9 +13,14 @@ public class Cauldron : MonoBehaviour
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
     private bool isFireOFF = false; // 최종적으로 모든 상호작용이 끝나고 불이 꺼짐
 
-    void Start()
+    private void Awake()
     {
-
+        // MonsterSpawner 컴포넌트를 자동으로 찾기
+        monsterSpawner = FindObjectOfType<MonsterSpawner>();
+        if (monsterSpawner == null)
+        {
+            Debug.LogError("MonsterSpawner를 찾을 수 없습니다. 씬에 추가되어 있는지 확인하세요.");
+        }
     }
 
     void Update()
@@ -33,7 +40,7 @@ public class Cauldron : MonoBehaviour
         if (isStart && !isFireON) // isFireON이 false일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            Debug.Log($"라운드의 시간 : {TimerDuration}");
+            //Debug.Log($"라운드의 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 켭니다.
             if (TimerDuration <= 0)
@@ -48,7 +55,7 @@ public class Cauldron : MonoBehaviour
         if (isFireON) // isFireON이 true일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
+            //Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 끕니다.
             if (TimerDuration <= 0)
@@ -86,7 +93,9 @@ public class Cauldron : MonoBehaviour
             isStart = true;
             Timer(RoundTimeLimit);
 
-            // 몬스터 생성
+            // 몬스터 생성 호출
+            monsterSpawner.SpawnMonsters();
+            Debug.Log("몬스터 생성 시작!");
         }
         else // 이미 한번 상호작용을 했다면
         {
