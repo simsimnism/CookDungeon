@@ -63,7 +63,7 @@ public class FoodItemData
     public int id;
     public string description;
     public int MaxAmount;
-    public string itemType;
+    public int itemType;
     public int healthRecovery;
     public int fullnessRecovery;
 }

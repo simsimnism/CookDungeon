@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +5,10 @@ public class Inventory : MonoBehaviour
 {
     public GameObject slotPrefab;
     public Transform slotParent;
-    public int slotCount = 12;
+    public int slotCount = 11;
     private ItemSlot[] slots;
     public bool isInitialized = false;
 
-    // 아이템과 스프라이트 캐시를 위한 딕셔너리
     private Dictionary<string, Item> _itemCache = new Dictionary<string, Item>();
     private Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
 
@@ -44,10 +42,8 @@ public class Inventory : MonoBehaviour
 
     public bool AddItemToInventoryByName(string prefabName)
     {
-        // 캐시에서 아이템 확인
         if (_itemCache.TryGetValue(prefabName, out var cachedItem))
         {
-            // 기존 아이템이 있는 경우 수량만 증가
             ItemSlot existingSlot = FindItemSlotByName(cachedItem.Name);
             if (existingSlot != null)
             {
@@ -65,7 +61,6 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            // 새로운 아이템 생성 및 캐시에 저장
             Item item = Managers.Data.GetFoodItemByPrefabName(prefabName) ?? (Item)Managers.Data.GetRecipeItemByPrefabName(prefabName);
             if (item == null)
             {
@@ -73,11 +68,11 @@ public class Inventory : MonoBehaviour
                 return false;
             }
 
+            // Load sprite and assign it to the item
             item.ItemSprite = LoadSpriteWithCaching($"Sprites/Food/{prefabName}");
             item.SetAmount(1);
             _itemCache[prefabName] = item;
 
-            // 빈 슬롯에 새 아이템 추가
             ItemSlot emptySlot = GetEmptySlot();
             if (emptySlot != null)
             {
@@ -127,5 +122,16 @@ public class Inventory : MonoBehaviour
                 return slot;
         }
         return null;
+    }
+
+    public void SwapItems(ItemSlot slotA, ItemSlot slotB)
+    {
+        if (slotA == null || slotB == null) return;
+
+        Item tempItem = slotA.currentItem;
+        slotA.SetItem(slotB.currentItem);
+        slotB.SetItem(tempItem);
+
+        Debug.Log($"{slotA.currentItem?.Name ?? "빈 슬롯"}와 {slotB.currentItem?.Name ?? "빈 슬롯"} 교환 완료");
     }
 }

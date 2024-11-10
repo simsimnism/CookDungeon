@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class FoodItem : Item
 {
-    public string ItemType { get; private set; }
+    public int ItemType { get; private set; }
     public int HealthRecovery { get; private set; }
     public int FullnessRecovery { get; private set; }
 
-    public FoodItem(string name, int id, string description, int maxAmount, string itemType, int healthRecovery, int fullnessRecovery, Sprite itemSprite)
+    public FoodItem(string name, int id, string description, int maxAmount, int itemType, int healthRecovery, int fullnessRecovery, Sprite itemSprite)
         : base(name, id, description, maxAmount, maxAmount, itemSprite)
     {
         ItemType = itemType;

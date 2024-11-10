@@ -101,7 +101,6 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    //�÷��̾ �����ϴ� ����
     void ChasePlayer()
     {
         Vector2 direction = (player.position - transform.position).normalized;

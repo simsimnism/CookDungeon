@@ -16,7 +16,7 @@ public class RecipeItemLoader
 
             foreach (var item in recipeData.items)
             {
-                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/{item.name}");
+                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/Recipe/{item.name}");
                 RecipeItem recipeItem = new RecipeItem(
                     item.name,
                     item.id,
@@ -36,6 +36,12 @@ public class RecipeItemLoader
         {
             Debug.LogError($"파일을 찾을 수 없습니다: {jsonPath}");
         }
+    }
+
+    // 모든 레시피를 반환하는 메서드
+    public List<RecipeItem> GetAllRecipes()
+    {
+        return new List<RecipeItem>(_recipeItems.Values);
     }
 
     public RecipeItem GetRecipeItemById(int id)
@@ -64,7 +70,7 @@ public class RecipeItemData
     public int id;
     public string description;
     public int MaxAmount;
-    public string itemType;
+    public int itemType;
     public int healthRecovery;
     public int fullnessRecovery;
     public List<int> requiredIngredients;
