@@ -129,6 +129,26 @@ public class GameManager
         }
     }
 
+    private IEnumerator LevelCompleted()
+    {
+        // 스테이트를 다시 플레이로 바꿈
+        gameState = GameState.playingLevel;
+
+        // 2초 기다림
+        yield return new WaitForSeconds(2f);
+
+
+        // 레벨 클리어 출력?
+
+        // 스크린을 페이드 아웃
+        //yield return StartCoroutine(Fade(1f, 0f, 2f, new Color(0f, 0f, 0f, 0.4f)));
+
+        // 현제 던전 레벨을 증가시킴
+        currentDungeonLevelListIndex++;
+
+        genDungeon(currentDungeonLevelListIndex);
+    }
+
     // 현재 던전 레벨 값을 호출
     public DungeonLevelSO GetCurrentDungeonLevel()
     {

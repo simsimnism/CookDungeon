@@ -15,7 +15,7 @@ public class Minimap : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = Managers.GM.GetPlayer().transform;
+        // playerTransform = Managers.GM.GetPlayer().transform;
 
         // 플레이어를 시네머신 대상으로 채웁니다.
         CinemachineVirtualCamera cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();

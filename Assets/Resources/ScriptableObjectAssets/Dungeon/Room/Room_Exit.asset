@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5574b4783d1e8f143b90b98d3cf33029, type: 3}
+  m_Name: Room_Exit
+  m_EditorClassIdentifier: 
+  guid: 56fc05527da94844e9f711d5ea71378d
+  prefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
+  previousPrefab: {fileID: 1258344168438666370, guid: ed6c311c46660d542946ef2c52bc74bd, type: 3}
+  roomNodeType: {fileID: 11400000, guid: 9b0016d958de1b84eb428a4dd8499677, type: 2}
+  lowerBounds: {x: -16, y: -11}
+  upperBounds: {x: 15, y: 11}
+  doorwayList:
+  - position: {x: -16, y: 0}
+    orientation: 3
+    doorPrefab: {fileID: 3519230035669023275, guid: 45d66e65f6941ea449256c0f2470126c, type: 3}
+    doorwayStartCopyPosition: {x: -16, y: 5}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 9
+    isConnected: 0
+    isUnavailable: 0
+  - position: {x: 15, y: 0}
+    orientation: 1
+    doorPrefab: {fileID: 3519230035669023275, guid: 45d66e65f6941ea449256c0f2470126c, type: 3}
+    doorwayStartCopyPosition: {x: 9, y: 4}
+    doorwayCopyTileWidth: 7
+    doorwayCopyTileHeight: 8
+    isConnected: 0
+    isUnavailable: 0
+  - position: {x: -1, y: 11}
+    orientation: 0
+    doorPrefab: {fileID: 1375593174048325034, guid: e85cefe4924e8ca47bcd13b7027f5b0b, type: 3}
+    doorwayStartCopyPosition: {x: -5, y: 11}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 6
+    isConnected: 0
+    isUnavailable: 0
+  - position: {x: -1, y: -11}
+    orientation: 2
+    doorPrefab: {fileID: 1375593174048325034, guid: e85cefe4924e8ca47bcd13b7027f5b0b, type: 3}
+    doorwayStartCopyPosition: {x: -5, y: -5}
+    doorwayCopyTileWidth: 9
+    doorwayCopyTileHeight: 7
+    isConnected: 0
+    isUnavailable: 0
+  spawnPositionArray:
+  - {x: 0, y: 0}
+  monsterByLevelList: []
+  roomMonsterSpawnParametersList: []

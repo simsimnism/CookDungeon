@@ -32,49 +32,49 @@ public class MonsterSpawner : MonoBehaviour
 
         currentRoom = roomChangedEvent.room;
 
-        // if the room is a corridor or the entrance then return
+        // 방 타입이 복도나 입구라면 리턴
         if (currentRoom.roomNodeType.isCorridorEW || currentRoom.roomNodeType.isCorridorNS || currentRoom.roomNodeType.isEntrance)
             return;
 
-        // if the room has already been defeated then return
+        // 방이 이미 클리어 되었다면 리턴
         if (currentRoom.isClearedOfMonster) return;
 
-        // Get random number of enemies to spawn
+        // 몬스터를 랜덤으로 생성
         enemiesToSpawn = currentRoom.GetNumberOfSpawnMonsters(Managers.GM.GetCurrentDungeonLevel());
 
-        // Get room enemy spawn parameters
+        // 방의 몬스터 생성 파라미터 가져오기
         roomEnemySpawnParameters = currentRoom.GetNumberOfSpawnParameter(Managers.GM.GetCurrentDungeonLevel());
 
-        // If no enemies to spawn return
+        // 만약 스폰할 적이 없다면 리턴
         if (enemiesToSpawn == 0)
         {
-            // Mark the room as cleared
+            // 방이 클리어 되었다
             currentRoom.isClearedOfMonster = true;
 
             return;
         }
 
-        // Get concurrent number of enemies to spawn
+        // 동시에 생성되는 몬스터의 수를 가져오기
         enemyMaxConcurrentSpawnNumber = GetConcurrentEnemies();
 
         // 문을 잠구기
         currentRoom.instantiatedRoom.LockDoors();
 
-        // Spawn enemies
-        SpawnEnemies();
+        // 몬스터 스폰
+        SpawnMonsters();
     }
 
     // 몬스터 스폰
-    private void SpawnEnemies()
+    private void SpawnMonsters()
     {
-        // 게임 스테이트를 
+        // 게임 스테이트를 변경 (보스 전투)
         if (Managers.GM.gameState == GameState.bossRoom)
         {
             Managers.GM.previousGameState = GameState.bossRoom;
             Managers.GM.gameState = GameState.BossBattle;
         }
 
-        // Set gamestate engaging enemies
+        // 게임 스테이트를 변경 (일반 전투)
         else if (Managers.GM.gameState == GameState.playingLevel)
         {
             Managers.GM.previousGameState = GameState.playingLevel;

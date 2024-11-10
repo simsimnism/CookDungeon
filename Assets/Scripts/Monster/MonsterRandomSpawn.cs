@@ -29,7 +29,7 @@ public class MonsterRandomSpawn<T>
 
         foreach (SpawnableObjectsByLevel<T> spawnableObjectsByLevel in spawnableObjectsByLevelList)
         {
-            // check for current level
+            // 현재 레벨 체크
             if (spawnableObjectsByLevel.dungeonLevel == Managers.GM.GetCurrentDungeonLevel())
             {
                 foreach (SpawnableObjectRatio<T> spawnableObjectRatio in spawnableObjectsByLevel.spawnableObjectRatioList)
@@ -40,7 +40,7 @@ public class MonsterRandomSpawn<T>
 
                     ratioValueTotal += spawnableObjectRatio.ratio;
 
-                    // Add spawnable object to list;
+                    // Add spawnable object to list
                     chanceBoundariesList.Add(new chanceBoundaries() { spawnableObject = spawnableObjectRatio.dungeonObject, lowBoundaryValue = lowerBoundary, highBoundaryValue = upperBoundary });
 
                 }
@@ -51,7 +51,7 @@ public class MonsterRandomSpawn<T>
 
         int lookUpValue = Random.Range(0, ratioValueTotal);
 
-        // loop through list to get seleted random spawnable object details
+        // 루프하면서 리스트에서 랜덤 스폰 오브젝트의 정보를 얻음
         foreach (chanceBoundaries spawnChance in chanceBoundariesList)
         {
             if (lookUpValue >= spawnChance.lowBoundaryValue && lookUpValue <= spawnChance.highBoundaryValue)

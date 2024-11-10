@@ -76,6 +76,8 @@ public class InstantiatedRoom : MonoBehaviour
 
         AddDoorsToRooms();
 
+        CauldronCreate();
+
         DisableCollisionTilemapRenderer();
     }
 
@@ -357,6 +359,17 @@ public class InstantiatedRoom : MonoBehaviour
 
         }
 
+    }
+
+    // 가마솥 생성
+    private void CauldronCreate()
+    {
+        // 만약 방의 룸 노드 타입이 가마솥 방 이라면
+        if (room.roomNodeType.isCauldron)
+        {
+            GameObject Cauldron = Managers.Resource.Instantiate("Cauldron/Cauldron", gameObject.transform);
+            Cauldron.transform.localPosition = new Vector3(0, 0, 0);
+        }
     }
 
     /// <summary>
