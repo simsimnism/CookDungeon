@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//요리UI의 팝업을 담당
-public class CookingPopup : UI_Popup
+public class SkillPopup : UI_Popup
 {
-
+    // Start is called before the first frame update
     void Start()
     {
         base.Init();
     }
+
 
 }

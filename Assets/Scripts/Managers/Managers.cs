@@ -16,7 +16,8 @@ public class Managers : MonoBehaviour
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
     InventoryManager _inventory = new InventoryManager();
-    CookingManager _cooking = new CookingManager();
+    UIPopupManager _popup = new UIPopupManager();
+  
 
     public static DataManager Data { get { return Instance._data; } }
     public static InputManager Input { get { return Instance._input; } }
@@ -28,7 +29,8 @@ public class Managers : MonoBehaviour
     public static GameManager GM { get { Init(); return Instance._game; } }
     public static PlayerManager Player { get { Init(); return Instance._player; } }
     public static InventoryManager Inventory { get { Init(); return Instance._inventory; } }
-    public static CookingManager Cooking { get {  Init(); return Instance._cooking; } } 
+    public static UIPopupManager Popup { get { Init(); return Instance._popup; } }
+
 
     void Start()
     {

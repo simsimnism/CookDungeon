@@ -7,7 +7,7 @@ public class Cauldron : MonoBehaviour
     private bool isPlayerInRange = false; // 플레이어가 범위 안에 있는지 확인
 
     private float TimerDuration; // 타이머 시간
-    private float RoundTimeLimit = 10f; // 라운드의 지속 시간
+    private float RoundTimeLimit = 20f; // 라운드의 지속 시간
     private float FireTimeLimit = 30f; // 요리 가능한 시간
     private bool isStart = false; // 최초 상호작용을 했는지 판단
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
@@ -25,7 +25,7 @@ public class Cauldron : MonoBehaviour
 
     void Update()
     {
-        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.F))
+        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("상호작용 키 누름");
             Interact();
@@ -40,7 +40,7 @@ public class Cauldron : MonoBehaviour
         if (isStart && !isFireON) // isFireON이 false일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            Debug.Log($"라운드의 시간 : {TimerDuration}");
+            //Debug.Log($"라운드의 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 켭니다.
             if (TimerDuration <= 0)
@@ -55,7 +55,7 @@ public class Cauldron : MonoBehaviour
         if (isFireON) // isFireON이 true일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
+            //Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 끕니다.
             if (TimerDuration <= 0)
@@ -103,7 +103,7 @@ public class Cauldron : MonoBehaviour
             if (isFireON) 
             {
                 // 요리 UI 출력
-                Managers.Cooking.ToggleCooking();
+                Managers.Popup.ToggleCooking();
             }
         }
     }
