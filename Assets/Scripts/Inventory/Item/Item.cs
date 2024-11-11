@@ -7,7 +7,7 @@ public class Item
     public int ID { get; private set; }
     public string Description { get; private set; }
     public int MaxAmount { get; private set; } = 99; // 기본 최대 수량을 99로 설정
-    public int Amount { get; protected set; }
+    public int Amount { get; protected set; } = 1;
     public Sprite ItemSprite { get; set; }
 
     public Item(string name, int id, string description, int maxAmount, int initialAmount, Sprite itemSprite)

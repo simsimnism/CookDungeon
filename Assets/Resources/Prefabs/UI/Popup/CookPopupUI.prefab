@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 4284739908292964852}
-  parentInventory: {fileID: 0}
+  parentInventory: {fileID: 8774859631958363150, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
   itemAmountText: {fileID: 1396925584134064287}
 --- !u!1 &8397049930641449850
 GameObject:

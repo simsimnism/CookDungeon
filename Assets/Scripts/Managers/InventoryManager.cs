@@ -100,4 +100,34 @@ public class InventoryManager
             Debug.LogWarning("빈 슬롯을 찾을 수 없거나 인벤토리가 가득 찼습니다.");
         }
     }
+
+    // 새로 추가된 메서드: AddRecipeResultToInventory
+    public void AddRecipeResultToSlot(RecipeItem recipe, BaseItemSlot targetSlot)
+    {
+        if (targetSlot == null)
+        {
+            Debug.LogWarning("타겟 슬롯이 설정되지 않았습니다.");
+            return;
+        }
+
+        // 스프라이트 로드 및 설정
+        string spriteName = recipe.Name;
+        Sprite resultSprite = Managers.Resource.Load<Sprite>($"Sprites/Recipes/{spriteName}");
+        if (resultSprite == null)
+        {
+            Debug.LogWarning($"결과 아이템 스프라이트를 로드할 수 없습니다: Sprites/Recipes/{spriteName}");
+            return;
+        }
+
+        recipe.ItemSprite = resultSprite;
+
+        // 타겟 슬롯에 아이템 설정
+        targetSlot.SetItem(recipe);
+        targetSlot.itemImage.sprite = resultSprite;
+        targetSlot.itemImage.enabled = true;
+        targetSlot.SetImageAlpha(1f);  // 스프라이트가 보이도록 알파값 설정
+
+        Debug.Log($"요리 결과 아이템 {recipe.Name}이 {targetSlot.name}에 생성되었습니다.");
+    }
+
 }

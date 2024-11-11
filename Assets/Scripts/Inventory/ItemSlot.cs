@@ -14,7 +14,7 @@ public class ItemSlot : BaseItemSlot
         {
             itemImage.sprite = currentItem.ItemSprite;
             itemImage.enabled = true;
-            SetImageAlpha(1f);
+            SetImageAlpha(1f);  // 아이템 스프라이트가 보이도록 알파값 설정
             UpdateAmountText();
         }
         else
@@ -28,7 +28,7 @@ public class ItemSlot : BaseItemSlot
         currentItem = null;
         itemImage.sprite = null;
         itemImage.enabled = false;
-        SetImageAlpha(0f);
+        SetImageAlpha(0f);  // 슬롯 비울 때 알파값 0으로 설정
         if (itemAmountText != null)
             itemAmountText.text = "";
     }

@@ -78,23 +78,19 @@ public class CookingUI : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
 
-        string spriteName = recipe.Name;
-        Sprite resultSprite = Managers.Resource.Load<Sprite>($"Sprites/Recipes/{spriteName}");
-
-        if (resultSprite != null && resultSlot != null)
+        if (Managers.Inventory != null)
         {
-            resultSlot.SetItem(recipe);
-            resultSlot.itemImage.sprite = resultSprite;
-            resultSlot.itemImage.enabled = true;
-            Debug.Log("결과 아이템이 생성되었습니다: " + recipe.Name);
+            Managers.Inventory.AddRecipeResultToSlot(recipe, resultSlot);  // 결과 아이템을 resultSlot에 추가
         }
         else
         {
-            Debug.LogWarning($"스프라이트를 로드할 수 없습니다: Sprites/Recipes/{spriteName}");
+            Debug.LogWarning("InventoryManager가 설정되지 않았습니다.");
         }
 
         ClearAllCookingSlots();
     }
+
+
 
     private void ClearAllCookingSlots()
     {
