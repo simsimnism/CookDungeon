@@ -10,7 +10,7 @@
       "fullnessRecovery": 5
     },
     {
-      "name": "Bread",
+      "name": "Cabbage",
       "id": 101,
       "description": "A loaf of bread that restores energy.",
       "MaxAmount": 99,
@@ -19,7 +19,7 @@
       "fullnessRecovery": 15
     },
     {
-      "name": "Potato",
+      "name": "Egg",
       "id": 102,
       "description": "A piece of meat that provides substantial nourishment.",
       "MaxAmount": 99,
@@ -28,7 +28,7 @@
       "fullnessRecovery": 30
     },
     {
-      "name": "Mushi",
+      "name": "Honey",
       "id": 103,
       "description": "A grilled fish that restores stamina.",
       "MaxAmount": 99,
@@ -37,7 +37,7 @@
       "fullnessRecovery": 20
     },
     {
-      "name": "Orenge",
+      "name": "Mushroom",
       "id": 104,
       "description": "A banana that gives a quick boost of energy.",
       "MaxAmount": 99,
@@ -46,7 +46,7 @@
       "fullnessRecovery": 8
     },
     {
-      "name": "3",
+      "name": "Potato",
       "id": 105,
       "description": "A fresh carrot full of vitamins.",
       "MaxAmount": 99,

@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "name": "Fruit Salad",
+      "name": "Apple Juice",
       "id": 201,
       "description": "A delicious mix of fruits.",
       "MaxAmount": 99,
@@ -11,7 +11,7 @@
       "fullnessRecovery": 15 
     },
     {
-      "name": "Vegetable Salad",
+      "name": "CandyApple",
       "id": 202,
       "description": "A healthy mix of vegetables.",
       "MaxAmount": 99,
@@ -21,7 +21,7 @@
       "fullnessRecovery": 20
     },
     {
-      "name": "Meat Stew",
+      "name": "Egg Salad",
       "id": 203,
       "description": "A hearty stew made with meat and vegetables.",
       "MaxAmount": 99,
@@ -31,7 +31,7 @@
       "fullnessRecovery": 35
     },
     {
-      "name": "Chicken Soup",
+      "name": "Pizza",
       "id": 204,
       "description": "A warm soup made with chicken.",
       "MaxAmount": 99,
@@ -41,7 +41,7 @@
       "fullnessRecovery": 40
     },
     {
-      "name": "Omelette",
+      "name": "Special Sauce",
       "id": 205,
       "description": "A fluffy omelette made from eggs.",
       "MaxAmount": 99,
