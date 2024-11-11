@@ -6,9 +6,9 @@ public class Cauldron : MonoBehaviour
 
     private bool isPlayerInRange = false; // 플레이어가 범위 안에 있는지 확인
 
-    public float TimerDuration; // 타이머 시간
-    public float RoundTimeLimit = 10f; // 라운드의 지속 시간
-    public float FireTimeLimit = 5f; // 요리 가능한 시간
+    private float TimerDuration; // 타이머 시간
+    private float RoundTimeLimit = 10f; // 라운드의 지속 시간
+    private float FireTimeLimit = 30f; // 요리 가능한 시간
     private bool isStart = false; // 최초 상호작용을 했는지 판단
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
     private bool isFireOFF = false; // 최종적으로 모든 상호작용이 끝나고 불이 꺼짐
@@ -25,7 +25,7 @@ public class Cauldron : MonoBehaviour
 
     void Update()
     {
-        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("상호작용 키 누름");
             Interact();
@@ -40,7 +40,7 @@ public class Cauldron : MonoBehaviour
         if (isStart && !isFireON) // isFireON이 false일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            //Debug.Log($"라운드의 시간 : {TimerDuration}");
+            Debug.Log($"라운드의 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 켭니다.
             if (TimerDuration <= 0)
@@ -55,7 +55,7 @@ public class Cauldron : MonoBehaviour
         if (isFireON) // isFireON이 true일 때만 타이머 작동
         {
             TimerDuration -= Time.deltaTime;
-            //Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
+            Debug.Log($"불이 꺼지는 시간 : {TimerDuration}");
 
             // 타이머가 0보다 작으면 불을 끕니다.
             if (TimerDuration <= 0)
@@ -103,6 +103,7 @@ public class Cauldron : MonoBehaviour
             if (isFireON) 
             {
                 // 요리 UI 출력
+                Managers.Cooking.ToggleCooking();
             }
         }
     }
@@ -120,6 +121,8 @@ public class Cauldron : MonoBehaviour
         // 불이 켜짐
         isFireON = true;
 
+        //매니저 연동
+        Managers.GM.CookAbleTime = true;
         // 불이 붙는 애니메이션 재생
         // PlayFireAnimation();
 
@@ -128,13 +131,34 @@ public class Cauldron : MonoBehaviour
     }
 
     // 불이 꺼질 때 기능
-    void FireOFF()
+    public void FireOFF()
     {
         isFireOFF = true;
+        //불이 켜져있을때 요리 가능하게 하는 함수(변수 연동GM) 
+        Managers.GM.CookAbleTime = false;
+        
         // 몬스터 삭제
         monsterSpawner.RemoveAllMonsters();
         Debug.Log("모든 몬스터가 삭제되었습니다.");
     }
+
+    // 요리 제한 시간을 반환하는 Get 메서드
+    public float GetFireTimeLimit()
+    {
+        return FireTimeLimit;
+    }
+
+    // 남은 시간을 반환하는 Get 메서드
+    public float GetRemainingTime()
+    {
+        return TimerDuration;
+    }
+
+    public bool IsCookingTime()
+    {
+        return isFireON; // 불이 켜져있으면 요리 제한 시간 상태
+    }
+
 
     void OnDisable()
     {

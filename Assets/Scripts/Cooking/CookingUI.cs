@@ -13,6 +13,12 @@ public class CookingUI : MonoBehaviour
     private CookingSlot[] slots;
     private RecipeItemLoader recipeLoader = new RecipeItemLoader();
     private Inventory inventory;
+    private Cauldron Cauldron;
+
+    private void Awake()
+    {
+        Cauldron = GetComponent<Cauldron>();
+    }
 
     private void Start()
     {
@@ -20,7 +26,14 @@ public class CookingUI : MonoBehaviour
         inventory = Managers.Inventory.slotGenerate;
 
         slots = new CookingSlot[] { slot1, slot2, slot3 };
+
         cookButton.onClick.AddListener(StartCooking);
+
+    }
+
+    void Update()
+    {
+        cookButton.interactable = Managers.GM.CookAbleTime;
     }
 
     // 요리 시작 메서드

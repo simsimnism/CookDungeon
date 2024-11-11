@@ -21,6 +21,8 @@ public class GameManager
     // 초기 던전 레벨 값 (스테이지 번호)
     private int currentDungeonLevelListIndex = 0;
 
+    private bool _CookAbleTime = false;
+
     private bool _isMoving = true;
 
     //플레이어의 무적 상태를 관리
@@ -29,6 +31,8 @@ public class GameManager
     public bool IsInvincible { get { return _isInvincible; } set { _isInvincible = value; } }
 
     public bool IsMoving { get { return _isMoving; } set { _isMoving = value; } }
+
+    public bool CookAbleTime { get { return _CookAbleTime; } set { _CookAbleTime = value; } }
 
     public void Init()
     {
