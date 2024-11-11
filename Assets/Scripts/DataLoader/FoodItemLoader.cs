@@ -16,7 +16,7 @@ public class FoodItemLoader
 
             foreach (var item in foodData.items)
             {
-                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/{item.name}");
+                Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/Food/{item.name}");
                 FoodItem foodItem = new FoodItem(
                     item.name,
                     item.id,
