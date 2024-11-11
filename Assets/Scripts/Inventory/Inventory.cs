@@ -40,56 +40,41 @@ public class Inventory : MonoBehaviour
         isInitialized = true;
     }
 
-    public bool AddItemToInventoryByName(string prefabName)
+    public bool AddItemToInventory(Item item)
     {
-        if (_itemCache.TryGetValue(prefabName, out var cachedItem))
-        {
-            ItemSlot existingSlot = FindItemSlotByName(cachedItem.Name);
-            if (existingSlot != null)
-            {
-                if (existingSlot.currentItem.Amount >= existingSlot.currentItem.MaxAmount)
-                {
-                    Debug.LogWarning($"{cachedItem.Name} 아이템의 수량이 최대치입니다.");
-                    return false;
-                }
+        if (item == null) return false;
 
-                existingSlot.currentItem.AddAmount(1);
-                existingSlot.UpdateAmountText();
-                Debug.Log($"{cachedItem.Name}의 수량 증가: {existingSlot.currentItem.Amount}");
-                return true;
+        ItemSlot existingSlot = FindItemSlotByName(item.Name);
+        if (existingSlot != null)
+        {
+            if (existingSlot.CurrentItem.Amount >= existingSlot.CurrentItem.MaxAmount)
+            {
+                Debug.LogWarning($"{item.Name} 아이템의 수량이 최대치입니다.");
+                return false;
             }
+
+            existingSlot.CurrentItem.AddAmount(1);
+            existingSlot.UpdateAmountText();
+            return true;
+        }
+
+        ItemSlot emptySlot = GetEmptySlot();
+        if (emptySlot != null)
+        {
+            item.SetAmount(1);
+            emptySlot.SetItem(item);
+            emptySlot.UpdateAmountText();
+            Debug.Log($"{item.Name} 새 슬롯에 추가 - 현재 수량: {item.Amount}");
+            return true;
         }
         else
         {
-            Item item = Managers.Data.GetFoodItemByPrefabName(prefabName) ?? (Item)Managers.Data.GetRecipeItemByPrefabName(prefabName);
-            if (item == null)
-            {
-                Debug.LogWarning($"아이템 '{prefabName}'을(를) 찾을 수 없습니다.");
-                return false;
-            }
-
-            item.ItemSprite = LoadSpriteWithCaching($"Sprites/Food/{prefabName}");
-            item.SetAmount(1);
-            _itemCache[prefabName] = item;
-
-            ItemSlot emptySlot = GetEmptySlot();
-            if (emptySlot != null)
-            {
-                emptySlot.SetItem(item);
-                Debug.Log($"{item.Name} 새 슬롯에 추가 - 현재 수량: {item.Amount}");
-                return true;
-            }
-            else
-            {
-                Debug.LogWarning("빈 슬롯을 찾을 수 없거나 인벤토리가 가득 찼습니다.");
-                return false;
-            }
+            Debug.LogWarning("빈 슬롯을 찾을 수 없거나 인벤토리가 가득 찼습니다.");
+            return false;
         }
-
-        return false;
     }
 
-    private Sprite LoadSpriteWithCaching(string spritePath)
+    public Sprite LoadSpriteWithCaching(string spritePath)
     {
         if (_spriteCache.TryGetValue(spritePath, out var cachedSprite))
             return cachedSprite;
@@ -117,25 +102,30 @@ public class Inventory : MonoBehaviour
     {
         foreach (var slot in slots)
         {
-            if (slot != null && slot.currentItem != null && slot.currentItem.Name == name)
+            if (slot != null && slot.CurrentItem != null && slot.CurrentItem.Name == name)
                 return slot;
         }
+        // 이름에 해당하는 슬롯이 없으면 null 반환
         return null;
     }
 
     public bool RemoveItemByName(string itemName)
     {
-        var slot = FindItemSlotByName(itemName);
-        if (slot != null && slot.currentItem != null)
+        ItemSlot itemSlot = FindItemSlotByName(itemName);
+        if (itemSlot != null && itemSlot.CurrentItem != null)
         {
-            slot.currentItem.DecreaseAmount(1);
-            if (slot.currentItem.Amount <= 0)
+            itemSlot.CurrentItem.DecreaseAmount(1);
+
+            if (itemSlot.CurrentItem.Amount <= 0)
             {
-                slot.ClearSlot();
-                _itemCache.Remove(itemName);
+                itemSlot.ClearSlot();
             }
+
+            itemSlot.UpdateAmountText();
             return true;
         }
-        return false;
+
+        Debug.LogWarning($"'{itemName}' 아이템을 인벤토리에서 찾을 수 없습니다.");
+        return false;  // null인 경우 안전하게 false 반환
     }
 }

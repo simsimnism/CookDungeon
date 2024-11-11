@@ -6,6 +6,7 @@ public class InventoryManager
     private bool _isInventoryOpen = false;
     public Inventory slotGenerate;
 
+    // 인벤토리 열고 닫기
     public void ToggleInventory()
     {
         if (_isInventoryOpen)
@@ -66,6 +67,7 @@ public class InventoryManager
         Debug.Log("인벤토리 상태 불러오기");
     }
 
+    // 드롭된 아이템 추가 기능
     public void AddItemToInventory(string prefabName)
     {
         if (slotGenerate == null || !slotGenerate.isInitialized)
@@ -73,7 +75,7 @@ public class InventoryManager
             OpenInventory();
         }
 
-        Sprite itemSprite = Managers.Resource.Load<Sprite>($"Sprites/Food/{prefabName}");
+        Sprite itemSprite = slotGenerate.LoadSpriteWithCaching($"Sprites/Food/{prefabName}");
         if (itemSprite == null)
         {
             Debug.LogWarning($"아이템 스프라이트를 찾을 수 없습니다: {prefabName}");
@@ -89,7 +91,7 @@ public class InventoryManager
 
         item.ItemSprite = itemSprite;
 
-        if (slotGenerate.AddItemToInventoryByName(prefabName))
+        if (slotGenerate.AddItemToInventory(item))
         {
             Debug.Log($"아이템 {item.Name}을 인벤토리에 추가하였습니다.");
         }

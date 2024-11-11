@@ -4,15 +4,15 @@ using UnityEngine;
 public class ItemSlot : BaseItemSlot
 {
     public Inventory parentInventory;
-    public Item currentItem;
     public TMP_Text itemAmountText;
 
     public override void SetItem(Item item)
     {
+        ClearSlot();  // 기존 데이터를 초기화하여 캐시 문제 방지
         currentItem = item;
-        if (item != null && item.ItemSprite != null)
+        if (currentItem != null && currentItem.ItemSprite != null)
         {
-            itemImage.sprite = item.ItemSprite;
+            itemImage.sprite = currentItem.ItemSprite;
             itemImage.enabled = true;
             SetImageAlpha(1f);
             UpdateAmountText();
@@ -23,15 +23,12 @@ public class ItemSlot : BaseItemSlot
         }
     }
 
-    public override Item GetItem() => currentItem;
-
     public override void ClearSlot()
     {
         currentItem = null;
         itemImage.sprite = null;
         itemImage.enabled = false;
         SetImageAlpha(0f);
-        cachedItem = null;
         if (itemAmountText != null)
             itemAmountText.text = "";
     }
@@ -42,17 +39,5 @@ public class ItemSlot : BaseItemSlot
     {
         if (itemAmountText != null)
             itemAmountText.text = currentItem?.Amount > 1 ? currentItem.Amount.ToString() : "";
-    }
-
-    private void Start()
-    {
-        if (currentItem != null && currentItem.ItemSprite != null)
-        {
-            string spriteName = itemImage.sprite?.name ?? "";
-            if (!string.IsNullOrEmpty(spriteName))
-            {
-                LoadItemData(spriteName);
-            }
-        }
     }
 }

@@ -7,7 +7,14 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
 {
     public Image itemImage;
     private Image draggedImage;
-    protected Item cachedItem;
+    protected Item currentItem;  // 공통적으로 사용할 필드로 변경
+
+    public Item CurrentItem
+    {
+        get => currentItem;
+        set => currentItem = value;
+    }
+
 
     private void Awake()
     {
@@ -19,7 +26,6 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
         draggedImage.gameObject.SetActive(false);
     }
 
-    public abstract Item GetItem();
     public abstract void SetItem(Item item);
     public abstract void ClearSlot();
     public abstract bool IsEmpty();
@@ -33,7 +39,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (GetItem() == null) return;
+        if (currentItem == null) return;
 
         draggedImage.sprite = itemImage.sprite;
         draggedImage.transform.position = eventData.position;
@@ -81,8 +87,8 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
 
     protected virtual void SwapItems(BaseItemSlot targetSlot)
     {
-        Item tempItem = targetSlot.GetItem();
-        targetSlot.SetItem(GetItem());
+        Item tempItem = targetSlot.currentItem;
+        targetSlot.SetItem(currentItem);
         SetItem(tempItem);
         ClearCache();
     }
@@ -101,26 +107,9 @@ public abstract class BaseItemSlot : MonoBehaviour, IBeginDragHandler, IDragHand
         }
     }
 
-    // BaseItemSlot.cs 내에 추가
-    public void LoadItemData(string spriteName)
-    {
-        Item item = Managers.Data.GetFoodItemByPrefabName(spriteName) ?? Managers.Data.GetRecipeItemByPrefabName(spriteName);
-        if (item != null)
-        {
-            SetItem(item);
-            cachedItem = item;
-            Debug.Log($"{spriteName}의 데이터를 성공적으로 로드했습니다.");
-        }
-        else
-        {
-            Debug.LogWarning($"'{spriteName}'에 해당하는 JSON 데이터를 찾을 수 없습니다.");
-        }
-    }
-
-
     public void ClearCache()
     {
-        cachedItem = null;
+        currentItem = null;  // 공통 필드를 초기화
         Debug.Log("캐시가 초기화되었습니다.");
     }
 }

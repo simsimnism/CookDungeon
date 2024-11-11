@@ -20,11 +20,6 @@ public class Item
         ItemSprite = itemSprite;
     }
 
-    public void SetAmount(int amount)
-    {
-        Amount = Mathf.Clamp(amount, 0, MaxAmount);
-    }
-
     public virtual void Use()
     {
         if (Amount > 0)
@@ -32,21 +27,24 @@ public class Item
             Amount--;
             Debug.Log($"{Name}을(를) 사용했습니다. 남은 수량: {Amount}");
         }
-        if (Amount <= 0)
+        else
         {
             Debug.Log($"{Name}의 수량이 모두 소진되었습니다.");
         }
     }
-    // Item.cs 내에 추가
-    public void DecreaseAmount(int amount)
+
+    public virtual void DecreaseAmount(int amount)
     {
-        Amount -= amount;
-        if (Amount < 0) Amount = 0;
+        Amount = Mathf.Max(Amount - amount, 0);
     }
 
-
-    public void AddAmount(int amount)
+    public virtual void AddAmount(int amount)
     {
         Amount = Mathf.Clamp(Amount + amount, 0, MaxAmount);
+    }
+    // 새로 추가된 메서드: SetAmount
+    public void SetAmount(int amount)
+    {
+        Amount = Mathf.Clamp(amount, 0, MaxAmount);
     }
 }

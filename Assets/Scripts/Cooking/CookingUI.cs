@@ -10,7 +10,7 @@ public class CookingUI : MonoBehaviour
     public BaseItemSlot resultSlot;  // 결과 슬롯
     public Button cookButton;
 
-    private CookingSlot[] slots;  // 수동 할당된 슬롯을 배열로 관리
+    private CookingSlot[] slots;
     private RecipeItemLoader recipeLoader = new RecipeItemLoader();
     private Inventory inventory;
 
@@ -19,9 +19,7 @@ public class CookingUI : MonoBehaviour
         recipeLoader.LoadRecipeData("json/Recipe");
         inventory = Managers.Inventory.slotGenerate;
 
-        // 수동 할당된 슬롯을 배열에 추가
         slots = new CookingSlot[] { slot1, slot2, slot3 };
-
         cookButton.onClick.AddListener(StartCooking);
     }
 
@@ -48,20 +46,21 @@ public class CookingUI : MonoBehaviour
         }
     }
 
-    // 특정 요리 슬롯의 itemType을 HashSet에 추가
     private void AddIngredientTypeFromSlot(CookingSlot slot, HashSet<int> ingredientTypes)
     {
-        if (slot == null || slot.currentFoodItem == null)
+        if (slot == null || slot.CurrentItem == null)
         {
             Debug.LogWarning("요리 슬롯이 비어있거나 아이템이 설정되지 않았습니다.");
             return;
         }
 
-        Debug.Log($"아이템 Type: {slot.currentFoodItem.ItemType}, 아이템 이름: {slot.currentFoodItem.Name}");
-        ingredientTypes.Add(slot.currentFoodItem.ItemType);
+        if (slot.CurrentItem is FoodItem foodItem)
+        {
+            Debug.Log($"아이템 Type: {foodItem.ItemType}, 아이템 이름: {foodItem.Name}");
+            ingredientTypes.Add(foodItem.ItemType);
+        }
     }
 
-    // 조합 조건을 만족하는 RecipeItem을 찾는 메서드
     private RecipeItem FindMatchingRecipe(HashSet<int> ingredientTypes)
     {
         foreach (var recipe in recipeLoader.GetAllRecipes())
@@ -75,7 +74,6 @@ public class CookingUI : MonoBehaviour
         return null;
     }
 
-    // 조리 과정을 실행하는 코루틴
     private System.Collections.IEnumerator CookingProcess(RecipeItem recipe)
     {
         yield return new WaitForSeconds(5f);
@@ -98,7 +96,6 @@ public class CookingUI : MonoBehaviour
         ClearAllCookingSlots();
     }
 
-    // 모든 요리 슬롯 초기화
     private void ClearAllCookingSlots()
     {
         foreach (var slot in slots)
@@ -107,7 +104,6 @@ public class CookingUI : MonoBehaviour
         }
     }
 
-    // 요리 UI 상태를 업데이트하는 메서드
     public void UpdateCookingState()
     {
         var ingredientTypes = new HashSet<int>();

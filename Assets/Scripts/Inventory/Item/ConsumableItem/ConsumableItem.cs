@@ -15,6 +15,9 @@ public class ConsumableItem : Item
     public override void Use()
     {
         base.Use();
-        Debug.Log($"{Name}을(를) 사용하여 체력 {HealthRecovery}과 포만도 {FullnessRecovery}을 회복했습니다.");
+        if (Amount > 0)
+        {
+            Debug.Log($"{Name}을(를) 사용하여 체력 {HealthRecovery}과 포만도 {FullnessRecovery}을 회복했습니다.");
+        }
     }
 }
