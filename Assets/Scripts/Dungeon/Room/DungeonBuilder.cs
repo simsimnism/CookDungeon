@@ -179,6 +179,7 @@ public class DungeonBuilder : MonoBehaviour
             // 룸 노드 그래프로부터 큐에 자식 노드를 추가 (부모 룸에 대한 링크 포함함.)
             foreach (RoomNodeSO childRoomNode in roomNodeGraph.GetChildRoomNodes(roomNode))
             {
+                Debug.Log($"02 : { childRoomNode != null}");
                 openRoomNodeQueue.Enqueue(childRoomNode);
             }
 

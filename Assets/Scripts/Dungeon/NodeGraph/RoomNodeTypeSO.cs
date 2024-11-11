@@ -28,9 +28,17 @@ public class RoomNodeTypeSO : ScriptableObject
     #endregion Header
     public bool isEntrance;
     #region Header
+    [Header("출구 방")]
+    #endregion Header
+    public bool isExit;
+    #region Header
     [Header("보스 방")]
     #endregion Header
     public bool isBossRoom;
+    #region Header
+    [Header("가마솥 방")]
+    #endregion Header
+    public bool isCauldron;
     #region Header
     [Header("None (할당되지 않음)")]
     #endregion Header

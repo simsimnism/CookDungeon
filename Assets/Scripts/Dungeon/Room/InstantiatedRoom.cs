@@ -43,6 +43,14 @@ public class InstantiatedRoom : MonoBehaviour
 
     private BoxCollider2D boxCollider2D;
 
+    private void Awake()
+    {
+        boxCollider2D = GetComponent<BoxCollider2D>();
+
+        // Save room collider bounds
+        roomColliderBounds = boxCollider2D.bounds;
+    }
+
     // Trigger room changed event when player enters a room
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,8 +74,11 @@ public class InstantiatedRoom : MonoBehaviour
 
         BlockOffUnusedDoorWays();
 
-        DisableCollisionTilemapRenderer();
+        AddDoorsToRooms();
 
+        CauldronCreate();
+
+        DisableCollisionTilemapRenderer();
     }
 
     /// <summary>
@@ -284,6 +295,129 @@ public class InstantiatedRoom : MonoBehaviour
 
     }
 
+    // 복도가 아니면 문을 추가하는 함수
+    private void AddDoorsToRooms()
+    {
+        // 방 타입이 복도라면 리턴
+        if (room.roomNodeType.isCorridorEW || room.roomNodeType.isCorridorNS)
+        {
+            return;
+        }
+
+        // 문의 위치에 프리팹을 인스턴스화
+        foreach (Doorway doorway in room.doorWayList)
+        {
+
+            // 문 프리팹이 null 값이 아니고 문이 연결되어 있는 경우
+            if (doorway.doorPrefab != null && doorway.isConnected)
+            {
+                //float tileDistance = Settings.tileSizePixels / Settings.pixelsPerUnit;
+                float tileDistance = 16 / 16;
+
+                GameObject door = null;
+
+                // 문의 위치를 동서남북에 따라 생성
+                if (doorway.orientation == Orientation.north)
+                {
+                    // 부모를 방으로 하여 문을 만듬
+                    door = Instantiate(doorway.doorPrefab, gameObject.transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y + tileDistance, 0f);
+                }
+                else if (doorway.orientation == Orientation.south)
+                {
+                    door = Instantiate(doorway.doorPrefab, gameObject.transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance / 2f, doorway.position.y, 0f);
+                }
+                else if (doorway.orientation == Orientation.east)
+                {
+                    door = Instantiate(doorway.doorPrefab, gameObject.transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x + tileDistance, doorway.position.y + tileDistance * 1.25f, 0f);
+                }
+                else if (doorway.orientation == Orientation.west)
+                {
+                    door = Instantiate(doorway.doorPrefab, gameObject.transform);
+                    door.transform.localPosition = new Vector3(doorway.position.x, doorway.position.y + tileDistance * 1.25f, 0f);
+                }
+
+                // 문 컴포넌트 가져오기
+                Door doorComponent = door.GetComponent<Door>();
+
+                // 문이 보스 룸과 이어져있다면
+                if (room.roomNodeType.isBossRoom)
+                {
+                    doorComponent.isBossRoomDoor = true;
+
+                    // 방에 접근이 안되게 문을 잠금
+                    doorComponent.LockDoor();
+
+                    // Instantiate skull icon for minimap by door
+                    // GameObject skullIcon = Instantiate(GameResources.Instance.minimapSkullPrefab, gameObject.transform);
+                    // skullIcon.transform.localPosition = door.transform.localPosition;
+
+                }
+            }
+
+        }
+
+    }
+
+    // 가마솥 생성
+    private void CauldronCreate()
+    {
+        // 만약 방의 룸 노드 타입이 가마솥 방 이라면
+        if (room.roomNodeType.isCauldron)
+        {
+            GameObject Cauldron = Managers.Resource.Instantiate("Cauldron/Cauldron", gameObject.transform);
+            Cauldron.transform.localPosition = new Vector3(0, 0, 0);
+        }
+    }
+
+    /// <summary>
+    /// Lock the room doors
+    /// </summary>
+    public void LockDoors()
+    {
+        Door[] doorArray = GetComponentsInChildren<Door>();
+
+        // Trigger lock doors
+        foreach (Door door in doorArray)
+        {
+            door.LockDoor();
+        }
+
+        // Disable room trigger collider
+        DisableRoomCollider();
+    }
+
+    /// <summary>
+    /// Unlock the room doors
+    /// </summary>
+    public void UnlockDoors(float doorUnlockDelay)
+    {
+        StartCoroutine(UnlockDoorsRoutine(doorUnlockDelay));
+    }
+
+    /// <summary>
+    /// Unlock the room doors routine
+    /// </summary>
+    private IEnumerator UnlockDoorsRoutine(float doorUnlockDelay)
+    {
+        if (doorUnlockDelay > 0f)
+            yield return new WaitForSeconds(doorUnlockDelay);
+
+        Door[] doorArray = GetComponentsInChildren<Door>();
+
+        // Trigger open doors
+        foreach (Door door in doorArray)
+        {
+            door.UnlockDoor();
+        }
+
+        // Enable room trigger collider
+        EnableRoomCollider();
+    }
+
+
     /// <summary>
     /// Disable collision tilemap renderer
     /// </summary>
@@ -294,20 +428,17 @@ public class InstantiatedRoom : MonoBehaviour
         tmp.enabled = false;
     }
 
-    /// <summary>
-    /// Disable the room trigger collider that is used to trigger when the player enters a room
-    /// </summary>
-    public void DisableRoomCollider()
-    {
-        boxCollider2D.enabled = false;
-    }
-
-    /// <summary>
-    /// Enable the room trigger collider that is used to trigger when the player enters a room
-    /// </summary>
+    // 플레이어가 방에 들어갔을 때 트리거되는 룸 트리거 콜라이더를 활성화
     public void EnableRoomCollider()
     {
         boxCollider2D.enabled = true;
+    }
+
+    // 플레이어가 방에 들어갔을 때 트리거되는 룸 트리거 콜라이더를 비활성화
+    public void DisableRoomCollider()
+    {
+        Debug.Log(boxCollider2D == null);
+        boxCollider2D.enabled = false;
     }
 
     public void ActivateEnvironmentGameObjects()

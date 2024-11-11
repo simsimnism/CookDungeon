@@ -22,12 +22,18 @@ public class RoomNodeGraphSO : ScriptableObject
     {
         roomNodeDictionary.Clear();
 
-        // Populate dictionary
+        if (roomNodeList == null || roomNodeList.Count == 0)
+        {
+            Debug.LogError("roomNodeList is not initialized or empty.");
+            return;
+        }
+
         foreach (RoomNodeSO node in roomNodeList)
         {
             roomNodeDictionary[node.id] = node;
         }
     }
+
 
     /// <summary>
     /// roomNodeType에서 룸 노드 가져오기
@@ -51,6 +57,7 @@ public class RoomNodeGraphSO : ScriptableObject
     {
         if (roomNodeDictionary.TryGetValue(roomNodeID, out RoomNodeSO roomNodeSO))
         {
+            Debug.Log($"Trying to get RoomNode with ID: {roomNodeID}");
             return roomNodeSO;
         }
         return null;
@@ -61,11 +68,20 @@ public class RoomNodeGraphSO : ScriptableObject
     /// </summary>
     public IEnumerable<RoomNodeSO> GetChildRoomNodes(RoomNodeSO parentRoomNode)
     {
-        foreach (string childNodeID in parentRoomNode.childRoomNodeIDList)
+        for (int i = 0; i < parentRoomNode.childRoomNodeIDList.Count; i++)
         {
-            yield return GetRoomNode(childNodeID);
+            string childNodeID = parentRoomNode.childRoomNodeIDList[i];
+            RoomNodeSO childNode = GetRoomNode(childNodeID);
+
+            if (childNode == null)
+            {
+                Debug.LogWarning($"Child Room Node with ID: {childNodeID} not found in roomNodeDictionary.");
+                continue;
+            }
+            yield return childNode;
         }
     }
+
 
     #region 에디터전용
 
