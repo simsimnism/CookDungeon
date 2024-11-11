@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4842333437686694478}
   - component: {fileID: 732814240723097290}
   - component: {fileID: 11891157774418184}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: PizzaKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}

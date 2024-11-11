@@ -42,7 +42,7 @@ public class AppleJuiceSkill : MonoBehaviour
     private void DamageEnemiesInRadius()
     {
         // Monster 태그가 존재하지 않거나 태그를 가진 오브젝트가 없으면 실행하지 않음
-        if (GameObject.FindGameObjectsWithTag("Monster").Length == 0)
+        if (GameObject.FindGameObjectsWithTag("Monsters").Length == 0)
         {
             return;
         }
@@ -52,14 +52,14 @@ public class AppleJuiceSkill : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             // "Monster" 태그를 가진 오브젝트만 데미지 처리
-            if (enemy.CompareTag("Monster"))
+            if (enemy.CompareTag("Monsters"))
             {
                 int damageAsInt = Mathf.RoundToInt(damagePerSecond);
                 MonsterAI monsterAI = enemy.GetComponent<MonsterAI>();
                 if (monsterAI != null)
                 {
                     monsterAI.TakeDamage(damageAsInt, (enemy.transform.position - transform.position).normalized);
-                    Debug.Log($"Monster에게 {damageAsInt}의 데미지를 입혔습니다."); // 데미지 로그 출력
+                    Debug.Log($"Monsters에게 {damageAsInt}의 데미지를 입혔습니다."); // 데미지 로그 출력
                 }
             }
         }

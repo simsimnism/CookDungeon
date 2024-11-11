@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 229520438040803151}
   - component: {fileID: 3593789386169894928}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: AppleJuiceEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

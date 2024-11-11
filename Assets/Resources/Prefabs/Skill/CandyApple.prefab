@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5123893399058515407}
   - component: {fileID: 8792584823793246640}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: CandyApple
   m_TagString: Untagged
   m_Icon: {fileID: 0}

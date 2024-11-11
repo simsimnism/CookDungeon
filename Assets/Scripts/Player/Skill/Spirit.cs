@@ -56,7 +56,7 @@ public class Spirit : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.CompareTag("Monster"))
+            if (enemy.CompareTag("Monsters"))
             {
                 ShootProjectile(enemy.transform);
                 break;

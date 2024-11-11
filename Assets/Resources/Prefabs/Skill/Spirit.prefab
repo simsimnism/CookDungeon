@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2424980790484881926}
   - component: {fileID: 2619255215266903027}
   - component: {fileID: 3546351251474686190}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
