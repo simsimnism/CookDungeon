@@ -121,7 +121,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         {
             draggedImage.gameObject.SetActive(false);
         }
-        SetImageAlpha(1f);  // 드래그가 끝나면 슬롯의 이미지가 다시 보이도록 설정
+        SetImageAlpha(1f);  // 드래그가 끝나면 원래 슬롯의 이미지가 다시 보이도록 설정
 
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
@@ -132,13 +132,20 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             {
                 if (CanSwap(targetSlot))
                 {
-                    ConfirmSwap(targetSlot);
+                    MoveItemToSlot(targetSlot);  // 타겟 슬롯에 아이템 이동
                 }
                 break;
             }
         }
-        ClearCache();
     }
+
+    private void MoveItemToSlot(BaseItemSlot targetSlot)
+    {
+        targetSlot.SetItem(currentItem);  // 타겟 슬롯에 아이템 설정
+        ClearSlot();  // 원래 슬롯을 초기화하여 아이템 제거
+    }
+
+
 
     protected virtual bool CanSwap(BaseItemSlot targetSlot)
     {
