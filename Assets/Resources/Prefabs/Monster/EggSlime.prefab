@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 4634940977397453763}
   - component: {fileID: 1258657697969428814}
   - component: {fileID: 8240185380854649368}
+  - component: {fileID: 1347882368941503423}
+  - component: {fileID: 8758540214323416832}
   m_Layer: 0
   m_Name: EggSlime
   m_TagString: Monsters
@@ -264,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDataSO: {fileID: 11400000, guid: f41a258f60a9e4740a7eb498798d7676, type: 2}
+  health: 0
   player: {fileID: 0}
   knockbackForce: 2
   maxKnockbackDistance: 2
@@ -284,3 +287,27 @@ MonoBehaviour:
   player: {fileID: 0}
   Ma: {fileID: 0}
   attackRange: 5
+--- !u!114 &1347882368941503423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265763813283399209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8758540214323416832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2265763813283399209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d67f5ed2c61df242a933e8e882831fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
