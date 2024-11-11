@@ -14,6 +14,5 @@ public class MonsterDataSO : ScriptableObject
     public float range;         // 공격 범위
     public float speed;         // 이동 속도
 
-
     public GameObject monsterPrefab;  // 몬스터 프리팹을 저장할 필드
 }
