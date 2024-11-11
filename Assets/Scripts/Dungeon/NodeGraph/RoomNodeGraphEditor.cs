@@ -414,7 +414,7 @@ public class RoomNodeGraphEditor : UnityEditor.EditorWindow //편집기
     /// </summary>
     private void ProcessMouseUpEvent(Event currentEvent)
     {
-        // 오른쪽 마우스 버튼을 놓은 상태에서 현재 선을 드래그하는 경우
+        // if releasing the right mouse button and currently draggin a line
         if (currentEvent.button == 1 && currentRoomNodeGraph.roomNodeToDrawLineFrom != null)
         {
             // Check if over a room node

@@ -14,7 +14,6 @@ public class GameManager
     // 현재 & 이전 방에 대한 정보
     private Room currentRoom;
     private Room previousRoom;
-    private Player player;
 
     // 던전 레벨 리스트 설정
     private List<DungeonLevelSO> dungeonLevelList;
@@ -111,11 +110,6 @@ public class GameManager
         gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
     }
 
-    public Player GetPlayer()
-    {
-        return player;
-    }
-
     // 최종적으로 던전을 생성하는 함수
     void genDungeon(int dungeonLevelListIndex)
     {
@@ -127,26 +121,6 @@ public class GameManager
         {
             Debug.LogError("던전 생성 실패 - 지정된 방과 노드 그래프에서 던전을 만들 수 없습니다.");
         }
-    }
-
-    private IEnumerator LevelCompleted()
-    {
-        // 스테이트를 다시 플레이로 바꿈
-        gameState = GameState.playingLevel;
-
-        // 2초 기다림
-        yield return new WaitForSeconds(2f);
-
-
-        // 레벨 클리어 출력?
-
-        // 스크린을 페이드 아웃
-        //yield return StartCoroutine(Fade(1f, 0f, 2f, new Color(0f, 0f, 0f, 0.4f)));
-
-        // 현제 던전 레벨을 증가시킴
-        currentDungeonLevelListIndex++;
-
-        genDungeon(currentDungeonLevelListIndex);
     }
 
     // 현재 던전 레벨 값을 호출

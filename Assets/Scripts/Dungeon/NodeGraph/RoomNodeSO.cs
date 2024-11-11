@@ -40,21 +40,21 @@ public class RoomNodeSO : ScriptableObject
 
     public void Draw(GUIStyle nodeStyle)
     {
-        // 시작 영역을 사용하여 노드 상자 그리기
+        // Draw Node Box Using Begin Area
         GUILayout.BeginArea(rect, nodeStyle);
 
-        // 팝업 선택 변경을 감지하기 위한 시작 영역
+        // Start Region To Detect Popup Selection Changes
         EditorGUI.BeginChangeCheck();
 
-        // 룸 노드에 부모가 있거나 입구 유형이면 레이블을 표시하고 그렇지 않으면 팝업을 표시합니다.
+        // if the room node has a parent or is of type entrance then display a label else display a popupo
         if (parentRoomNodeIDList.Count > 0 || roomNodeType.isEntrance)
         {
-            // 변경할 수 없는 라벨을 표시합니다.
+            // Display a label that can't be changed
             EditorGUILayout.LabelField(roomNodeType.roomNodeTypeName);
         }
         else
         {
-            // 현재 설정된 roomNodeType을 기본값으로 사용하여 선택할 수 있는 RoomNodeType 이름 값을 사용하여 팝업을 표시합니다. 
+            // Display a popup using the RoomNodeType name values that can be selected from (default to the currently set roomNodeType) 
             int selected = roomNodeTypeList.list.FindIndex(x => x == roomNodeType);
 
             int selection = EditorGUILayout.Popup("", selected, GetRoomNodeTypeToDisplay());
@@ -68,16 +68,16 @@ public class RoomNodeSO : ScriptableObject
                 {
                     for (int i = childRoomNodeIDList.Count - 1; i >= 0; i--)
                     {
-                        // 자식 룸 노드 가져오기
+                        // Get child room node
                         RoomNodeSO childRoomNode = roomNodeGraph.GetRoomNode(childRoomNodeIDList[i]);
 
-                        // 자식 룸 노드가 null이 아니라면
+                        // If the child room node is not null
                         if (childRoomNode != null)
                         {
-                            // 부모 룸 노드에서 childID 제거
+                            // Remove childID from parent room node
                             RemoveChildRoomNodeIDFromRoomNode(childRoomNode.id);
 
-                            // 자식 룸 노드에서 parentID 제거
+                            // Remove parentID from child room node
                             childRoomNode.RemoveParentRoomNodeIDFromRoomNode(id);
                         }
                     }
