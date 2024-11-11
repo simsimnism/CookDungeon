@@ -111,6 +111,12 @@ public class Inventory : MonoBehaviour
 
     public bool RemoveItemByName(string itemName)
     {
+        if (!isInitialized)
+        {
+            Debug.LogWarning("인벤토리가 초기화되지 않았습니다.");
+            return false;
+        }
+
         ItemSlot itemSlot = FindItemSlotByName(itemName);
         if (itemSlot != null && itemSlot.CurrentItem != null)
         {
@@ -126,6 +132,7 @@ public class Inventory : MonoBehaviour
         }
 
         Debug.LogWarning($"'{itemName}' 아이템을 인벤토리에서 찾을 수 없습니다.");
-        return false;  // null인 경우 안전하게 false 반환
+        return false;
     }
+
 }

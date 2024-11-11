@@ -145,8 +145,6 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         ClearSlot();  // 원래 슬롯을 초기화하여 아이템 제거
     }
 
-
-
     protected virtual bool CanSwap(BaseItemSlot targetSlot)
     {
         return true;  // 슬롯 간의 교환이 가능할 때 true 반환
