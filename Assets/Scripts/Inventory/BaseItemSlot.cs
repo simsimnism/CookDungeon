@@ -54,6 +54,8 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         itemImage.color = color;
     }
 
+
+    //더블클릭을 감지하는 코드
     public void OnPointerClick(PointerEventData eventData)
     {
         // 클릭 시간 간격을 확인하여 더블 클릭 감지
@@ -64,6 +66,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         lastClickTime = Time.time;
     }
 
+    //아이템 사용 코드
     private void UseItem()
     {
         // 아이템이 RecipeItem인 경우에만 사용
@@ -104,9 +107,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         draggedImage.sprite = itemImage.sprite;
         draggedImage.transform.position = eventData.position;
         draggedImage.gameObject.SetActive(true);
-        SetImageAlpha(0f);  // 드래그 중에는 슬롯의 이미지가 보이지 않도록 설정
+        SetImageAlpha(1f);  // 드래그 중에는 슬롯의 이미지가 보이지 않도록 설정
     }
 
+    //드래그에 사용되는 코드
     public void OnDrag(PointerEventData eventData)
     {
         if (draggedImage != null && draggedImage.gameObject.activeSelf)
