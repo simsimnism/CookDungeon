@@ -57,8 +57,21 @@ public class MonsterSpawner : MonoBehaviour
         // 문을 잠구기
         currentRoom.instantiatedRoom.LockDoors();
 
-        // 몬스터 스폰
-        spawnCoroutine = StartCoroutine(SpawnEnemiesRoutine());
+        // 게임 스테이트를 변경 (보스 전투)
+        if (Managers.GM.gameState == GameState.bossRoom)
+        {
+            Managers.GM.previousGameState = GameState.bossRoom;
+            Managers.GM.gameState = GameState.BossBattle;
+        }
+        // 게임 스테이트를 변경 (일반 전투)
+        else if (Managers.GM.gameState == GameState.playingLevel)
+        {
+            Managers.GM.previousGameState = GameState.playingLevel;
+            Managers.GM.gameState = GameState.MonsterBattle;
+        }
+
+            // 몬스터 스폰
+            spawnCoroutine = StartCoroutine(SpawnEnemiesRoutine());
     }
 
     // 몬스터를 스폰하는 코루틴
@@ -166,6 +179,19 @@ public class MonsterSpawner : MonoBehaviour
         enemiesSpawnedSoFar = 0;
         currentRoom.isClearedOfMonster = true; // 방 클리어 상태 업데이트
 
+        // 게임 스테이트 변경
+        if (Managers.GM.gameState == GameState.MonsterBattle)
+        {
+            Managers.GM.gameState = GameState.playingLevel;
+            Managers.GM.previousGameState = GameState.MonsterBattle;
+        }
+        else if (Managers.GM.gameState == GameState.BossBattle)
+        {
+            Managers.GM.gameState = GameState.bossRoom;
+            Managers.GM.previousGameState = GameState.BossBattle;
+        }
+
+        currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
         Debug.Log("모든 몬스터가 삭제되었습니다.");
     }
 }

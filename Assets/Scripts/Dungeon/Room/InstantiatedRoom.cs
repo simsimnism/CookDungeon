@@ -78,6 +78,8 @@ public class InstantiatedRoom : MonoBehaviour
 
         CauldronCreate();
 
+        PortalCreate();
+
         DisableCollisionTilemapRenderer();
     }
 
@@ -368,7 +370,18 @@ public class InstantiatedRoom : MonoBehaviour
         if (room.roomNodeType.isCauldron)
         {
             GameObject Cauldron = Managers.Resource.Instantiate("Cauldron/Cauldron", gameObject.transform);
-            Cauldron.transform.localPosition = new Vector3(0, 0, 0);
+            Cauldron.transform.localPosition = new Vector3(0, 3, 0);
+        }
+    }
+
+    // 포탈 생성
+    private void PortalCreate()
+    {
+        // 만약 방의 룸 노드 타입이 가마솥 방 이라면
+        if (room.roomNodeType.isExit)
+        {
+            GameObject Portal = Managers.Resource.Instantiate("Dungeon/Portal/Portal", gameObject.transform);
+            Portal.transform.localPosition = new Vector3(0, 1, 0);
         }
     }
 

@@ -45,7 +45,7 @@ public class Door : MonoBehaviour
     {
         // When the parent gameobject is disabled (when the player moves far enough away from the
         // room) the animator state gets reset. Therefore we need to restore the animator state.
-        //animator.SetBool(Settings.open, isOpen);
+        animator.SetBool("isOpen", isOpen);
     }
 
     // 문 열기
@@ -59,6 +59,7 @@ public class Door : MonoBehaviour
             doorTrigger.enabled = false;
 
             // 문 열리는 애니메이션 추가
+            animator.SetBool("isOpen", true);
 
             // 소리 출력 추가
 
@@ -73,7 +74,7 @@ public class Door : MonoBehaviour
         doorTrigger.enabled = false;
 
         // set open to false to close door
-        // 애니메이션 추가
+        animator.SetBool("isOpen", false);
     }
 
     // 문 잠금 해제

@@ -5,6 +5,33 @@ using UnityEngine;
 public class HelperUtilities
 {
     /// <summary>
+    /// 플레이어에게 가장 가까운 스폰 위치를 가져옴
+    /// </summary>
+    public static Vector3 GetSpawnPositionNearestToPlayer(Vector3 playerPosition)
+    {
+        Room currentRoom = Managers.GM.GetCurrentRoom();
+
+        Grid grid = currentRoom.instantiatedRoom.grid;
+
+        Vector3 nearestSpawnPosition = new Vector3(10000f, 10000f, 0f);
+
+        // 방 스폰 포인트를 루프
+        foreach (Vector2Int spawnPositionGrid in currentRoom.spawnPositionArray)
+        {
+            // 스폰 그리드 위치를 월드 포지션으로 변환
+            Vector3 spawnPositionWorld = grid.CellToWorld((Vector3Int)spawnPositionGrid);
+
+            if (Vector3.Distance(spawnPositionWorld, playerPosition) < Vector3.Distance(nearestSpawnPosition, playerPosition))
+            {
+                nearestSpawnPosition = spawnPositionWorld;
+            }
+        }
+
+        return nearestSpawnPosition;
+
+    }
+
+    /// <summary>
     /// Empty String Debug check 
     /// 문자열(stringToCheck)이 공백인지 확인하는 유효성 검사
     /// </summary>

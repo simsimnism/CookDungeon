@@ -54,6 +54,9 @@ public class GameManager
                     GameStart();
                 }
                 break;
+            case GameState.levelCompleted:
+                LevelCompleted();
+                break;
             default:
                 break;
         }
@@ -83,6 +86,14 @@ public class GameManager
         // Subscribe to room changed event.
         EventHandle.OnRoomChange += EventHandle_RoomChangeEvent;
 
+        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
+
+        // 캐릭터 생성
+        GameObject Player = Managers.Resource.Instantiate("Player/Player");
+        player = Player.GetComponent<Player>();
+
+        // 카메라 세팅
+        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
 
         // 던전 레벨 리스트 생성
         dungeonLevelList = new List<DungeonLevelSO>();
@@ -106,13 +117,6 @@ public class GameManager
 
         EventHandle.CallRoomChangeEvent(currentRoom);
 
-        // 캐릭터 생성
-        GameObject Player = Managers.Resource.Instantiate("Player/Player");
-
-        // 카메라 세팅
-        GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
-
-        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
     }
 
     public Player GetPlayer()
@@ -131,16 +135,23 @@ public class GameManager
         {
             Debug.LogError("던전 생성 실패 - 지정된 방과 노드 그래프에서 던전을 만들 수 없습니다.");
         }
+
+        // Call static event that room has changed.
+        EventHandle.CallRoomChangeEvent(currentRoom);
+
+        // 플레이어를 방 중앙에 세팅
+        player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
+
+        // 플레이어와 가장 가까운 방에서 가장 가까운 스폰 지점을 얻음
+        player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+
+        // 라운드 UI 띄우기
     }
 
-    private IEnumerator LevelCompleted()
+    private void LevelCompleted()
     {
         // 스테이트를 다시 플레이로 바꿈
         gameState = GameState.playingLevel;
-
-        // 2초 기다림
-        yield return new WaitForSeconds(2f);
-
 
         // 레벨 클리어 출력?
 
