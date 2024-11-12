@@ -17,36 +17,74 @@ public class SkillManager : MonoBehaviour
     private float eggCabbageTimer;
     private float candyAppleTimer;
 
+    void Start()
+    {
+        if (appleJuiceSkill != null) appleJuiceSkill.enabled = false;
+        if (pizzaSpinCutter != null) pizzaSpinCutter.enabled = false;
+        if (eggCabbageSpirit != null) eggCabbageSpirit.enabled = false;
+        if (candyAppleRoll != null) candyAppleRoll.enabled = false;
+    }
 
     void Update()
     {
-        appleJuiceTimer += Time.deltaTime;
-        pizzaSpinTimer += Time.deltaTime;
-        eggCabbageTimer += Time.deltaTime;
-        candyAppleTimer += Time.deltaTime;
+        if (appleJuiceSkill != null && appleJuiceSkill.enabled) appleJuiceTimer += Time.deltaTime;
+        if (pizzaSpinCutter != null && pizzaSpinCutter.enabled) pizzaSpinTimer += Time.deltaTime;
+        if (eggCabbageSpirit != null && eggCabbageSpirit.enabled) eggCabbageTimer += Time.deltaTime;
+        if (candyAppleRoll != null && candyAppleRoll.enabled) candyAppleTimer += Time.deltaTime;
 
-        if (appleJuiceTimer >= appleJuiceCooldown)
+        if (appleJuiceSkill != null && appleJuiceSkill.enabled && appleJuiceTimer >= appleJuiceCooldown)
         {
             appleJuiceSkill.ActivateSkill();
             appleJuiceTimer = 0f;
         }
 
-        if (pizzaSpinTimer >= pizzaSpinCooldown)
+        if (pizzaSpinCutter != null && pizzaSpinCutter.enabled && pizzaSpinTimer >= pizzaSpinCooldown)
         {
             pizzaSpinCutter.ActivateSkill();
             pizzaSpinTimer = 0f;
         }
 
-        if (eggCabbageTimer >= eggCabbageCooldown)
+        if (eggCabbageSpirit != null && eggCabbageSpirit.enabled && eggCabbageTimer >= eggCabbageCooldown)
         {
             eggCabbageSpirit.ActivateSkill();
             eggCabbageTimer = 0f;
         }
 
-        if (candyAppleTimer >= candyAppleCooldown)
+        if (candyAppleRoll != null && candyAppleRoll.enabled && candyAppleTimer >= candyAppleCooldown)
         {
             candyAppleRoll.ActivateSkill();
             candyAppleTimer = 0f;
+        }
+    }
+
+    public void ActivateSkill(int skillIndex)
+    {
+        switch (skillIndex)
+        {
+            case 1:
+                if (appleJuiceSkill != null) appleJuiceSkill.enabled = true;
+                break;
+            case 2:
+                if (pizzaSpinCutter != null) pizzaSpinCutter.enabled = true;
+                break;
+            case 3:
+                if (eggCabbageSpirit != null) eggCabbageSpirit.enabled = true;
+                break;
+            case 4:
+                if (candyAppleRoll != null) candyAppleRoll.enabled = true;
+                break;
+        }
+    }
+
+    public int GetSkillLevel(int skillIndex)
+    {
+        switch (skillIndex)
+        {
+            case 1: return appleJuiceSkill != null ? appleJuiceSkill.Level : 0;
+            case 2: return pizzaSpinCutter != null ? pizzaSpinCutter.Level : 0;
+            case 3: return eggCabbageSpirit != null ? eggCabbageSpirit.Level : 0;
+            case 4: return candyAppleRoll != null ? candyAppleRoll.Level : 0;
+            default: return 0;
         }
     }
 
@@ -54,10 +92,10 @@ public class SkillManager : MonoBehaviour
     {
         switch (skillIndex)
         {
-            case 1: appleJuiceSkill.LevelUp(); break;
-            case 2: pizzaSpinCutter.LevelUp(); break;
-            case 3: eggCabbageSpirit.LevelUp(); break;
-            case 4: candyAppleRoll.LevelUp(); break;
+            case 1: if (appleJuiceSkill != null) appleJuiceSkill.LevelUp(); break;
+            case 2: if (pizzaSpinCutter != null) pizzaSpinCutter.LevelUp(); break;
+            case 3: if (eggCabbageSpirit != null) eggCabbageSpirit.LevelUp(); break;
+            case 4: if (candyAppleRoll != null) candyAppleRoll.LevelUp(); break;
         }
     }
 
@@ -72,4 +110,3 @@ public class SkillManager : MonoBehaviour
         }
     }
 }
-

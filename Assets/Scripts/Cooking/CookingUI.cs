@@ -89,7 +89,7 @@ public class CookingUI : MonoBehaviour
 
     private System.Collections.IEnumerator CookingProcess(RecipeItem recipe)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
 
         if (Managers.Inventory != null)
         {

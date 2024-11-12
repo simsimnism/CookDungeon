@@ -8,7 +8,8 @@ public class PizzaSpinCutter : MonoBehaviour
     public float radius = 2f;
     public float rotationSpeed = 200f;
     public float duration = 5f;
-    private int knifeCount = 2; // 시작 칼 개수
+    public int knifeCount = 2; // 시작 칼 개수
+    public int Level = 1;
     private List<GameObject> knives = new List<GameObject>();
 
     public void ActivateSkill()
@@ -47,6 +48,7 @@ public class PizzaSpinCutter : MonoBehaviour
 
     public void LevelUp()
     {
+        Level++;
         if (knifeCount < 5)
         {
             knifeCount += 2; // 레벨업 시 칼 개수 증가

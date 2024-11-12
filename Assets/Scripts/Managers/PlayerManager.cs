@@ -31,7 +31,7 @@ public class PlayerManager
 
     //Player스크립트에서 사용할 수치값
     public Vector2 inputVec;
-    public int MaxHP = 7;
+    public int MaxHP = 100;
     public int hp = 3;
     public bool inDamage = false;
     public bool canMove = false;

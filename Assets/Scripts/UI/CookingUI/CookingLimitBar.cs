@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//요리 가능한 시간을 게이지로 보여주는 로직
 public class CookingLimitBar : MonoBehaviour
 {
     public Slider cookingTimerSlider;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackRange = 3f;           // 공격 범위 (원의 반지름)
-    private float attackDelay = 2f;           // 공격 딜레이 (초 단위)
+    private float attackRange = 5f;           // 공격 범위 (원의 반지름)
+    private float attackDelay = 1f;           // 공격 딜레이 (초 단위)
     public int damage = 10;                  // 공격 데미지
 
     private List<Transform> enemiesInRange = new List<Transform>();

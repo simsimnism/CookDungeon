@@ -7,6 +7,7 @@ public class EggCabbageSpirit : MonoBehaviour
     public float rotationSpeed = 50f;
     public float radius = 3f; // 플레이어와의 최대 거리
     private GameObject spirit;
+    public int Level = 1;
 
     public void ActivateSkill()
     {
@@ -19,6 +20,7 @@ public class EggCabbageSpirit : MonoBehaviour
 
     public void LevelUp()
     {
+        Level++;
         rotationSpeed += 20f;
         spawnInterval = Mathf.Max(0.5f, spawnInterval - 0.1f);
     }

@@ -1,32 +1,62 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class SkillSelectUI : MonoBehaviour
+public class SkillChoice : MonoBehaviour
 {
-    public GameObject skillSelectionPanel;  // UI 전체 패널
-    public Button skillButton1;  // 첫 번째 스킬 버튼
-    public Button skillButton2;  // 두 번째 스킬 버튼
-    public Button skillButton3;  // 세 번째 스킬 버튼
-    public Button skillButton4;  // 네 번째 스킬 버튼
+    private SkillManager skillManager;
 
-    private void Start()
+    public Button skillSlot1Button;
+    public Button skillSlot2Button;
+    public Button skillSlot3Button;
+    public Button skillSlot4Button;
+
+    public TMP_Text skillSlot1LevelText;  // 슬롯 1의 레벨 표시 텍스트
+    public TMP_Text skillSlot2LevelText;  // 슬롯 2의 레벨 표시 텍스트
+    public TMP_Text skillSlot3LevelText;  // 슬롯 3의 레벨 표시 텍스트
+    public TMP_Text skillSlot4LevelText;  // 슬롯 4의 레벨 표시 텍스트
+
+    void Start()
     {
-        // 각 버튼에 클릭 이벤트 추가
-        skillButton1.onClick.AddListener(() => OnSkillSelected(1));
-        skillButton2.onClick.AddListener(() => OnSkillSelected(2));
-        skillButton3.onClick.AddListener(() => OnSkillSelected(3));
-        skillButton4.onClick.AddListener(() => OnSkillSelected(4));
+        // SkillManager를 자동으로 찾아서 연결
+        skillManager = FindObjectOfType<SkillManager>();
+
+        if (skillManager == null)
+        {
+            Debug.LogError("SkillManager가 씬에 존재하지 않습니다!");
+            return;
+        }
+
+        // 각 스킬 슬롯에 대한 버튼 리스너를 추가합니다.
+        skillSlot1Button.onClick.AddListener(() => OnSkillSlotClicked(1));
+        skillSlot2Button.onClick.AddListener(() => OnSkillSlotClicked(2));
+        skillSlot3Button.onClick.AddListener(() => OnSkillSlotClicked(3));
+        skillSlot4Button.onClick.AddListener(() => OnSkillSlotClicked(4));
+
+        // 초기 레벨 표시 업데이트
+        UpdateSkillLevels();
     }
 
-    private void OnSkillSelected(int skillIndex)
+    void OnSkillSlotClicked(int skillIndex)
     {
-        Debug.Log($"Skill {skillIndex} 선택됨");
+        if (skillManager != null)
+        {
+            // 스킬을 활성화하고, 레벨업 처리
+            skillManager.ActivateSkill(skillIndex);
+            skillManager.LevelUpSkill(skillIndex);
 
-        // 여기서 선택된 스킬에 따른 로직 추가 가능 (예: 스킬 활성화 등)
-
-        // 선택 후 UI 창을 닫음
+            // 레벨 표시 업데이트
+            UpdateSkillLevels();
+        }
         Managers.Popup.CloseSkillUI();
     }
 
-
+    public void UpdateSkillLevels()
+    {
+        // SkillManager에서 각 스킬의 레벨을 가져와 텍스트로 표시
+        skillSlot1LevelText.text = "Lv. " + skillManager.GetSkillLevel(1).ToString();
+        skillSlot2LevelText.text = "Lv. " + skillManager.GetSkillLevel(2).ToString();
+        skillSlot3LevelText.text = "Lv. " + skillManager.GetSkillLevel(3).ToString();
+        skillSlot4LevelText.text = "Lv. " + skillManager.GetSkillLevel(4).ToString();
+    }
 }

@@ -32,6 +32,7 @@ public class UIPopupManager
         if (_SkillPopup == null)
         {
             _SkillPopup = Managers.UI.ShowPopupUI<SkillPopup>("SkillChoicePopup");
+            Time.timeScale = 0;  // 게임 시간 멈춤
         }
         else
         {
@@ -54,6 +55,7 @@ public class UIPopupManager
         {
             _SkillPopup.gameObject.SetActive(false);
             _isSkillOpen = false;
+            Time.timeScale = 1;  // 게임 시간 재개
         }
     }
     //========================================================================

@@ -33,6 +33,7 @@ public class MonsterAI : MonoBehaviour
     private enum MonsterState { Idle, Chasing }; // 상태 관리
     private MonsterState currentState = MonsterState.Idle;
 
+    //=======================================AI필수 코드==============================================
     void Start()
     {
         // "(Clone)"을 제거하고 이름을 가져옴
@@ -51,8 +52,8 @@ public class MonsterAI : MonoBehaviour
         MonsterCollisionIgnore();
 
     }
-
-    // �����͸� �Ҵ��ϴ� �޼���
+    
+    //몬스터의 데이터를 가져오는 코드
     void AssignData(MonsterDataSO data)
     {
         monsterDataSO = data;
@@ -67,6 +68,8 @@ public class MonsterAI : MonoBehaviour
 
         Debug.Log($"몬스터 데이터 적용됨: {monsterDataSO.monsterName} (ID: {monsterDataSO.id})");
     }
+
+    //================================================================================================
 
     void Update()
     {
@@ -168,6 +171,7 @@ public class MonsterAI : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
+    //몬스터가 사망할 때 아이템을 떨어트리는 로직(그냥 사망 로직과 통합)
     private void MonsterDestroyed()
     {
         DestroyEvent destroyedEvent = GetComponent<DestroyEvent>();
@@ -189,7 +193,7 @@ public class MonsterAI : MonoBehaviour
                     prefabPath = "Food/Bread";  // 빵 프리팹 경로
                     break;
                 case 6: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Potato";  // 치즈 프리팹 경로
+                    prefabPath = "Food/Potato";  // 감자 프리팹 경로
                     break;
                 default:
                     prefabPath = "Food/DefaultFood";  // 기본 드랍 아이템 경로
@@ -213,8 +217,7 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-
-
+    //몬스터의 충돌 관련 로직
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -227,13 +230,10 @@ public class MonsterAI : MonoBehaviour
         }
     }
 
-    //���ͳ��� �浹���� �ʵ��� �ϴ� ����
     void MonsterCollisionIgnore()
     {
-        // "Monster" �±׸� ���� ��� ������Ʈ�� ã���ϴ�.
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monsters");
 
-        // �� ���� ������Ʈ���� Collider�� ������ ���� �浹�� �����ϵ��� �����մϴ�.
         for (int i = 0; i < monsters.Length; i++)
         {
             for (int j = i + 1; j < monsters.Length; j++)
@@ -243,7 +243,6 @@ public class MonsterAI : MonoBehaviour
 
                 if (col1 != null && col2 != null)
                 {
-                    // �� Collider ���� �浹�� �����մϴ�.
                     Physics.IgnoreCollision(col1, col2);
                 }
             }

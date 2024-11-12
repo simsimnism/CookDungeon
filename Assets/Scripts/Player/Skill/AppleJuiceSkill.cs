@@ -11,7 +11,7 @@ public class AppleJuiceSkill : MonoBehaviour
     public float duration = 5f;
     public float damagePerSecond = 10f;
 
-    private int level = 1;
+    public int Level = 1;
     private float cooldownReductionPerLevel = 0.5f;
     private float radiusIncreasePerLevel = 0.5f;
     private float damageIncreasePerLevel = 2f;
@@ -73,7 +73,7 @@ public class AppleJuiceSkill : MonoBehaviour
 
     public void LevelUp()
     {
-        level++;
+        Level++;
 
         finalRadius += radiusIncreasePerLevel;
         damagePerSecond += damageIncreasePerLevel;
