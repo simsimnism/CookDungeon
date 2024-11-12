@@ -370,7 +370,7 @@ public class InstantiatedRoom : MonoBehaviour
         if (room.roomNodeType.isCauldron)
         {
             GameObject Cauldron = Managers.Resource.Instantiate("Cauldron/Cauldron", gameObject.transform);
-            Cauldron.transform.localPosition = new Vector3(0, 0, 0);
+            Cauldron.transform.localPosition = new Vector3(0, 3, 0);
         }
     }
 
@@ -381,7 +381,7 @@ public class InstantiatedRoom : MonoBehaviour
         if (room.roomNodeType.isExit)
         {
             GameObject Portal = Managers.Resource.Instantiate("Dungeon/Portal/Portal", gameObject.transform);
-            Portal.transform.localPosition = new Vector3(0, 0, 0);
+            Portal.transform.localPosition = new Vector3(0, 1, 0);
         }
     }
 

@@ -138,8 +138,10 @@ public class GameManager
         // 플레이어를 방 중앙에 세팅
         player.gameObject.transform.position = new Vector3((currentRoom.lowerBounds.x + currentRoom.upperBounds.x) / 2f, (currentRoom.lowerBounds.y + currentRoom.upperBounds.y) / 2f, 0f);
 
-        // 플레이어와 가장 가까운 방에서 가장 가까운 스폰 지점을 얻으세요
+        // 플레이어와 가장 가까운 방에서 가장 가까운 스폰 지점을 얻음
         player.gameObject.transform.position = HelperUtilities.GetSpawnPositionNearestToPlayer(player.gameObject.transform.position);
+
+        // 라운드 UI 띄우기
     }
 
     private void LevelCompleted()

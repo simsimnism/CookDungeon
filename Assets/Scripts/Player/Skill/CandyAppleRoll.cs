@@ -1,14 +1,16 @@
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class CandyAppleRoll : MonoBehaviour
 {
     public GameObject candyAppleBallPrefab;
     private Transform playerTransform;
-    private GameObject candyAppleBall;
+    private List<GameObject> candyAppleBalls = new List<GameObject>(); // 여러 개의 candyAppleBall을 관리하는 리스트
     private int skillLevel = 1; // 스킬 레벨
     private float damage = 10f; // 기본 데미지
-    private float duration = 5f; // 지속 시간
+    private float distance = 30f; // 거리
+    private float speed = 3f; // 속도
     private float cooldown = 5f; // 기본 쿨다운 시간
 
     private void Start()
@@ -18,18 +20,26 @@ public class CandyAppleRoll : MonoBehaviour
 
     public void ActivateSkill()
     {
-        if (candyAppleBall == null)
-        {
-            Vector3 spawnPosition = playerTransform.position + (Vector3)Managers.Player.inputVec.normalized;
-            candyAppleBall = Instantiate(candyAppleBallPrefab, spawnPosition, Quaternion.identity);
+        Vector3 spawnPosition = playerTransform.position;
 
-            // DOTween으로 플레이어 앞에 위치하게 설정
-            candyAppleBall.transform.DOMove(playerTransform.position + (Vector3)Managers.Player.inputVec.normalized, duration)
-                .SetEase(Ease.Linear)
-                .SetLoops(-1, LoopType.Yoyo);
+        // 랜덤으로 방향 설정
+        Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        Vector3 targetPosition = spawnPosition + (Vector3)randomDirection * distance; // 날아갈 거리
 
-            Destroy(candyAppleBall, duration);
-        }
+        // 거리와 속도를 기반으로 지속 시간 계산
+        float duration = distance / speed;
+
+        GameObject candyAppleBall = Instantiate(candyAppleBallPrefab, spawnPosition, Quaternion.identity);
+        candyAppleBalls.Add(candyAppleBall); // 리스트에 추가
+
+        // DOTween으로 랜덤 방향으로 이동
+        candyAppleBall.transform.DOMove(targetPosition, duration)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                candyAppleBalls.Remove(candyAppleBall); // 리스트에서 제거
+                Destroy(candyAppleBall); // 이동 완료 후 삭제
+            });
     }
 
     public void LevelUp()
