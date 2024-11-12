@@ -1499,8 +1499,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: -6480979599675306388}
-        m_TargetAssemblyTypeName: UI_Popup, Assembly-CSharp
-        m_MethodName: ClosePopupUI
+        m_TargetAssemblyTypeName: CookingPopup, Assembly-CSharp
+        m_MethodName: CloseCook
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

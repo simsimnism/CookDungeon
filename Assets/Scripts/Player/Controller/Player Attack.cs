@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackRange = 5f;           // 공격 범위 (원의 반지름)
+    private float attackRange = 4f;           // 공격 범위 (원의 반지름)
     private float attackDelay = 0.1f;           // 공격 딜레이 (초 단위)
     private int damage = 10;                  // 공격 데미지
     private float lastAttackTime = 0f; // 마지막 공격 시점
