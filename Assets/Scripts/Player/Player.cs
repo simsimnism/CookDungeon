@@ -59,11 +59,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // 쉬프트 키를 누르면 무적 상태 활성화
-        if (Input.GetKey(KeyCode.LeftShift) && !invin)
-        {
-            StartCoroutine(StartInvincibility());
-        }
     }
 
     // 플레이어 생성

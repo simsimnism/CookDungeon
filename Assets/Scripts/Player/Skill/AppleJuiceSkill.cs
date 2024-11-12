@@ -6,10 +6,10 @@ public class AppleJuiceSkill : MonoBehaviour
     public GameObject appleJuiceEffect;
     public SkillManager skillManager;
 
-    public float initialRadius = 1f;
-    public float finalRadius = 3f;
-    public float duration = 5f;
-    public float damagePerSecond = 10f;
+    private float initialRadius = 0.5f;
+    private float finalRadius = 1.5f;
+    private float duration = 5f;
+    private float damagePerSecond = 8f;
 
     public int Level = 1;
     private float cooldownReductionPerLevel = 0.5f;
@@ -19,7 +19,8 @@ public class AppleJuiceSkill : MonoBehaviour
 
     public void ActivateSkill()
     {
-        GameObject effect = Instantiate(appleJuiceEffect, transform.position, Quaternion.identity);
+        // 이 오브젝트를 부모로 하여 이펙트를 생성
+        GameObject effect = Instantiate(appleJuiceEffect, transform.position, Quaternion.identity, this.transform);
 
         effect.transform.localScale = Vector3.one * initialRadius;
         effect.transform.DOScale(Vector3.one * finalRadius, duration);
@@ -41,7 +42,6 @@ public class AppleJuiceSkill : MonoBehaviour
 
     private void DamageEnemiesInRadius()
     {
-        // Monster 태그가 존재하지 않거나 태그를 가진 오브젝트가 없으면 실행하지 않음
         if (GameObject.FindGameObjectsWithTag("Monsters").Length == 0)
         {
             return;
@@ -51,7 +51,6 @@ public class AppleJuiceSkill : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            // "Monster" 태그를 가진 오브젝트만 데미지 처리
             if (enemy.CompareTag("Monsters"))
             {
                 int damageAsInt = Mathf.RoundToInt(damagePerSecond);
@@ -59,12 +58,11 @@ public class AppleJuiceSkill : MonoBehaviour
                 if (monsterAI != null)
                 {
                     monsterAI.TakeDamage(damageAsInt, (enemy.transform.position - transform.position).normalized);
-                    Debug.Log($"Monsters에게 {damageAsInt}의 데미지를 입혔습니다."); // 데미지 로그 출력
+                    Debug.Log($"Monsters에게 {damageAsInt}의 데미지를 입혔습니다.");
                 }
             }
         }
     }
-
 
     private void StopDamage()
     {

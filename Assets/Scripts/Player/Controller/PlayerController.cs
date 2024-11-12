@@ -9,9 +9,7 @@ public class PlayerController : MonoBehaviour
 
     //Pm에서 사용할 변수
     public float moveSpeed;  // 움직임 속도
-    public float dashSpeed; // 대쉬 속도
-    public float dashDuration; // 대쉬 지속 시간
-    private bool isDashing; // 대쉬 중인지 여부
+
     private float transparencyFadeTime; // 투명화가 진행되는 시간
     private float transparencyHoldTime; // 투명화가 완료된 후 유지되는 시간
 
@@ -22,9 +20,6 @@ public class PlayerController : MonoBehaviour
     public float invincibleDuration = 1f; // 무적 지속 시간
 
     private SpriteRenderer spriteRenderer; // 반투명 상태를 위한 SpriteRenderer
-    private Vector2 dashDirection; // 대쉬 방향을 저장할 변수
-    private Coroutine dashCoroutine;
-    private Coroutine transparencyCoroutine;
 
     //인벤토리 팝업 관련 변수
     public InventoryPopup InventoryPopup;
@@ -38,8 +33,6 @@ public class PlayerController : MonoBehaviour
         transparencyHoldTime = Managers.Player.transparencyHoldTime;
         transparencyFadeTime = Managers.Player.transparencyFadeTime;
         isInvincible = Managers.GM.IsInvincible;
-        isDashing = Managers.Player.isDashing;
-        dashSpeed = Managers.Player.dashSpeed;
         moveSpeed = Managers.Player.moveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -51,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Managers.Input.KeyAction += OnKeyMove;
     }
 
-    // WASD로 상하좌우 이동 & Shift키로 대쉬와 무적 상태 & F키로 아이템 습득
+    // WASD로 상하좌우 이동 & F키로 아이템 습득
     private void OnKeyMove()
     {
         // 이동 가능 여부 체크
@@ -73,7 +66,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.S)) moveVertical = -1f;
         if (Input.GetKey(KeyCode.D))
         {
-            moveHorizontal = -1f; // 방향 오류 수정
+            moveHorizontal = -1f;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
@@ -83,29 +76,8 @@ public class PlayerController : MonoBehaviour
         // 대각선 방향 조정
         Vector2 direction = new Vector2(moveHorizontal, moveVertical).normalized;
 
-        // 대쉬 중이 아닐 때만 이동 방향 갱신
-        if (!isDashing)
-        {
-            moveSpeed = Managers.Player.moveSpeed;
-            transform.Translate(direction * moveSpeed * Time.deltaTime);
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing)
-        {
-            // 대쉬를 시작할 때 이동 방향을 저장
-            dashDirection = direction;
-
-            if (dashCoroutine != null || transparencyCoroutine != null)
-            {
-                StopAllCoroutines();
-            }
-            dashCoroutine = StartCoroutine(Dash());
-            transparencyCoroutine = StartCoroutine(Dash());
-        }
-        else if (!isDashing)
-        {
-            moveSpeed = Mathf.Lerp(moveSpeed, 2, Time.deltaTime * 15f);
-        }
+        // 이동
+        transform.Translate(direction * moveSpeed * Time.deltaTime);
 
         // F 키로 아이템 습득
         if (Input.GetKeyDown(KeyCode.F) && currentPickupItem != null)
@@ -113,88 +85,12 @@ public class PlayerController : MonoBehaviour
             currentPickupItem.Pickup(); // 아이템 습득
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Managers.Inventory.ToggleInventory();
         }
     }
 
-    // 대쉬와 무적 상태를 관리하는 코루틴
-    private IEnumerator Dash()
-    {
-        if (Managers.Player.isAttacking)
-            yield break;
-        isDashing = true;
-        isInvincible = true;
-        float originalSpeed = moveSpeed;
-
-        StartCoroutine(BecomeTransparent());
-        StartCoroutine(BecomeTransparent());
-
-        // 대쉬 동안 속도를 빠르게 하고, 저장된 방향으로 대쉬
-        float elapsedTime = 0f;
-
-        while (elapsedTime < dashDuration)
-        {
-            dashSpeed = Managers.Player.dashSpeed;
-            transform.Translate(dashDirection * dashSpeed * Time.deltaTime);
-            elapsedTime += Time.deltaTime;
-            yield return null;
-        }
-
-        // 대쉬 후 다시 원래 속도로 복구
-        moveSpeed = originalSpeed;
-        isDashing = false;
-        dashCoroutine = null;
-    }
-
-    // 무적 상태를 관리하는 코루틴
-    private IEnumerator BecomeInvincible()
-    {
-        yield return new WaitForSeconds(invincibleDuration);
-
-        //무적상태 종료
-        isInvincible = false;
-    }
-
-    // 투명화 상태를 관리하는 코루틴
-    public IEnumerator BecomeTransparent()
-    {
-        Color originalColor = Color.white;
-
-        // 투명화 시작
-        float elapsedTime = 0f;
-        while (elapsedTime < transparencyFadeTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0.5f, elapsedTime / transparencyFadeTime); // 투명도를 점진적으로 변경
-            Color transparentColor = originalColor;
-            transparentColor.a = alpha;
-            spriteRenderer.color = transparentColor;
-            yield return null; // 다음 프레임까지 대기
-        }
-
-        // 투명 상태 유지
-        yield return new WaitForSeconds(transparencyHoldTime);
-
-        // 원래 상태로 복구
-        elapsedTime = 0f;
-        while (elapsedTime < transparencyFadeTime)
-        {
-            elapsedTime += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.5f, 1f, elapsedTime / transparencyFadeTime); // 투명도를 원래대로 복구
-            Color transparentColor = originalColor;
-            transparentColor.a = alpha;
-            spriteRenderer.color = transparentColor;
-            yield return null; // 다음 프레임까지 대기
-        }
-    }
-
-    // 무적 상태 확인 (이 함수로 외부에서 확인 가능)
-    public bool IsInvincible()
-    {
-        return isInvincible;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackRange = 5f;           // 공격 범위 (원의 반지름)
-    private float attackDelay = 1f;           // 공격 딜레이 (초 단위)
-    public int damage = 10;                  // 공격 데미지
+    private float attackRange = 7f;           // 공격 범위 (원의 반지름)
+    private float attackDelay = 0.5f;           // 공격 딜레이 (초 단위)
+    private int damage = 10;                  // 공격 데미지
 
     private List<Transform> enemiesInRange = new List<Transform>();
     private float attackTimer = 0f;
@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
         if (attackTimer >= attackDelay)
         {
             DetectEnemiesInRange(); // 범위 내 적 감지
-            AttackEnemies(); // 모든 적 공격
+            AttackFirstEnemy(); // 범위 내 첫 번째 적 공격
             attackTimer = 0f; // 타이머 초기화
         }
     }
@@ -38,28 +38,25 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void AttackEnemies()
+    private void AttackFirstEnemy()
     {
-        for (int i = enemiesInRange.Count - 1; i >= 0; i--) // 역순으로 루프
+        if (enemiesInRange.Count > 0) // 범위 내에 적이 있는지 확인
         {
-            Transform enemy = enemiesInRange[i];
+            Transform enemy = enemiesInRange[0]; // 첫 번째 적 선택
 
-            if (enemy == null)
+            if (enemy != null)
             {
-                enemiesInRange.RemoveAt(i); // 적이 이미 제거된 경우 리스트에서 제거
-                continue;
-            }
-
-            // 몬스터에게 데미지를 가하는 함수 호출
-            MonsterAI monsterAI = enemy.GetComponent<MonsterAI>();
-            if (monsterAI != null)
-            {
-                monsterAI.TakeDamage(damage, (enemy.position - transform.position).normalized);
-
-                // 데미지 후 생존 여부 확인
-                if (enemy.GetComponent<MonsterAI>().health <= 0) // health가 0 이하인지 확인
+                // 몬스터에게 데미지를 가하는 함수 호출
+                MonsterAI monsterAI = enemy.GetComponent<MonsterAI>();
+                if (monsterAI != null)
                 {
-                    enemiesInRange.RemoveAt(i); // 사망한 몬스터를 리스트에서 제거
+                    monsterAI.TakeDamage(damage, (enemy.position - transform.position).normalized);
+
+                    // 데미지 후 생존 여부 확인
+                    if (monsterAI.health <= 0) // health가 0 이하인지 확인
+                    {
+                        enemiesInRange.RemoveAt(0); // 사망한 몬스터를 리스트에서 제거
+                    }
                 }
             }
         }

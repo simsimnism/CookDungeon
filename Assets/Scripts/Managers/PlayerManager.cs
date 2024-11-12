@@ -8,7 +8,7 @@ public class PlayerManager
     private SpriteRenderer spriteRenderer;
 
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
-    public float moveSpeed = 5.0f;//이동속도
+    public float moveSpeed = 7.0f;//이동속도
     public float dashSpeed = 4f; // 대쉬 속도
     public float dashDuration = 0.3f; // 대쉬 지속 시간
     public bool isDashing = false;// 대쉬 여부
@@ -31,8 +31,7 @@ public class PlayerManager
 
     //Player스크립트에서 사용할 수치값
     public Vector2 inputVec;
-    public int MaxHP = 100;
-    public int hp = 3;
+    public int MaxHP = 7;
     public bool inDamage = false;
     public bool canMove = false;
 
