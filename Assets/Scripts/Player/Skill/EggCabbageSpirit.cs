@@ -3,9 +3,9 @@ using UnityEngine;
 public class EggCabbageSpirit : MonoBehaviour
 {
     public GameObject spiritPrefab;
-    public float spawnInterval = 1f;
-    public float rotationSpeed = 50f;
-    public float radius = 3f; // 플레이어와의 최대 거리
+    private float spawnInterval = 1f;
+    private float rotationSpeed = 30f;
+    private float radius = 3f; // 플레이어와의 최대 거리
     private GameObject spirit;
     public int Level = 1;
 

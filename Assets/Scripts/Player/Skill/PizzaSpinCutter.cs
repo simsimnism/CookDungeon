@@ -5,10 +5,10 @@ using DG.Tweening;
 public class PizzaSpinCutter : MonoBehaviour
 {
     public GameObject pizzaKnifePrefab;
-    public float radius = 2f;
-    public float rotationSpeed = 200f;
-    public float duration = 5f;
-    public int knifeCount = 2; // 시작 칼 개수
+    private float radius = 2.5f;
+    private float rotationSpeed = 200f;
+    private float duration = 5f;
+    private int knifeCount = 0; // 시작 칼 개수
     public int Level = 1;
     private List<GameObject> knives = new List<GameObject>();
 

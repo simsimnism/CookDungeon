@@ -6,7 +6,7 @@
       "description": "A delicious mix of fruits.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [1, 2], 
+      "requiredIngredients": [1, 1, 1], 
       "healthRecovery": 20,
       "fullnessRecovery": 15 
     },
@@ -16,7 +16,7 @@
       "description": "A healthy mix of vegetables.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [1, 3],
+      "requiredIngredients": [1, 4, 4],
       "healthRecovery": 25,
       "fullnessRecovery": 20
     },
@@ -26,7 +26,7 @@
       "description": "A hearty stew made with meat and vegetables.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [3, 6],
+      "requiredIngredients": [2, 3, 2],
       "healthRecovery": 40,
       "fullnessRecovery": 35
     },
@@ -36,7 +36,7 @@
       "description": "A warm soup made with chicken.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [8, 9],
+      "requiredIngredients": [2, 4, 3],
       "healthRecovery": 50,
       "fullnessRecovery": 40
     },
