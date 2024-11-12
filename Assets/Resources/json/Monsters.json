@@ -43,7 +43,7 @@
       "attack": 25,
       "attackRange ": 3,
       "range": 99,
-      "speed": 0
+      "speed": 5
     },
     {
       "name": "Potabee",

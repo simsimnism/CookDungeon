@@ -34,6 +34,7 @@ public class CookingUI : MonoBehaviour
     void Update()
     {
         cookButton.interactable = Managers.GM.CookAbleTime;
+        
     }
 
     // 요리 시작 메서드
@@ -102,8 +103,6 @@ public class CookingUI : MonoBehaviour
 
         ClearAllCookingSlots();
     }
-
-
 
     private void ClearAllCookingSlots()
     {

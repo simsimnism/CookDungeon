@@ -92,7 +92,6 @@ public class Cauldron : MonoBehaviour
             // isStart를 true로 바꾸고 타이머를 설정
             isStart = true;
             Timer(RoundTimeLimit);
-
             // 몬스터 생성 호출
             monsterSpawner.SpawnMonsters();
             Debug.Log("몬스터 생성 시작!");
@@ -124,6 +123,7 @@ public class Cauldron : MonoBehaviour
         //매니저 연동
         Managers.GM.CookAbleTime = true;
         // 불이 붙는 애니메이션 재생
+        
         // PlayFireAnimation();
 
         // 불 지속시간 세팅

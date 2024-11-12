@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8432291600685833884
+--- !u!1 &4493443924418729734
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2922706022479159691}
-  - component: {fileID: 3871698612390848010}
-  - component: {fileID: 1606058478674313285}
-  - component: {fileID: -5835225259077517380}
-  - component: {fileID: -3787361115822273581}
-  - component: {fileID: -2504173211121676974}
+  - component: {fileID: 6451045262505852834}
+  - component: {fileID: 6107384688717713981}
+  - component: {fileID: -6540795792752809840}
+  - component: {fileID: 6437119850563934506}
+  - component: {fileID: 9192665969859177306}
+  - component: {fileID: 8807911669173888716}
   m_Layer: 0
-  m_Name: Apple
+  m_Name: Honey
   m_TagString: PickupItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2922706022479159691
+--- !u!4 &6451045262505852834
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -36,13 +36,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &3871698612390848010
+--- !u!212 &6107384688717713981
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b62c86ff972c0e84083d275e2ad7bea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0648dfb4daea574ea28fdf225b62231, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -88,26 +88,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!210 &1606058478674313285
+--- !u!210 &-6540795792752809840
 SortingGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   m_Enabled: 1
   m_SortingLayerID: 723745149
   m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!50 &-5835225259077517380
+--- !u!50 &6437119850563934506
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -127,13 +127,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-3787361115822273581
+--- !u!58 &9192665969859177306
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -162,13 +162,13 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.32
---- !u!114 &-2504173211121676974
+--- !u!114 &8807911669173888716
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432291600685833884}
+  m_GameObject: {fileID: 4493443924418729734}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12ad7ca78083ddd45abbbf44ed2077de, type: 3}

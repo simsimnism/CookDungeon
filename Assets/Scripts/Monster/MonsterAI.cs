@@ -189,8 +189,17 @@ public class MonsterAI : MonoBehaviour
                 case 1: // 예: ID가 1인 몬스터
                     prefabPath = "Food/Apple";  // 사과 프리팹 경로
                     break;
-                case 3: 
-                    prefabPath = "Food/Bread";  // 빵 프리팹 경로
+                case 2: 
+                    prefabPath = "Food/Mushroom";  // 빵 프리팹 경로
+                    break;
+                case 3: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Egg";  // 감자 프리팹 경로
+                    break;
+                case 4: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Cabbage";  // 감자 프리팹 경로
+                    break;
+                case 5: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Orange";  // 감자 프리팹 경로
                     break;
                 case 6: // 예: ID가 3인 몬스터
                     prefabPath = "Food/Potato";  // 감자 프리팹 경로
