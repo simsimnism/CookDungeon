@@ -8,7 +8,10 @@ public class CookingSlot : BaseItemSlot
 
     public override void SetItem(Item item)
     {
-        ClearSlot();  // 기존 데이터를 초기화하여 캐시 문제 방지
+        Debug.Log($"SetItem 호출됨 - item: {item?.Name}");
+
+        ClearSlot(); // 기존 데이터를 초기화하여 캐시 문제 방지
+
         if (item is FoodItem foodItem)
         {
             currentItem = foodItem;
@@ -16,17 +19,15 @@ public class CookingSlot : BaseItemSlot
             itemImage.enabled = true;
             SetImageAlpha(1f);
             UpdateAmountText();
-
-            if (parentInventory != null)
-            {
-                parentInventory.RemoveItemByName(foodItem.Name);
-            }
+            Debug.Log($"currentItem 할당됨 - currentItem: {currentItem?.Name}");
         }
         else
         {
             ClearSlot();
+            Debug.Log("FoodItem이 아니라서 ClearSlot 호출됨");
         }
     }
+
 
     public override void ClearSlot()
     {
@@ -44,5 +45,10 @@ public class CookingSlot : BaseItemSlot
     {
         if (itemAmountText != null)
             itemAmountText.text = currentItem?.Amount > 1 ? currentItem.Amount.ToString() : "";
+    }
+
+    public override void UpdateAmountTextInDerivedClasses()
+    {
+        UpdateAmountText();
     }
 }

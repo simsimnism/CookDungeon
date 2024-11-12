@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FoodItem : Item
 {
-    public int ItemType { get; private set; }
     public int HealthRecovery { get; private set; }
     public int FullnessRecovery { get; private set; }
 

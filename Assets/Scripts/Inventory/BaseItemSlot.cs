@@ -10,7 +10,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
     protected Item currentItem;
 
     private float lastClickTime;
-    private const float doubleClickThreshold = 0.3f;  // 더블 클릭 감지 시간 간격
+    private const float doubleClickThreshold = 0.3f;
 
     public Item CurrentItem
     {
@@ -20,7 +20,6 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
 
     private void Awake()
     {
-        // 드래그 이미지 설정
         draggedImage = new GameObject("DraggedImage").AddComponent<Image>();
         draggedImage.sprite = itemImage.sprite;
         draggedImage.raycastTarget = false;
@@ -54,27 +53,20 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         itemImage.color = color;
     }
 
-
-    //더블클릭을 감지하는 코드
     public void OnPointerClick(PointerEventData eventData)
     {
-        // 클릭 시간 간격을 확인하여 더블 클릭 감지
         if (Time.time - lastClickTime <= doubleClickThreshold)
         {
-            UseItem();  // 더블 클릭이 감지되면 아이템 사용
+            UseItem();
         }
         lastClickTime = Time.time;
     }
 
-    //아이템 사용 코드
     private void UseItem()
     {
-        // 아이템이 RecipeItem인 경우에만 사용
         if (currentItem is RecipeItem recipeItem)
         {
-            recipeItem.Use();  // 레시피 아이템 사용
-            Debug.Log($"{recipeItem.Name} 레시피 아이템을 사용했습니다.");
-            // 수량이 0이면 슬롯을 초기화
+            recipeItem.Use();
             if (recipeItem.Amount <= 0)
             {
                 ClearSlot();
@@ -87,12 +79,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         }
         else if (currentItem != null)
         {
-            currentItem.Use();  // 기타 일반 아이템 사용
-            Debug.Log($"{currentItem.Name} 아이템을 사용했습니다.");
-            // 수량이 0이면 슬롯을 초기화
+            currentItem.Use();
             if (currentItem.Amount <= 0)
             {
-                ClearSlot();
+                ClearCache();
             }
         }
         else
@@ -103,15 +93,15 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (currentItem == null) return;
+        if (currentItem == null || currentItem.Amount <= 0) return;
 
         draggedImage.sprite = itemImage.sprite;
         draggedImage.transform.position = eventData.position;
         draggedImage.gameObject.SetActive(true);
-        SetImageAlpha(1f);  // 드래그 중에는 슬롯의 이미지가 보이지 않도록 설정
+
+        SetImageAlpha(0f); // 드래그 중 원본 슬롯 이미지를 투명하게 설정
     }
 
-    //드래그에 사용되는 코드
     public void OnDrag(PointerEventData eventData)
     {
         if (draggedImage != null && draggedImage.gameObject.activeSelf)
@@ -126,7 +116,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         {
             draggedImage.gameObject.SetActive(false);
         }
-        SetImageAlpha(1f);  // 드래그가 끝나면 원래 슬롯의 이미지가 다시 보이도록 설정
+        SetImageAlpha(1f); // 드래그 후 슬롯 이미지를 다시 보이게 설정
 
         var results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
@@ -137,18 +127,52 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             {
                 if (CanSwap(targetSlot))
                 {
-                    MoveItemToSlot(targetSlot);  // 타겟 슬롯에 아이템 이동
+                    MoveSingleItemToSlot(targetSlot);  // 타겟 슬롯에 아이템 이동
                 }
                 break;
             }
         }
+        UpdateAmountTextInDerivedClasses();
     }
 
-    private void MoveItemToSlot(BaseItemSlot targetSlot)
+    private void MoveSingleItemToSlot(BaseItemSlot targetSlot)
     {
-        targetSlot.SetItem(currentItem);  // 타겟 슬롯에 아이템 설정
-        ClearSlot();  // 원래 슬롯을 초기화하여 아이템 제거
+        Debug.Log("MoveSingleItemToSlot 호출됨");
+
+        if (targetSlot.IsEmpty() || targetSlot.CurrentItem?.Name == currentItem.Name)
+        {
+            Item singleItemCopy = currentItem.Clone();
+            singleItemCopy.SetAmount(1);
+            Debug.Log($"복사된 아이템 - Name: {singleItemCopy.Name}");
+
+            // targetSlot이 CookingSlot인지 확인하여 SetItem 호출
+            if (targetSlot is CookingSlot cookingSlotTarget)
+            {
+                Debug.Log("CookingSlot으로 인식됨 - CookingSlot의 SetItem 호출");
+                cookingSlotTarget.SetItem(singleItemCopy); // CookingSlot의 SetItem 호출
+            }
+            else if (targetSlot.IsEmpty())
+            {
+                Debug.Log("기본 BaseItemSlot의 SetItem 호출");
+                targetSlot.SetItem(singleItemCopy); // 기본 BaseItemSlot의 SetItem 호출
+            }
+            else if (targetSlot.CurrentItem.Name == currentItem.Name)
+            {
+                targetSlot.CurrentItem.AddAmount(1);
+            }
+
+            currentItem.DecreaseAmount(1); // 인벤토리 슬롯에서 아이템 수량 차감
+
+            UpdateAmountTextInDerivedClasses();
+            targetSlot.UpdateAmountTextInDerivedClasses();
+
+            if (currentItem.Amount <= 0)
+            {
+                ClearSlot();
+            }
+        }
     }
+
 
     protected virtual bool CanSwap(BaseItemSlot targetSlot)
     {
@@ -163,9 +187,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         ClearCache();
     }
 
-    private void ConfirmSwap(BaseItemSlot targetSlot)
+    public void ClearCache()
     {
-        ShowConfirmationDialog(() => SwapItems(targetSlot));
+        Debug.Log("캐시가 초기화되었습니다.");
+        currentItem = null;
     }
 
     private void ShowConfirmationDialog(System.Action onConfirm)
@@ -177,9 +202,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         }
     }
 
-    public void ClearCache()
+    private void ConfirmSwap(BaseItemSlot targetSlot)
     {
-        Debug.Log("캐시가 초기화되었습니다.");
-        currentItem = null;
+        ShowConfirmationDialog(() => SwapItems(targetSlot));
     }
+
+    public abstract void UpdateAmountTextInDerivedClasses();
 }

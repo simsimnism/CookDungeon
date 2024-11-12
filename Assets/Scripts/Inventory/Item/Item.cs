@@ -10,6 +10,8 @@ public class Item
     public int Amount { get; protected set; } = 1;
     public Sprite ItemSprite { get; set; }
 
+    public int ItemType { get; set; }
+
     public Item(string name, int id, string description, int maxAmount, int initialAmount, Sprite itemSprite)
     {
         Name = name;
@@ -32,6 +34,42 @@ public class Item
             Debug.Log($"{Name}의 수량이 모두 소진되었습니다.");
         }
     }
+    public virtual Item Clone()
+    {
+        if (this is FoodItem foodItem)
+        {
+            // FoodItem을 복사하여 새로운 FoodItem 반환
+            return new FoodItem(
+                foodItem.Name,
+                foodItem.ID,
+                foodItem.Description,
+                foodItem.MaxAmount,
+                foodItem.ItemType,
+                foodItem.HealthRecovery,
+                foodItem.FullnessRecovery,
+                foodItem.ItemSprite
+            );
+        }
+        else if (this is RecipeItem recipeItem)
+        {
+            // RecipeItem을 복사하여 새로운 RecipeItem 반환
+            return new RecipeItem(
+                recipeItem.Name,
+                recipeItem.ID,
+                recipeItem.Description,
+                recipeItem.MaxAmount,
+                recipeItem.ItemType,
+                recipeItem.HealthRecovery,
+                recipeItem.FullnessRecovery,
+                recipeItem.RequiredIngredients,
+                recipeItem.ItemSprite
+            );
+        }
+
+        // 기본 Item 복사
+        return new Item(Name, ID, Description, MaxAmount, ItemType, ItemSprite);
+    }
+
 
     public virtual void DecreaseAmount(int amount)
     {

@@ -10,6 +10,7 @@ public class ItemSlot : BaseItemSlot
     {
         ClearSlot();  // 기존 데이터를 초기화하여 캐시 문제 방지
         currentItem = item;
+        Debug.Log($"SetItem 호출됨 - currentItem: {currentItem.Name}, 타입: {currentItem.GetType().Name}");
         if (currentItem != null && currentItem.ItemSprite != null)
         {
             itemImage.sprite = currentItem.ItemSprite;
@@ -36,6 +37,12 @@ public class ItemSlot : BaseItemSlot
     public override bool IsEmpty() => currentItem == null;
 
     public void UpdateAmountText()
+    {
+        if (itemAmountText != null)
+            itemAmountText.text = currentItem?.Amount > 1 ? currentItem.Amount.ToString() : "";
+    }
+
+    public override void UpdateAmountTextInDerivedClasses()
     {
         if (itemAmountText != null)
             itemAmountText.text = currentItem?.Amount > 1 ? currentItem.Amount.ToString() : "";
