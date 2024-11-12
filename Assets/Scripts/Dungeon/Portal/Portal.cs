@@ -13,6 +13,10 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag(Settings.playerTag))
+        {
+            Managers.GM.gameState = GameState.levelCompleted;
+            Managers.GM.previousGameState = GameState.playingLevel;
+        }
     }
 }
