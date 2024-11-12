@@ -7,7 +7,7 @@ public class CandyAppleRoll : MonoBehaviour
     public GameObject candyAppleBallPrefab;
     private Transform playerTransform;
     private List<GameObject> candyAppleBalls = new List<GameObject>(); // 여러 개의 candyAppleBall을 관리하는 리스트
-    private int skillLevel = 1; // 스킬 레벨
+    public int Level = 1; // 스킬 레벨
     private float damage = 10f; // 기본 데미지
     private float distance = 30f; // 거리
     private float speed = 3f; // 속도
@@ -44,9 +44,9 @@ public class CandyAppleRoll : MonoBehaviour
 
     public void LevelUp()
     {
-        skillLevel++;
+        Level++;
         damage += 5f; // 레벨업 시 데미지 증가
         cooldown = Mathf.Max(1f, cooldown - 0.5f); // 쿨다운 감소, 최소 1초까지 감소
-        Debug.Log($"CandyAppleRoll 스킬이 레벨 {skillLevel}로 상승했습니다. 데미지: {damage}, 쿨다운: {cooldown}");
+        Debug.Log($"CandyAppleRoll 스킬이 레벨 {Level}로 상승했습니다. 데미지: {damage}, 쿨다운: {cooldown}");
     }
 }

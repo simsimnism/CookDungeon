@@ -179,7 +179,7 @@ public class MonsterAI : MonoBehaviour
 
         // 5% 확률로 프리팹 드랍
         float dropChance = Random.Range(0f, 1f);
-        if (dropChance <= 0.3f)  // 5% 확률 체크
+        if (dropChance <= 0.5f)  // 5% 확률 체크
         {
             string prefabPath = null;
 

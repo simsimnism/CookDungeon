@@ -4,8 +4,8 @@ using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackRange = 4f;           // 공격 범위 (원의 반지름)
-    private float attackDelay = 1.5f;           // 공격 딜레이 (초 단위)
+    private float attackRange = 5f;           // 공격 범위 (원의 반지름)
+    private float attackDelay = 0.1f;           // 공격 딜레이 (초 단위)
     private int damage = 10;                  // 공격 데미지
     private float lastAttackTime = 0f; // 마지막 공격 시점
 
@@ -14,7 +14,7 @@ public class PlayerAttack : MonoBehaviour
 
     // 파티클 시스템을 연결하기 위한 변수
     [SerializeField] private ParticleSystem attackParticle;
-    [SerializeField] private float playDuration = 0.05f; // 재생할 구간 시간
+    [SerializeField] private float playDuration = 0.03f; // 재생할 구간 시간
 
     private void Start()
     {

@@ -5,6 +5,7 @@ public class CookingSlot : BaseItemSlot
 {
     public Inventory parentInventory;
     public TMP_Text itemAmountText;
+    public bool IsFilled { get; set; }  // 슬롯이 차 있는지 여부를 확인하는 속성
 
     public override void SetItem(Item item)
     {
@@ -19,6 +20,7 @@ public class CookingSlot : BaseItemSlot
             itemImage.enabled = true;
             SetImageAlpha(1f);
             UpdateAmountText();
+            IsFilled = true;  // 슬롯이 차 있음으로 설정
             Debug.Log($"currentItem 할당됨 - currentItem: {currentItem?.Name}");
         }
         else
@@ -35,6 +37,7 @@ public class CookingSlot : BaseItemSlot
         itemImage.sprite = null;
         itemImage.enabled = false;
         SetImageAlpha(0f);
+        IsFilled = false;  // 슬롯이 비어 있음으로 설정
         if (itemAmountText != null)
             itemAmountText.text = "";
     }

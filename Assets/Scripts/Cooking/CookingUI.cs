@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,10 +38,12 @@ public class CookingUI : MonoBehaviour
         
     }
 
-    //요리를 시작하는 로직
     public void StartCooking()
     {
         Debug.Log("StartCooking 메서드가 호출되었습니다.");
+
+        // 모든 쿠킹 슬롯이 차 있는지 확인
+        bool allSlotsFilled = slots.Count() == 3 && slots.All(slot => slot.IsFilled);
 
         var ingredientTypes = new HashSet<int>();
         foreach (var slot in slots)
@@ -56,21 +59,29 @@ public class CookingUI : MonoBehaviour
         }
         else
         {
-            // 조합 실패 시, 조합식이 [1, 3, 3]인 아이템을 반환
-            RecipeItem fallbackRecipe = GetFallbackRecipe();
-            if (fallbackRecipe != null)
+            // 모든 쿠킹 슬롯이 차 있을 때만 기본 레시피를 반환
+            if (allSlotsFilled)
             {
-                Debug.Log("조합 실패: 기본 레시피를 반환합니다 - " + fallbackRecipe.Name);
-                StartCoroutine(CookingProcess(fallbackRecipe));
+                RecipeItem fallbackRecipe = GetFallbackRecipe();
+                if (fallbackRecipe != null)
+                {
+                    Debug.Log("조합 실패: 기본 레시피를 반환합니다 - " + fallbackRecipe.Name);
+                    StartCoroutine(CookingProcess(fallbackRecipe));
+                }
+                else
+                {
+                    Debug.Log("조합할 수 없는 재료입니다.");
+                }
             }
             else
             {
-                Debug.Log("조합할 수 없는 재료입니다.");
+                Debug.Log("모든 쿠킹 슬롯이 차있지 않습니다. 최소 3개의 재료가 필요합니다.");
             }
 
             ClearAllCookingSlots();  // 쿠킹 슬롯 초기화
         }
     }
+
 
     //조합이 실패했을때 오믈렛을 생성하는 코드
     private RecipeItem GetFallbackRecipe()

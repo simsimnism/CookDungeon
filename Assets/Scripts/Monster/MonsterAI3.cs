@@ -221,7 +221,7 @@ public class MonsterAI3 : MonoBehaviour
 
         // 5% È®·ü·Î ÇÁ¸®ÆÕ µå¶ø
         float dropChance = Random.Range(0f, 1f);
-        if (dropChance <= 0.3f)  // 5% È®·ü Ã¼Å©
+        if (dropChance <= 0.5f)  // 5% È®·ü Ã¼Å©
         {
             string prefabPath = null;
 
