@@ -13,7 +13,6 @@ public class Cauldron : MonoBehaviour
     private bool isStart = false; // 최초 상호작용을 했는지 판단
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
     private bool isFireOFF = false; // 최종적으로 모든 상호작용이 끝나고 불이 꺼짐
-    private bool isFire = false; // 애니메이션 용
 
     private void Awake()
     {
