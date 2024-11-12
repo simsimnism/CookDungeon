@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: EggSlime
   m_EditorClassIdentifier: 
   monsterName: EggSlime
-  id: 1
-  health: 2
-  attack: 2
-  range: 3
-  speed: 4
+  id: 0
+  health: 0
+  attack: 0
+  attackRange: 0
+  range: 0
+  speed: 0
   monsterPrefab: {fileID: 2265763813283399209, guid: 657784766781788469f957d89d5f410c, type: 3}

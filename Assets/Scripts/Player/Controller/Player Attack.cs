@@ -1,25 +1,38 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
     private float attackRange = 4f;           // 공격 범위 (원의 반지름)
-    private float attackDelay = 0.5f;           // 공격 딜레이 (초 단위)
+    private float attackDelay = 1.5f;           // 공격 딜레이 (초 단위)
     private int damage = 10;                  // 공격 데미지
+    private float lastAttackTime = 0f; // 마지막 공격 시점
 
     private List<Transform> enemiesInRange = new List<Transform>();
     private float attackTimer = 0f;
 
+    // 파티클 시스템을 연결하기 위한 변수
+    [SerializeField] private ParticleSystem attackParticle;
+    [SerializeField] private float playDuration = 0.05f; // 재생할 구간 시간
+
+    private void Start()
+    {
+        // 시작 시 파티클 비활성화
+        if (attackParticle != null)
+        {
+            attackParticle.gameObject.SetActive(false);
+        }
+    }
+
     private void Update()
     {
-        attackTimer += Time.deltaTime;
-
-        // 공격 가능 여부 확인
-        if (attackTimer >= attackDelay)
+        // 현재 시간과 마지막 공격 시간을 비교하여 일정한 간격을 유지
+        if (Time.time >= lastAttackTime + attackDelay)
         {
             DetectEnemiesInRange(); // 범위 내 적 감지
             AttackFirstEnemy(); // 범위 내 첫 번째 적 공격
-            attackTimer = 0f; // 타이머 초기화
+            lastAttackTime = Time.time; // 마지막 공격 시간 갱신
         }
     }
 
@@ -46,6 +59,9 @@ public class PlayerAttack : MonoBehaviour
 
             if (enemy != null)
             {
+                // 파티클을 적 위치에서 즉시 재생
+                PlayAttackParticle(enemy.position);
+
                 // 몬스터에게 데미지를 가하는 함수 호출
                 MonsterAI monsterAI = enemy.GetComponent<MonsterAI>();
                 if (monsterAI != null)
@@ -60,6 +76,31 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void PlayAttackParticle(Vector3 position)
+    {
+        if (attackParticle != null)
+        {
+            // 파티클 위치를 몬스터 위치로 설정하고 활성화
+            attackParticle.transform.position = position;
+            attackParticle.transform.rotation = Quaternion.identity; // 방향을 초기화하여 고정
+            attackParticle.gameObject.SetActive(true);
+
+            // 특정 시간만큼 미리 진행된 상태로 시작
+            attackParticle.Simulate(1f, true, true);
+            attackParticle.Play();
+
+            // 파티클 재생 시간 후 비활성화 처리
+            StartCoroutine(DeactivateParticleAfterPlay());
+        }
+    }
+
+    private IEnumerator DeactivateParticleAfterPlay()
+    {
+        // playDuration에 설정된 시간만큼 대기
+        yield return new WaitForSeconds(playDuration);
+        attackParticle.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
