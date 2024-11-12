@@ -100,8 +100,9 @@ public class UIPopupManager
     {
         if (_cookingPopup != null)
         {
-            _cookingPopup.gameObject.SetActive(false);
+            Managers.UI.ClosePopupUI();
             _isCookingOpen = false;
+            _cookingPopup = null;
         }
     }
     //========================================================================

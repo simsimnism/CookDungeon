@@ -56,6 +56,7 @@ public class CookingUI : MonoBehaviour
         {
             Debug.Log("조합 성공: " + recipe.Name);
             StartCoroutine(CookingProcess(recipe));
+            ClearAllCookingSlots();
         }
         else
         {
@@ -67,6 +68,7 @@ public class CookingUI : MonoBehaviour
                 {
                     Debug.Log("조합 실패: 기본 레시피를 반환합니다 - " + fallbackRecipe.Name);
                     StartCoroutine(CookingProcess(fallbackRecipe));
+                    ClearAllCookingSlots();
                 }
                 else
                 {
@@ -77,8 +79,6 @@ public class CookingUI : MonoBehaviour
             {
                 Debug.Log("모든 쿠킹 슬롯이 차있지 않습니다. 최소 3개의 재료가 필요합니다.");
             }
-
-            ClearAllCookingSlots();  // 쿠킹 슬롯 초기화
         }
     }
 
