@@ -167,5 +167,7 @@ public class MonsterSpawner : MonoBehaviour
         currentRoom.isClearedOfMonster = true; // 방 클리어 상태 업데이트
 
         Debug.Log("모든 몬스터가 삭제되었습니다.");
+
+        currentRoom.instantiatedRoom.UnlockDoors(Settings.doorUnlockDelay);
     }
 }

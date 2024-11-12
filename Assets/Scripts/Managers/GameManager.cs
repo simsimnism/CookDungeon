@@ -50,6 +50,9 @@ public class GameManager
                     GameStart();
                 }
                 break;
+            case GameState.levelCompleted:
+                LevelCompleted();
+                break;
             default:
                 break;
         }

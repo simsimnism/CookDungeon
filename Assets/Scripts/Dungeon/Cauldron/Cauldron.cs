@@ -3,6 +3,7 @@ using UnityEngine;
 public class Cauldron : MonoBehaviour
 {
     public MonsterSpawner monsterSpawner; // 몬스터 스포너를 연결합니다.
+    private Animator animator;
 
     private bool isPlayerInRange = false; // 플레이어가 범위 안에 있는지 확인
 
@@ -12,6 +13,7 @@ public class Cauldron : MonoBehaviour
     private bool isStart = false; // 최초 상호작용을 했는지 판단
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
     private bool isFireOFF = false; // 최종적으로 모든 상호작용이 끝나고 불이 꺼짐
+    private bool isFire = false; // 애니메이션 용
 
     private void Awake()
     {
@@ -21,6 +23,8 @@ public class Cauldron : MonoBehaviour
         {
             Debug.LogError("MonsterSpawner를 찾을 수 없습니다. 씬에 추가되어 있는지 확인하세요.");
         }
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -120,8 +124,12 @@ public class Cauldron : MonoBehaviour
         // 불이 켜짐
         isFireON = true;
 
+        // 몬스터 삭제
+        monsterSpawner.RemoveAllMonsters();
+        Debug.Log("모든 몬스터가 삭제되었습니다.");
+
         // 불이 붙는 애니메이션 재생
-        // PlayFireAnimation();
+        animator.SetBool("isFire", true);
 
         // 불 지속시간 세팅
         Timer(FireTimeLimit);
@@ -131,9 +139,8 @@ public class Cauldron : MonoBehaviour
     void FireOFF()
     {
         isFireOFF = true;
-        // 몬스터 삭제
-        monsterSpawner.RemoveAllMonsters();
-        Debug.Log("모든 몬스터가 삭제되었습니다.");
+
+        animator.SetBool("isFire", false);
     }
 
     void OnDisable()
