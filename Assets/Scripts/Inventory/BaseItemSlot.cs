@@ -71,6 +71,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             {
                 ClearSlot();
             }
+            else
+            {
+                UpdateAmountTextInDerivedClasses(); // 텍스트 업데이트 호출
+            }
             Managers.Popup.ToggleSkillUI();
         }
         else if (currentItem is FoodItem)

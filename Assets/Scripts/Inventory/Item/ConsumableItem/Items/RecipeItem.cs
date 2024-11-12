@@ -18,6 +18,15 @@ public class RecipeItem : Item
 
     public override void Use()
     {
+        if (Amount > 0)
+        {
+            Amount--;
+            Debug.Log($"{Name}을(를) 사용했습니다. 남은 수량: {Amount}");
+        }
+        else
+        {
+            Debug.Log($"{Name}의 수량이 모두 소진되었습니다.");
+        }
         // 레시피 아이템의 고유 사용 기능 추가
         Debug.Log($"{Name}은(는) 요리 레시피입니다. 사용할 수 없습니다.");
     }
