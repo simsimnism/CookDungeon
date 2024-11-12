@@ -11,5 +11,8 @@ public class CookingPopup : UI_Popup
         base.Init();
     }
 
-
+    public void CloseCook()
+    {
+        Managers.Popup.CloseCooking();
+    }
 }
