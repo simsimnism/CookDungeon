@@ -258,6 +258,7 @@ MonoBehaviour:
   invincibilityDuration: 0.7
   invin: 0
   isDashing: 0
+  defaultHealAmount: 3
   moveSpeed: 0
   gameOverPanel: {fileID: 0}
 --- !u!114 &3509965169541426853
@@ -274,8 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameState: 
   moveSpeed: 0
-  dashSpeed: 6
-  dashDuration: 0.5
   invincibleDuration: 1
   InventoryPopup: {fileID: 0}
 --- !u!114 &2781979467317269648
@@ -290,7 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b53d334bf6f8c8d44a1afd403d119e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
 --- !u!114 &2197750277363042519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,11 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pizzaKnifePrefab: {fileID: 482774722012170693, guid: 10032f4fa968d7c4cbf190dae799f94b, type: 3}
-  radius: 2
-  rotationSpeed: 200
-  duration: 5
-  knifeCount: 2
-  level: 1
+  Level: 1
 --- !u!114 &6760921261668312528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,10 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spiritPrefab: {fileID: 2947856784731344065, guid: 5782eab30f1934243b9481ed3dc4f047, type: 3}
-  spawnInterval: 1
-  rotationSpeed: 50
-  radius: 3
-  level: 1
+  Level: 1
 --- !u!114 &5729850085079224659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   candyAppleBallPrefab: {fileID: 7277912707359058159, guid: 6d2632356e26e594e84e0ae9ef2a1e0a, type: 3}
-  skillLevel: 1
+  Level: 1
 --- !u!114 &439189845956120409
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,8 +399,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appleJuiceEffect: {fileID: 3909660761192287430, guid: 5f36f92daf86c484c8b7790252e0dffc, type: 3}
   skillManager: {fileID: -2161336275990677533}
-  initialRadius: 1
-  finalRadius: 3
-  duration: 5
-  damagePerSecond: 10
-  level: 1
+  Level: 1

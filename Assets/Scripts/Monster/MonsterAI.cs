@@ -179,7 +179,7 @@ public class MonsterAI : MonoBehaviour
 
         // 5% 확률로 프리팹 드랍
         float dropChance = Random.Range(0f, 1f);
-        if (dropChance <= 1f)  // 5% 확률 체크
+        if (dropChance <= 0.3f)  // 5% 확률 체크
         {
             string prefabPath = null;
 
@@ -187,22 +187,24 @@ public class MonsterAI : MonoBehaviour
             switch (id)
             {
                 case 1: // 예: ID가 1인 몬스터
-                    prefabPath = "Food/Apple";  // 사과 프리팹 경로
+                    prefabPath = "Food/Apple";  
                     break;
                 case 2: 
-                    prefabPath = "Food/Mushroom";  // 빵 프리팹 경로
+                    prefabPath = "Food/Mushroom";  
                     break;
                 case 3: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Egg";  // 감자 프리팹 경로
+                    prefabPath = "Food/Egg";  
                     break;
                 case 4: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Cabbage";  // 감자 프리팹 경로
+                    prefabPath = "Food/Cabbage";  
                     break;
                 case 5: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Orange";  // 감자 프리팹 경로
+                    prefabPath = "Food/Orange";  
                     break;
-                case 6: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Potato";  // 감자 프리팹 경로
+                case 6:
+                    // ID가 6일 경우, 랜덤으로 두 개 중 하나 선택
+                    string[] possiblePrefabs = { "Food/Potato", "Food/Honey" };  // 감자 또는 당근 프리팹 경로
+                    prefabPath = possiblePrefabs[Random.Range(0, possiblePrefabs.Length)];
                     break;
                 default:
                     prefabPath = "Food/DefaultFood";  // 기본 드랍 아이템 경로

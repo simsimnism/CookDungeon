@@ -76,7 +76,7 @@ public class MonsterAI3 : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Die();
+            MonsterDestroyed();
         }
     }
 
@@ -213,11 +213,59 @@ public class MonsterAI3 : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    // 몬스터가 죽을 때 처리
-    void Die()
+    //몬스터가 사망할 때 아이템을 떨어트리는 로직(그냥 사망 로직과 통합)
+    private void MonsterDestroyed()
     {
-        Debug.Log($"{gameObject.name} has died!");
-        Destroy(gameObject);  // 몬스터 오브젝트 제거
+        DestroyEvent destroyedEvent = GetComponent<DestroyEvent>();
+        destroyedEvent.CallDestroyedEvent(false, 0);
+
+        // 5% 확률로 프리팹 드랍
+        float dropChance = Random.Range(0f, 1f);
+        if (dropChance <= 0.3f)  // 5% 확률 체크
+        {
+            string prefabPath = null;
+
+            // 몬스터의 ID에 따른 드랍 프리팹 경로 설정
+            switch (id)
+            {
+                case 1: // 예: ID가 1인 몬스터
+                    prefabPath = "Food/Apple";  // 사과 프리팹 경로
+                    break;
+                case 2:
+                    prefabPath = "Food/Mushroom";  // 빵 프리팹 경로
+                    break;
+                case 3: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Egg";  // 감자 프리팹 경로
+                    break;
+                case 4: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Cabbage";  // 감자 프리팹 경로
+                    break;
+                case 5: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Orange";  // 감자 프리팹 경로
+                    break;
+                case 6: // 예: ID가 3인 몬스터
+                    prefabPath = "Food/Potato";  // 감자 프리팹 경로
+                    break;
+                default:
+                    prefabPath = "Food/DefaultFood";  // 기본 드랍 아이템 경로
+                    break;
+            }
+
+            // Managers.Resource를 통해 프리팹 소환
+            if (prefabPath != null)
+            {
+                GameObject dropPrefab = Managers.Resource.Instantiate(prefabPath, null);  // 부모 객체 지정 없이 인스턴스화
+                if (dropPrefab != null)
+                {
+                    dropPrefab.transform.position = transform.position;  // 드랍 위치 설정
+                    Debug.Log($"{prefabPath} 프리팹이 성공적으로 드랍되었습니다.");
+                }
+                else
+                {
+                    Debug.LogWarning("프리팹 드랍 실패: 경로를 확인하세요.");
+                }
+            }
+        }
     }
 
     // 몬스터의 충돌 처리
