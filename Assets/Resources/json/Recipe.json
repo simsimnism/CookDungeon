@@ -51,12 +51,12 @@
       "fullnessRecovery": 25
     },
     {
-      "name": "Grilled Fish",
+      "name": "Omelet",
       "id": 206,
       "description": "A savory grilled fish dish.",
       "MaxAmount": 99,
       "itemType": "Recipe",
-      "requiredIngredients": [4, 6],
+      "requiredIngredients": [1, 3, 3],
       "healthRecovery": 35,
       "fullnessRecovery": 30
     },

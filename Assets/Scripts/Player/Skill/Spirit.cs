@@ -10,7 +10,7 @@ public class Spirit : MonoBehaviour
     private Vector2 moveDirection;
     private int skillLevel = 1; // 스킬 레벨
     private float detectRange = 5f; // 탐지 범위
-    private float shootInterval = 2f; // 발사 간격
+    private float shootInterval = 4f; // 발사 간격
     private float timer = 0f;
 
     public void Initialize(Transform playerTransform, float maxRadius)

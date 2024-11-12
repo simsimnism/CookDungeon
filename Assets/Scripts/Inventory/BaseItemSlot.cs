@@ -12,6 +12,8 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
     private float lastClickTime;
     private const float doubleClickThreshold = 0.3f;
 
+    private Player Player;
+
     public Item CurrentItem
     {
         get => currentItem;
@@ -26,6 +28,11 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         draggedImage.transform.SetParent(transform.root);
         draggedImage.transform.SetAsLastSibling();
         draggedImage.gameObject.SetActive(false);
+    }
+
+    void Start()
+    {
+        Player = GetComponent<Player>() ?? FindObjectOfType<Player>();
     }
 
     public virtual void SetItem(Item item)
@@ -75,7 +82,15 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             {
                 UpdateAmountTextInDerivedClasses(); // 텍스트 업데이트 호출
             }
-            Managers.Popup.ToggleSkillUI();
+            if(recipeItem.Name == "Omelet")
+            {
+                // 체력 회복 로직 실행
+                Player.RecoverHealth();
+            }
+            else
+            {
+                Managers.Popup.ToggleSkillUI();
+            }
         }
         else if (currentItem is FoodItem)
         {

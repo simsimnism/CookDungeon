@@ -37,7 +37,7 @@ public class CookingUI : MonoBehaviour
         
     }
 
-    // 요리 시작 메서드
+    //요리를 시작하는 로직
     public void StartCooking()
     {
         Debug.Log("StartCooking 메서드가 호출되었습니다.");
@@ -56,8 +56,37 @@ public class CookingUI : MonoBehaviour
         }
         else
         {
-            Debug.Log("조합할 수 없는 재료입니다.");
+            // 조합 실패 시, 조합식이 [1, 3, 3]인 아이템을 반환
+            RecipeItem fallbackRecipe = GetFallbackRecipe();
+            if (fallbackRecipe != null)
+            {
+                Debug.Log("조합 실패: 기본 레시피를 반환합니다 - " + fallbackRecipe.Name);
+                StartCoroutine(CookingProcess(fallbackRecipe));
+            }
+            else
+            {
+                Debug.Log("조합할 수 없는 재료입니다.");
+            }
+
+            ClearAllCookingSlots();  // 쿠킹 슬롯 초기화
         }
+    }
+
+    //조합이 실패했을때 오믈렛을 생성하는 코드
+    private RecipeItem GetFallbackRecipe()
+    {
+        foreach (var recipe in recipeLoader.GetAllRecipes())
+        {
+            // `recipe.RequiredIngredients`가 `List<int>`라고 가정하고 HashSet으로 변환하여 비교합니다
+            HashSet<int> requiredIngredientsSet = new HashSet<int>(recipe.RequiredIngredients);
+
+            // 조합식이 [1, 3, 3]인지 확인
+            if (requiredIngredientsSet.SetEquals(new HashSet<int> { 1, 3, 3 }))
+            {
+                return recipe;  // 조합식이 [1, 3, 3]인 레시피 반환
+            }
+        }
+        return null;
     }
 
     private void AddIngredientTypeFromSlot(CookingSlot slot, HashSet<int> ingredientTypes)
@@ -75,6 +104,7 @@ public class CookingUI : MonoBehaviour
         }
     }
 
+    //레시피와 일치하는지 확인하는 코드
     private RecipeItem FindMatchingRecipe(HashSet<int> ingredientTypes)
     {
         foreach (var recipe in recipeLoader.GetAllRecipes())
@@ -82,6 +112,7 @@ public class CookingUI : MonoBehaviour
             HashSet<int> requiredIngredientsSet = new HashSet<int>(recipe.RequiredIngredients);
             if (requiredIngredientsSet.SetEquals(ingredientTypes))
             {
+
                 return recipe;
             }
         }

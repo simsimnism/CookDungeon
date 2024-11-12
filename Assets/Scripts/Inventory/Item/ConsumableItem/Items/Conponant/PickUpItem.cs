@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class PickupItem : MonoBehaviour
 {
+
+    private void Start()
+    {
+        // 오브젝트가 생성된 지 3초 후에 자동으로 삭제
+        Destroy(gameObject, 5f);
+    }
+
     public void Pickup()
     {
         string prefabName = gameObject.name;

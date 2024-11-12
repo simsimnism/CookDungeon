@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     private HpBar hpBar;
 
     // Pm에서 관리
+    public int defaultHealAmount = 3; // 기본 회복량을 설정할 수 있는 변수
     private int MaxHP;
     private int currentHP; // 현재 체력
     private bool inDamage;
@@ -139,6 +140,31 @@ public class Player : MonoBehaviour
         playerCollider.enabled = true; // 충돌 다시 활성화
         invin = false;
     }
+
+    // 체력을 회복시키는 함수(수치활용)
+    public void RecoverHealth()
+    {
+        RecoverHealth(defaultHealAmount);
+    }
+
+    // 체력을 회복시키는 함수
+    public void RecoverHealth(int healAmount)
+    {
+        currentHP += healAmount;
+
+        // 체력이 최대 체력을 초과하지 않도록 제한
+        if (currentHP > MaxHP)
+        {
+            currentHP = MaxHP;
+        }
+
+        // 체력바 업데이트
+        if (hpBar != null)
+        {
+            hpBar.UpdateHealth(currentHP);
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

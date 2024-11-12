@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float attackRange = 7f;           // 공격 범위 (원의 반지름)
+    private float attackRange = 4f;           // 공격 범위 (원의 반지름)
     private float attackDelay = 0.5f;           // 공격 딜레이 (초 단위)
     private int damage = 10;                  // 공격 데미지
 
