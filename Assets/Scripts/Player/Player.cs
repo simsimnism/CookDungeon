@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(DestroyEvent))]
+[RequireComponent(typeof(MonsterDestroy))]
+
+
 public class Player : MonoBehaviour
 {
     // 이동
@@ -49,13 +53,6 @@ public class Player : MonoBehaviour
         {
             hpBar.Initialize(MaxHP);
         }
-
-        // 게임 오버 패널을 태그로 동적으로 찾음
-        gameOverPanel = GameObject.FindWithTag("GameOverPanel");
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(false); // 게임 오버 패널을 비활성화 상태로 시작
-        }
     }
 
     void Update()
@@ -85,7 +82,7 @@ public class Player : MonoBehaviour
             // 체력이 0이 되었을 때 죽는 로직
             if (currentHP <= 0)
             {
-                Die(); // 사망 함수 호출
+                Managers.Popup.OpenGameEndUI();
             }
 
             // 데미지를 입으면 무적 상태 시작
@@ -182,15 +179,4 @@ public class Player : MonoBehaviour
         Managers.GM.IsMoving = true;
     }
 
-    // 사망 로직
-    void Die()
-    {
-        // 게임 오버 패널 활성화
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(true);
-        }
-        // 시간 멈춤
-        Time.timeScale = 0f;
-    }
 }
