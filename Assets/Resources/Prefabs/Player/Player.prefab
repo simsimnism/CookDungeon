@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5411169103866846487}
   - component: {fileID: 2168200769759647834}
   - component: {fileID: 4790820439098974579}
-  - component: {fileID: 6803565287659982666}
   - component: {fileID: 3509965169541426853}
   - component: {fileID: 2781979467317269648}
   - component: {fileID: 2197750277363042519}
@@ -24,6 +23,9 @@ GameObject:
   - component: {fileID: 6760921261668312528}
   - component: {fileID: 5729850085079224659}
   - component: {fileID: 439189845956120409}
+  - component: {fileID: 4475494874384190288}
+  - component: {fileID: 8448406031799008486}
+  - component: {fileID: 7264788146406878037}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -243,25 +245,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6803565287659982666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 505dd06e0d786b242a30177ce1753b4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  invincibilityDuration: 0.7
-  invin: 0
-  isDashing: 0
-  defaultHealAmount: 3
-  moveSpeed: 0
-  gameOverPanel: {fileID: 0}
 --- !u!114 &3509965169541426853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +386,49 @@ MonoBehaviour:
   appleJuiceEffect: {fileID: 3909660761192287430, guid: 5f36f92daf86c484c8b7790252e0dffc, type: 3}
   skillManager: {fileID: -2161336275990677533}
   Level: 1
+--- !u!114 &4475494874384190288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8448406031799008486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d67f5ed2c61df242a933e8e882831fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7264788146406878037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 505dd06e0d786b242a30177ce1753b4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 0}
+  invincibilityDuration: 0.7
+  invin: 0
+  isDashing: 0
+  defaultHealAmount: 3
+  moveSpeed: 0
+  gameOverPanel: {fileID: 0}
 --- !u!1001 &7349625360375216550
 PrefabInstance:
   m_ObjectHideFlags: 0

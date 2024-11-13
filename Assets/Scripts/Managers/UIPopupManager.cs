@@ -13,8 +13,14 @@ public class UIPopupManager
     private CookingPopup _cookingPopup;
     private bool _isCookingOpen = false;
 
+    //게임오버 유아이 관련
+    private GameEndPopup _gameEndPopup;
+    private bool _isGameEndOpen = false;
+
 
     //============================스킬 UI_Popup==============================
+
+    //스킬 관련 팝업은 시간멈춤이 들어가 있음
     public void ToggleSkillUI()
     {
         if (_isSkillOpen)
@@ -61,6 +67,8 @@ public class UIPopupManager
     //========================================================================
 
     //============================요리 UI_Popup==============================
+
+    //UI 창 파괴생성 기능 담고있음
     public void ToggleCooking()
     {
         if (_isCookingOpen)
@@ -108,7 +116,58 @@ public class UIPopupManager
     //========================================================================
 
 
-    //==========================인벤토리 UI_Popup=============================
+    //==========================게임오버 UI_Popup==============================
+    public void ToggleGameEndUI()
+    {
+        if (_isGameEndOpen)
+        {
+            CloseGameEndUI();
+        }
+        else
+        {
+            OpenGameEndUI();
+        }
+    }
+
+    public void OpenGameEndUI()
+    {
+        if (_gameEndPopup == null)
+        {
+            _gameEndPopup = Managers.UI.ShowPopupUI<GameEndPopup>("GameOverPopup");
+            Time.timeScale = 0;  // 게임 시간 멈춤
+        }
+        else
+        {
+            _gameEndPopup.gameObject.SetActive(true);
+        }
+
+        if (_gameEndPopup != null)
+        {
+            _isGameEndOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
+    public void CloseGameEndUI()
+    {
+        if (_gameEndPopup != null)
+        {
+            //해당 창을 파괴하는 함수
+            Managers.UI.ClosePopupUI();
+            _isGameEndOpen = false;
+
+            //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
+            _gameEndPopup = null;
+            Time.timeScale = 1;  // 게임 시간 재개
+        }
+    }
 
     //==========================================================================
+
+    //===========================게임정지 Popup==================================
+
+    //============================================================================
 }
