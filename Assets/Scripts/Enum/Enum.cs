@@ -31,5 +31,6 @@ public enum GameState
     levelCompleted, // 레벨 클리어 (다음 레벨로 넘어가야 함.)
     gamePaused, // 게임 정지
     dungeonMapOverview, // 던전 맵을 확대해서 보기
-    restartGame // 게임 재시작
+    restartGame, // 게임 재시작
+    gameCleared
 }

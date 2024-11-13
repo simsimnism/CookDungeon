@@ -19,7 +19,7 @@ public class GameManager
     // 던전 레벨 리스트 설정
     private List<DungeonLevelSO> dungeonLevelList;
     // 초기 던전 레벨 값 (스테이지 번호)
-    private int currentDungeonLevelListIndex = 0;
+    public int currentDungeonLevelListIndex = 0;
 
     private bool _CookAbleTime = false;
 
@@ -155,9 +155,17 @@ public class GameManager
         // 스테이트를 다시 플레이로 바꿈
         gameState = GameState.playingLevel;
 
+
+        //ㅇ 수정
         // 레벨 클리어 출력?
+        if (currentDungeonLevelListIndex == 4) // 레벨 인덱스는 0부터 시작하므로 5번째 레벨은 인덱스 4
+        {
+            gameState = GameState.gameCleared;           
+            return;
+        }
 
         // 스크린을 페이드 아웃
+
         //yield return StartCoroutine(Fade(1f, 0f, 2f, new Color(0f, 0f, 0f, 0.4f)));
 
         // 현제 던전 레벨을 증가시킴

@@ -25,6 +25,10 @@ public class UIPopupManager
     private GameLoadingPopup _gameLoadingPopup;
     private bool _isGameLoadingOpen = false;
 
+    //게임오버 유아이 관련
+    private GameClearPopup _gameClearPopup;
+    private bool _isgameClearOpen = false;
+
 
     //============================스킬 UI_Popup==============================
     //스킬 관련 팝업은 시간멈춤이 들어가 있음
@@ -273,6 +277,56 @@ public class UIPopupManager
     //===========================================================================
 
 
+    //=============================게임 클리어 UI================================
+    public void ToggleGameClear()
+    {
+        if (_gameClearPopup)
+        {
+            CloseGameEndUI();
+        }
+        else
+        {
+            OpenGameEndUI();
+        }
+    }
+
+    public void OpenGameClear()
+    {
+        if (_gameClearPopup == null)
+        {
+            _gameClearPopup = Managers.UI.ShowPopupUI<GameClearPopup>("GameClearPopup");
+            Time.timeScale = 0;  // 게임 시간 멈춤
+        }
+        else
+        {
+            _gameClearPopup.gameObject.SetActive(true);
+        }
+
+        if (_gameClearPopup != null)
+        {
+            _isgameClearOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
+    public void CloseGameClear()
+    {
+        if (_gameClearPopup != null)
+        {
+            //해당 창을 파괴하는 함수
+            Managers.UI.CloseAllPopupUI();
+            _isgameClearOpen = false;
+
+            //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
+            _gameClearPopup = null;
+            Time.timeScale = 1;  // 게임 시간 재개
+        }
+    }
+    //===========================================================================
+
     //모든 팝업을 닫는 코드 게임이 종료되는 코드에는 이걸 무조건 실행시켜줘야 하며 모든 팝업을 닫는 코드는 여기다 넣어주세요
     public void RealAllClosePopup()
     {
@@ -281,6 +335,7 @@ public class UIPopupManager
         CloseGameEndUI();
         CloseGamePauseUI();
         CloseGameLoading();
+        CloseGameClear();   
         Managers.Inventory.CloseInventory();
 
     }
