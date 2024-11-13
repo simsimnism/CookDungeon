@@ -22,8 +22,11 @@ public class PizzaKnife : MonoBehaviour
         currentAngle += rotationSpeed * Mathf.Deg2Rad * Time.deltaTime;
 
         // 매 프레임 플레이어 위치를 중심으로 설정하고, 회전 위치 계산
-        Vector2 centerPosition = player.position;
-        Vector2 offset = new Vector2(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle)) * radius;
-        transform.position = (Vector3)(centerPosition + offset); // Vector3로 변환하여 설정
+        if (player != null)
+        {
+            Vector2 centerPosition = player.position;
+            Vector2 offset = new Vector2(Mathf.Cos(currentAngle), Mathf.Sin(currentAngle)) * radius;
+            transform.position = (Vector3)(centerPosition + offset); // Vector3로 변환하여 설정
+        }
     }
 }
