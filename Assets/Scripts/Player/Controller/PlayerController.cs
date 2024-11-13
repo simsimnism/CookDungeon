@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             Managers.Inventory.ToggleInventory();
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Managers.Popup.TogglePauseUI();
         }
