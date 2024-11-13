@@ -27,6 +27,7 @@ public class Portal : MonoBehaviour
             else
             {
                 // 다음 레벨로 진행하는 상태로 전환하고 로딩 화면 실행
+                Managers.Sound.PlaySFX(Define.SFX.Teleport1);
                 Managers.Popup.OpenGameLoading(); // 로딩 화면 표시
                 Managers.GM.gameState = GameState.levelCompleted;
             }
