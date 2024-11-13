@@ -29,7 +29,7 @@ public class Cauldron : MonoBehaviour
 
     void Update()
     {
-        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.Space))
+        if (!isFireOFF && isPlayerInRange && Input.GetKeyDown(KeyCode.F))
         {
             Debug.Log("상호작용 키 누름");
             Interact();
