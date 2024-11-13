@@ -19,6 +19,21 @@ public class Define
         MaxCount,
     }
 
+    public enum BGM
+    {
+        Count
+    }
+
+    public enum SFX
+    {
+        Button1,
+        Fire1,
+        Fire2,
+        Hit1,
+        Teleport1,
+        Bomb1,
+        Count
+    }
     public enum UIEvent
     {
         Click,

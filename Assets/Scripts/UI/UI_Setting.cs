@@ -41,7 +41,9 @@ public class UI_Setting : UI_Popup
 
     void SetButton(PointerEventData data)
     {
+        Managers.Sound.PlaySFX(Define.SFX.Button1);
         Managers.UI.ShowPopupUI<UI_Popup>("UI_Setting");
+        Managers.UI.ShowPopupUI<UI_Popup>("UI_Credit");
     }
 
 }
