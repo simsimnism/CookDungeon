@@ -24,6 +24,7 @@ public class InventoryManager
         if (_inventoryPopup == null)
         {
             _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>();
+            _inventoryPopup.gameObject.SetActive(false);
         }
         else
         {
