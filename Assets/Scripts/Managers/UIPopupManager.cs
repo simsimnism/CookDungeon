@@ -30,6 +30,8 @@ public class UIPopupManager
     private bool _isgameClearOpen = false;
 
 
+
+
     //============================스킬 UI_Popup==============================
     //스킬 관련 팝업은 시간멈춤이 들어가 있음
     public void ToggleSkillUI()
@@ -295,7 +297,7 @@ public class UIPopupManager
         if (_gameClearPopup == null)
         {
             _gameClearPopup = Managers.UI.ShowPopupUI<GameClearPopup>("GameClear");
-            Time.timeScale = 0;  // 게임 시간 멈춤
+            _gameClearPopup.gameObject.SetActive(true);
         }
         else
         {
@@ -312,17 +314,15 @@ public class UIPopupManager
         }
     }
 
+
     public void CloseGameClear()
     {
         if (_gameClearPopup != null)
         {
-            //해당 창을 파괴하는 함수
-            Managers.UI.CloseAllPopupUI();
+            
             _isgameClearOpen = false;
+            _gameClearPopup.gameObject.SetActive( false);
 
-            //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
-            _gameClearPopup = null;
-            Time.timeScale = 1;  // 게임 시간 재개
         }
     }
     //===========================================================================

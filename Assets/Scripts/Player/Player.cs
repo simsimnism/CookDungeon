@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     public bool isDashing;
 
     // HP 바와 연동
-    private HpBar hpBarInstance; // HP 바 인스턴스
+    private HpBar hpBar; // HP 바 인스턴스
 
     // 플레이어의 체력 관련 변수
     public int defaultHealAmount = 3; // 기본 회복량
@@ -40,36 +40,35 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        // HP 바를 지연하여 생성하는 코루틴 시작
-        StartCoroutine(DelayedHpBarPopup());
+        // 4초 후에 게임 클리어 UI 팝업을 띄우는 코루틴 시작
+        StartCoroutine(SpawnGameClearPopup());
+        StartCoroutine(GameClearPopup());
         currentHP = MaxHP;
 
-        // HP 바가 존재할 경우 초기화
-        if (hpBarInstance != null)
+        // 체력바 초기화
+        hpBar = FindObjectOfType<HpBar>(); // UIManager는 그대로 두고 직접 찾습니다.
+        if (hpBar != null)
         {
-            hpBarInstance.Initialize(MaxHP);
+            hpBar.Initialize(MaxHP);
         }
     }
-
-    IEnumerator DelayedHpBarPopup()
+    private IEnumerator SpawnGameClearPopup()
     {
-        // 0.5초 정도 지연 후 HP 바 생성 (필요 시 조정)
         yield return new WaitForSeconds(2f);
 
-      
-
-        // 생성된 HP 바를 검색하여 HpBar 인스턴스로 설정
-        hpBarInstance = FindObjectOfType<HpBar>();
-
-        if (hpBarInstance != null)
-        {
-            hpBarInstance.Initialize(MaxHP); // HP 바 초기화
-        }
-        else
-        {
-            Debug.LogError("HP 바를 찾을 수 없습니다.");
-        }
+        // Managers.Popup을 통해 게임 클리어 팝업 호출
+        Managers.Popup.OpenGameClear();
     }
+
+    private IEnumerator GameClearPopup()
+    {
+        yield return new WaitForSeconds(2.01f);
+
+        // Managers.Popup을 통해 게임 클리어 팝업 호출
+        Managers.Popup.CloseGameClear();
+    }
+
+
 
     // 플레이어가 데미지를 입는 로직
     public void TakeDamage(int damage)
@@ -80,11 +79,10 @@ public class Player : MonoBehaviour
             if (currentHP < 0)
                 currentHP = 0;
 
-            if (hpBarInstance != null)
+            if (hpBar != null)
             {
-                hpBarInstance.UpdateHealth(currentHP);
+                hpBar.UpdateHealth(currentHP);
             }
-
             // 체력이 0 이하가 되면 사망 처리
             if (currentHP <= 0)
             {
@@ -98,15 +96,15 @@ public class Player : MonoBehaviour
     }
 
     // 체력 회복 로직
-    public void Heal(int healAmount)
+    public void Heal(int damage)
     {
-        currentHP += healAmount;
+        currentHP += damage;
         if (currentHP > MaxHP)
             currentHP = MaxHP;
 
-        if (hpBarInstance != null)
+        if (hpBar != null)
         {
-            hpBarInstance.UpdateHealth(currentHP);
+            hpBar.UpdateHealth(currentHP);
         }
     }
 
@@ -144,18 +142,21 @@ public class Player : MonoBehaviour
     }
 
     // 체력을 지정된 양만큼 회복시키는 함수
+    // 체력을 회복시키는 함수
     public void RecoverHealth(int healAmount)
     {
         currentHP += healAmount;
 
+        // 체력이 최대 체력을 초과하지 않도록 제한
         if (currentHP > MaxHP)
         {
             currentHP = MaxHP;
         }
 
-        if (hpBarInstance != null)
+        // 체력바 업데이트
+        if (hpBar != null)
         {
-            hpBarInstance.UpdateHealth(currentHP);
+            hpBar.UpdateHealth(currentHP);
         }
     }
 
