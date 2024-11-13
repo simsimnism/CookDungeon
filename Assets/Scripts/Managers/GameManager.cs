@@ -156,12 +156,24 @@ public class GameManager
         // 레벨 클리어 출력?
 
         // 스크린을 페이드 아웃
-        //yield return StartCoroutine(Fade(1f, 0f, 2f, new Color(0f, 0f, 0f, 0.4f)));
 
         // 현제 던전 레벨을 증가시킴
         currentDungeonLevelListIndex++;
 
         genDungeon(currentDungeonLevelListIndex);
+    }
+
+    // 게임 승리
+    private void GameClear()
+    {
+        previousGameState = GameState.gameClear;
+
+        // 승리 UI 출력
+
+        // 게임 스테이트 변경
+        gameState = GameState.restartGame;
+
+        // 재시작 함수
     }
 
     // 현재 던전 레벨 값을 호출

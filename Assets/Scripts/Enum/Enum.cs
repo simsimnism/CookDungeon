@@ -29,6 +29,7 @@ public enum GameState
     bossRoom, // 보스 방
     BossBattle, // 보스와 전투 중
     levelCompleted, // 레벨 클리어 (다음 레벨로 넘어가야 함.)
+    gameClear, // 게임 클리어
     gamePaused, // 게임 정지
     dungeonMapOverview, // 던전 맵을 확대해서 보기
     restartGame // 게임 재시작
