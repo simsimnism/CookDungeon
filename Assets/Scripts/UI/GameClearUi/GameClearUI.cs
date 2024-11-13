@@ -17,7 +17,6 @@ public class GameClearUI : MonoBehaviour
 
         minuteText.text = minutes.ToString("D2");
         secondText.text = seconds.ToString("D2");
-        killCountText.text = " " + monsterKillCount;
     }
 
     // 외부에서 비활성화 시간 누적을 위한 메서드
@@ -37,5 +36,4 @@ public class GameClearUI : MonoBehaviour
     }
 
     public int GetInactiveTime() => (int)inactiveTimeCounter;
-    public int GetMonsterKillCount() => monsterKillCount;
 }
