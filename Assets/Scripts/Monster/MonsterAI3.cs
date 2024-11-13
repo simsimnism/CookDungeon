@@ -73,6 +73,7 @@ public class MonsterAI3 : MonoBehaviour
     // 몬스터가 데미지를 입는 메서드 (예시)
     public void TakeDamage(int damage)
     {
+        Managers.Sound.PlaySFX(Define.SFX.Hit1, -1);
         health -= damage;
         if (health <= 0)
         {
@@ -119,6 +120,7 @@ public class MonsterAI3 : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // 플레이어와 자신에게 데미지 주기
+        Managers.Sound.PlaySFX(Define.SFX.Bomb1);
         AttackPlayerAndSelf();
 
         // 공격이 끝나면 다시 행동 가능

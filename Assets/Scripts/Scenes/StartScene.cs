@@ -14,6 +14,7 @@ public class StartScene : MonoBehaviour
 
     public void ChangeScene()
     {
+        Managers.Sound.PlaySFX(Define.SFX.Button1);
         sceneManagerEx.LoadScene(Define.Scene.GameScene);
     }
 

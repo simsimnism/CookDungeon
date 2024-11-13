@@ -93,6 +93,7 @@ public class Cauldron : MonoBehaviour
         if (!isStart)
         {
             // isStart를 true로 바꾸고 타이머를 설정
+            Managers.Sound.PlaySFX(Define.SFX.Fire2, 1, true);
             isStart = true;
             Timer(RoundTimeLimit);
 
@@ -123,7 +124,8 @@ public class Cauldron : MonoBehaviour
     {
         // 불이 켜짐
         isFireON = true;
-        Managers.Sound.PlaySFX(Define.SFX.Fire1,1,true);
+        Managers.Sound.StopSfx(Define.SFX.Fire2);
+        Managers.Sound.PlaySFX(Define.SFX.Fire1);
 
         //매니저 연동
         Managers.GM.CookAbleTime = true;

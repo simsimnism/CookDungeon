@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag(Settings.playerTag))
         {
+            Managers.Sound.PlaySFX(Define.SFX.Teleport1);
             Managers.GM.gameState = GameState.levelCompleted;
             Managers.GM.previousGameState = GameState.playingLevel;
         }

@@ -123,6 +123,7 @@ public class MonsterAI : MonoBehaviour
 
     public void TakeDamage(int damage, Vector3 hitDirection)
     {
+        Managers.Sound.PlaySFX(Define.SFX.Hit1, -1);
         health -= damage;
         Debug.Log($"{gameObject.name} 가 {damage} 의 데미지를, remaining health: {health}");
 
