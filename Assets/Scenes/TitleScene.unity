@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: Title
-    clip: {fileID: 8300000, guid: d64c31ca839c4d74fbcb6de0e2363cf3, type: 3}
+    clip: {fileID: 8300000, guid: 6a90fd1daa15502448d1d18105a6c615, type: 3}
   sfxSounds:
   - name: ClickSound
     clip: {fileID: 8300000, guid: 03665f5c295a812489aa71c3e208af7e, type: 3}
@@ -2238,6 +2238,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5226826120208363562, guid: 05c615dd86000e54ebeca6ee39f3819d, type: 3}
       propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5226826120208363562, guid: 05c615dd86000e54ebeca6ee39f3819d, type: 3}
+      propertyPath: m_ScreenMatchMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5226826120208363562, guid: 05c615dd86000e54ebeca6ee39f3819d, type: 3}
