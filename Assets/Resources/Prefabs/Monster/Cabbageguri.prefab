@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 9035412808097717236}
   - component: {fileID: 4320781379956733010}
   - component: {fileID: -29431838368606580}
+  - component: {fileID: 4591865783234835008}
+  - component: {fileID: 5991460280473489424}
   m_Layer: 0
   m_Name: Cabbageguri
   m_TagString: Monsters
@@ -236,5 +238,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f38a20c8d31d7ed48b7127ae3b4d15c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4591865783234835008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917152277375381788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5991460280473489424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917152277375381788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d67f5ed2c61df242a933e8e882831fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

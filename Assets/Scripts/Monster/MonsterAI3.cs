@@ -87,7 +87,6 @@ public class MonsterAI3 : MonoBehaviour
         // 플레이어와 몬스터 사이 거리 계산
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        Debug.Log($"플레이어와의 거리: {distanceToPlayer} / 공격 범위: {attackRange}");
         attackRange = 3;
         // 플레이어가 공격 범위 안에 들어오면 공격 실행
         if (distanceToPlayer <= attackRange)
