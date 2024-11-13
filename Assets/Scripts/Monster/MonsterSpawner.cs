@@ -173,6 +173,10 @@ public class MonsterSpawner : MonoBehaviour
         {
             Destroy(monster.gameObject); // 몬스터 오브젝트 삭제
         }
+        foreach (var monster3 in FindObjectsOfType<MonsterAI3>()) // Monster는 몬스터의 스크립트 이름입니다.
+        {
+            Destroy(monster3.gameObject); // 몬스터 오브젝트 삭제
+        }
 
         // 현재 몬스터 카운트와 스폰된 몬스터 수 초기화
         currentEnemyCount = 0;
