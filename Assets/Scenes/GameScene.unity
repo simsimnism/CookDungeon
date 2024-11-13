@@ -939,6 +939,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 625565722315702491, guid: 1b490b2ed5cbe344a82d500298dab27d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 625565722315702491, guid: 1b490b2ed5cbe344a82d500298dab27d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4639482624151408554, guid: 1b490b2ed5cbe344a82d500298dab27d, type: 3}
       propertyPath: m_Name
       value: GameLoadingPopup
