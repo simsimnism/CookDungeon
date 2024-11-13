@@ -123,6 +123,7 @@ public class Cauldron : MonoBehaviour
     {
         // 불이 켜짐
         isFireON = true;
+        Managers.Sound.PlaySFX(Define.SFX.Fire1,1,true);
 
         //매니저 연동
         Managers.GM.CookAbleTime = true;
@@ -142,6 +143,7 @@ public class Cauldron : MonoBehaviour
     void FireOFF()
     {
         isFireOFF = true;
+        Managers.Sound.StopSfx(Define.SFX.Fire1);
 
         //불이 켜져있을때 요리 가능하게 하는 함수(변수 연동GM) 
         Managers.GM.CookAbleTime = false;

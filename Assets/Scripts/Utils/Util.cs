@@ -50,4 +50,17 @@ public class Util
 
         return null;
     }
+
+    public static int[] SuffleArray(int[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int randNum = Random.Range(0, array.Length);
+            int temp = array[i];
+            array[i] = array[randNum];
+            array[randNum] = temp;
+        }
+
+        return array;
+    }
 }

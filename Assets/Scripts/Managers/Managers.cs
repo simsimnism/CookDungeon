@@ -11,12 +11,13 @@ public class Managers : MonoBehaviour
     PoolManager _pool = new PoolManager();
     ResourceManager _resource = new ResourceManager();
     SceneManagerEx _scene = new SceneManagerEx();
-    SoundManager _sound = new SoundManager();
     UIManager _ui = new UIManager();
     GameManager _game = new GameManager();
     PlayerManager _player = new PlayerManager();
     InventoryManager _inventory = new InventoryManager();
     UIPopupManager _popup = new UIPopupManager();
+
+    SoundManager _sound;
   
 
     public static DataManager Data { get { return Instance._data; } }
@@ -52,14 +53,18 @@ public class Managers : MonoBehaviour
         if (s_instance == null)
         {
             GameObject go = GameObject.Find("@Managers");
+            GameObject sound = GameObject.Find("@Sound");
             if (go == null)
             {
                 go = new GameObject { name = "@Managers" };
-                go.AddComponent<Managers>();
+                sound = new GameObject { name = "@Sound" };
+                sound.transform.SetParent(go.transform);
             }
 
             DontDestroyOnLoad(go);
-            s_instance = go.GetComponent<Managers>();
+            s_instance = go.GetOrAddComponent<Managers>();
+
+            s_instance._sound = sound.GetOrAddComponent<SoundManager>();
 
             s_instance._data.Init();
             s_instance._pool.Init();
