@@ -63,7 +63,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &3039851280741679060
 MonoBehaviour:
@@ -707,7 +707,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1810430075062816103}
         m_TargetAssemblyTypeName: GamePausePopup, Assembly-CSharp
-        m_MethodName: ClosePopupUI
+        m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -852,7 +852,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1810430075062816103}
         m_TargetAssemblyTypeName: GamePausePopup, Assembly-CSharp
-        m_MethodName: ClosePopupUI
+        m_MethodName: Continue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

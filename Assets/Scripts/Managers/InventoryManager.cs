@@ -19,11 +19,11 @@ public class InventoryManager
         }
     }
 
-    private void OpenInventory()
+    public void OpenInventory()
     {
         if (_inventoryPopup == null)
         {
-            _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>("InventoryPopup");
+            _inventoryPopup = Managers.UI.ShowPopupUI<InventoryPopup>();
         }
         else
         {

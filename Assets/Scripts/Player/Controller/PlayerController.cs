@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("키 입력을 감지했습니다");
             Managers.Inventory.ToggleInventory();
         }
 

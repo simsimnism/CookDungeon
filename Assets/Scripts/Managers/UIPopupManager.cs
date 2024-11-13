@@ -163,7 +163,7 @@ public class UIPopupManager
         if (_gameEndPopup != null)
         {
             //해당 창을 파괴하는 함수
-            Managers.UI.ClosePopupUI();
+            Managers.UI.CloseAllPopupUI();
             _isGameEndOpen = false;
 
             //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
@@ -176,7 +176,7 @@ public class UIPopupManager
 
 
     //===========================게임정지 Popup==================================
-    //게임 정지 시작 팝업 이 팝업은 셋 액티브가 아닌 파괴 생성을 원칙으로 함 (게임시간을 멈추는 기능도 있음
+    //게임 정지 시작 팝업 이 팝업은 셋 액티브가 아닌 파괴 생성을 원칙으로 함 (게임시간을 멈추는 기능도 있음)
     public void TogglePauseUI()
     {
         if (_isGamePauseOpen)
@@ -215,7 +215,6 @@ public class UIPopupManager
     {
         if (_gamePausePopup != null)
         {
-            //해당 창을 파괴하는 함수
             Managers.UI.ClosePopupUI();
             _isGamePauseOpen = false;
 
@@ -272,4 +271,17 @@ public class UIPopupManager
         }
     }
     //===========================================================================
+
+
+    //모든 팝업을 닫는 코드 게임이 종료되는 코드에는 이걸 무조건 실행시켜줘야 하며 모든 팝업을 닫는 코드는 여기다 넣어주세요
+    public void RealAllClosePopup()
+    {
+        CloseSkillUI();
+        CloseCooking();
+        CloseGameEndUI();
+        CloseGamePauseUI();
+        CloseGameLoading();
+        Managers.Inventory.CloseInventory();
+
+    }
 }
