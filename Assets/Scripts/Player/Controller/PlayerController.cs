@@ -48,11 +48,9 @@ public class PlayerController : MonoBehaviour
     private void OnKeyMove()
     {
         // 이동 가능 여부 체크
-        if (!Managers.Player.canMove)
+        if (!Managers.Player.canMove || !Managers.GM.IsMoving)
             return;
 
-        if (!Managers.GM.IsMoving)
-            return;
 
         float moveVertical = 0;
         float moveHorizontal = 0;

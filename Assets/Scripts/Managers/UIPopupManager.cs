@@ -240,7 +240,7 @@ public class UIPopupManager
         }
     }
 
-    private void OpenGameLoading()
+    public void OpenGameLoading()
     {
         if (_gameLoadingPopup == null)
         {

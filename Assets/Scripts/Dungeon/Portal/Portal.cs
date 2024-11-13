@@ -15,6 +15,7 @@ public class Portal : MonoBehaviour
     {
         if (collision.CompareTag(Settings.playerTag))
         {
+            Managers.Popup.OpenGameLoading();
             Managers.GM.gameState = GameState.levelCompleted;
             Managers.GM.previousGameState = GameState.playingLevel;
         }
