@@ -88,6 +88,8 @@ public class GameManager
 
         gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
 
+        Managers.Popup.OpenGameLoading();
+
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
         player = Player.GetComponent<Player>();

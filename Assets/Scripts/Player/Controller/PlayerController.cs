@@ -48,11 +48,9 @@ public class PlayerController : MonoBehaviour
     private void OnKeyMove()
     {
         // 이동 가능 여부 체크
-        if (!Managers.Player.canMove)
+        if (!Managers.Player.canMove || !Managers.GM.IsMoving)
             return;
 
-        if (!Managers.GM.IsMoving)
-            return;
 
         float moveVertical = 0;
         float moveHorizontal = 0;
@@ -87,7 +85,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("키 입력을 감지했습니다");
             Managers.Inventory.ToggleInventory();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Managers.Popup.TogglePauseUI();
         }
     }
 

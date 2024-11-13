@@ -82,6 +82,7 @@ public class Player : MonoBehaviour
             // 체력이 0이 되었을 때 죽는 로직
             if (currentHP <= 0)
             {
+                Die();
                 Managers.Popup.OpenGameEndUI();
             }
 
@@ -177,6 +178,11 @@ public class Player : MonoBehaviour
     public void EnableMovement()
     {
         Managers.GM.IsMoving = true;
+    }
+
+    public void Die()
+    {
+        Managers.GM.gameState = GameState.restartGame;
     }
 
 }

@@ -61,7 +61,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &832022724013726006
 MonoBehaviour:
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &3163708210665812654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -522,6 +522,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1832546342, guid: fe543cce4064ef64db8464dba9f19fb1, type: 3}
+    - target: {fileID: 7709269729003351000, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7739783712272827161, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -750,6 +754,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1179132615, guid: fe543cce4064ef64db8464dba9f19fb1, type: 3}
+    - target: {fileID: 5773956027893075564, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5977059480070902841, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}
       propertyPath: parentInventory
       value: 
