@@ -9,7 +9,7 @@ public class GamePausePopup : UI_Popup
         base.Init();
     }
 
-    public void ClosePause()
+    public override void ClosePopupUI()
     {
         Managers.Popup.CloseGamePauseUI();
     }

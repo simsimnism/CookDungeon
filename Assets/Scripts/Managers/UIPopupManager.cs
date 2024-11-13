@@ -179,7 +179,7 @@ public class UIPopupManager
     //게임 정지 시작 팝업 이 팝업은 셋 액티브가 아닌 파괴 생성을 원칙으로 함 (게임시간을 멈추는 기능도 있음
     public void TogglePauseUI()
     {
-        if (_isGamePauseOpen == true)
+        if (_isGamePauseOpen)
         {
             CloseGamePauseUI();
         }
