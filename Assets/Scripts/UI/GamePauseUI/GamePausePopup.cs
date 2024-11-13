@@ -8,4 +8,9 @@ public class GamePausePopup : UI_Popup
     {
         base.Init();
     }
+
+    public void ClosePause()
+    {
+        Managers.Popup.CloseGamePauseUI();
+    }
 }

@@ -89,6 +89,11 @@ public class PlayerController : MonoBehaviour
         {
             Managers.Inventory.ToggleInventory();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Managers.Popup.TogglePauseUI();
+        }
     }
 
 
