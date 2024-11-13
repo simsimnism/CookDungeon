@@ -294,7 +294,7 @@ public class UIPopupManager
     {
         if (_gameClearPopup == null)
         {
-            _gameClearPopup = Managers.UI.ShowPopupUI<GameClearPopup>("GameClearPopup");
+            _gameClearPopup = Managers.UI.ShowPopupUI<GameClearPopup>("GameClear");
             Time.timeScale = 0;  // ∞‘¿” Ω√∞£ ∏ÿ√„
         }
         else
