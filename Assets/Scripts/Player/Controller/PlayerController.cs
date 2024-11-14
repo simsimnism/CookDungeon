@@ -27,6 +27,12 @@ public class PlayerController : MonoBehaviour
     // 아이템 습득 관련 변수
     private PickupItem currentPickupItem; // 현재 범위 내 아이템 참조
 
+    // 상호작용 관련 변수
+    private float interactionRange = 2f; // 상호작용 거리
+    private InteractableObject currentInteractable; // 현재 상호작용 가능한 오브젝트
+
+
+
     void Awake()
     {
         InventoryPopup = GetComponent<InventoryPopup>();
@@ -77,10 +83,20 @@ public class PlayerController : MonoBehaviour
         // 이동
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        // F 키로 아이템 습득
-        if (Input.GetKeyDown(KeyCode.F) && currentPickupItem != null)
+        // 상호작용 범위 내 오브젝트 확인
+        DetectInteractableObjects();
+
+        // F 키로 아이템 습득 또는 상호작용
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            currentPickupItem.Pickup(); // 아이템 습득
+            if (currentPickupItem != null)
+            {
+                currentPickupItem.Pickup(); // 아이템 습득
+            }
+            else if (currentInteractable != null)
+            {
+                currentInteractable.Interact(); // 상호작용 수행
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -96,7 +112,43 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    // 상호작용 가능한 오브젝트 탐지 및 테두리 강조
+    private void DetectInteractableObjects()
+    {
+        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
 
+        InteractableObject closestInteractable = null;
+        float closestDistance = interactionRange;
+
+        foreach (Collider2D collider in interactables)
+        {
+            InteractableObject interactable = collider.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                float distance = Vector2.Distance(transform.position, interactable.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestInteractable = interactable;
+                }
+            }
+        }
+
+        if (closestInteractable != currentInteractable)
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.Highlight(false); // 기존 오브젝트 강조 해제
+            }
+
+            currentInteractable = closestInteractable;
+
+            if (currentInteractable != null)
+            {
+                currentInteractable.Highlight(true); // 새로운 오브젝트 강조
+            }
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D other)

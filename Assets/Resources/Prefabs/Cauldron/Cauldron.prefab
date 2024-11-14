@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6796320431582367308}
   - component: {fileID: 2593643927530100823}
   - component: {fileID: 6019422000040880725}
+  - component: {fileID: 8899335952349899655}
+  - component: {fileID: -8579351234388535227}
   m_Layer: 12
   m_Name: Cauldron
   m_TagString: Untagged
@@ -166,6 +168,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSpawner: {fileID: 0}
-  TimerDuration: 0
-  RoundTimeLimit: 10
-  FireTimeLimit: 5
+--- !u!114 &8899335952349899655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463064512886195909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &-8579351234388535227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463064512886195909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50734dbdae736ae4080710c028e660b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMaterial: {fileID: 2100000, guid: b541dcffbe67203429f875e67dcd4df6, type: 2}
