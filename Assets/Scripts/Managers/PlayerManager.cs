@@ -8,7 +8,7 @@ public class PlayerManager
     private SpriteRenderer spriteRenderer;
 
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
-    private float moveSpeed = 7.0f;//이동속도
+    private float moveSpeed = 5f;//이동속도
     public float MoveSpeed
     {
         get => moveSpeed;

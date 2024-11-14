@@ -37,11 +37,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection; // 이동 방향을 저장할 변수
     private InteractiveMasegge textManager; // 텍스트 관리 스크립트
 
+    private GameObject hpBarCanvas; // HpBar를 담고 있는 캔버스 오브젝트
+    private Vector3 hpBarOffset = new Vector3(0, 1.5f, 0); // 머리 위에 띄울 오프셋
+
 
 
 
     void Awake()
     {
+
+
         textManager = FindObjectOfType<InteractiveMasegge>();
         if (textManager == null)
         {
@@ -63,6 +68,9 @@ public class PlayerController : MonoBehaviour
     }
 
     // WASD로 상하좌우 이동 & F키로 아이템 습득
+
+
+
     private void OnKeyMove()
     {
         // 이동 가능 여부 체크
@@ -125,7 +133,10 @@ public class PlayerController : MonoBehaviour
 
         // 이동 방향에 따라 상호작용 텍스트 위치 조정
         UpdateInteractionTextPosition();
+        UpdateHpBarPosition();
     }
+    
+    //상호작용의 텍스트의 위치를 카메라 위치 즉 월드 좌표에 맞춰서 이동시키는 코드
     private void UpdateInteractionTextPosition()
     {
         if (textManager == null || textManager.interactionText == null) return;
@@ -194,4 +205,17 @@ public class PlayerController : MonoBehaviour
             textManager?.HideInteractionMessage(); // 텍스트 숨기기
         }
     }
+
+    private void UpdateHpBarPosition()
+    {
+        if (hpBarCanvas == null) return;
+
+        // 플레이어 위치를 화면 좌표로 변환
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+        // HP 바를 화면 좌표의 위쪽으로 오프셋을 적용하여 위치 설정
+        Vector3 offset = new Vector3(0, 100, 0); // 필요에 따라 y값을 조정하여 머리 위로 띄웁니다.
+        hpBarCanvas.transform.position = screenPosition + offset;
+    }
+
 }
