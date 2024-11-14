@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Monster"))
+        if (collision.CompareTag("Monsters"))
         {
             // 몬스터에 맞았을 때 피해를 주고 삭제
             MonsterAI monsterAI = collision.GetComponent<MonsterAI>();

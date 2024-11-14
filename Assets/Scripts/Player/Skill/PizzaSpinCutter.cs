@@ -10,6 +10,7 @@ public class PizzaSpinCutter : MonoBehaviour
     private float duration = 5f;
     private int knifeCount = 0; // 시작 칼 개수
     public int Level = 1;
+    private int damage = 5; // 1레벨에서의 기본 데미지
     private List<GameObject> knives = new List<GameObject>();
 
     public void ActivateSkill()
@@ -52,6 +53,23 @@ public class PizzaSpinCutter : MonoBehaviour
         if (knifeCount < 5)
         {
             knifeCount += 2; // 레벨업 시 칼 개수 증가
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Monsters 태그를 가진 객체와 충돌한 경우에만 데미지 적용
+        if (other.CompareTag("Monsters"))
+        {
+            // 몬스터에게 데미지를 입힘
+            MonsterAI monster = other.GetComponent<MonsterAI>();
+            if (monster != null)
+            {
+                // 충돌한 방향에 따라 데미지를 적용
+                Vector3 hitDirection = (other.transform.position - transform.position).normalized;
+                monster.TakeDamage(damage, hitDirection);
+
+                Debug.Log($"몬스터에게 {damage}의 데미지를 입혔습니다.");
+            }
         }
     }
 }

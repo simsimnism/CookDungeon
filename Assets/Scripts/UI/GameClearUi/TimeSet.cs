@@ -20,7 +20,6 @@ public class TimeSet : MonoBehaviour
         if (gameClearUI != null && !gameClearUI.gameObject.activeInHierarchy)
         {
             gameClearUI.AddInactiveTime(Time.deltaTime);
-            Debug.Log("비활성화 시간 누적 중...");
         }
     }
 }

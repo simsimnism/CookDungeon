@@ -8,7 +8,7 @@ public class CandyAppleRoll : MonoBehaviour
     private Transform playerTransform;
     private List<GameObject> candyAppleBalls = new List<GameObject>(); // 여러 개의 candyAppleBall을 관리하는 리스트
     public int Level = 1; // 스킬 레벨
-    private float damage = 10f; // 기본 데미지
+    private int damage = 5; // 기본 데미지
     private float distance = 30f; // 거리
     private float speed = 3f; // 속도
     private float cooldown = 5f; // 기본 쿨다운 시간
@@ -29,8 +29,16 @@ public class CandyAppleRoll : MonoBehaviour
         // 거리와 속도를 기반으로 지속 시간 계산
         float duration = distance / speed;
 
+        // 사과 공 생성
         GameObject candyAppleBall = Instantiate(candyAppleBallPrefab, spawnPosition, Quaternion.identity);
         candyAppleBalls.Add(candyAppleBall); // 리스트에 추가
+
+        // CandyAppleBall 컴포넌트에서 데미지 설정
+        CandyAppleBall candyAppleScript = candyAppleBall.GetComponent<CandyAppleBall>();
+        if (candyAppleScript != null)
+        {
+            candyAppleScript.damage = damage; // 현재 스킬의 데미지를 사과 공에 전달
+        }
 
         // DOTween으로 랜덤 방향으로 이동
         candyAppleBall.transform.DOMove(targetPosition, duration)
@@ -45,7 +53,7 @@ public class CandyAppleRoll : MonoBehaviour
     public void LevelUp()
     {
         Level++;
-        damage += 5f; // 레벨업 시 데미지 증가
+        damage += 5; // 레벨업 시 데미지 증가
         cooldown = Mathf.Max(1f, cooldown - 0.5f); // 쿨다운 감소, 최소 1초까지 감소
         Debug.Log($"CandyAppleRoll 스킬이 레벨 {Level}로 상승했습니다. 데미지: {damage}, 쿨다운: {cooldown}");
     }
