@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,10 +34,19 @@ public class PlayerController : MonoBehaviour
     private float interactionRange = 2f; // 상호작용 거리
     private InteractableObject currentInteractable; // 현재 상호작용 가능한 오브젝트
 
+    private Vector2 moveDirection; // 이동 방향을 저장할 변수
+    private InteractiveMasegge textManager; // 텍스트 관리 스크립트
+
+
 
 
     void Awake()
     {
+        textManager = FindObjectOfType<InteractiveMasegge>();
+        if (textManager == null)
+        {
+            Debug.LogWarning("InteractionTextManager를 찾을 수 없습니다. Scene에 추가해 주세요.");
+        }
         InventoryPopup = GetComponent<InventoryPopup>();
         transparencyHoldTime = Managers.Player.transparencyHoldTime;
         transparencyFadeTime = Managers.Player.transparencyFadeTime;
@@ -86,16 +98,17 @@ public class PlayerController : MonoBehaviour
         // 상호작용 범위 내 오브젝트 확인
         DetectInteractableObjects();
 
-        // F 키로 아이템 습득 또는 상호작용
+        // F 키로 상호작용
         if (Input.GetKeyDown(KeyCode.F))
         {
             if (currentPickupItem != null)
             {
                 currentPickupItem.Pickup(); // 아이템 습득
             }
-            else if (currentInteractable != null)
+
+            if (currentInteractable != null)
             {
-                currentInteractable.Interact(); // 상호작용 수행
+                Debug.Log($"{currentInteractable.GetInteractionMessage()}와 상호작용을 수행했습니다.");
             }
         }
 
@@ -109,10 +122,22 @@ public class PlayerController : MonoBehaviour
         {
             Managers.Popup.TogglePauseUI();
         }
+
+        // 이동 방향에 따라 상호작용 텍스트 위치 조정
+        UpdateInteractionTextPosition();
+    }
+    private void UpdateInteractionTextPosition()
+    {
+        if (textManager == null || textManager.interactionText == null) return;
+
+        // 플레이어 위치를 화면 좌표로 변환
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+
+        // 텍스트 위치 조정 (플레이어 위쪽으로 오프셋 추가)
+        Vector3 offset = new Vector3(0, 100, 0); // 필요에 따라 조정
+        textManager.interactionText.transform.position = screenPosition + offset;
     }
 
-
-    // 상호작용 가능한 오브젝트 탐지 및 테두리 강조
     private void DetectInteractableObjects()
     {
         Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
@@ -138,18 +163,19 @@ public class PlayerController : MonoBehaviour
         {
             if (currentInteractable != null)
             {
-                currentInteractable.Highlight(false); // 기존 오브젝트 강조 해제
+                currentInteractable.Highlight(false);
+                textManager?.HideInteractionMessage();
             }
 
             currentInteractable = closestInteractable;
 
             if (currentInteractable != null)
             {
-                currentInteractable.Highlight(true); // 새로운 오브젝트 강조
+                currentInteractable.Highlight(true);
+                textManager?.ShowInteractionMessage(currentInteractable.GetInteractionMessage());
             }
         }
     }
-
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -162,10 +188,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        // "PickupItem" 태그가 있는 오브젝트와 충돌 해제 시
-        if (other.CompareTag("PickupItem"))
+        if (currentPickupItem == other.GetComponent<PickupItem>())
         {
             currentPickupItem = null;
+            textManager?.HideInteractionMessage(); // 텍스트 숨기기
         }
     }
 }

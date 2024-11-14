@@ -23,6 +23,7 @@ TagManager:
   - miniMapTileMap
   - PickupItem
   - GameOverPanel
+  - Interaction
   layers:
   - Default
   - TransparentFX
