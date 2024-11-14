@@ -106,8 +106,8 @@ public class PlayerController : MonoBehaviour
         // 상호작용 범위 내 오브젝트 확인
         DetectInteractableObjects();
 
-        // F 키로 상호작용
-        if (Input.GetKeyDown(KeyCode.F))
+        // F키 -> 좌클릭 으로 상호작용
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (currentPickupItem != null)
             {
