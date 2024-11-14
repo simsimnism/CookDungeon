@@ -57,6 +57,10 @@ public class GameManager
             case GameState.levelCompleted:
                 LevelCompleted();
                 break;
+            case GameState.restartGame:
+                RestartGame();
+                break;
+
             default:
                 break;
         }
@@ -173,6 +177,18 @@ public class GameManager
 
         genDungeon(currentDungeonLevelListIndex);
     }
+
+    // 게임 리스타트 메서드 추가
+    private void RestartGame()
+    {
+        // 던전 레벨 인덱스를 초기화
+        currentDungeonLevelListIndex = 0;
+
+        // 이전 방과 현재 방 초기화
+        previousRoom = null;
+        currentRoom = null;
+    }
+
 
     // 현재 던전 레벨 값을 호출
     public DungeonLevelSO GetCurrentDungeonLevel()
