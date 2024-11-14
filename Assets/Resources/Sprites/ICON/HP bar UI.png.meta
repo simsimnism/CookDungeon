@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_0"
+      name: HP bar UI_0
       rect:
         serializedVersion: 2
         x: 17
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7b8cb814cacc1438bb2be3d57b1cfb
-      internalID: -1246032864
+      spriteID: cf741400260b046429d7844a0fd4bda4
+      internalID: 1524390276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_1"
+      name: HP bar UI_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,8 +132,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df4ba89f77c005649a5ec4aff0370873
-      internalID: -1496754564
+      spriteID: f5a167ec25cddae4f8b0db63c5371126
+      internalID: -1238728890
       vertices: []
       indices: 
       edges: []
@@ -149,8 +149,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_0": -1246032864
-      "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_1": -1496754564
+      HP bar UI_0: 1524390276
+      HP bar UI_1: -1238728890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
