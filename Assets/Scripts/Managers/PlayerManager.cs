@@ -8,7 +8,12 @@ public class PlayerManager
     private SpriteRenderer spriteRenderer;
 
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
-    public float moveSpeed = 7.0f;//이동속도
+    private float moveSpeed = 7.0f;//이동속도
+    public float MoveSpeed
+    {
+        get => moveSpeed;
+        set => moveSpeed = value;
+    }
     public float dashSpeed = 4f; // 대쉬 속도
     public float dashDuration = 0.3f; // 대쉬 지속 시간
     public bool isDashing = false;// 대쉬 여부
@@ -40,12 +45,14 @@ public class PlayerManager
     //플레이어의 이동을 멈추는 함수
     public void DisableMovement()
     {
+        moveSpeed = 0;
         canMove = false;
     }
 
     //플레이어의 이동을 다시 시작하는 함수
     public void EnableMovement()
     {
+       
         canMove = true;
     }
 
@@ -83,6 +90,7 @@ public class PlayerManager
         }
     }
 
+    
 
     // 플레이어 수치 초기 설정
     public void Init()

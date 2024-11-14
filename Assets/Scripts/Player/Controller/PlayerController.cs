@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         transparencyHoldTime = Managers.Player.transparencyHoldTime;
         transparencyFadeTime = Managers.Player.transparencyFadeTime;
         isInvincible = Managers.GM.IsInvincible;
-        moveSpeed = Managers.Player.moveSpeed;
+        moveSpeed = Managers.Player.MoveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -94,6 +94,9 @@ public class PlayerController : MonoBehaviour
             Managers.Popup.TogglePauseUI();
         }
     }
+
+
+
 
 
     private void OnTriggerEnter2D(Collider2D other)

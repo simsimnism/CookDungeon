@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     // HP 바와 연동
     private HpBar hpBar; // HP 바 인스턴스
 
+    public LayerMask wallLayer; // "Wall" 레이어 설정
+
     // 플레이어의 체력 관련 변수
     public int defaultHealAmount = 3; // 기본 회복량
     private int MaxHP;
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour
         inDamage = Managers.Player.inDamage;
         invin = Managers.GM.IsInvincible;
         isDashing = GetComponent<PlayerAttack>();
-        moveSpeed = Managers.Player.moveSpeed;
+        moveSpeed = Managers.Player.MoveSpeed;
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -160,10 +162,53 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.velocity = Vector2.zero; // 충돌 후 속도 0으로 설정
+        // 충돌한 객체가 "Wall" 레이어인지 확인
+        if (((1 << collision.gameObject.layer) & wallLayer) != 0)
+        {
+            rb.velocity = Vector2.zero; // 이동 속도를 0으로 설정하여 멈추기
+            rb.angularVelocity = 0f;
+
+            // 충돌 상대방의 BoxCollider2D 정보 가져오기
+            BoxCollider2D wallCollider = collision.collider as BoxCollider2D;
+            if (wallCollider != null)
+            {
+                // 충돌 지점 계산
+                Vector2 collisionPoint = collision.contacts[0].point;
+                Vector2 wallCenter = wallCollider.bounds.center;
+                Vector2 wallSize = wallCollider.bounds.size;
+
+                // 플레이어의 위치 조정 (충돌 지점에서 조금 떨어지도록)
+                if (collisionPoint.x < wallCenter.x - wallSize.x / 2) // 왼쪽에서 충돌
+                {
+                    transform.position = new Vector3(wallCenter.x - wallSize.x / 2 - 0.1f, transform.position.y, transform.position.z);
+                }
+                else if (collisionPoint.x > wallCenter.x + wallSize.x / 2) // 오른쪽에서 충돌
+                {
+                    transform.position = new Vector3(wallCenter.x + wallSize.x / 2 + 0.1f, transform.position.y, transform.position.z);
+                }
+                else if (collisionPoint.y < wallCenter.y - wallSize.y / 2) // 아래쪽에서 충돌
+                {
+                    transform.position = new Vector3(transform.position.x, wallCenter.y - wallSize.y / 2 - 0.1f, transform.position.z);
+                }
+                else if (collisionPoint.y > wallCenter.y + wallSize.y / 2) // 위쪽에서 충돌
+                {
+                    transform.position = new Vector3(transform.position.x, wallCenter.y + wallSize.y / 2 + 0.1f, transform.position.z);
+                }
+            }
+        }
     }
+
+
+    private IEnumerator ReenableRigidbody()
+    {
+        yield return new WaitForSeconds(0.1f); // 잠시 대기 후
+        rb.bodyType = RigidbodyType2D.Dynamic; // Rigidbody를 Dynamic으로 복원하여 이동 가능하게 함
+    }
+
+
 
     public void DisableMovement()
     {
@@ -180,4 +225,5 @@ public class Player : MonoBehaviour
     {
         Managers.GM.gameState = GameState.restartGame;
     }
+
 }
