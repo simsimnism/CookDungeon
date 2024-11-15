@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1258808565528862136, guid: ba33dc8b502fab14a80e9da9a6776753, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4346044060902347613, guid: ba33dc8b502fab14a80e9da9a6776753, type: 3}
       propertyPath: Back_BTN
       value: 

@@ -21,9 +21,9 @@ public class InteractableObject : MonoBehaviour
         switch (tag)
         {
             case "PickupItem":
-                return "아이템 습득";
+                return "재료 줍기";
             case "Interaction":
-                return "불 키기 / 요리하기";
+                return "불 지피기 / 요리하기";
             default:
                 return "알 수 없는 상호작용";
         }

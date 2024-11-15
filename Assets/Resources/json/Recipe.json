@@ -3,7 +3,7 @@
     {
       "name": "Apple Juice",
       "id": 201,
-      "description": "A delicious mix of fruits.",
+      "description": "아침에 먹으면 약, 밤에 먹으면 독.",
       "MaxAmount": 99,
       "itemType": "Recipe",
       "requiredIngredients": [1, 1, 1], 
@@ -13,7 +13,7 @@
     {
       "name": "CandyApple",
       "id": 202,
-      "description": "A healthy mix of vegetables.",
+      "description": "트릭 오어 트릿!!",
       "MaxAmount": 99,
       "itemType": "Recipe",
       "requiredIngredients": [1, 4, 4],
@@ -23,7 +23,7 @@
     {
       "name": "Egg Salad",
       "id": 203,
-      "description": "A hearty stew made with meat and vegetables.",
+      "description": "단백질 호소인 필수 음식.",
       "MaxAmount": 99,
       "itemType": "Recipe",
       "requiredIngredients": [2, 3, 2],
@@ -33,7 +33,7 @@
     {
       "name": "Pizza",
       "id": 204,
-      "description": "A warm soup made with chicken.",
+      "description": "3.141592653589793238462643383279....",
       "MaxAmount": 99,
       "itemType": "Recipe",
       "requiredIngredients": [2, 4, 3],
@@ -53,7 +53,7 @@
     {
       "name": "Omelet",
       "id": 206,
-      "description": "A savory grilled fish dish.",
+      "description": "모에모에쿵을 하고 싶어지는 오믈렛.",
       "MaxAmount": 99,
       "itemType": "Recipe",
       "requiredIngredients": [1, 3, 3],

@@ -3,7 +3,7 @@
     {
       "name": "Apple",
       "id": 100,
-      "description": "맛있는 던전제 사과 3개씩 먹으면 더 맛있다.",
+      "description": "만드래플의 사과. 사과 3개를 모아야 맛있다.",
       "MaxAmount": 99,
       "itemType": "1",
       "healthRecovery": 10,
@@ -12,7 +12,7 @@
     {
       "name": "Cabbage",
       "id": 101,
-      "description": "던전의 달콤한 양배추.",
+      "description": "배추구리의 양배추. 왠지 먹다가 터질까봐 무섭다.",
       "MaxAmount": 99,
       "itemType": "2",
       "healthRecovery": 20,
@@ -21,7 +21,7 @@
     {
       "name": "Egg",
       "id": 102,
-      "description": "영양만점 계란 감자와 먹어보자.",
+      "description": "에그 슬라임의 계란. 단백질이 풍부하다.",
       "MaxAmount": 99,
       "itemType": "3",
       "healthRecovery": 50,
@@ -30,7 +30,7 @@
     {
       "name": "Honey",
       "id": 103,
-      "description": "만능 소스 꿀 사과와 먹으면 이건 탕후루?.",
+      "description": "포테비가 지녔던 꿀. 숲 깊은 곳에 있는 귀한 꽃에서 채집하여 달콤하다.",
       "MaxAmount": 99,
       "itemType": "4",
       "healthRecovery": 35,
@@ -39,7 +39,7 @@
     {
       "name": "Mushroom",
       "id": 104,
-      "description": "버섯 우리 팀장이 가장 좋아하는 음식이다. 얼굴을 보면 버섯을 주도록 하자.",
+      "description": "머쉬론의 버섯. 꼬리의 버섯은 향미가 풍부하다.",
       "MaxAmount": 99,
       "itemType": "2",
       "healthRecovery": 15,
