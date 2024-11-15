@@ -85,13 +85,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             moveHorizontal = -1f;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            spriteRenderer.flipX = false;
         }
         if (Input.GetKey(KeyCode.S)) moveVertical = -1f;
         if (Input.GetKey(KeyCode.D))
         {
-            moveHorizontal = -1f;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            moveHorizontal = 1f;
+            spriteRenderer.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)) moveVertical = 0;

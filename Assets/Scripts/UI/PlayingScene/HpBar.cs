@@ -3,29 +3,29 @@ using UnityEngine.UI;
 
 public class HpBar : MonoBehaviour
 {
-    [SerializeField] private Image hpBarFill; // 체력바로 사용할 이미지
-    private int maxHealth;
+    [SerializeField] private GameObject healthBar;
 
-    private void Awake()
+    /// <summary>
+    /// 체력바를 활성화
+    /// </summary>
+    public void EnableHealthBar()
     {
-        // fillMethod를 Horizontal로 설정하여 가로 방향 채우기
-        hpBarFill.type = Image.Type.Filled;
-        hpBarFill.fillMethod = Image.FillMethod.Horizontal;
-        hpBarFill.fillOrigin = (int)Image.OriginHorizontal.Left; // 왼쪽부터 채워지도록 설정
+        gameObject.SetActive(true);
     }
 
-    // 체력바 초기화
-    public void Initialize(int MaxHP)
+    /// <summary>
+    /// 체력바를 비활성화
+    /// </summary>
+    public void DisableHealthBar()
     {
-        this.maxHealth = MaxHP;
-        UpdateHealth(MaxHP); // 처음엔 체력 가득 채움
+        gameObject.SetActive(false);
     }
 
-    // 체력 업데이트
-    public void UpdateHealth(int currentHP)
+    /// <summary>
+    /// 0과 1 사이의 값을 백분율로 체력 막대 값을 설정
+    /// </summary>
+    public void SetHealthBarValue(float HPPercent)
     {
-        // 체력 비율을 계산하고, hpBarFill의 fillAmount를 조정
-        float healthRatio = (float)currentHP / maxHealth;
-        hpBarFill.fillAmount = healthRatio; // 이미지 크기 조정
+        healthBar.transform.localScale = new Vector3(HPPercent, 1f, 1f);
     }
 }

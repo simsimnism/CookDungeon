@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cee66c37d5b24f2459ae9d185b1ff2bc
+guid: 7f520a990fd64e948a69dfe5a6ddf5c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_0"
+      name: 12345_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 44
-        width: 47
-        height: 4
+        x: 0
+        y: 0
+        width: 16
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e7b8cb814cacc1438bb2be3d57b1cfb
-      internalID: -1246032864
+      spriteID: df2ecea7c7d8484429a9c762a51afe44
+      internalID: 542836621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_1"
+      name: 12345_1
       rect:
         serializedVersion: 2
         x: 16
-        y: 35
-        width: 49
-        height: 6
+        y: 0
+        width: 16
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +132,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df4ba89f77c005649a5ec4aff0370873
-      internalID: -1496754564
+      spriteID: 53f166df03ed20d4f897c278335e3653
+      internalID: 408309033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12345_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 853738e9076f6d34a8b8587dbfd506de
+      internalID: -2072126079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12345_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a60847d476fe5b498e6d5749500e486
+      internalID: -863762483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 12345_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 14
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfeaf8513893fa94582e2ca354ea3a63
+      internalID: 584593072
       vertices: []
       indices: 
       edges: []
@@ -149,8 +212,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_0": -1246032864
-      "HP bar UI (\uC900\uADDC\uAEBC\uC774\uC0C1\uD558\uBA74 \uC774\uAC70\uC368)_1": -1496754564
+      12345_0: 542836621
+      12345_1: 408309033
+      12345_2: -2072126079
+      12345_3: -863762483
+      12345_4: 584593072
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -4,13 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer), typeof(Collider2D), typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
+    [SerializeField] private HpBar hpBar; // HP 바 인스턴스
+
     [HideInInspector] public PlayerController playerController;
     public float invincibilityDuration = 0.7f; // 무적 상태 지속 시간
     public bool invin; // 무적 상태 플래그
     public bool isDashing;
-
-    // HP 바와 연동
-    private HpBar hpBar; // HP 바 인스턴스
 
     public LayerMask wallLayer; // "Wall" 레이어 설정
 
@@ -48,10 +47,9 @@ public class Player : MonoBehaviour
         currentHP = MaxHP;
 
         // 체력바 초기화
-        hpBar = FindObjectOfType<HpBar>(); // UIManager는 그대로 두고 직접 찾습니다.
         if (hpBar != null)
         {
-            hpBar.Initialize(MaxHP);
+            hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
         }
     }
     private IEnumerator SpawnGameClearPopup()
@@ -83,7 +81,7 @@ public class Player : MonoBehaviour
 
             if (hpBar != null)
             {
-                hpBar.UpdateHealth(currentHP);
+                hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
             }
             // 체력이 0 이하가 되면 사망 처리
             if (currentHP <= 0)
@@ -106,7 +104,7 @@ public class Player : MonoBehaviour
 
         if (hpBar != null)
         {
-            hpBar.UpdateHealth(currentHP);
+            hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
         }
     }
 
@@ -158,7 +156,7 @@ public class Player : MonoBehaviour
         // 체력바 업데이트
         if (hpBar != null)
         {
-            hpBar.UpdateHealth(currentHP);
+            hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
         }
     }
 

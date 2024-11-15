@@ -29,7 +29,9 @@ public class UIPopupManager
     private GameClearPopup _gameClearPopup;
     private bool _isgameClearOpen = false;
 
-
+    //게임오버 유아이 관련
+    private GameClearPopup _RoundInfoPopup;
+    private bool _isRoundInfoOpen = false;
 
 
     //============================스킬 UI_Popup==============================
@@ -322,6 +324,54 @@ public class UIPopupManager
             
             _isgameClearOpen = false;
             _gameClearPopup.gameObject.SetActive( false);
+
+        }
+    }
+    //===========================================================================
+
+    //=============================라운드 표시 UI================================
+    public void ToggleRoundInfo()
+    {
+        if (_RoundInfoPopup)
+        {
+            CloseRoundInfo();
+        }
+        else
+        {
+            OpenRoundInfo();
+        }
+    }
+
+    public void OpenRoundInfo()
+    {
+        if (_RoundInfoPopup == null)
+        {
+            //_RoundInfoPopup = Managers.UI.ShowPopupUI<RoundInfoPopup>("RoundInfoPopup");
+            _RoundInfoPopup.gameObject.SetActive(true);
+        }
+        else
+        {
+            _RoundInfoPopup.gameObject.SetActive(true);
+        }
+
+        if (_RoundInfoPopup != null)
+        {
+            _isRoundInfoOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
+
+    public void CloseRoundInfo()
+    {
+        if (_RoundInfoPopup != null)
+        {
+
+            _isRoundInfoOpen = false;
+            _RoundInfoPopup.gameObject.SetActive(false);
 
         }
     }
