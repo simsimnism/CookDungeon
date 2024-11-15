@@ -396,7 +396,7 @@ public class UIPopupManager
     /*사용 설명서
     if (_RecipePopup == null)
         {
-            _RecipePopup = Managers.UI.ShowPopupUI<스크립트 이름>("열고자 하는 캔버스 오브젝트 이름");
+            _RecipePopup = Managers.UI.ShowPopupUI<RecipePopup>("열고자 하는 캔버스 오브젝트 이름");
         }
     */
 
@@ -404,7 +404,7 @@ public class UIPopupManager
     {
         if (_RecipePopup == null)
         {
-            _RecipePopup = Managers.UI.ShowPopupUI<RecipePopup>("Recipe");
+            _RecipePopup = Managers.UI.ShowPopupUI<RecipePopup>("RecipePopUI");
         }
         else
         {
