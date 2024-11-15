@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
             Managers.Popup.OpenGamePauseUI();
         }
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Managers.Popup.ToggleRecipe();
+        }
+
         // 이동 방향에 따라 상호작용 텍스트 위치 조정
         UpdateInteractionTextPosition();
         UpdateHpBarPosition();
