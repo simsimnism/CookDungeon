@@ -37,6 +37,9 @@ public class UIPopupManager
     private RecipePopup _RecipePopup;
     private bool _isRecipePopupOpen = false;
 
+    //요리 레시피 관련 팝업
+    private IntroUIPopup _Intro;
+    private bool _isIntroOpen = false;
 
     //============================스킬 UI_Popup==============================
     //스킬 관련 팝업은 시간멈춤이 들어가 있음
@@ -52,7 +55,7 @@ public class UIPopupManager
         }
     }
 
-    private void OpenSkillUI()
+    public void OpenSkillUI()
     {
         if (_SkillPopup == null)
         {
@@ -78,6 +81,7 @@ public class UIPopupManager
     {
         if (_SkillPopup != null)
         {
+            Managers.UI.ClosePopupUI();
             _SkillPopup.gameObject.SetActive(false);
             _isSkillOpen = false;
             Time.timeScale = 1;  // 게임 시간 재개
@@ -429,6 +433,20 @@ public class UIPopupManager
             _isRecipePopupOpen = false;
             _RecipePopup.gameObject.SetActive(false);
             _RecipePopup = null;
+
+        }
+    }
+    //===========================================================================
+
+    //========================인트로 팝업 UI=====================================
+    public void CloseIntro()
+    {
+        if ( _Intro != null)
+        {
+            Managers.UI.ClosePopupUI();
+            _isIntroOpen = false;
+            _Intro.gameObject.SetActive(false);
+            _Intro = null;
 
         }
     }

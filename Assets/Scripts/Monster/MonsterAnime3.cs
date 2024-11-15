@@ -1,22 +1,16 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MonsterAnime3 : MonoBehaviour
 {
     private Animator animator;
     private Vector3 previousPosition;  // 이전 프레임의 위치를 저장할 변수
     private string currentTrigger = "";  // 현재 활성화된 트리거 저장
-    MonsterAI3 monsterAI3;
-
-    void Awake()
-    {
-        monsterAI3 = GetComponent<MonsterAI3>();
-        
-    }
+    private MonsterAI3 monsterAI3;
 
     // Start is called before the first frame update
     void Start()
     {
+        monsterAI3 = FindAnyObjectByType<MonsterAI3>();
         animator = GetComponent<Animator>();
 
         // 기본 상태를 Stand로 설정 (처음에는 대기 상태)
@@ -48,7 +42,7 @@ public class MonsterAnime3 : MonoBehaviour
             // 이전 위치와 현재 위치 비교하여 애니메이션 설정
             PlayWalkAnimation(currentPosition, previousPosition);
         }
-
+        DeadAnimation();
         // 현재 위치를 이전 위치로 업데이트
         previousPosition = currentPosition;
     }
@@ -98,6 +92,13 @@ public class MonsterAnime3 : MonoBehaviour
         }
     }
 
+    private void DeadAnimation()
+    {
+        if(monsterAI3.Health == 0)
+        {
+            SetAnimationTrigger("Die");
+        }
+    }
 
     // 모든 애니메이션 트리거 초기화 함수
     private void ResetAllTriggers()
@@ -106,6 +107,8 @@ public class MonsterAnime3 : MonoBehaviour
         animator.ResetTrigger("WalkDown");
         animator.ResetTrigger("WalkLeft");
         animator.ResetTrigger("WalkRight");
+        animator.ResetTrigger("Die");
         animator.ResetTrigger("Stand");
+
     }
 }

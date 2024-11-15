@@ -14,5 +14,6 @@ public class CookingPopup : UI_Popup
     {
         
         Managers.Popup.CloseCooking();
+        Debug.Log("Closing Cooking Popup");
     }
 }
