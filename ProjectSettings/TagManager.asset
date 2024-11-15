@@ -99,3 +99,6 @@ TagManager:
   - name: MiniMap
     uniqueID: 2924803747
     locked: 0
+  - name: Inventory
+    uniqueID: 967708511
+    locked: 0

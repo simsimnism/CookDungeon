@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image itemImage;
+    public Image TextBackground; // 아이템 설명 표시용 텍스트
     public TMP_Text itemDescriptionText; // 아이템 설명 표시용 TMP 텍스트
     private Image draggedImage;
     protected Item currentItem;
@@ -30,6 +31,12 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         draggedImage.transform.SetParent(transform.root);
         draggedImage.transform.SetAsLastSibling();
         draggedImage.gameObject.SetActive(false);
+
+        // 초기화 시 TextBackground 비활성화
+        if (TextBackground != null)
+        {
+            TextBackground.gameObject.SetActive(false);
+        }
     }
 
     void Start()
@@ -221,12 +228,17 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
 
     public abstract void UpdateAmountTextInDerivedClasses();
 
-    // 마우스 오버 시 설명 표시 및 숨기기
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (currentItem != null && itemDescriptionText != null)
         {
             itemDescriptionText.text = currentItem.Description;
+
+            // 설명 텍스트와 백그라운드 이미지 활성화
+            if (TextBackground != null)
+            {
+                TextBackground.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -235,6 +247,12 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         if (itemDescriptionText != null)
         {
             itemDescriptionText.text = "";
+
+            // 설명 텍스트와 백그라운드 이미지 비활성화
+            if (TextBackground != null)
+            {
+                TextBackground.gameObject.SetActive(false);
+            }
         }
     }
 }
