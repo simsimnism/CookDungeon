@@ -5,8 +5,11 @@ using System.Collections;
 public class MonsterAI3 : MonoBehaviour
 {
     public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
+    [SerializeField]private GameObject Boom;
 
     private int health;
+
+    public int Health { get => health; set => health = value; }
     private int attack;
     private int attackRange;
     private float range;
@@ -30,6 +33,8 @@ public class MonsterAI3 : MonoBehaviour
 
     void Start()
     {
+        Boom.gameObject.SetActive(false); 
+
         // "(Clone)"을 제거하고 이름을 가져옴
         string monsterName = gameObject.name.Replace("(Clone)", "").Trim();
 
@@ -81,6 +86,7 @@ public class MonsterAI3 : MonoBehaviour
         }
     }
 
+    //몬스터의 랜덤 이도 로직
     void MonsterMovement()
     {
         if (isAttacking) return;  // 공격 중일 때 다른 행동을 하지 않음
@@ -113,11 +119,15 @@ public class MonsterAI3 : MonoBehaviour
     {
         if (isAttacking) yield break;  // 이미 공격 중이면 중복 실행 방지
 
+
+
         isAttacking = true;  // 공격 중으로 상태 전환
         Debug.Log("플레이어를 감지했습니다. 1초 후에 공격합니다.");
 
+        Boom.gameObject.SetActive(true);   
+
         // 1초 대기
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.3f);
 
         // 플레이어와 자신에게 데미지 주기
         Managers.Sound.PlaySFX(Define.SFX.Bomb1);
@@ -230,22 +240,24 @@ public class MonsterAI3 : MonoBehaviour
             switch (id)
             {
                 case 1: // 예: ID가 1인 몬스터
-                    prefabPath = "Food/Apple";  // 사과 프리팹 경로
+                    prefabPath = "Food/Apple";
                     break;
                 case 2:
-                    prefabPath = "Food/Mushroom";  // 빵 프리팹 경로
+                    prefabPath = "Food/Mushroom";
                     break;
                 case 3: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Egg";  // 감자 프리팹 경로
+                    prefabPath = "Food/Egg";
                     break;
                 case 4: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Cabbage";  // 감자 프리팹 경로
+                    prefabPath = "Food/Cabbage";
                     break;
                 case 5: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Orange";  // 감자 프리팹 경로
+                    prefabPath = "Food/Orange";
                     break;
-                case 6: // 예: ID가 3인 몬스터
-                    prefabPath = "Food/Potato";  // 감자 프리팹 경로
+                case 6:
+                    // ID가 6일 경우, 랜덤으로 두 개 중 하나 선택
+                    string[] possiblePrefabs = { "Food/Potato", "Food/Honey" };  // 감자 또는 당근 프리팹 경로
+                    prefabPath = possiblePrefabs[Random.Range(0, possiblePrefabs.Length)];
                     break;
                 default:
                     prefabPath = "Food/DefaultFood";  // 기본 드랍 아이템 경로
@@ -305,6 +317,7 @@ public class MonsterAI3 : MonoBehaviour
             }
         }
     }
+
 
     // 공격 범위를 시각적으로 확인하기 위한 Gizmo
     void OnDrawGizmosSelected()
