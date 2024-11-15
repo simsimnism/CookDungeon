@@ -1961,7 +1961,6 @@ GameObject:
   - component: {fileID: 3088690214215045554}
   - component: {fileID: 3041937428781818786}
   - component: {fileID: 4378696325039884784}
-  - component: {fileID: 5715138659901964161}
   m_Layer: 5
   m_Name: RecipePopUI
   m_TagString: Untagged
@@ -2052,18 +2051,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!225 &5715138659901964161
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374154413924412575}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &5420455464461588716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,7 +2814,6 @@ GameObject:
   - component: {fileID: 3995952633279212859}
   - component: {fileID: 7240548105667050214}
   - component: {fileID: 5603702747170076739}
-  - component: {fileID: 3739777374714890839}
   m_Layer: 5
   m_Name: Button (Legacy)
   m_TagString: Untagged
@@ -2936,39 +2922,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3739777374714890839}
-        m_TargetAssemblyTypeName: BtnType, Assembly-CSharp
-        m_MethodName: OnBtnClick
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3739777374714890839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7155720053818173522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e399ff8ad68e443981717339eca1e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentType: 5
-  buttonScale: {fileID: 4965113191305775515}
-  Main_BTN: {fileID: 5715138659901964161}
-  Setting_BTN: {fileID: 0}
-  Credit_BTN: {fileID: 5715138659901964161}
-  StartMenu_BTN: {fileID: 0}
-  Sound_BTN: {fileID: 0}
-  Quit_BTN: {fileID: 5715138659901964161}
-  Back_BTN: {fileID: 0}
 --- !u!1 &7413255387286452594
 GameObject:
   m_ObjectHideFlags: 0
