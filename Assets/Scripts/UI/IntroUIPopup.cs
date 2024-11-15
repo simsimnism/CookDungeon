@@ -6,6 +6,13 @@ public class IntroUIPopup : UI_Popup
 {
     public override void Init()
     {
+        Managers.Popup.CloseIntro();
         base.Init();
     }
+
+    public override void ClosePopupUI()
+    {
+        base.ClosePopupUI();
+    }
+
 }
