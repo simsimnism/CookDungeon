@@ -152,8 +152,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2077910620}
+  m_Children: []
   m_Father: {fileID: 1273031545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -768,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c981ee69e45614cac59cb32588169a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarFill: {fileID: 2077910618}
+  healthBar: {fileID: 0}
 --- !u!114 &1273031542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,4 +1449,3 @@ SceneRoots:
   - {fileID: 1753380313}
   - {fileID: 1720038108}
   - {fileID: 310114363}
-  - {fileID: 1368780858}
