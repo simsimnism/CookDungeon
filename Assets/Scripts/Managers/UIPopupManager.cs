@@ -30,7 +30,7 @@ public class UIPopupManager
     private bool _isgameClearOpen = false;
 
     //게임오버 유아이 관련
-    private GameClearPopup _RoundInfoPopup;
+    private RoundInfoPopup _RoundInfoPopup;
     private bool _isRoundInfoOpen = false;
 
 
@@ -346,8 +346,7 @@ public class UIPopupManager
     {
         if (_RoundInfoPopup == null)
         {
-            //_RoundInfoPopup = Managers.UI.ShowPopupUI<RoundInfoPopup>("RoundInfoPopup");
-            _RoundInfoPopup.gameObject.SetActive(true);
+            _RoundInfoPopup = Managers.UI.ShowPopupUI<RoundInfoPopup>("RoundInfoPopup");
         }
         else
         {
@@ -385,7 +384,8 @@ public class UIPopupManager
         CloseGameEndUI();
         CloseGamePauseUI();
         CloseGameLoading();
-        CloseGameClear();   
+        CloseGameClear();
+        CloseRoundInfo();
         Managers.Inventory.CloseInventory();
 
     }

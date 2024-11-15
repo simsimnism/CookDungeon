@@ -107,6 +107,9 @@ public class Cauldron : MonoBehaviour
             {
                 // 요리 UI 출력
                 Managers.Popup.ToggleCooking();
+
+                //인벤토리 UI 출력
+                Managers.Inventory.OpenInventory();
             }
         }
     }
