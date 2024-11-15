@@ -97,7 +97,7 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             }
             else
             {
-                Managers.Popup.ToggleSkillUI();
+                Managers.Popup.OpenSkillUI();
             }
         }
         else if (currentItem is FoodItem)

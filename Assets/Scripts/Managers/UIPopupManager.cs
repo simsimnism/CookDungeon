@@ -281,9 +281,10 @@ public class UIPopupManager
     {
         if (_gameLoadingPopup != null)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.ClosePopupUI(_gameLoadingPopup);
             _isGameLoadingOpen = false;
             _gameLoadingPopup = null;
+            Debug.Log("게임 로딩 끝");
         }
     }
     //===========================================================================
@@ -429,7 +430,7 @@ public class UIPopupManager
     {
         if (_RecipePopup != null)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.ClosePopupUI(_RecipePopup);
             _isRecipePopupOpen = false;
             _RecipePopup.gameObject.SetActive(false);
             _RecipePopup = null;
@@ -439,11 +440,32 @@ public class UIPopupManager
     //===========================================================================
 
     //========================인트로 팝업 UI=====================================
+    public void OpenIntro()
+    {
+        if (_Intro == null)
+        {
+            _Intro = Managers.UI.ShowPopupUI<IntroUIPopup>("IntroUI");
+        }
+        else
+        {
+            _Intro.gameObject.SetActive(true);
+        }
+
+        if (_Intro != null)
+        {
+            _isIntroOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
     public void CloseIntro()
     {
         if ( _Intro != null)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.ClosePopupUI(_Intro);
             _isIntroOpen = false;
             _Intro.gameObject.SetActive(false);
             _Intro = null;

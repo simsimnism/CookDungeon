@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         // 4초 후에 게임 클리어 UI 팝업을 띄우는 코루틴 시작
         StartCoroutine(SpawnGameClearPopup());
         StartCoroutine(GameClearPopup());
+        StartCoroutine(Intro());
         currentHP = MaxHP;
 
         // 체력바 초기화
@@ -68,7 +69,13 @@ public class Player : MonoBehaviour
         Managers.Popup.CloseGameClear();
     }
 
+    private IEnumerator Intro()
+    {
+        yield return new WaitForSeconds(2.02f);
 
+        // Managers.Popup을 통해 게임 클리어 팝업 호출
+        Managers.Popup.OpenIntro();
+    }
 
     // 플레이어가 데미지를 입는 로직
     public void TakeDamage(int damage)

@@ -9,6 +9,7 @@ public class GameLoadingTime : MonoBehaviour
     {
         // 팝업이 활성화되면 5초 뒤에 자동으로 꺼지게 설정
         StartCoroutine(ClosePopupAfterDelay(2f));
+        Debug.Log("게임 로딩 끝");
     }
 
     private IEnumerator ClosePopupAfterDelay(float delay)
@@ -18,5 +19,6 @@ public class GameLoadingTime : MonoBehaviour
 
         // 팝업을 비활성화
         Managers.Popup.CloseGameLoading();
+
     }
 }

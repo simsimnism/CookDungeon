@@ -86,12 +86,13 @@ public class GameManager
 
     void GameStart()
     {
-        // Subscribe to room changed event.
+
+        // Subscribe to room changed event.        
         EventHandle.OnRoomChange += EventHandle_RoomChangeEvent;
 
-        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
-
         Managers.Popup.OpenGameLoading();
+
+        gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
 
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");

@@ -24,6 +24,7 @@ public enum GameState
 {
     title, // 타이틀 화면
     gameStarted, // 게임 최초 시작
+    gameLoading,
     playingLevel, // 레벨 진행 중
     MonsterBattle, // 몬스터와 전투 중
     bossRoom, // 보스 방
