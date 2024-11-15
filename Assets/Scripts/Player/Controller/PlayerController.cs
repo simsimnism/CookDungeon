@@ -236,43 +236,4 @@ public class PlayerController : MonoBehaviour
             currentPickupItem = null; // 마우스가 아이템 위에 있지 않을 경우 초기화
         }
     }
-
-    // 마우스가 아이템에 가까이 갔을 때만 하이라이트
-    private void DirectionMouseObject()
-    {
-        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
-
-        InteractableObject closestInteractable = null;
-        float closestDistance = interactionRange;
-
-        foreach (Collider2D collider in interactables)
-        {
-            InteractableObject interactable = collider.GetComponent<InteractableObject>();
-            if (interactable != null)
-            {
-                float distance = Vector2.Distance(transform.position, interactable.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closestInteractable = interactable;
-                }
-            }
-        }
-
-        // 상호작용 오브젝트가 변경되었는지 확인
-        if (closestInteractable != currentInteractable)
-        {
-            if (currentInteractable != null)
-            {
-                currentInteractable.Highlight(false); // 이전 오브젝트 하이라이트 제거
-            }
-
-            currentInteractable = closestInteractable;
-
-            if (currentInteractable != null)
-            {
-                currentInteractable.Highlight(true); // 새로운 오브젝트 하이라이트 활성화
-            }
-        }
-    }
 }
