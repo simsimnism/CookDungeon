@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Managers.Popup.TogglePauseUI();
+            Managers.Popup.OpenGamePauseUI();
         }
 
         // 이동 방향에 따라 상호작용 텍스트 위치 조정

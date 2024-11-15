@@ -363,14 +363,14 @@ public class UIPopupManager
         }
     }
 
-
     public void CloseRoundInfo()
     {
         if (_RoundInfoPopup != null)
         {
-
+            Managers.UI.ClosePopupUI();
             _isRoundInfoOpen = false;
             _RoundInfoPopup.gameObject.SetActive(false);
+            _RoundInfoPopup = null;
 
         }
     }
