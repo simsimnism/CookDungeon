@@ -8,7 +8,7 @@ public class PlayerManager
     private SpriteRenderer spriteRenderer;
 
     // 플레이어 컨트롤러에서 사용할 이동 관련 변수
-    private float moveSpeed = 15f;//이동속도
+    private float moveSpeed = 6f;//이동속도
     public float MoveSpeed
     {
         get => moveSpeed;
@@ -36,7 +36,7 @@ public class PlayerManager
 
     //Player스크립트에서 사용할 수치값
     public Vector2 inputVec;
-    public int MaxHP = 1000;
+    public int MaxHP = 10;
     public bool inDamage = false;
     public bool canMove = false;
 
