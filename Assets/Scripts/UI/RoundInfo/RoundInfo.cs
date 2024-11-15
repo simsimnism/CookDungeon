@@ -24,7 +24,7 @@ public class RoundInfo : MonoBehaviour
         UpdateRoundImage();
 
         // 왼쪽에서부터 나타나게 애니메이션 시작
-        //AnimateIn();
+        AnimateIn();
 
         // 팝업이 활성화되면 5초 뒤에 자동으로 꺼지게 설정
         StartCoroutine(Round_Info(5f));
@@ -60,9 +60,10 @@ public class RoundInfo : MonoBehaviour
 
     private void AnimateIn()
     {
-        // 왼쪽에서부터 나타나게 애니메이션
-        numObject.transform.localPosition = new Vector3(-Screen.width, 0, 0); // 시작 위치를 화면 왼쪽으로 설정
-        numObject.transform.DOLocalMoveX(5, 0.5f).SetEase(Ease.OutBounce); // 0 위치로 이동
+        // 왼쪽에서부터 나타나게 애니메이션 (RectTransform 사용)
+        RectTransform numRectTransform = numObject.GetComponent<RectTransform>();
+        numRectTransform.anchoredPosition = new Vector2(-Screen.width, 0); // 시작 위치를 화면 왼쪽으로 설정
+        numRectTransform.DOLocalMoveX(242, 0.5f).SetEase(Ease.OutBounce); // 0 위치로 이동
     }
 
     private void AnimateOut()
