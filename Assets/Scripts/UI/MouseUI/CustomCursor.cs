@@ -10,12 +10,14 @@ public class CustomCursor : MonoBehaviour
     private PickupItem currentPickupItem;
 
     public CursorMode cursorMode = CursorMode.Auto;
-    private float interactionRange = 2f;
+    private CircleCollider2D interactionCollider;
 
     private InteractiveMasegge textManager;
 
     private void Start()
     {
+        // 커서 텍스처의 중심을 중단점으로 설정
+        hotSpot = new Vector2(cursorTexture.width / 2, cursorTexture.height / 2);
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
 
         textManager = FindObjectOfType<InteractiveMasegge>();
@@ -24,9 +26,10 @@ public class CustomCursor : MonoBehaviour
             Debug.LogWarning("InteractiveMasegge를 찾을 수 없습니다. Scene에 추가해주세요.");
         }
 
-        CircleCollider2D collider = gameObject.AddComponent<CircleCollider2D>();
-        collider.radius = interactionRange;
-        collider.isTrigger = true;
+        // CircleCollider2D 추가 및 설정
+        interactionCollider = gameObject.AddComponent<CircleCollider2D>();
+        interactionCollider.radius = 2f; // 초기 반경
+        interactionCollider.isTrigger = true;
     }
 
     private void Update()
@@ -36,8 +39,12 @@ public class CustomCursor : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = mousePosition;
 
-        if (Input.GetMouseButtonDown(0))
+        UpdateInteractionTextPosition();
+        if (Input.GetMouseButtonDown(0) && currentPickupItem != null)
         {
+            currentPickupItem.Pickup(); // 아이템 습득
+            Debug.Log("아이템을 습득했습니다.");
+ 
             Cursor.SetCursor(clickedCursorTexture, hotSpot, cursorMode);
         }
         else if (Input.GetMouseButtonUp(0))
@@ -48,10 +55,11 @@ public class CustomCursor : MonoBehaviour
 
     private void DirectionMouseObject()
     {
-        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
+        // CircleCollider2D의 반경을 기준으로 선택 범위 확인
+        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionCollider.radius);
 
         InteractableObject closestInteractable = null;
-        float closestDistance = interactionRange;
+        float closestDistance = interactionCollider.radius;
 
         foreach (Collider2D collider in interactables)
         {
@@ -87,22 +95,40 @@ public class CustomCursor : MonoBehaviour
         }
     }
 
+    // 상호작용 텍스트를 마우스 위치에 따라 이동시키는 코드 (UI 기준)
+    private void UpdateInteractionTextPosition()
+    {
+        if (textManager == null || textManager.interactionText == null) return;
+
+        // 마우스 위치를 가져옴 (화면 좌표)
+        Vector3 mouseScreenPosition = Input.mousePosition;
+
+        // UI 캔버스 위치를 기준으로 텍스트 위치 설정 (화면 좌표 그대로 사용)
+        Vector3 offset = new Vector3(0, 20, 0); // 마우스 위쪽으로 약간 띄우기 위한 y축 오프셋
+        textManager.interactionText.transform.position = mouseScreenPosition + offset;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("PickupItem"))
         {
             currentPickupItem = other.GetComponent<PickupItem>();
-
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (currentPickupItem == other.GetComponent<PickupItem>())
+        if (currentPickupItem == other.GetComponent<PickupItem>() && currentPickupItem != null)
         {
             currentPickupItem = null;
             textManager?.HideInteractionMessage();
         }
+    }
+
+    // Editor에서 반경을 동적으로 확인할 수 있도록 Gizmos에 표시
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, interactionCollider != null ? interactionCollider.radius : 2f);
     }
 }

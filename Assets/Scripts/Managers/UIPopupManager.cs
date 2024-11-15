@@ -37,9 +37,13 @@ public class UIPopupManager
     private RecipePopup _RecipePopup;
     private bool _isRecipePopupOpen = false;
 
-    //요리 레시피 관련 팝업
+    //설명 창 관련 팝업
     private IntroUIPopup _Intro;
     private bool _isIntroOpen = false;
+
+    //설명 창 관련 팝업
+    private RoundStartPopup _Start;
+    private bool _isStartOpen = false;
 
     //============================스킬 UI_Popup==============================
     //스킬 관련 팝업은 시간멈춤이 들어가 있음
@@ -469,6 +473,41 @@ public class UIPopupManager
             _isIntroOpen = false;
             _Intro.gameObject.SetActive(false);
             _Intro = null;
+
+        }
+    }
+    //===========================================================================
+
+    //==========================라운드 시작 UI===================================
+    public void OpenRound()
+    {
+        if (_Start == null)
+        {
+            _Start = Managers.UI.ShowPopupUI<RoundStartPopup>("RoundStart");
+        }
+        else
+        {
+            _Start.gameObject.SetActive(true);
+        }
+
+        if (_Start != null)
+        {
+            _isStartOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
+    public void CloseStart()
+    {
+        if (_Start != null)
+        {
+            Managers.UI.ClosePopupUI(_Intro);
+            _isStartOpen = false;
+            _Start.gameObject.SetActive(false);
+            _Start = null;
 
         }
     }

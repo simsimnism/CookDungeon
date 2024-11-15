@@ -11,6 +11,7 @@ public class PickupItem : MonoBehaviour
 
     public void Pickup()
     {
+        Debug.Log("아이템을 습득했습니다 내부확인!!!!!.");
         string prefabName = gameObject.name;
         Managers.Inventory.AddItemToInventory(prefabName);
         Destroy(gameObject);

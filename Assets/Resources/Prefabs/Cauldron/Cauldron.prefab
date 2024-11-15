@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterSpawner: {fileID: 0}
+  textManager: {fileID: 0}
+  outlineMaterial: {fileID: 2100000, guid: b541dcffbe67203429f875e67dcd4df6, type: 2}
 --- !u!114 &8899335952349899655
 MonoBehaviour:
   m_ObjectHideFlags: 0

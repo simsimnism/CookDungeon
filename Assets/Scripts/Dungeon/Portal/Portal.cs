@@ -5,10 +5,13 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
     private BoxCollider2D portalTrigger;
+    private Cauldron Cauldron;
 
     private void Awake()
     {
         portalTrigger = GetComponent<BoxCollider2D>();
+        Cauldron = GetComponent<Cauldron>();
+        Cauldron = FindAnyObjectByType<Cauldron>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,6 +33,7 @@ public class Portal : MonoBehaviour
                 Managers.Sound.PlaySFX(Define.SFX.Teleport1);
                 Managers.Popup.OpenGameLoading(); // 로딩 화면 표시
                 Managers.GM.gameState = GameState.levelCompleted;
+                Cauldron.clearCauldron();
             }
 
             // 이전 상태를 playingLevel로 저장

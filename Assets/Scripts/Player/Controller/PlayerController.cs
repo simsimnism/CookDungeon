@@ -67,6 +67,14 @@ public class PlayerController : MonoBehaviour
         Managers.Input.KeyAction += OnKeyMove;
     }
 
+
+    private void Update()
+    {
+        // 상호작용 범위 내 오브젝트 확인
+        DetectInteractableObjects();
+        UpdateInteractionTextPosition();
+    }
+
     // WASD로 상하좌우 이동 & F키로 아이템 습득
     private void OnKeyMove()
     {
@@ -100,14 +108,6 @@ public class PlayerController : MonoBehaviour
         // 이동
         transform.Translate(direction * moveSpeed * Time.deltaTime);
 
-        // 상호작용 범위 내 오브젝트 확인
-        DetectInteractableObjects();
-        DirectionMouseObject();
-        // F키 -> 좌클릭 으로 상호작용
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            HandleMouseInteraction();
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -213,27 +213,4 @@ public class PlayerController : MonoBehaviour
         hpBarCanvas.transform.position = screenPosition + offset;
     }
 
-    private void HandleMouseInteraction()
-    {
-        // 마우스 위치로부터 Ray 생성
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
-
-        if (hit.collider != null)
-        {
-            // 충돌한 오브젝트가 PickupItem인지 확인
-            PickupItem pickupItem = hit.collider.GetComponent<PickupItem>();
-            if (pickupItem != null)
-            {
-                currentPickupItem = pickupItem;
-                currentPickupItem.Pickup();
-                currentPickupItem = null;
-
-            }
-        }
-        else
-        {
-            currentPickupItem = null; // 마우스가 아이템 위에 있지 않을 경우 초기화
-        }
-    }
 }

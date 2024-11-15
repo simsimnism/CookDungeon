@@ -13,6 +13,7 @@ public class Cauldron : MonoBehaviour
     private bool isStart = false; // 최초 상호작용을 했는지 판단
     private bool isFireON = false; // 라운드가 끝나고 요리를 할 수 있는지에 대한 확인
     private bool isFireOFF = false; // 최종적으로 모든 상호작용이 끝나고 불이 꺼짐
+    private bool hasInteractedOnce = false; // 최초 상호작용 여부 플래그 추가
 
     private void Awake()
     {
@@ -86,31 +87,43 @@ public class Cauldron : MonoBehaviour
         }
     }
 
-    // 상호작용
     void Interact()
     {
-        // 만약 최초 상호작용을 하지 않았다면
-        if (!isStart)
+        
+        // 불이 꺼져 있고, 최초 상호작용도 하지 않았으며, 한 번도 상호작용하지 않았다면 실행
+        if (!isStart && !isFireOFF && !hasInteractedOnce)
         {
+            Managers.Popup.OpenRound();
             // isStart를 true로 바꾸고 타이머를 설정
             isStart = true;
+            hasInteractedOnce = true; // 상호작용 기록
             Timer(RoundTimeLimit);
-
+            
             // 몬스터 생성 호출
             monsterSpawner.SpawnMonsters();
             Debug.Log("몬스터 생성 시작!");
         }
-        else // 이미 한번 상호작용을 했다면
+        else if (isFireON) // 이미 불이 켜져 있다면
         {
-            // 현재 불이 피워졌는지 확인하고 불이 켜져있다면
-            if (isFireON) 
-            {
-                // 요리 UI 출력
-                Managers.Popup.ToggleCooking();
+            // 요리 UI 출력
+            Managers.Popup.ToggleCooking();
 
-                //인벤토리 UI 출력
-                Managers.Inventory.OpenInventory();
-            }
+            // 인벤토리 UI 출력
+            Managers.Inventory.OpenInventory();
+        }
+        else
+        {
+            Debug.Log("이미 상호작용했거나 조건이 맞지 않습니다.");
+        }
+    }
+
+
+    public void clearCauldron()
+    {
+        if (Managers.GM.gameState == GameState.levelCompleted)
+        {
+            hasInteractedOnce = true;
+
         }
     }
 
