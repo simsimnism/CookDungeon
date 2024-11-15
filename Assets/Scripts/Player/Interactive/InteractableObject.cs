@@ -23,7 +23,7 @@ public class InteractableObject : MonoBehaviour
             case "PickupItem":
                 return "아이템 습득";
             case "Interaction":
-                return "상호작용";
+                return "불 키기 / 요리하기";
             default:
                 return "알 수 없는 상호작용";
         }

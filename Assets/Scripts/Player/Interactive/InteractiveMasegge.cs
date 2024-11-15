@@ -16,7 +16,7 @@ public class InteractiveMasegge : MonoBehaviour
     {
         if (interactionText != null)
         {
-            interactionText.text = $"F {message}";
+            interactionText.text = $"{message}";
             interactionText.gameObject.SetActive(true);
         }
     }
