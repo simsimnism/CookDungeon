@@ -177,6 +177,8 @@ public class GameManager
         currentDungeonLevelListIndex++;
 
         genDungeon(currentDungeonLevelListIndex);
+
+        Managers.Popup.OpenRoundInfo();
     }
 
     // 게임 리스타트 메서드 추가

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7714841582262779157}
   - component: {fileID: 5304751466013325528}
   - component: {fileID: 9218368175713364580}
+  - component: {fileID: 7076423793473478224}
   m_Layer: 5
   m_Name: RoundInfoPopup
   m_TagString: Untagged
@@ -115,6 +116,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd00faad2db8f847a441da7f894a4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7076423793473478224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148477758576629491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41df44d11b139e47b19bdccdb7fc728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numObject: {fileID: 6550891137070740126}
+  roundSprites:
+  - {fileID: 542836621, guid: 7f520a990fd64e948a69dfe5a6ddf5c1, type: 3}
+  - {fileID: 408309033, guid: 7f520a990fd64e948a69dfe5a6ddf5c1, type: 3}
+  - {fileID: -2072126079, guid: 7f520a990fd64e948a69dfe5a6ddf5c1, type: 3}
+  - {fileID: -863762483, guid: 7f520a990fd64e948a69dfe5a6ddf5c1, type: 3}
+  - {fileID: 584593072, guid: 7f520a990fd64e948a69dfe5a6ddf5c1, type: 3}
 --- !u!1 &3348386442509474996
 GameObject:
   m_ObjectHideFlags: 0

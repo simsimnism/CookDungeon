@@ -372,7 +372,7 @@ public class UIPopupManager
         }
         else
         {
-            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+            Debug.LogError("RoundInfoPopup을 생성하지 못했습니다.");
         }
     }
 

@@ -33,6 +33,11 @@ public class MonsterSpawner : MonoBehaviour
         currentEnemyCount = 0;
 
         currentRoom = roomChangedEvent.room;
+
+        if (currentRoom.roomNodeType.isCauldron && currentRoom.isClearedOfMonster == false)
+        {
+            currentRoom.instantiatedRoom.LockDoors();
+        }
     }
 
     // 가마솥에서 몬스터를 생성하는 함수
@@ -54,8 +59,8 @@ public class MonsterSpawner : MonoBehaviour
         // 동시에 생성되는 몬스터의 수를 가져오기
         enemyMaxConcurrentSpawnNumber = GetConcurrentEnemies();
 
-        // 문을 잠구기
-        currentRoom.instantiatedRoom.LockDoors();
+        // 문을 잠구기 (가마솥 방에 들어갈 때 문 잠구기로 변경)
+        // currentRoom.instantiatedRoom.LockDoors();
 
         // 게임 스테이트를 변경 (보스 전투)
         if (Managers.GM.gameState == GameState.bossRoom)
