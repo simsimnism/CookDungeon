@@ -29,9 +29,13 @@ public class UIPopupManager
     private GameClearPopup _gameClearPopup;
     private bool _isgameClearOpen = false;
 
-    //게임오버 유아이 관련
-    private GameClearPopup _RoundInfoPopup;
+    //라운드 변경 유아이 관련
+    private RoundInfoPopup _RoundInfoPopup;
     private bool _isRoundInfoOpen = false;
+
+    //요리 레시피 관련 팝업
+    private RecipePopup _RecipePopup;
+    private bool _isRecipePopupOpen = false;
 
 
     //============================스킬 UI_Popup==============================
@@ -346,8 +350,7 @@ public class UIPopupManager
     {
         if (_RoundInfoPopup == null)
         {
-            //_RoundInfoPopup = Managers.UI.ShowPopupUI<RoundInfoPopup>("RoundInfoPopup");
-            _RoundInfoPopup.gameObject.SetActive(true);
+            _RoundInfoPopup = Managers.UI.ShowPopupUI<RoundInfoPopup>("RoundInfoPopup");
         }
         else
         {
@@ -364,14 +367,68 @@ public class UIPopupManager
         }
     }
 
-
     public void CloseRoundInfo()
     {
         if (_RoundInfoPopup != null)
         {
-
+            Managers.UI.ClosePopupUI();
             _isRoundInfoOpen = false;
             _RoundInfoPopup.gameObject.SetActive(false);
+            _RoundInfoPopup = null;
+
+        }
+    }
+    //===========================================================================
+
+    //==============================레시피 UI====================================
+    public void ToggleRecipe()
+    {
+        if (_RecipePopup)
+        {
+            CloseRecipe();
+        }
+        else
+        {
+            OpenRecipe();
+        }
+    }
+
+    /*사용 설명서
+    if (_RecipePopup == null)
+        {
+            _RecipePopup = Managers.UI.ShowPopupUI<스크립트 이름>("열고자 하는 캔버스 오브젝트 이름");
+        }
+    */
+
+    public void OpenRecipe()
+    {
+        if (_RecipePopup == null)
+        {
+            _RecipePopup = Managers.UI.ShowPopupUI<RecipePopup>("Recipe");
+        }
+        else
+        {
+            _RecipePopup.gameObject.SetActive(true);
+        }
+
+        if (_RecipePopup != null)
+        {
+            _isRecipePopupOpen = true;
+        }
+        else
+        {
+            Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
+        }
+    }
+
+    public void CloseRecipe()
+    {
+        if (_RecipePopup != null)
+        {
+            Managers.UI.ClosePopupUI();
+            _isRecipePopupOpen = false;
+            _RecipePopup.gameObject.SetActive(false);
+            _RecipePopup = null;
 
         }
     }
@@ -385,7 +442,9 @@ public class UIPopupManager
         CloseGameEndUI();
         CloseGamePauseUI();
         CloseGameLoading();
-        CloseGameClear();   
+        CloseGameClear();
+        CloseRoundInfo();
+        CloseRecipe();
         Managers.Inventory.CloseInventory();
 
     }

@@ -68,9 +68,6 @@ public class PlayerController : MonoBehaviour
     }
 
     // WASD로 상하좌우 이동 & F키로 아이템 습득
-
-
-
     private void OnKeyMove()
     {
         // 이동 가능 여부 체크
@@ -105,19 +102,11 @@ public class PlayerController : MonoBehaviour
 
         // 상호작용 범위 내 오브젝트 확인
         DetectInteractableObjects();
-
+        DirectionMouseObject();
         // F키 -> 좌클릭 으로 상호작용
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (currentPickupItem != null)
-            {
-                currentPickupItem.Pickup(); // 아이템 습득
-            }
-
-            if (currentInteractable != null)
-            {
-                Debug.Log($"{currentInteractable.GetInteractionMessage()}와 상호작용을 수행했습니다.");
-            }
+            HandleMouseInteraction();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -128,7 +117,12 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Managers.Popup.TogglePauseUI();
+            Managers.Popup.OpenGamePauseUI();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Managers.Popup.ToggleRecipe();
         }
 
         // 이동 방향에 따라 상호작용 텍스트 위치 조정
@@ -149,6 +143,7 @@ public class PlayerController : MonoBehaviour
         textManager.interactionText.transform.position = screenPosition + offset;
     }
 
+    //상호작용 오브젝트와 접근했을때 상호작용하는 코드
     private void DetectInteractableObjects()
     {
         Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
@@ -218,4 +213,66 @@ public class PlayerController : MonoBehaviour
         hpBarCanvas.transform.position = screenPosition + offset;
     }
 
+    private void HandleMouseInteraction()
+    {
+        // 마우스 위치로부터 Ray 생성
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
+        if (hit.collider != null)
+        {
+            // 충돌한 오브젝트가 PickupItem인지 확인
+            PickupItem pickupItem = hit.collider.GetComponent<PickupItem>();
+            if (pickupItem != null)
+            {
+                currentPickupItem = pickupItem;
+                currentPickupItem.Pickup();
+                currentPickupItem = null;
+
+            }
+        }
+        else
+        {
+            currentPickupItem = null; // 마우스가 아이템 위에 있지 않을 경우 초기화
+        }
+    }
+
+    // 마우스가 아이템에 가까이 갔을 때만 하이라이트
+    private void DirectionMouseObject()
+    {
+        Collider2D[] interactables = Physics2D.OverlapCircleAll(transform.position, interactionRange);
+
+        InteractableObject closestInteractable = null;
+        float closestDistance = interactionRange;
+
+        foreach (Collider2D collider in interactables)
+        {
+            InteractableObject interactable = collider.GetComponent<InteractableObject>();
+            if (interactable != null)
+            {
+                float distance = Vector2.Distance(transform.position, interactable.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestInteractable = interactable;
+                }
+            }
+        }
+
+        // 상호작용 오브젝트가 변경되었는지 확인
+        if (closestInteractable != currentInteractable)
+        {
+            if (currentInteractable != null)
+            {
+                currentInteractable.Highlight(false); // 이전 오브젝트 하이라이트 제거
+            }
+
+            currentInteractable = closestInteractable;
+
+            if (currentInteractable != null)
+            {
+                currentInteractable.Highlight(true); // 새로운 오브젝트 하이라이트 활성화
+            }
+        }
+    }
 }

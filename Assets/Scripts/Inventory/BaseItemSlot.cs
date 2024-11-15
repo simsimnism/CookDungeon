@@ -1,11 +1,14 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Image itemImage;
+    public Image TextBackground; // 아이템 설명 표시용 텍스트
+    public TMP_Text itemDescriptionText; // 아이템 설명 표시용 TMP 텍스트
     private Image draggedImage;
     protected Item currentItem;
 
@@ -28,6 +31,12 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         draggedImage.transform.SetParent(transform.root);
         draggedImage.transform.SetAsLastSibling();
         draggedImage.gameObject.SetActive(false);
+
+        // 초기화 시 TextBackground 비활성화
+        if (TextBackground != null)
+        {
+            TextBackground.gameObject.SetActive(false);
+        }
     }
 
     void Start()
@@ -80,11 +89,10 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
             }
             else
             {
-                UpdateAmountTextInDerivedClasses(); // 텍스트 업데이트 호출
+                UpdateAmountTextInDerivedClasses();
             }
-            if(recipeItem.Name == "Omelet")
+            if (recipeItem.Name == "Omelet")
             {
-                // 체력 회복 로직 실행
                 Player.RecoverHealth();
             }
             else
@@ -156,31 +164,25 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
 
     private void MoveSingleItemToSlot(BaseItemSlot targetSlot)
     {
-        Debug.Log("MoveSingleItemToSlot 호출됨");
-
         if (targetSlot.IsEmpty() || targetSlot.CurrentItem?.Name == currentItem.Name)
         {
             Item singleItemCopy = currentItem.Clone();
             singleItemCopy.SetAmount(1);
-            Debug.Log($"복사된 아이템 - Name: {singleItemCopy.Name}");
 
-            // targetSlot이 CookingSlot인지 확인하여 SetItem 호출
             if (targetSlot is CookingSlot cookingSlotTarget)
             {
-                Debug.Log("CookingSlot으로 인식됨 - CookingSlot의 SetItem 호출");
-                cookingSlotTarget.SetItem(singleItemCopy); // CookingSlot의 SetItem 호출
+                cookingSlotTarget.SetItem(singleItemCopy);
             }
             else if (targetSlot.IsEmpty())
             {
-                Debug.Log("기본 BaseItemSlot의 SetItem 호출");
-                targetSlot.SetItem(singleItemCopy); // 기본 BaseItemSlot의 SetItem 호출
+                targetSlot.SetItem(singleItemCopy);
             }
             else if (targetSlot.CurrentItem.Name == currentItem.Name)
             {
                 targetSlot.CurrentItem.AddAmount(1);
             }
 
-            currentItem.DecreaseAmount(1); // 인벤토리 슬롯에서 아이템 수량 차감
+            currentItem.DecreaseAmount(1);
 
             UpdateAmountTextInDerivedClasses();
             targetSlot.UpdateAmountTextInDerivedClasses();
@@ -192,10 +194,9 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
         }
     }
 
-
     protected virtual bool CanSwap(BaseItemSlot targetSlot)
     {
-        return true;  // 슬롯 간의 교환이 가능할 때 true 반환
+        return true;
     }
 
     protected virtual void SwapItems(BaseItemSlot targetSlot)
@@ -208,13 +209,12 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
 
     public void ClearCache()
     {
-        Debug.Log("캐시가 초기화되었습니다.");
         currentItem = null;
     }
 
     private void ShowConfirmationDialog(System.Action onConfirm)
     {
-        bool userConfirmed = true;  // 임시로 확인된 상태를 가정
+        bool userConfirmed = true;
         if (userConfirmed)
         {
             onConfirm?.Invoke();
@@ -227,4 +227,32 @@ public abstract class BaseItemSlot : MonoBehaviour, IPointerClickHandler, IBegin
     }
 
     public abstract void UpdateAmountTextInDerivedClasses();
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (currentItem != null && itemDescriptionText != null)
+        {
+            itemDescriptionText.text = currentItem.Description;
+
+            // 설명 텍스트와 백그라운드 이미지 활성화
+            if (TextBackground != null)
+            {
+                TextBackground.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (itemDescriptionText != null)
+        {
+            itemDescriptionText.text = "";
+
+            // 설명 텍스트와 백그라운드 이미지 비활성화
+            if (TextBackground != null)
+            {
+                TextBackground.gameObject.SetActive(false);
+            }
+        }
+    }
 }
