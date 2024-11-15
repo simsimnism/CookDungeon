@@ -248,7 +248,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5478094774674438357
 CanvasRenderer:
@@ -345,5 +345,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 9203805102756271840}
-  itemAmountText: {fileID: 6267399219211393680}
   parentInventory: {fileID: 0}
+  itemAmountText: {fileID: 6267399219211393680}
