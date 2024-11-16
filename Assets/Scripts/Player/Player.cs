@@ -213,8 +213,6 @@ public class Player : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic; // Rigidbody를 Dynamic으로 복원하여 이동 가능하게 함
     }
 
-
-
     public void DisableMovement()
     {
         Managers.GM.IsMoving = false;
