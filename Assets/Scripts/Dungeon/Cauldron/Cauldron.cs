@@ -165,6 +165,11 @@ public class Cauldron : MonoBehaviour
         Managers.GM.CookAbleTime = false;
 
         animator.SetBool("isFire", false);
+
+        // 포탈 생성
+        GameObject Portal = Managers.Resource.Instantiate("Dungeon/Portal/Portal", gameObject.transform);
+        Portal.transform.localPosition = new Vector3(0, 9, 0);
+        Portal.transform.localScale = new Vector3(2, 2, 2);
     }
 
     // 요리 제한 시간을 반환하는 Get 메서드
@@ -182,10 +187,5 @@ public class Cauldron : MonoBehaviour
     public bool IsCookingTime()
     {
         return isFireON; // 불이 켜져있으면 요리 제한 시간 상태
-    }
-
-    void OnDisable()
-    {
-        // 객체 비활성화 시 리소스 정리
     }
 }

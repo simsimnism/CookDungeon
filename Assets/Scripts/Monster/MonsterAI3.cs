@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
-// 베추구리
+// 배추구리
 public class MonsterAI3 : MonoBehaviour
 {
     public MonsterDataSO monsterDataSO;  // ScriptableObject로 데이터를 저장
     [SerializeField]private GameObject Boom;
+    [SerializeField] private GameObject rangeIndicator; // 범위를 표시할 원형 스프라이트
 
     private int health;
 
@@ -119,12 +121,21 @@ public class MonsterAI3 : MonoBehaviour
     {
         if (isAttacking) yield break;  // 이미 공격 중이면 중복 실행 방지
 
-
-
         isAttacking = true;  // 공격 중으로 상태 전환
         Debug.Log("플레이어를 감지했습니다. 1초 후에 공격합니다.");
 
-        Boom.gameObject.SetActive(true);   
+        // 범위 표시 스프라이트 활성화
+        rangeIndicator.SetActive(true);
+        rangeIndicator.transform.localScale = Vector3.zero; // 초기 스케일을 0으로 설정
+
+        Boom.gameObject.SetActive(true);
+
+        // 범위 스프라이트를 폭발 범위만큼 커지게 함
+        float duration = 1.3f; // 커지는 시간
+
+        // DOTween을 사용하여 스프라이트 크기 애니메이션
+        rangeIndicator.transform.DOScale(new Vector3(2, 2, 1), duration)
+            .SetEase(Ease.OutExpo); // Ease 설정
 
         // 1초 대기
         yield return new WaitForSeconds(1.3f);
@@ -133,6 +144,7 @@ public class MonsterAI3 : MonoBehaviour
         Managers.Sound.PlaySFX(Define.SFX.Bomb1);
         AttackPlayerAndSelf();
 
+        rangeIndicator.SetActive(false);
         // 공격이 끝나면 다시 행동 가능
         isAttacking = false;
     }

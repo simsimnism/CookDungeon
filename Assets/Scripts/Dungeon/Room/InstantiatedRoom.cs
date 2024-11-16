@@ -375,7 +375,7 @@ public class InstantiatedRoom : MonoBehaviour
     }
 
     // 포탈 생성
-    private void PortalCreate()
+    public void PortalCreate()
     {
         // 만약 방의 룸 노드 타입이 가마솥 방 이라면
         if (room.roomNodeType.isExit)
