@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 //요리UI의 팝업을 담당
 public class CookingPopup : UI_Popup
 {
+
+
     void Start()
     {
         base.Init();
@@ -14,6 +16,7 @@ public class CookingPopup : UI_Popup
     {
         
         Managers.Popup.CloseCooking();
+        
         Debug.Log("Closing Cooking Popup");
     }
 }
