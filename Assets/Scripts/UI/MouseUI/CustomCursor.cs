@@ -112,7 +112,15 @@ public class CustomCursor : MonoBehaviour
     {
         if (other.CompareTag("PickupItem"))
         {
-            currentPickupItem = other.GetComponent<PickupItem>();
+            PickupItem pickupItem = other.GetComponent<PickupItem>();
+            if (pickupItem != null)
+            {
+                if (currentPickupItem == null ||
+                    Vector2.Distance(transform.position, pickupItem.transform.position) < Vector2.Distance(transform.position, currentPickupItem.transform.position))
+                {
+                    currentPickupItem = pickupItem; // 가장 가까운 아이템으로 업데이트
+                }
+            }
         }
     }
 
@@ -121,9 +129,29 @@ public class CustomCursor : MonoBehaviour
         if (currentPickupItem == other.GetComponent<PickupItem>() && currentPickupItem != null)
         {
             currentPickupItem = null;
-            textManager?.HideInteractionMessage();
+
+            // 근처에 다른 아이템이 있다면 가장 가까운 아이템을 다시 설정
+            Collider2D[] pickups = Physics2D.OverlapCircleAll(transform.position, interactionCollider.radius);
+            float closestDistance = interactionCollider.radius;
+
+            foreach (Collider2D collider in pickups)
+            {
+                PickupItem pickupItem = collider.GetComponent<PickupItem>();
+                if (pickupItem != null)
+                {
+                    float distance = Vector2.Distance(transform.position, pickupItem.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        currentPickupItem = pickupItem;
+                    }
+                }
+            }
         }
+
+        textManager?.HideInteractionMessage();
     }
+
 
     // Editor에서 반경을 동적으로 확인할 수 있도록 Gizmos에 표시
     private void OnDrawGizmosSelected()
