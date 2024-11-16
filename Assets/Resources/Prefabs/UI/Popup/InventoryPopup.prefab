@@ -1100,6 +1100,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 86546288065256908, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6459127697046142821}
+    - targetCorrespondingSourceObject: {fileID: 86546288065256908, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1535777366126552731}
   m_SourcePrefab: {fileID: 100100000, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}
 --- !u!1 &1981314820327999285 stripped
 GameObject:
@@ -1118,6 +1121,29 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!223 &1535777366126552731
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981314820327999285}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 7
+  m_TargetDisplay: 0
 --- !u!224 &3532626295397129038 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3119335177734947255, guid: eacbd2acd3e0f9942bd6a08ca92e75f5, type: 3}

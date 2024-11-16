@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UIManager
 {
-    int _order = 10;
-
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
 
@@ -24,17 +22,7 @@ public class UIManager
     {
         Canvas canvas = Util.GetOrAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.overrideSorting = true;
 
-        if (sort)
-        {
-            canvas.sortingOrder = _order;
-            _order++;
-        }
-        else
-        {
-            canvas.sortingOrder = 0;
-        }
     }
 
     public T MakeSubItem<T>(Transform parent = null, string name = null) where T : UI_Base
@@ -102,7 +90,6 @@ public class UIManager
         UI_Popup popup = _popupStack.Pop();
         Managers.Resource.Destroy(popup.gameObject);
         popup = null;
-        _order--;
     }
 
     public void CloseAllPopupUI()
