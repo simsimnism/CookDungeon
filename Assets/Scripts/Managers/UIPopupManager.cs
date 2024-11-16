@@ -104,6 +104,10 @@ public class UIPopupManager
             _isSkillOpen = false;
             Time.timeScale = 1;  // 게임 시간 재개
         }
+        else
+        {
+
+        }
     }
     //========================================================================
 
@@ -150,6 +154,10 @@ public class UIPopupManager
             GameObject.Destroy(_cookingPopup.gameObject);
             _isCookingOpen = false;
             _cookingPopup = null;
+        }
+        else 
+        {
+
         }
     }
     //========================================================================
@@ -200,6 +208,10 @@ public class UIPopupManager
             //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
             _gameEndPopup = null;
             Time.timeScale = 1;  // 게임 시간 재개
+        }
+        else
+        {
+
         }
     }
 
@@ -253,6 +265,10 @@ public class UIPopupManager
             _gamePausePopup = null;
             Time.timeScale = 1;  // 게임 시간 재개
         }
+        else
+        {
+
+        }
     }
     //===========================================================================
 
@@ -300,6 +316,10 @@ public class UIPopupManager
             _isGameLoadingOpen = false;
             _gameLoadingPopup = null;
             Debug.Log("게임 로딩 끝");
+        }
+        else
+        {
+
         }
     }
     //===========================================================================
@@ -349,6 +369,10 @@ public class UIPopupManager
             _gameClearPopup.gameObject.SetActive( false);
 
         }
+        else
+        {
+
+        }
     }
     //===========================================================================
 
@@ -393,6 +417,10 @@ public class UIPopupManager
             GameObject.Destroy(_RoundInfoPopup.gameObject);
             _isRoundInfoOpen = false;
             _RoundInfoPopup = null;
+
+        }
+        else
+        {
 
         }
     }
@@ -448,6 +476,10 @@ public class UIPopupManager
             _RecipePopup = null;
 
         }
+        else
+        {
+
+        }
     }
     //===========================================================================
 
@@ -483,6 +515,10 @@ public class UIPopupManager
             _Intro = null;
 
         }
+        else
+        {
+
+        }
     }
     //===========================================================================
 
@@ -515,6 +551,10 @@ public class UIPopupManager
             GameObject.Destroy(_Start.gameObject);
             _isStartOpen = false;
             _Start = null;
+
+        }
+        else
+        {
 
         }
     }
