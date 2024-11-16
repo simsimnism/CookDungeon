@@ -260,7 +260,6 @@ public class UIPopupManager
         {
             GameObject.Destroy(_gamePausePopup.gameObject);
             _isGamePauseOpen = false;
-
             //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
             _gamePausePopup = null;
             Time.timeScale = 1;  // 게임 시간 재개
@@ -513,10 +512,6 @@ public class UIPopupManager
             _isIntroOpen = false;
             _Intro.gameObject.SetActive(false);
             _Intro = null;
-
-        }
-        else
-        {
 
         }
     }
