@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        playerController = GetComponent<PlayerController>();
         MaxHP = Managers.Player.MaxHP;
         inDamage = Managers.Player.inDamage;
         invin = Managers.GM.IsInvincible;
@@ -44,7 +45,6 @@ public class Player : MonoBehaviour
         // 4초 후에 게임 클리어 UI 팝업을 띄우는 코루틴 시작
         StartCoroutine(SpawnGameClearPopup());
         StartCoroutine(GameClearPopup());
-        StartCoroutine(Intro());
 
         currentHP = MaxHP;
 

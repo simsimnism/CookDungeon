@@ -6,6 +6,18 @@ public class PopupController : MonoBehaviour
 {
     private void Update()
     {
+        Managers.Input.KeyAction -= OnEscKey;
+        Managers.Input.KeyAction += OnEscKey;
+    }
+
+    private void OnDestroy()
+    {
+        // Managers.Input과 관련된 이벤트 해제 예시
+        Managers.Input.KeyAction -= OnEscKey; ;
+    }
+
+    void OnEscKey()
+    {
         // ESC 키 입력 확인
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -31,7 +43,7 @@ public class PopupController : MonoBehaviour
                 {
                     popupManager.CloseCooking();
                 }
-                else if(popupManager.IsRecipePopupOpen)
+                else if (popupManager.IsRecipePopupOpen)
                 {
                     popupManager.CloseRecipe();
                 }

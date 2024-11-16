@@ -55,7 +55,6 @@ public class UIPopupManager
     public bool IsGameStartOpen => _isStartOpen;
     public bool IsIntroOpen => _isIntroOpen;
     public bool IsRoundInfoOpen => _isRoundInfoOpen;
-
     public bool IsRecipePopupOpen => _isRecipePopupOpen;
 
 
@@ -214,7 +213,6 @@ public class UIPopupManager
 
         }
     }
-
     //===========================================================================
 
 
@@ -363,7 +361,6 @@ public class UIPopupManager
     {
         if (_gameClearPopup != null)
         {
-            
             _isgameClearOpen = false;
             _gameClearPopup.gameObject.SetActive( false);
 
@@ -558,14 +555,15 @@ public class UIPopupManager
     //모든 팝업을 닫는 코드 게임이 종료되는 코드에는 이걸 무조건 실행시켜줘야 하며 모든 팝업을 닫는 코드는 여기다 넣어주세요
     public void RealAllClosePopup()
     {
-        CloseSkillUI();
-        CloseCooking();
-        CloseGameEndUI();
-        CloseGamePauseUI();
-        CloseGameLoading();
-        CloseGameClear();
-        CloseRoundInfo();
-        CloseRecipe();
+        if (_SkillPopup != null) CloseSkillUI();
+        if (_cookingPopup != null) CloseCooking();
+        if (_gameEndPopup != null) CloseGameEndUI();
+        if (_gamePausePopup != null) CloseGamePauseUI();
+        if (_gameLoadingPopup != null) CloseGameLoading();
+        if (_gameClearPopup != null) CloseGameClear();
+        if (_RoundInfoPopup != null) CloseRoundInfo();
+        if (_RecipePopup != null) CloseRecipe();
+
         Managers.Inventory.CloseInventory();
 
     }

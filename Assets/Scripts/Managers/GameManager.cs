@@ -95,15 +95,12 @@ public class GameManager
 
         gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
 
-        //인트로UI 생성 나중에 매니저에서 게임 리스타트에서 게임 스타트로 바뀌는 함수 만들거임 연결을 전부 끊고 재시작 해야해서 기능 수정 많이 필요함
-        //Managers.Popup.OpenIntro();
+        //인트로UI 생성 
+        Managers.Popup.OpenIntro();
 
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
         player = Player.GetComponent<Player>();
-
-        //게임 클리어 함수 생성 후 세팅
-        //Managers.Popup.OpenGameClear();
 
         // 카메라 세팅
         GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");

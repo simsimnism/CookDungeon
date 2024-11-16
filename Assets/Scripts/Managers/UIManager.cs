@@ -70,17 +70,18 @@ public class UIManager
 
     public void ClosePopupUI(UI_Popup popup)
     {
-        if (_popupStack.Count == 0)
+        if (_popupStack.Count == 0 || popup == null)
             return;
 
         if (_popupStack.Peek() != popup)
         {
-            Debug.Log("Close Popup Failed!");
+            Debug.LogWarning("Close Popup Failed: Popup does not match the stack's top.");
             return;
         }
 
         ClosePopupUI();
     }
+
 
     public void ClosePopupUI()
     {
@@ -88,15 +89,29 @@ public class UIManager
             return;
 
         UI_Popup popup = _popupStack.Pop();
-        Managers.Resource.Destroy(popup.gameObject);
-        popup = null;
+
+        if (popup != null && popup.gameObject != null)
+        {
+            Managers.Resource.Destroy(popup.gameObject);
+        }
+
+        popup = null; // Null로 초기화
     }
+
 
     public void CloseAllPopupUI()
     {
         while (_popupStack.Count > 0)
-            ClosePopupUI();
+        {
+            UI_Popup popup = _popupStack.Pop();
+
+            if (popup != null && popup.gameObject != null)
+            {
+                Managers.Resource.Destroy(popup.gameObject);
+            }
+        }
     }
+
 
     public void Clear()
     {

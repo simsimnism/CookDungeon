@@ -58,10 +58,14 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-            Managers.Player.Init();
-            Managers.Input.KeyAction -= OnKeyMove;
-            Managers.Input.KeyAction += OnKeyMove;
+        Managers.Player.Init();
+        Managers.Input.KeyAction -= OnKeyMove; // 기존 이벤트 해제
+        Managers.Input.KeyAction += OnKeyMove; // 새로운 이벤트 등록
+    }
 
+    private void OnDestroy()
+    {
+        Managers.Input.KeyAction -= OnKeyMove; // 삭제 시 이벤트 해제
     }
 
     private void Update()
@@ -74,6 +78,8 @@ public class PlayerController : MonoBehaviour
     // WASD로 상하좌우 이동 & F키로 아이템 습득
     private void OnKeyMove()
     {
+        if (this == null) return; // Null 체크 추가
+
         // 이동 가능 여부 체크
         if (!Managers.Player.canMove || !Managers.GM.IsMoving)
             return;
