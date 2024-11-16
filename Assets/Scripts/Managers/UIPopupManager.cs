@@ -135,7 +135,7 @@ public class UIPopupManager
     {
         if (_cookingPopup != null)
         {
-            Managers.UI.ClosePopupUI();
+            Managers.UI.ClosePopupUI(_cookingPopup);
             _isCookingOpen = false;
             _cookingPopup = null;
         }

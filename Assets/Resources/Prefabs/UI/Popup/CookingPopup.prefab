@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 1162599119982365433}
+  TextBackground: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
   parentInventory: {fileID: 8774859631958363150, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
   itemAmountText: {fileID: 1776202453586316034}
 --- !u!1 &401789536050587720
@@ -557,9 +559,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -709,6 +711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 9196845508049857380}
+  TextBackground: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
   parentInventory: {fileID: 8774859631958363150, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
   itemAmountText: {fileID: 5220432992331291895}
 --- !u!1 &2418633470353995870
@@ -1439,9 +1443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2105,6 +2109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 4007619481985384808}
+  TextBackground: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
   parentInventory: {fileID: 8774859631958363150, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
   itemAmountText: {fileID: 6052163513378568292}
 --- !u!1 &7634919492545636668
@@ -2244,6 +2250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 4284739908292964852}
+  TextBackground: {fileID: 0}
+  itemDescriptionText: {fileID: 0}
   parentInventory: {fileID: 8774859631958363150, guid: e896231f26d798b48b538fd48b5bea3b, type: 3}
   itemAmountText: {fileID: 1396925584134064287}
 --- !u!1 &8095533584009677185
@@ -2559,7 +2567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2616,7 +2624,7 @@ MonoBehaviour:
   m_enableKerning: 1
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
-  m_isRichText: 1
+  m_isRichText: 0
   m_parseCtrlCharacters: 1
   m_isOrthographic: 1
   m_isCullingEnabled: 0
