@@ -277,8 +277,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: -3780855257384966203}
-        m_TargetAssemblyTypeName: UI_Popup, Assembly-CSharp
-        m_MethodName: ClosePopupUI
+        m_TargetAssemblyTypeName: IntroUIPopup, Assembly-CSharp
+        m_MethodName: CloseIntroUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

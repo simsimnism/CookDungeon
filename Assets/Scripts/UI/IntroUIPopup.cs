@@ -8,4 +8,9 @@ public class IntroUIPopup : UI_Popup
     {
         base.Init();
     }
+
+    public void CloseIntroUI()
+    {
+        Managers.Popup.CloseIntro();
+    }
 }

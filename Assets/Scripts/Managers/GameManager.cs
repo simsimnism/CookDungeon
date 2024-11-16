@@ -90,14 +90,20 @@ public class GameManager
         // Subscribe to room changed event.        
         EventHandle.OnRoomChange += EventHandle_RoomChangeEvent;
 
+        //게임 로딩 생성
         Managers.Popup.OpenGameLoading();
 
         gameState = GameState.playingLevel; // 게임 상태를 진행 중으로 변경
 
+        //인트로UI 생성
+        Managers.Popup.OpenIntro();
 
         // 캐릭터 생성
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
         player = Player.GetComponent<Player>();
+
+        //게임 클리어 함수 생성 후 세팅
+        Managers.Popup.OpenGameClear();
 
         // 카메라 세팅
         GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");

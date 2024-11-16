@@ -30,7 +30,7 @@ public class Managers : MonoBehaviour
     public static GameManager GM { get { Init(); return Instance._game; } }
     public static PlayerManager Player { get { Init(); return Instance._player; } }
     public static InventoryManager Inventory { get { Init(); return Instance._inventory; } }
-    public static UIPopupManager Popup { get { Init(); return Instance._popup; } }
+    public static UIPopupManager Popup { get { Init(); return Instance._popup; } }  
 
 
     void Start()

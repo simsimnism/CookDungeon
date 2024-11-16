@@ -93,9 +93,7 @@ public class UIPopupManager
     }
     //========================================================================
 
-
-    //============================요리 UI_Popup==============================
-    //UI 창 파괴생성 기능 담고있음
+    //==========================요리 UI=======================================
     public void ToggleCooking()
     {
         if (_isCookingOpen)
@@ -135,13 +133,12 @@ public class UIPopupManager
     {
         if (_cookingPopup != null)
         {
-            Managers.UI.ClosePopupUI(_cookingPopup);
+            GameObject.Destroy(_cookingPopup.gameObject);
             _isCookingOpen = false;
             _cookingPopup = null;
         }
     }
     //========================================================================
-
 
     //==========================게임오버 UI_Popup==============================
     public void ToggleGameEndUI()
@@ -183,7 +180,7 @@ public class UIPopupManager
         if (_gameEndPopup != null)
         {
             //해당 창을 파괴하는 함수
-            Managers.UI.CloseAllPopupUI();
+            GameObject.Destroy(_gameEndPopup.gameObject);
             _isGameEndOpen = false;
 
             //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
@@ -235,7 +232,7 @@ public class UIPopupManager
     {
         if (_gamePausePopup != null)
         {
-            Managers.UI.ClosePopupUI();
+            GameObject.Destroy(_gamePausePopup.gameObject);
             _isGamePauseOpen = false;
 
             //값도 널로 바꿔줘야 함 안그러면 널로 값이 바뀌었다고 판단 안함
@@ -285,7 +282,7 @@ public class UIPopupManager
     {
         if (_gameLoadingPopup != null)
         {
-            Managers.UI.ClosePopupUI(_gameLoadingPopup);
+            GameObject.Destroy(_gameLoadingPopup.gameObject);
             _isGameLoadingOpen = false;
             _gameLoadingPopup = null;
             Debug.Log("게임 로딩 끝");
@@ -328,7 +325,6 @@ public class UIPopupManager
             Debug.LogError("InventoryPopup을 생성하지 못했습니다.");
         }
     }
-
 
     public void CloseGameClear()
     {
@@ -380,9 +376,8 @@ public class UIPopupManager
     {
         if (_RoundInfoPopup != null)
         {
-            Managers.UI.ClosePopupUI();
+            GameObject.Destroy(_RoundInfoPopup.gameObject);
             _isRoundInfoOpen = false;
-            _RoundInfoPopup.gameObject.SetActive(false);
             _RoundInfoPopup = null;
 
         }
@@ -434,9 +429,8 @@ public class UIPopupManager
     {
         if (_RecipePopup != null)
         {
-            Managers.UI.ClosePopupUI(_RecipePopup);
+            GameObject.Destroy(_RecipePopup.gameObject);
             _isRecipePopupOpen = false;
-            _RecipePopup.gameObject.SetActive(false);
             _RecipePopup = null;
 
         }
@@ -469,7 +463,7 @@ public class UIPopupManager
     {
         if ( _Intro != null)
         {
-            Managers.UI.ClosePopupUI(_Intro);
+            GameObject.Destroy(_Intro.gameObject);
             _isIntroOpen = false;
             _Intro.gameObject.SetActive(false);
             _Intro = null;
@@ -504,9 +498,8 @@ public class UIPopupManager
     {
         if (_Start != null)
         {
-            Managers.UI.ClosePopupUI(_Intro);
+            GameObject.Destroy(_Start.gameObject);
             _isStartOpen = false;
-            _Start.gameObject.SetActive(false);
             _Start = null;
 
         }
