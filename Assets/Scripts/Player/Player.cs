@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // 4초 후에 게임 클리어 UI 팝업을 띄우는 코루틴 시작
+        StartCoroutine(SpawnGameClearPopup());
+        StartCoroutine(GameClearPopup());
 
         currentHP = MaxHP;
 
@@ -50,6 +53,22 @@ public class Player : MonoBehaviour
         {
             hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
         }
+    }
+
+    private IEnumerator SpawnGameClearPopup()
+    {
+        yield return new WaitForSeconds(2f);
+
+        // Managers.Popup을 통해 게임 클리어 팝업 호출
+        Managers.Popup.OpenGameClear();
+    }
+
+    private IEnumerator GameClearPopup()
+    {
+        yield return new WaitForSeconds(2.01f);
+
+        // Managers.Popup을 통해 게임 클리어 팝업 호출
+        Managers.Popup.CloseGameClear();
     }
 
     private IEnumerator Intro()

@@ -102,8 +102,6 @@ public class GameManager
         GameObject Player = Managers.Resource.Instantiate("Player/Player");
         player = Player.GetComponent<Player>();
 
-        Managers.Popup.OpenGameClear();
-
         // 카메라 세팅
         GameObject Camera = Managers.Resource.Instantiate("Camera/PlayerCamera");
 
