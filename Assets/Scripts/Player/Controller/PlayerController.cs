@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
 
         // 텍스트 위치 조정 (플레이어 위쪽으로 오프셋 추가)
-        Vector3 offset = new Vector3(0, 100, 0); // 필요에 따라 조정
+        Vector3 offset = new Vector3(0, 130, 0); // 필요에 따라 조정
         textManager.interactionText.transform.position = screenPosition + offset;
     }
 
