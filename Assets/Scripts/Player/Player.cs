@@ -121,7 +121,6 @@ public class Player : MonoBehaviour
         RecoverHealth(defaultHealAmount);
     }
 
-    // 체력을 지정된 양만큼 회복시키는 함수
     // 체력을 회복시키는 함수
     public void RecoverHealth(int healAmount)
     {
@@ -139,7 +138,6 @@ public class Player : MonoBehaviour
             hpBar.SetHealthBarValue((float)currentHP / (float)MaxHP);
         }
     }
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -179,14 +177,11 @@ public class Player : MonoBehaviour
         }
     }
 
-
     private IEnumerator ReenableRigidbody()
     {
         yield return new WaitForSeconds(0.1f); // 잠시 대기 후
         rb.bodyType = RigidbodyType2D.Dynamic; // Rigidbody를 Dynamic으로 복원하여 이동 가능하게 함
     }
-
-
 
     public void DisableMovement()
     {

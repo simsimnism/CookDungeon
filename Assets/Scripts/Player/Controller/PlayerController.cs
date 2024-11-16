@@ -41,12 +41,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 hpBarOffset = new Vector3(0, 1.5f, 0); // 머리 위에 띄울 오프셋
 
 
-
-
     void Awake()
     {
-
-
         textManager = FindObjectOfType<InteractiveMasegge>();
         if (textManager == null)
         {
@@ -62,11 +58,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Managers.Player.Init();
-        Managers.Input.KeyAction -= OnKeyMove;
-        Managers.Input.KeyAction += OnKeyMove;
-    }
+            Managers.Player.Init();
+            Managers.Input.KeyAction -= OnKeyMove;
+            Managers.Input.KeyAction += OnKeyMove;
 
+    }
 
     private void Update()
     {
@@ -115,7 +111,7 @@ public class PlayerController : MonoBehaviour
             Managers.Inventory.ToggleInventory();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             Managers.Popup.TogglePauseUI();
         }

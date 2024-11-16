@@ -6,6 +6,8 @@ public class InventoryManager
     private bool _isInventoryOpen = false;
     public Inventory slotGenerate;
 
+    public bool IsInventoryOpen => _isInventoryOpen;
+
     // 인벤토리 열고 닫기
     public void ToggleInventory()
     {

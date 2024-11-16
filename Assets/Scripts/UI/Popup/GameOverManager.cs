@@ -10,7 +10,6 @@ public class GameOverManager : MonoBehaviour
     public void ReturnToTitle()
     {
         Managers.Popup.RealAllClosePopup();
-        Managers.UI.CloseAllPopupUI();
         Time.timeScale = 1f;  // 시간 다시 정상으로 설정
         Managers.GM.gameState = GameState.restartGame;
         SceneManager.LoadScene(titleSceneName);  // 타이틀 씬으로 전환

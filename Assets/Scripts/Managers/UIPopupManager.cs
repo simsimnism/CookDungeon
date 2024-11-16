@@ -41,9 +41,23 @@ public class UIPopupManager
     private IntroUIPopup _Intro;
     private bool _isIntroOpen = false;
 
-    //설명 창 관련 팝업
+    //라운드 스타트 창 관련 팝업
     private RoundStartPopup _Start;
     private bool _isStartOpen = false;
+
+    // 각 팝업 상태를 확인할 수 있는 속성 추가(ESC키로 순서대로 팝업 닫기 기능에 필요한 로직)
+    public bool IsSkillOpen => _isSkillOpen;
+    public bool IsCookingOpen => _isCookingOpen;
+    public bool IsGameEndOpen => _isGameEndOpen;
+    public bool IsGamePauseOpen => _isGamePauseOpen;
+    public bool IsGameClearOpen => _isgameClearOpen;
+    public bool IsGameLoadingOpen => _isGameLoadingOpen;
+    public bool IsGameStartOpen => _isStartOpen;
+    public bool IsIntroOpen => _isIntroOpen;
+    public bool IsRoundInfoOpen => _isRoundInfoOpen;
+
+    public bool IsRecipePopupOpen => _isRecipePopupOpen;
+
 
     //============================스킬 UI_Popup==============================
     //스킬 관련 팝업은 시간멈춤이 들어가 있음
