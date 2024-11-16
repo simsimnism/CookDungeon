@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6363008033699369137}
   - component: {fileID: 1109950230388279249}
   - component: {fileID: 2829099418006841519}
-  - component: {fileID: -6480979599675306388}
+  - component: {fileID: 286516112369266882}
   m_Layer: 5
   m_Name: CookingPopup
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &1109950230388279249
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-6480979599675306388
+--- !u!114 &286516112369266882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -6480979599675306388}
+      - m_Target: {fileID: 286516112369266882}
         m_TargetAssemblyTypeName: CookingPopup, Assembly-CSharp
         m_MethodName: CloseCook
         m_Mode: 1
