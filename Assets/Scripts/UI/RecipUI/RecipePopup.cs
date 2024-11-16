@@ -8,4 +8,9 @@ public class RecipePopup : UI_Popup
     {
         base.Init();
     }
+
+    public void CloseRecipe()
+    {
+        Managers.Popup.CloseRecipe();
+    }
 }
