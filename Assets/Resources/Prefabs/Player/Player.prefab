@@ -18,14 +18,8 @@ GameObject:
   - component: {fileID: 2781979467317269648}
   - component: {fileID: 2197750277363042519}
   - component: {fileID: -7212628119788705017}
-  - component: {fileID: -2161336275990677533}
-  - component: {fileID: 7230781881235056908}
-  - component: {fileID: 6760921261668312528}
-  - component: {fileID: 5729850085079224659}
-  - component: {fileID: 439189845956120409}
-  - component: {fileID: 4475494874384190288}
-  - component: {fileID: 8448406031799008486}
   - component: {fileID: 7264788146406878037}
+  - component: {fileID: -7031741039273320103}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -310,107 +304,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-2161336275990677533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9659e408c8a1d9b49a14200ee98687f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appleJuiceSkill: {fileID: 439189845956120409}
-  pizzaSpinCutter: {fileID: 7230781881235056908}
-  eggCabbageSpirit: {fileID: 6760921261668312528}
-  candyAppleRoll: {fileID: 5729850085079224659}
-  appleJuiceCooldown: 5
-  pizzaSpinCooldown: 8
-  eggCabbageCooldown: 10
-  candyAppleCooldown: 12
---- !u!114 &7230781881235056908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a266a7e04bf374fb494ba0ed7fba00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pizzaKnifePrefab: {fileID: 482774722012170693, guid: 10032f4fa968d7c4cbf190dae799f94b, type: 3}
-  Level: 1
---- !u!114 &6760921261668312528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7400abd18526b594c809005fd788529a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spiritPrefab: {fileID: 2947856784731344065, guid: 5782eab30f1934243b9481ed3dc4f047, type: 3}
-  Level: 1
---- !u!114 &5729850085079224659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d25078f331f6241a5de10174841fb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  candyAppleBallPrefab: {fileID: 7277912707359058159, guid: 6d2632356e26e594e84e0ae9ef2a1e0a, type: 3}
-  Level: 1
---- !u!114 &439189845956120409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ef3b93d0ee233f48be08400e71c31ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  appleJuiceEffect: {fileID: 3909660761192287430, guid: 5f36f92daf86c484c8b7790252e0dffc, type: 3}
-  skillManager: {fileID: -2161336275990677533}
-  Level: 1
---- !u!114 &4475494874384190288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a1ac62dab56db4cb85d5ce2bdf0385, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8448406031799008486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25671217308133105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d67f5ed2c61df242a933e8e882831fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7264788146406878037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +327,19 @@ MonoBehaviour:
   defaultHealAmount: 3
   moveSpeed: 0
   gameOverPanel: {fileID: 0}
+--- !u!114 &-7031741039273320103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25671217308133105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a18cdce13b175484d82e5af0d4d98e3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillSet: {fileID: 0}
 --- !u!1001 &3117348228185463338
 PrefabInstance:
   m_ObjectHideFlags: 0

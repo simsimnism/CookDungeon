@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3593789386169894928}
   - component: {fileID: 5607588809583464166}
   - component: {fileID: -3825071346319213473}
+  - component: {fileID: -5483641187966538904}
   m_Layer: 14
   m_Name: AppleJuiceEffect
   m_TagString: Untagged
@@ -133,3 +134,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-5483641187966538904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3909660761192287430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef3b93d0ee233f48be08400e71c31ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appleJuiceEffect: {fileID: 3909660761192287430}
+  skillManager: {fileID: 0}
+  Level: 1
